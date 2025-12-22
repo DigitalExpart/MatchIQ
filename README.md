@@ -1,79 +1,179 @@
-# MatchIQ
+# MatchIQ - Relationship Compatibility Assessment Platform
 
-A comprehensive relationship compatibility assessment platform with AI-powered insights and coaching.
+A comprehensive platform for assessing relationship compatibility with AI-powered insights and coaching.
 
-## 🏗️ Project Structure
+## 🏗️ Repository Structure
 
 This repository is organized into separate branches for different components:
 
 ### Branches
 
-- **`main`** - This branch (project overview and documentation)
-- **`frontend`** - React/TypeScript frontend application
-- **`backend`** - FastAPI/Python backend API
-- **`ai-frontend`** - AI-specific frontend components and services
+- **`main`** - Main repository with documentation and overview
+- **`frontend`** - React (Vite + TypeScript) frontend application
+- **`backend`** - FastAPI (Python) backend API server
+- **`ai-frontend`** - AI-specific frontend components and features
 - **`ai-backend`** - AI-specific backend services and logic
 
-## 📚 Quick Links
+## 📁 Project Structure
 
-### Frontend
-- **Branch**: `frontend`
-- **Tech Stack**: React, TypeScript, Vite
-- **Location**: `MyMatchIQ/src/`
-
-### Backend
-- **Branch**: `backend`
-- **Tech Stack**: FastAPI, Python, PostgreSQL (Supabase)
-- **Location**: `MyMatchIQ/backend/`
-
-### AI Frontend
-- **Branch**: `ai-frontend`
-- **Components**: AI Coach Panel, AI Insights, AI Service Layer
-- **Location**: `MyMatchIQ/src/components/ai/`, `MyMatchIQ/src/services/aiService.ts`
-
-### AI Backend
-- **Branch**: `ai-backend`
-- **Services**: Coach Service, Intent Classification, Identity Handler
-- **Location**: `MyMatchIQ/backend/app/services/coach_service.py`, `MyMatchIQ/backend/app/utils/`
-
-## 🚀 Getting Started
-
-### Clone the Repository
-
-```bash
-git clone https://github.com/DigitalExpart/MatchIQ.git
-cd MatchIQ
+```
+MatchIQ/
+├── MyMatchIQ/
+│   ├── src/              # Frontend React application
+│   ├── backend/          # Backend FastAPI application
+│   └── backend_ai_design/ # AI design documentation
+└── README.md             # This file
 ```
 
-### Switch to Desired Branch
+## 🚀 Quick Start
+
+### Frontend Setup
 
 ```bash
-# Frontend
+# Switch to frontend branch
 git checkout frontend
 
-# Backend
-git checkout backend
+# Navigate to frontend directory
+cd MyMatchIQ
 
-# AI Frontend
-git checkout ai-frontend
+# Install dependencies
+npm install
 
-# AI Backend
-git checkout ai-backend
+# Start development server
+npm run dev
 ```
 
-## 📖 Documentation
+### Backend Setup
 
-Each branch contains its own README and documentation:
+```bash
+# Switch to backend branch
+git checkout backend
 
-- **Frontend**: See `frontend` branch for React setup instructions
-- **Backend**: See `backend` branch for FastAPI setup and Supabase configuration
-- **AI Components**: See respective AI branches for AI-specific documentation
+# Navigate to backend directory
+cd MyMatchIQ/backend
 
-## 🔗 Repository
+# Install dependencies
+pip install -r requirements.txt
 
-**GitHub**: [https://github.com/DigitalExpart/MatchIQ](https://github.com/DigitalExpart/MatchIQ)
+# Configure environment
+# Copy .env.example to .env and add your Supabase connection string
 
-## 📝 License
+# Start server
+python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+## 🔧 Technology Stack
+
+### Frontend
+- **React** with **TypeScript**
+- **Vite** for build tooling
+- **Tailwind CSS** for styling
+- **React Router** for navigation
+
+### Backend
+- **FastAPI** (Python 3.10+)
+- **PostgreSQL** via **Supabase**
+- **SQLAlchemy** for ORM
+- **Pydantic** for data validation
+
+## 📚 Documentation
+
+### Frontend Documentation
+- See `MyMatchIQ/README.md` for frontend-specific documentation
+- Component documentation in `MyMatchIQ/src/components/`
+
+### Backend Documentation
+- See `MyMatchIQ/backend/README.md` for backend setup
+- API documentation available at `http://localhost:8000/docs` when server is running
+- Architecture details in `MyMatchIQ/backend/BACKEND_ARCHITECTURE.md`
+
+### AI Components
+- AI Frontend: See `ai-frontend` branch
+- AI Backend: See `ai-backend` branch
+- AI Design: See `MyMatchIQ/backend_ai_design/` directory
+
+## 🔐 Environment Setup
+
+### Frontend Environment Variables
+Create `.env` in `MyMatchIQ/`:
+```env
+VITE_API_BASE_URL=http://localhost:8000
+VITE_ENV=local
+```
+
+### Backend Environment Variables
+Create `.env` in `MyMatchIQ/backend/`:
+```env
+DATABASE_URL=postgresql://postgres:password@db.xxxxx.supabase.co:5432/postgres
+SECRET_KEY=your-secret-key
+CORS_ORIGINS=http://localhost:3000,http://localhost:5173
+AI_VERSION=1.0.0
+```
+
+See `MyMatchIQ/backend/CONNECT_SUPABASE.md` for Supabase setup instructions.
+
+## 🌐 API Endpoints
+
+When backend is running, API documentation is available at:
+- **Swagger UI**: http://localhost:8000/docs
+- **ReDoc**: http://localhost:8000/redoc
+- **Health Check**: http://localhost:8000/health
+
+### Key Endpoints
+- `POST /api/v1/assessments/` - Create and process assessment
+- `GET /api/v1/assessments/{scan_id}/result` - Get scan result
+- `POST /api/v1/coach/` - Get AI Coach response
+- `GET /api/v1/versions` - Get logic version information
+
+## 🧪 Testing
+
+### Frontend Tests
+```bash
+cd MyMatchIQ
+npm test
+```
+
+### Backend Tests
+```bash
+cd MyMatchIQ/backend
+pytest
+```
+
+## 📦 Deployment
+
+### Frontend Deployment
+Build for production:
+```bash
+cd MyMatchIQ
+npm run build
+```
+
+Deploy the `dist/` folder to your hosting service (Vercel, Netlify, etc.)
+
+### Backend Deployment
+Deploy to your preferred Python hosting service (Railway, Render, Heroku, etc.)
+
+Ensure environment variables are configured in your hosting platform.
+
+## 🤝 Contributing
+
+1. Create a feature branch from the appropriate branch (`frontend`, `backend`, `ai-frontend`, or `ai-backend`)
+2. Make your changes
+3. Commit and push to your branch
+4. Create a pull request
+
+## 📄 License
 
 Proprietary - MatchIQ
 
+## 🔗 Links
+
+- **GitHub Repository**: https://github.com/DigitalExpart/MatchIQ
+- **Frontend Branch**: `frontend`
+- **Backend Branch**: `backend`
+- **AI Frontend Branch**: `ai-frontend`
+- **AI Backend Branch**: `ai-backend`
+
+## 📞 Support
+
+For issues or questions, please check the documentation in each branch or create an issue in the repository.
