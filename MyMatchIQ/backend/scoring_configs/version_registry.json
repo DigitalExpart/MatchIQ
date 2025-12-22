@@ -1,0 +1,28 @@
+{
+  "versions": [
+    {
+      "version": "1.0.0",
+      "description": "Initial production configuration",
+      "created_at": "2024-01-01T00:00:00Z",
+      "is_active": true,
+      "is_deprecated": false,
+      "deprecation_date": null,
+      "changes": [
+        {
+          "description": "Initial production configuration",
+          "date": "2024-01-01",
+          "impact": "non-breaking",
+          "affected_components": [
+            "scoring",
+            "red_flags",
+            "confidence_gating"
+          ],
+          "migration_notes": null
+        }
+      ],
+      "backward_compatible_with": [],
+      "breaking_changes": []
+    }
+  ]
+}
+

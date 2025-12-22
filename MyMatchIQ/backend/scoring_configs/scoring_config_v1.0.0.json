@@ -1,0 +1,108 @@
+{
+  "logic_version": "1.0.0",
+  "version_description": "Initial production configuration",
+  "created_at": "2024-01-01T00:00:00Z",
+  "is_active": true,
+  
+  "category_weights": {
+    "default": 1.0,
+    "emotional_alignment": 1.2,
+    "communication_fit": 1.15,
+    "values_match": 1.3,
+    "lifestyle_harmony": 1.1,
+    "future_goals": 1.25,
+    "safety_stability": 1.5
+  },
+  
+  "deal_breaker_penalties": {
+    "critical_violation": -25,
+    "high_violation": -15,
+    "medium_violation": -8,
+    "low_violation": -3
+  },
+  
+  "compatibility_thresholds": {
+    "high_potential": {
+      "min_score": 85,
+      "min_confidence": 0.7,
+      "max_red_flags_critical": 0,
+      "max_red_flags_high": 0
+    },
+    "worth_exploring": {
+      "min_score": 65,
+      "min_confidence": 0.6,
+      "max_red_flags_critical": 0,
+      "max_red_flags_high": 1
+    },
+    "mixed_signals": {
+      "min_score": 45,
+      "min_confidence": 0.5,
+      "max_red_flags_critical": 0,
+      "max_red_flags_high": 2
+    },
+    "caution": {
+      "min_score": 25,
+      "min_confidence": 0.4,
+      "max_red_flags_critical": 1,
+      "max_red_flags_high": 3
+    },
+    "high_risk": {
+      "min_score": 0,
+      "min_confidence": 0.0,
+      "max_red_flags_critical": 999,
+      "max_red_flags_high": 999
+    }
+  },
+  
+  "red_flag_severity_thresholds": {
+    "critical": {
+      "min_occurrences": 1,
+      "auto_escalate": true,
+      "blocks_high_potential": true
+    },
+    "high": {
+      "min_occurrences": 1,
+      "auto_escalate": false,
+      "blocks_high_potential": false
+    },
+    "medium": {
+      "min_occurrences": 2,
+      "auto_escalate": false,
+      "blocks_high_potential": false
+    },
+    "low": {
+      "min_occurrences": 3,
+      "auto_escalate": false,
+      "blocks_high_potential": false
+    }
+  },
+  
+  "scoring_adjustments": {
+    "reflection_sentiment": {
+      "max_positive_adjustment": 10,
+      "max_negative_adjustment": -10,
+      "weight": 0.15
+    },
+    "profile_alignment": {
+      "max_adjustment": 8,
+      "weight": 0.2
+    },
+    "consistency_bonus": {
+      "max_bonus": 5,
+      "min_consistency": 0.8
+    }
+  },
+  
+  "metadata": {
+    "author": "MyMatchIQ Engineering",
+    "reviewed_by": "AI Safety Team",
+    "change_log": [
+      {
+        "version": "1.0.0",
+        "date": "2024-01-01",
+        "changes": "Initial production configuration"
+      }
+    ]
+  }
+}
+
