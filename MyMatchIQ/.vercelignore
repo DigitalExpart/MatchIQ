@@ -1,0 +1,15 @@
+# Ignore files from Vercel deployment
+node_modules/
+.env
+.env.local
+.env.*.local
+dist/
+build/
+.vite/
+*.log
+.DS_Store
+backend/
+backend_ai_design/
+*.md
+!README.md
+
