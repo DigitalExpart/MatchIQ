@@ -53,9 +53,6 @@ git checkout frontend
 
 # AI Frontend
 git checkout ai-frontend
-
-# AI Backend
-git checkout ai-backend
 ```
 
 ## 📖 Documentation
