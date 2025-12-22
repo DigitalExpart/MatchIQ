@@ -51,7 +51,15 @@
     },
     build: {
       target: 'esnext',
-      outDir: 'build',
+      outDir: 'dist',
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'react-vendor': ['react', 'react-dom'],
+            'ui-vendor': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+          },
+        },
+      },
     },
     server: {
       port: 3000,

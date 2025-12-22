@@ -84,8 +84,6 @@ MyMatchIQ/dist/
 MyMatchIQ/build/
 MyMatchIQ/.vite/
 
-# Backend
-backend/__pycache__/
-backend/*.pyc
-backend/.pytest_cache/
+# Backend (moved to separate repository)
+# See: https://github.com/DigitalExpart/MacthIQ-ai-backend
 

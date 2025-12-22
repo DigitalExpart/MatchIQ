@@ -10,9 +10,9 @@ This repository is organized into separate branches for different components:
 
 - **`main`** - This branch (project overview and documentation)
 - **`frontend`** - React/TypeScript frontend application
-- **`backend`** - FastAPI/Python backend API
 - **`ai-frontend`** - AI-specific frontend components and services
-- **`ai-backend`** - AI-specific backend services and logic
+
+**Note**: Backend code has been moved to a separate repository: [MacthIQ-ai-backend](https://github.com/DigitalExpart/MacthIQ-ai-backend)
 
 ## 📚 Quick Links
 
@@ -22,9 +22,9 @@ This repository is organized into separate branches for different components:
 - **Location**: `MyMatchIQ/src/`
 
 ### Backend
-- **Branch**: `backend`
+- **Repository**: [MacthIQ-ai-backend](https://github.com/DigitalExpart/MacthIQ-ai-backend)
 - **Tech Stack**: FastAPI, Python, PostgreSQL (Supabase)
-- **Location**: `MyMatchIQ/backend/`
+- **Deployment**: Railway, Render, or Fly.io
 
 ### AI Frontend
 - **Branch**: `ai-frontend`
@@ -32,9 +32,9 @@ This repository is organized into separate branches for different components:
 - **Location**: `MyMatchIQ/src/components/ai/`, `MyMatchIQ/src/services/aiService.ts`
 
 ### AI Backend
-- **Branch**: `ai-backend`
+- **Repository**: [MacthIQ-ai-backend](https://github.com/DigitalExpart/MacthIQ-ai-backend)
 - **Services**: Coach Service, Intent Classification, Identity Handler
-- **Location**: `MyMatchIQ/backend/app/services/coach_service.py`, `MyMatchIQ/backend/app/utils/`
+- **Deployment**: Railway, Render, or Fly.io
 
 ## 🚀 Getting Started
 
@@ -51,9 +51,6 @@ cd MatchIQ
 # Frontend
 git checkout frontend
 
-# Backend
-git checkout backend
-
 # AI Frontend
 git checkout ai-frontend
 
@@ -66,8 +63,8 @@ git checkout ai-backend
 Each branch contains its own README and documentation:
 
 - **Frontend**: See `frontend` branch for React setup instructions
-- **Backend**: See `backend` branch for FastAPI setup and Supabase configuration
-- **AI Components**: See respective AI branches for AI-specific documentation
+- **Backend**: See [MacthIQ-ai-backend repository](https://github.com/DigitalExpart/MacthIQ-ai-backend) for FastAPI setup and deployment
+- **AI Components**: See `ai-frontend` branch for AI-specific frontend documentation
 
 ## 🔗 Repository
 
