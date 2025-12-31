@@ -212,7 +212,7 @@ export function AICoachScreen({ onBack, onNavigateHome }: AICoachScreenProps) {
     }));
   };
 
-  const handleSendMessage = (content: string) => {
+  const handleSendMessage = async (content: string) => {
     if (!content.trim()) return;
 
     // Add user message
@@ -229,16 +229,62 @@ export function AICoachScreen({ onBack, onNavigateHome }: AICoachScreenProps) {
     // Update context from user message
     updateContext(content);
 
-    // Simulate AI response
-    setTimeout(() => {
-      const aiMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        type: 'ai',
-        content: getAIResponse(content, userContext),
-        timestamp: new Date(),
-      };
-      setMessages(prev => [...prev, aiMessage]);
-    }, 1000);
+    // Add loading message
+    const loadingMessage: Message = {
+      id: 'loading',
+      type: 'ai',
+      content: '...',
+      timestamp: new Date(),
+    };
+    setMessages(prev => [...prev, loadingMessage]);
+
+    try {
+      // Call backend API for AI response
+      const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://macthiq-ai-backend.onrender.com/api/v1';
+      console.log('Calling AI Coach API:', apiUrl);
+      const response = await fetch(`${apiUrl}/coach/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          mode: 'LEARN',
+          specific_question: content,
+          context: {
+            topics: userContext.topics,
+            mentioned_issues: userContext.mentionedIssues,
+            relationship_status: userContext.relationshipStatus,
+            partner_name: userContext.partnerName,
+          }
+        }),
+      });
+
+      const data = await response.json();
+
+      // Remove loading message and add AI response
+      setMessages(prev => {
+        const filtered = prev.filter(m => m.id !== 'loading');
+        return [...filtered, {
+          id: (Date.now() + 1).toString(),
+          type: 'ai',
+          content: data.message || data.response || 'I apologize, but I encountered an error. Please try again.',
+          timestamp: new Date(),
+        }];
+      });
+    } catch (error) {
+      console.error('Error calling backend AI coach:', error);
+      
+      // Fallback to local responses if backend fails
+      setMessages(prev => {
+        const filtered = prev.filter(m => m.id !== 'loading');
+        return [...filtered, {
+          id: (Date.now() + 1).toString(),
+          type: 'ai',
+          content: getAIResponse(content, userContext),
+          timestamp: new Date(),
+        }];
+      });
+    }
   };
 
   const getAIResponse = (userMessage: string, context: UserContext): string => {
