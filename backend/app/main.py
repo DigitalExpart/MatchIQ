@@ -6,7 +6,7 @@ import logging
 
 from app.config import settings
 from app.database import init_db
-from app.api import assessments, blueprints, results, coach
+from app.api import auth, assessments, blueprints, results, coach
 from app.models.pydantic_models import HealthResponse
 
 # Configure logging
@@ -54,6 +54,7 @@ app.add_middleware(
 )
 
 # Routers
+app.include_router(auth.router, prefix="/api/v1/auth", tags=["auth"])
 app.include_router(assessments.router, prefix="/api/v1/assessments", tags=["assessments"])
 app.include_router(blueprints.router, prefix="/api/v1/blueprints", tags=["blueprints"])
 app.include_router(results.router, prefix="/api/v1/results", tags=["results"])
