@@ -65,17 +65,17 @@ export function SelfAssessmentReminderBanner({
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute top-full left-0 mt-2 w-[480px] bg-white text-gray-900 rounded-xl shadow-2xl p-5 z-50 border border-gray-100"
+                      className="absolute top-full left-0 mt-2 w-[600px] bg-white text-gray-900 rounded-xl shadow-2xl p-6 z-50 border border-gray-100"
                     >
                       <div className="absolute -top-2 left-4 w-4 h-4 bg-white transform rotate-45 border-t border-l border-gray-100"></div>
-                      <h4 className="font-semibold text-sm mb-3 text-[#3C2B63]">
+                      <h4 className="font-semibold text-base mb-4 text-[#3C2B63]">
                         {tooltipContent.title}
                       </h4>
-                      <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                      <div className="grid grid-cols-2 gap-x-6 gap-y-3">
                         {tooltipContent.features.map((feature, index) => (
-                          <div key={index} className="text-xs flex items-start gap-2">
-                            <span className="text-green-500 mt-0.5 flex-shrink-0">✓</span>
-                            <span className="text-gray-700">{feature}</span>
+                          <div key={index} className="text-sm flex items-start gap-2.5">
+                            <span className="text-green-500 text-base flex-shrink-0 mt-0.5">✓</span>
+                            <span className="text-gray-700 leading-relaxed">{feature}</span>
                           </div>
                         ))}
                       </div>
