@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import { ArrowLeft, Mail, Lock, User, MapPin, Calendar, Eye, EyeOff } from 'lucide-react';
+import { ArrowLeft, Mail, Lock, User, MapPin, Eye, EyeOff } from 'lucide-react';
 import { motion } from 'motion/react';
 
 interface SignUpScreenProps {
   onComplete: (userData: {
     name: string;
+    username: string;
     email: string;
     password: string;
-    age?: number;
+    gender?: string;
     location?: string;
     datingGoal?: string;
   }) => void;
@@ -19,12 +20,15 @@ interface SignUpScreenProps {
 export function SignUpScreen({ onComplete, onBack, onSignIn, datingGoal }: SignUpScreenProps) {
   const [formData, setFormData] = useState({
     name: '',
+    username: '',
     email: '',
+    gender: '',
+    location: '',
     password: '',
-    age: '',
-    location: ''
+    confirmPassword: ''
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validateForm = () => {
@@ -32,6 +36,12 @@ export function SignUpScreen({ onComplete, onBack, onSignIn, datingGoal }: SignU
 
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
+    }
+
+    if (!formData.username.trim()) {
+      newErrors.username = 'Username is required';
+    } else if (formData.username.length < 3) {
+      newErrors.username = 'Username must be at least 3 characters';
     }
 
     if (!formData.email.trim()) {
@@ -44,6 +54,12 @@ export function SignUpScreen({ onComplete, onBack, onSignIn, datingGoal }: SignU
       newErrors.password = 'Password is required';
     } else if (formData.password.length < 6) {
       newErrors.password = 'Password must be at least 6 characters';
+    }
+
+    if (!formData.confirmPassword) {
+      newErrors.confirmPassword = 'Please confirm your password';
+    } else if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match';
     }
 
     setErrors(newErrors);
@@ -66,7 +82,6 @@ export function SignUpScreen({ onComplete, onBack, onSignIn, datingGoal }: SignU
             name: formData.name,
             email: formData.email,
             password: formData.password,
-            age: formData.age ? parseInt(formData.age) : null,
             location: formData.location || null,
             dating_goal: datingGoal || 'serious'
           }),
@@ -82,9 +97,10 @@ export function SignUpScreen({ onComplete, onBack, onSignIn, datingGoal }: SignU
         // Success - call onComplete with user data
         onComplete({
           name: formData.name,
+          username: formData.username,
           email: formData.email,
           password: formData.password,
-          age: formData.age ? parseInt(formData.age) : undefined,
+          gender: formData.gender || undefined,
           location: formData.location || undefined,
           datingGoal: datingGoal
         });
@@ -144,6 +160,28 @@ export function SignUpScreen({ onComplete, onBack, onSignIn, datingGoal }: SignU
             {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name}</p>}
           </div>
 
+          {/* Username */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Username *
+            </label>
+            <div className="relative">
+              <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="text"
+                value={formData.username}
+                onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl focus:outline-none transition-colors ${
+                  errors.username
+                    ? 'border-red-300 focus:border-red-500'
+                    : 'border-gray-200 focus:border-rose-400'
+                }`}
+                placeholder="Choose a username"
+              />
+            </div>
+            {errors.username && <p className="text-sm text-red-500 mt-1">{errors.username}</p>}
+          </div>
+
           {/* Email */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -164,6 +202,41 @@ export function SignUpScreen({ onComplete, onBack, onSignIn, datingGoal }: SignU
               />
             </div>
             {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
+          </div>
+
+          {/* Gender */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Gender (Optional)
+            </label>
+            <select
+              value={formData.gender}
+              onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-rose-400 focus:outline-none transition-colors"
+            >
+              <option value="">Select your gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="non-binary">Non-binary</option>
+              <option value="prefer-not-to-say">Prefer not to say</option>
+            </select>
+          </div>
+
+          {/* Location (Optional) */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Location (Optional)
+            </label>
+            <div className="relative">
+              <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="text"
+                value={formData.location}
+                onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-rose-400 focus:outline-none transition-colors"
+                placeholder="City, Country"
+              />
+            </div>
           </div>
 
           {/* Password */}
@@ -195,40 +268,33 @@ export function SignUpScreen({ onComplete, onBack, onSignIn, datingGoal }: SignU
             {errors.password && <p className="text-sm text-red-500 mt-1">{errors.password}</p>}
           </div>
 
-          {/* Age (Optional) */}
+          {/* Confirm Password */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Age (Optional)
+              Confirm Password *
             </label>
             <div className="relative">
-              <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
-                type="number"
-                value={formData.age}
-                onChange={(e) => setFormData({ ...formData, age: e.target.value })}
-                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-rose-400 focus:outline-none transition-colors"
-                placeholder="Your age"
-                min="18"
-                max="100"
+                type={showConfirmPassword ? 'text' : 'password'}
+                value={formData.confirmPassword}
+                onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                className={`w-full pl-12 pr-12 py-3 border-2 rounded-xl focus:outline-none transition-colors ${
+                  errors.confirmPassword
+                    ? 'border-red-300 focus:border-red-500'
+                    : 'border-gray-200 focus:border-rose-400'
+                }`}
+                placeholder="Confirm your password"
               />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+              </button>
             </div>
-          </div>
-
-          {/* Location (Optional) */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Location (Optional)
-            </label>
-            <div className="relative">
-              <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <input
-                type="text"
-                value={formData.location}
-                onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-rose-400 focus:outline-none transition-colors"
-                placeholder="City, Country"
-              />
-            </div>
+            {errors.confirmPassword && <p className="text-sm text-red-500 mt-1">{errors.confirmPassword}</p>}
           </div>
 
           {/* Submit Button */}
