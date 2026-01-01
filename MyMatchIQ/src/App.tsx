@@ -10,7 +10,6 @@ import { OnboardingScreen } from './components/screens/OnboardingScreen';
 import { SignUpScreen } from './components/screens/SignUpScreen';
 import { DashboardScreen } from './components/screens/DashboardScreen';
 import { SignInScreen } from './components/screens/SignInScreen';
-import { SignUpScreen } from './components/screens/SignUpScreen';
 import { authService } from './utils/authService';
 import { ScanTypeSelectionScreen } from './components/screens/ScanTypeSelectionScreen';
 import { MatchScanFlowScreen } from './components/screens/MatchScanFlowScreen';
