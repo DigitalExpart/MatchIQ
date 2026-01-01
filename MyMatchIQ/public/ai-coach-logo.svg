@@ -1,0 +1,110 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient Definition -->
+  <defs>
+    <linearGradient id="heartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#A855F7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="brainGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#C084FC;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A855F7;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer Heart Shape -->
+  <path d="M100 180C100 180 30 130 30 80C30 55 45 40 65 40C80 40 90 50 100 65C110 50 120 40 135 40C155 40 170 55 170 80C170 130 100 180 100 180Z" 
+        fill="url(#heartGradient)" 
+        stroke="#1F2937" 
+        stroke-width="4"
+        stroke-linejoin="round"/>
+  
+  <!-- Inner Heart with Brain Pattern -->
+  <path d="M100 160C100 160 45 120 45 80C45 62 55 52 68 52C80 52 88 60 100 75C112 60 120 52 132 52C145 52 155 62 155 80C155 120 100 160 100 160Z" 
+        fill="url(#brainGradient)" 
+        stroke="#1F2937" 
+        stroke-width="3"
+        stroke-linejoin="round"/>
+  
+  <!-- Brain Pattern - Left Hemisphere -->
+  <path d="M65 70 Q 70 65 75 70 Q 78 75 75 80 Q 70 83 68 80 Q 65 75 65 70Z" 
+        fill="none" 
+        stroke="#8B5CF6" 
+        stroke-width="2.5"
+        stroke-linecap="round"/>
+  <path d="M68 85 Q 73 82 78 87 Q 80 92 77 96 Q 72 98 70 94 Q 68 90 68 85Z" 
+        fill="none" 
+        stroke="#8B5CF6" 
+        stroke-width="2.5"
+        stroke-linecap="round"/>
+  <path d="M72 100 Q 77 98 82 103 Q 84 108 81 112 Q 76 114 74 110 Q 72 105 72 100Z" 
+        fill="none" 
+        stroke="#8B5CF6" 
+        stroke-width="2.5"
+        stroke-linecap="round"/>
+  <path d="M78 115 Q 83 113 88 118 Q 90 123 87 127 Q 82 129 80 125 Q 78 120 78 115Z" 
+        fill="none" 
+        stroke="#8B5CF6" 
+        stroke-width="2.5"
+        stroke-linecap="round"/>
+  
+  <!-- Brain Pattern - Right Hemisphere -->
+  <path d="M135 70 Q 130 65 125 70 Q 122 75 125 80 Q 130 83 132 80 Q 135 75 135 70Z" 
+        fill="none" 
+        stroke="#8B5CF6" 
+        stroke-width="2.5"
+        stroke-linecap="round"/>
+  <path d="M132 85 Q 127 82 122 87 Q 120 92 123 96 Q 128 98 130 94 Q 132 90 132 85Z" 
+        fill="none" 
+        stroke="#8B5CF6" 
+        stroke-width="2.5"
+        stroke-linecap="round"/>
+  <path d="M128 100 Q 123 98 118 103 Q 116 108 119 112 Q 124 114 126 110 Q 128 105 128 100Z" 
+        fill="none" 
+        stroke="#8B5CF6" 
+        stroke-width="2.5"
+        stroke-linecap="round"/>
+  <path d="M122 115 Q 117 113 112 118 Q 110 123 113 127 Q 118 129 120 125 Q 122 120 122 115Z" 
+        fill="none" 
+        stroke="#8B5CF6" 
+        stroke-width="2.5"
+        stroke-linecap="round"/>
+  
+  <!-- Center Line -->
+  <line x1="100" y1="60" x2="100" y2="140" 
+        stroke="#8B5CF6" 
+        stroke-width="2.5"
+        stroke-linecap="round"/>
+  
+  <!-- Additional Brain Details -->
+  <path d="M85 70 Q 90 68 95 73" 
+        fill="none" 
+        stroke="#8B5CF6" 
+        stroke-width="2"
+        stroke-linecap="round"/>
+  <path d="M115 70 Q 110 68 105 73" 
+        fill="none" 
+        stroke="#8B5CF6" 
+        stroke-width="2"
+        stroke-linecap="round"/>
+  <path d="M88 90 Q 93 88 98 93" 
+        fill="none" 
+        stroke="#8B5CF6" 
+        stroke-width="2"
+        stroke-linecap="round"/>
+  <path d="M112 90 Q 107 88 102 93" 
+        fill="none" 
+        stroke="#8B5CF6" 
+        stroke-width="2"
+        stroke-linecap="round"/>
+  <path d="M90 110 Q 95 108 100 113" 
+        fill="none" 
+        stroke="#8B5CF6" 
+        stroke-width="2"
+        stroke-linecap="round"/>
+  <path d="M110 110 Q 105 108 100 113" 
+        fill="none" 
+        stroke="#8B5CF6" 
+        stroke-width="2"
+        stroke-linecap="round"/>
+</svg>
+

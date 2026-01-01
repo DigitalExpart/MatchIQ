@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowLeft, Send, Bot, Heart, Shield, MessageCircle, Sparkles } from 'lucide-react';
+import { ArrowLeft, Send, Heart, Shield, MessageCircle, Sparkles } from 'lucide-react';
 
 interface AICoachScreenProps {
   onBack: () => void;
@@ -381,8 +381,8 @@ export function AICoachScreen({ onBack, onNavigateHome }: AICoachScreenProps) {
           <span>Back</span>
         </button>
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
-            <Bot className="w-6 h-6 text-white" />
+          <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center p-2">
+            <img src="/ai-coach-logo.svg" alt="AI Coach" className="w-full h-full" />
           </div>
           <div>
             <h1 className="text-2xl text-white">Ella - Your AI Dating Coach</h1>
@@ -407,7 +407,7 @@ export function AICoachScreen({ onBack, onNavigateHome }: AICoachScreenProps) {
             >
               {message.type === 'ai' && (
                 <div className="flex items-center gap-2 mb-2">
-                  <Bot className="w-4 h-4 text-purple-600" />
+                  <img src="/ai-coach-logo.svg" alt="Ella" className="w-5 h-5" />
                   <span className="text-xs text-purple-600">Ella</span>
                 </div>
               )}
