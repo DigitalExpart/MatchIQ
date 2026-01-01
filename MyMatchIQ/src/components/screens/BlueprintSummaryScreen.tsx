@@ -109,9 +109,9 @@ export function BlueprintSummaryScreen({
             aria-label="Go to homepage"
           >
             <img 
-              src="/ai-coach-logo.svg" 
+              src="/logo-full.svg" 
               alt="My Match IQ" 
-              className="h-12 w-12"
+              className="h-16 w-auto"
             />
           </button>
         </div>
