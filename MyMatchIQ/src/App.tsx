@@ -945,6 +945,7 @@ function AppContent() {
             onShare={() => handleNavigate('blueprintShare')}
             onCompare={() => handleNavigate('blueprintComparison')}
             onBack={handleBack}
+            onNavigateHome={() => handleNavigate('dashboard')}
             userName={userProfile?.name}
           />
         ) : (
