@@ -26,7 +26,10 @@ export function SelfAssessmentReminderBanner({
               <AlertCircle className="w-5 h-5 flex-shrink-0" />
               <div className="flex-1">
                 <p className="text-sm">
-                  Complete your Match Blueprint™ to unlock full scanning capabilities
+                  {progress === 0 
+                    ? 'Start your Match Blueprint™ to unlock full scanning capabilities'
+                    : 'Complete your Match Blueprint™ to unlock full scanning capabilities'
+                  }
                 </p>
                 {progress > 0 && (
                   <div className="mt-2">

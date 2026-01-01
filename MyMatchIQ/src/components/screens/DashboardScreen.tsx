@@ -101,7 +101,7 @@ export function DashboardScreen({ onStartScan, onNavigate, onNavigateToDatingIns
               className="flex items-center justify-start hover:scale-105 transition-transform"
             >
               <div className="flex items-center justify-center">
-                <img src="/mymatchiq-logo-full.svg" alt="My Match IQ" className="h-32 w-auto" />
+                <img src="/mymatchiq-logo-full.svg" alt="My Match IQ" className="h-48 w-auto" />
               </div>
             </button>
             
