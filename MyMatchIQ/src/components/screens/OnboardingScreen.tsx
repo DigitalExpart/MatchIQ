@@ -6,7 +6,7 @@ import { LanguageSelector } from '../LanguageSelector';
 import { useLanguage, LANGUAGES, Language } from '../../contexts/LanguageContext';
 
 interface OnboardingScreenProps {
-  onComplete: (profile: UserProfile) => void;
+  onComplete: (datingGoal: UserProfile['datingGoal']) => void;
 }
 
 export function OnboardingScreen({ onComplete }: OnboardingScreenProps) {
@@ -38,11 +38,6 @@ export function OnboardingScreen({ onComplete }: OnboardingScreenProps) {
       title: t('onboarding.datingGoal'),
       description: t('onboarding.datingGoalDesc'),
     },
-    {
-      icon: Trophy,
-      title: t('onboarding.allSet'),
-      description: t('onboarding.allSetDesc'),
-    },
   ];
 
   const handleNext = () => {
@@ -50,15 +45,11 @@ export function OnboardingScreen({ onComplete }: OnboardingScreenProps) {
       // Apply selected language
       setLanguage(selectedLanguage);
       setStep(2);
+    } else if (step === 2) {
+      setStep(3);
     } else if (step === 3 && datingGoal) {
-      setStep(4);
-    } else if (step === 4) {
-      onComplete({
-        name: name || 'User',
-        age: parseInt(age) || 25,
-        datingGoal: datingGoal || 'serious',
-        language: selectedLanguage,
-      });
+      // After dating goal, go to sign up
+      onComplete(datingGoal);
     } else {
       setStep(step + 1);
     }

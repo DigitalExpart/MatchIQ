@@ -1,269 +1,227 @@
 import { useState } from 'react';
-import { ArrowLeft, Mail, Lock, Eye, EyeOff, User, AlertCircle, Check } from 'lucide-react';
-import { Logo } from '../Logo';
+import { ArrowLeft, Mail, Lock, User, MapPin, Calendar, Eye, EyeOff } from 'lucide-react';
+import { motion } from 'motion/react';
 
 interface SignUpScreenProps {
-  onSignUp: (email: string, password: string, name: string) => Promise<boolean>;
-  onSignIn: () => void;
+  onComplete: (userData: {
+    name: string;
+    email: string;
+    password: string;
+    age?: number;
+    location?: string;
+    datingGoal?: string;
+  }) => void;
   onBack: () => void;
+  datingGoal?: string;
 }
 
-export function SignUpScreen({ onSignUp, onSignIn, onBack }: SignUpScreenProps) {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+export function SignUpScreen({ onComplete, onBack, datingGoal }: SignUpScreenProps) {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    age: '',
+    location: ''
+  });
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const validatePassword = (pwd: string): string | null => {
-    if (pwd.length < 6) return 'Password must be at least 6 characters';
-    if (!/[A-Z]/.test(pwd)) return 'Password must contain at least one uppercase letter';
-    if (!/[a-z]/.test(pwd)) return 'Password must contain at least one lowercase letter';
-    return null;
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email';
+    }
+
+    if (!formData.password) {
+      newErrors.password = 'Password is required';
+    } else if (formData.password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-
-    if (!name.trim()) {
-      setError('Please enter your name');
-      return;
-    }
-
-    if (!email.trim()) {
-      setError('Please enter your email address');
-      return;
-    }
-
-    if (!password.trim()) {
-      setError('Please enter a password');
-      return;
-    }
-
-    const passwordError = validatePassword(password);
-    if (passwordError) {
-      setError(passwordError);
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      setError('Passwords do not match');
-      return;
-    }
-
-    if (!agreedToTerms) {
-      setError('Please agree to the Terms of Service and Privacy Policy');
-      return;
-    }
-
-    setIsLoading(true);
-    try {
-      const success = await onSignUp(email.trim(), password, name.trim());
-      if (!success) {
-        setError('An account with this email already exists. Please sign in instead.');
-      }
-    } catch (err) {
-      setError('An error occurred. Please try again.');
-    } finally {
-      setIsLoading(false);
+    
+    if (validateForm()) {
+      onComplete({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        age: formData.age ? parseInt(formData.age) : undefined,
+        location: formData.location || undefined,
+        datingGoal: datingGoal
+      });
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="px-6 pt-6 pb-4">
-          <button onClick={onBack} className="text-gray-600 hover:text-gray-900 mb-4">
-            <ArrowLeft className="w-6 h-6" />
+    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 flex items-center justify-center px-6 py-12">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="w-full max-w-md"
+      >
+        {/* Header */}
+        <div className="text-center mb-8">
+          <button
+            onClick={onBack}
+            className="mb-6 text-gray-600 hover:text-gray-900 inline-flex items-center gap-2"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            Back
           </button>
-          <div className="flex items-center justify-center mb-4">
-            <Logo size={64} />
+          
+          <div className="mb-6">
+            <img src="/logo-full.svg" alt="My Match IQ" className="h-24 w-auto mx-auto" />
           </div>
-          <h1 className="text-2xl font-bold text-center text-gray-900">Create Account</h1>
-          <p className="text-sm text-center text-gray-600 mt-2">Join MyMatchIQ to find your perfect match</p>
+
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Create Your Account</h1>
+          <p className="text-gray-600">Start your journey to meaningful connections</p>
         </div>
-      </div>
 
-      {/* Content */}
-      <div className="flex-1 px-6 py-8 overflow-y-auto">
-        <div className="w-full max-w-md mx-auto">
-          <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Error Message */}
-            {error && (
-              <div className="bg-red-50 border-2 border-red-200 rounded-2xl p-4 flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-red-700 flex-1">{error}</p>
-              </div>
-            )}
-
-            {/* Name Input */}
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                Full Name
-              </label>
-              <div className="relative">
-                <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                  <User className="w-5 h-5 text-gray-400" />
-                </div>
-                <input
-                  id="name"
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Enter your full name"
-                  className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:border-rose-400 focus:outline-none text-gray-900"
-                  disabled={isLoading}
-                  required
-                />
-              </div>
+        {/* Sign Up Form */}
+        <form onSubmit={handleSubmit} className="bg-white rounded-3xl shadow-xl p-8 space-y-5">
+          {/* Name */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Full Name *
+            </label>
+            <div className="relative">
+              <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="text"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl focus:outline-none transition-colors ${
+                  errors.name
+                    ? 'border-red-300 focus:border-red-500'
+                    : 'border-gray-200 focus:border-rose-400'
+                }`}
+                placeholder="Enter your full name"
+              />
             </div>
+            {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name}</p>}
+          </div>
 
-            {/* Email Input */}
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                Email Address
-              </label>
-              <div className="relative">
-                <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                  <Mail className="w-5 h-5 text-gray-400" />
-                </div>
-                <input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your.email@example.com"
-                  className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:border-rose-400 focus:outline-none text-gray-900"
-                  disabled={isLoading}
-                  required
-                />
-              </div>
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Email Address *
+            </label>
+            <div className="relative">
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl focus:outline-none transition-colors ${
+                  errors.email
+                    ? 'border-red-300 focus:border-red-500'
+                    : 'border-gray-200 focus:border-rose-400'
+                }`}
+                placeholder="your.email@example.com"
+              />
             </div>
+            {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
+          </div>
 
-            {/* Password Input */}
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                Password
-              </label>
-              <div className="relative">
-                <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                  <Lock className="w-5 h-5 text-gray-400" />
-                </div>
-                <input
-                  id="password"
-                  type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Create a password"
-                  className="w-full pl-12 pr-12 py-4 border-2 border-gray-200 rounded-2xl focus:border-rose-400 focus:outline-none text-gray-900"
-                  disabled={isLoading}
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                >
-                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                </button>
-              </div>
-              <p className="text-xs text-gray-500 mt-1">
-                Must be at least 6 characters with uppercase and lowercase letters
-              </p>
-            </div>
-
-            {/* Confirm Password Input */}
-            <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
-                Confirm Password
-              </label>
-              <div className="relative">
-                <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                  <Lock className="w-5 h-5 text-gray-400" />
-                </div>
-                <input
-                  id="confirmPassword"
-                  type={showConfirmPassword ? 'text' : 'password'}
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Confirm your password"
-                  className="w-full pl-12 pr-12 py-4 border-2 border-gray-200 rounded-2xl focus:border-rose-400 focus:outline-none text-gray-900"
-                  disabled={isLoading}
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                >
-                  {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                </button>
-              </div>
-            </div>
-
-            {/* Terms Agreement */}
-            <div className="flex items-start gap-3">
+          {/* Password */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Password *
+            </label>
+            <div className="relative">
+              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={formData.password}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                className={`w-full pl-12 pr-12 py-3 border-2 rounded-xl focus:outline-none transition-colors ${
+                  errors.password
+                    ? 'border-red-300 focus:border-red-500'
+                    : 'border-gray-200 focus:border-rose-400'
+                }`}
+                placeholder="Create a password (min. 6 characters)"
+              />
               <button
                 type="button"
-                onClick={() => setAgreedToTerms(!agreedToTerms)}
-                className={`mt-1 w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-all ${
-                  agreedToTerms
-                    ? 'bg-rose-500 border-rose-500'
-                    : 'border-gray-300 hover:border-rose-400'
-                }`}
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
               >
-                {agreedToTerms && <Check className="w-4 h-4 text-white" />}
+                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
               </button>
-              <label className="text-sm text-gray-600 flex-1 cursor-pointer" onClick={() => setAgreedToTerms(!agreedToTerms)}>
-                I agree to the{' '}
-                <button type="button" className="text-rose-600 hover:text-rose-700 underline">
-                  Terms of Service
-                </button>
-                {' '}and{' '}
-                <button type="button" className="text-rose-600 hover:text-rose-700 underline">
-                  Privacy Policy
-                </button>
-              </label>
             </div>
-
-            {/* Sign Up Button */}
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full py-4 bg-gradient-to-r from-rose-500 to-pink-500 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isLoading ? 'Creating Account...' : 'Create Account'}
-            </button>
-          </form>
-
-          {/* Divider */}
-          <div className="my-8 flex items-center">
-            <div className="flex-1 border-t border-gray-200"></div>
-            <span className="px-4 text-sm text-gray-500">OR</span>
-            <div className="flex-1 border-t border-gray-200"></div>
+            {errors.password && <p className="text-sm text-red-500 mt-1">{errors.password}</p>}
           </div>
 
-          {/* Sign In Link */}
-          <div className="text-center">
-            <p className="text-sm text-gray-600">
-              Already have an account?{' '}
-              <button
-                onClick={onSignIn}
-                className="text-rose-600 hover:text-rose-700 font-semibold"
-              >
-                Sign In
-              </button>
-            </p>
+          {/* Age (Optional) */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Age (Optional)
+            </label>
+            <div className="relative">
+              <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="number"
+                value={formData.age}
+                onChange={(e) => setFormData({ ...formData, age: e.target.value })}
+                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-rose-400 focus:outline-none transition-colors"
+                placeholder="Your age"
+                min="18"
+                max="100"
+              />
+            </div>
           </div>
-        </div>
-      </div>
+
+          {/* Location (Optional) */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Location (Optional)
+            </label>
+            <div className="relative">
+              <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="text"
+                value={formData.location}
+                onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-rose-400 focus:outline-none transition-colors"
+                placeholder="City, Country"
+              />
+            </div>
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full py-4 bg-gradient-to-r from-rose-500 to-pink-500 text-white rounded-xl shadow-lg hover:shadow-xl transition-all font-medium text-lg hover:scale-[1.02]"
+          >
+            Create Account
+          </button>
+
+          {/* Terms */}
+          <p className="text-xs text-gray-500 text-center mt-4">
+            By signing up, you agree to our Terms of Service and Privacy Policy
+          </p>
+        </form>
+
+        {/* Already have account */}
+        <p className="text-center mt-6 text-gray-600">
+          Already have an account?{' '}
+          <button className="text-rose-500 hover:text-rose-600 font-medium">
+            Sign In
+          </button>
+        </p>
+      </motion.div>
     </div>
   );
 }
-
