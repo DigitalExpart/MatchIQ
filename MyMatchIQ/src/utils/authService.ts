@@ -1,108 +1,141 @@
 /**
  * Authentication Service
- * Handles user authentication and account management
+ * Handles user authentication and account management using backend API
  */
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://macthiq-ai-backend.onrender.com/api/v1';
 
 export interface UserAccount {
   id: string;
   email: string;
-  password: string; // In production, this should be hashed
   name: string;
+  age?: number;
+  location?: string;
+  dating_goal?: string;
   createdAt: string;
   lastLogin?: string;
 }
 
-// Simple in-memory storage (in production, use a backend API)
+// Authentication Service with Backend API
 class AuthService {
-  private accounts: Map<string, UserAccount> = new Map();
   private currentUserId: string | null = null;
+  private currentUserAccount: UserAccount | null = null;
 
   constructor() {
-    // Load accounts from localStorage
-    this.loadAccounts();
+    // Load current session from localStorage
+    this.loadSession();
   }
 
-  private loadAccounts() {
+  private loadSession() {
     try {
-      const saved = localStorage.getItem('myMatchIQ_accounts');
-      if (saved) {
-        const accounts = JSON.parse(saved);
-        accounts.forEach((acc: UserAccount) => {
-          this.accounts.set(acc.email.toLowerCase(), acc);
-        });
+      const currentUserId = localStorage.getItem('myMatchIQ_currentUserId');
+      const currentUser = localStorage.getItem('myMatchIQ_currentUser');
+      
+      if (currentUserId && currentUser) {
+        this.currentUserId = currentUserId;
+        this.currentUserAccount = JSON.parse(currentUser);
       }
     } catch (error) {
-      console.error('Error loading accounts:', error);
-    }
-
-    // Load current session
-    const currentUserId = localStorage.getItem('myMatchIQ_currentUserId');
-    if (currentUserId) {
-      this.currentUserId = currentUserId;
+      console.error('Error loading session:', error);
     }
   }
 
-  private saveAccounts() {
+  private saveSession(userId: string, account: UserAccount) {
     try {
-      const accountsArray = Array.from(this.accounts.values());
-      localStorage.setItem('myMatchIQ_accounts', JSON.stringify(accountsArray));
+      localStorage.setItem('myMatchIQ_currentUserId', userId);
+      localStorage.setItem('myMatchIQ_currentUser', JSON.stringify(account));
+      this.currentUserId = userId;
+      this.currentUserAccount = account;
     } catch (error) {
-      console.error('Error saving accounts:', error);
+      console.error('Error saving session:', error);
     }
   }
 
   async signUp(email: string, password: string, name: string): Promise<{ success: boolean; userId?: string; error?: string }> {
-    const emailLower = email.toLowerCase();
-    
-    if (this.accounts.has(emailLower)) {
-      return { success: false, error: 'An account with this email already exists' };
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/signup`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        return { success: false, error: data.detail || 'Sign up failed' };
+      }
+
+      // Save user session
+      const account: UserAccount = {
+        id: data.user.id,
+        email: data.user.email,
+        name: data.user.name,
+        age: data.user.age,
+        location: data.user.location,
+        dating_goal: data.user.dating_goal,
+        createdAt: data.user.created_at,
+      };
+
+      this.saveSession(account.id, account);
+
+      return { success: true, userId: account.id };
+    } catch (error) {
+      console.error('Sign up error:', error);
+      return { success: false, error: 'Failed to connect to server' };
     }
-
-    const userId = Date.now().toString();
-    const account: UserAccount = {
-      id: userId,
-      email: emailLower,
-      password, // In production, hash this
-      name,
-      createdAt: new Date().toISOString(),
-    };
-
-    this.accounts.set(emailLower, account);
-    this.saveAccounts();
-
-    // Auto sign in after sign up
-    this.currentUserId = userId;
-    localStorage.setItem('myMatchIQ_currentUserId', userId);
-
-    return { success: true, userId };
   }
 
   async signIn(email: string, password: string): Promise<{ success: boolean; userId?: string; error?: string }> {
-    const emailLower = email.toLowerCase();
-    const account = this.accounts.get(emailLower);
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/signin`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
 
-    if (!account) {
-      return { success: false, error: 'Invalid email or password' };
+      const data = await response.json();
+
+      if (!response.ok) {
+        return { success: false, error: data.detail || 'Sign in failed' };
+      }
+
+      // Save user session
+      const account: UserAccount = {
+        id: data.user.id,
+        email: data.user.email,
+        name: data.user.name,
+        age: data.user.age,
+        location: data.user.location,
+        dating_goal: data.user.dating_goal,
+        createdAt: data.user.created_at,
+        lastLogin: new Date().toISOString(),
+      };
+
+      this.saveSession(account.id, account);
+
+      return { success: true, userId: account.id };
+    } catch (error) {
+      console.error('Sign in error:', error);
+      return { success: false, error: 'Failed to connect to server' };
     }
-
-    if (account.password !== password) {
-      return { success: false, error: 'Invalid email or password' };
-    }
-
-    // Update last login
-    account.lastLogin = new Date().toISOString();
-    this.accounts.set(emailLower, account);
-    this.saveAccounts();
-
-    this.currentUserId = account.id;
-    localStorage.setItem('myMatchIQ_currentUserId', account.id);
-
-    return { success: true, userId: account.id };
   }
 
   signOut(): void {
     this.currentUserId = null;
+    this.currentUserAccount = null;
     localStorage.removeItem('myMatchIQ_currentUserId');
+    localStorage.removeItem('myMatchIQ_currentUser');
   }
 
   getCurrentUserId(): string | null {
@@ -110,22 +143,54 @@ class AuthService {
   }
 
   getAccount(userId: string): UserAccount | null {
-    for (const account of this.accounts.values()) {
-      if (account.id === userId) {
-        return account;
-      }
+    if (this.currentUserAccount && this.currentUserAccount.id === userId) {
+      return this.currentUserAccount;
     }
     return null;
   }
 
   getAccountByEmail(email: string): UserAccount | null {
-    return this.accounts.get(email.toLowerCase()) || null;
+    if (this.currentUserAccount && this.currentUserAccount.email.toLowerCase() === email.toLowerCase()) {
+      return this.currentUserAccount;
+    }
+    return null;
   }
 
   isAuthenticated(): boolean {
     return this.currentUserId !== null;
   }
+
+  async getUserById(userId: string): Promise<UserAccount | null> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/user/${userId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        return null;
+      }
+
+      const data = await response.json();
+      
+      const account: UserAccount = {
+        id: data.id,
+        email: data.email,
+        name: data.name,
+        age: data.age,
+        location: data.location,
+        dating_goal: data.dating_goal,
+        createdAt: data.created_at,
+      };
+
+      return account;
+    } catch (error) {
+      console.error('Get user error:', error);
+      return null;
+    }
+  }
 }
 
 export const authService = new AuthService();
-

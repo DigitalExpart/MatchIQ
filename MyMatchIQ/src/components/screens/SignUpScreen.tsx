@@ -49,18 +49,48 @@ export function SignUpScreen({ onComplete, onBack, datingGoal }: SignUpScreenPro
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (validateForm()) {
-      onComplete({
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-        age: formData.age ? parseInt(formData.age) : undefined,
-        location: formData.location || undefined,
-        datingGoal: datingGoal
-      });
+      try {
+        const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://macthiq-ai-backend.onrender.com/api/v1';
+        
+        const response = await fetch(`${apiUrl}/auth/signup`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            password: formData.password,
+            age: formData.age ? parseInt(formData.age) : null,
+            location: formData.location || null,
+            dating_goal: datingGoal || 'serious'
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          setErrors({ email: data.detail || 'Registration failed' });
+          return;
+        }
+
+        // Success - call onComplete with user data
+        onComplete({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          age: formData.age ? parseInt(formData.age) : undefined,
+          location: formData.location || undefined,
+          datingGoal: datingGoal
+        });
+      } catch (error) {
+        console.error('Sign up error:', error);
+        setErrors({ email: 'Failed to connect to server. Please try again.' });
+      }
     }
   };
 
@@ -82,7 +112,7 @@ export function SignUpScreen({ onComplete, onBack, datingGoal }: SignUpScreenPro
           </button>
           
           <div className="mb-6">
-            <img src="/logo-full.svg" alt="My Match IQ" className="h-24 w-auto mx-auto" />
+            <img src="/my-match-iq-logo.jpeg" alt="My Match IQ" className="h-32 w-auto mx-auto" />
           </div>
 
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Create Your Account</h1>
