@@ -756,14 +756,6 @@ function AppContent() {
             onBack={() => setCurrentScreen('welcome')}
           />
         );
-      case 'signUp':
-        return (
-          <SignUpScreen
-            onSignUp={handleSignUp}
-            onSignIn={() => setCurrentScreen('signIn')}
-            onBack={() => setCurrentScreen('welcome')}
-          />
-        );
       case 'onboarding':
         return <OnboardingScreen onComplete={handleCompleteOnboarding} />;
       case 'signUp':
@@ -771,6 +763,7 @@ function AppContent() {
           <SignUpScreen
             onComplete={handleCompleteSignUp}
             onBack={() => setCurrentScreen('onboarding')}
+            onSignIn={() => setCurrentScreen('signIn')}
             datingGoal={onboardingDatingGoal || undefined}
           />
         );

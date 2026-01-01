@@ -12,10 +12,11 @@ interface SignUpScreenProps {
     datingGoal?: string;
   }) => void;
   onBack: () => void;
+  onSignIn?: () => void;
   datingGoal?: string;
 }
 
-export function SignUpScreen({ onComplete, onBack, datingGoal }: SignUpScreenProps) {
+export function SignUpScreen({ onComplete, onBack, onSignIn, datingGoal }: SignUpScreenProps) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -247,7 +248,11 @@ export function SignUpScreen({ onComplete, onBack, datingGoal }: SignUpScreenPro
         {/* Already have account */}
         <p className="text-center mt-6 text-gray-600">
           Already have an account?{' '}
-          <button className="text-rose-500 hover:text-rose-600 font-medium">
+          <button 
+            onClick={onSignIn}
+            type="button"
+            className="text-rose-500 hover:text-rose-600 font-medium"
+          >
             Sign In
           </button>
         </p>
