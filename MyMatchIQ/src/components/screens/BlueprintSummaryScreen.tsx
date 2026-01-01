@@ -94,9 +94,27 @@ export function BlueprintSummaryScreen({
     <div className="min-h-screen bg-gradient-to-br from-[#F4F4F6] via-white to-[#A79BC8]/10">
       {/* Header */}
       <div className="bg-gradient-to-br from-[#3C2B63] to-[#5A4180] text-white px-6 py-6">
-        <button onClick={onBack} className="mb-4 text-white/80 hover:text-white">
-          <ArrowLeft className="w-6 h-6" />
-        </button>
+        <div className="flex items-center justify-between mb-4">
+          <button 
+            onClick={onBack} 
+            className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+            aria-label="Go back"
+          >
+            <ArrowLeft className="w-6 h-6 text-white/80 hover:text-white" />
+          </button>
+          
+          <button 
+            onClick={onBack}
+            className="hover:scale-105 transition-transform"
+            aria-label="Go to homepage"
+          >
+            <img 
+              src="/ai-coach-logo.svg" 
+              alt="My Match IQ" 
+              className="h-12 w-12"
+            />
+          </button>
+        </div>
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
