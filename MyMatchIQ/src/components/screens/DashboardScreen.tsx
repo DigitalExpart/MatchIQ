@@ -95,13 +95,13 @@ export function DashboardScreen({ onStartScan, onNavigate, onNavigateToDatingIns
               </button>
             </div>
 
-            {/* Logo - 3x size, top left */}
+            {/* Logo - Full MyMatchIQ Logo */}
             <button 
               onClick={() => onNavigate('dashboard')}
               className="flex items-center justify-start hover:scale-105 transition-transform"
             >
-              <div className="flex items-center justify-center p-1">
-                <Logo size={144} />
+              <div className="flex items-center justify-center">
+                <img src="/mymatchiq-logo-full.svg" alt="My Match IQ" className="h-32 w-auto" />
               </div>
             </button>
             
