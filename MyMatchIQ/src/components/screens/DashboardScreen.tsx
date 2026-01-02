@@ -1,4 +1,4 @@
-import { Home, History, User, Settings, HelpCircle, Menu, X, ChevronRight, Heart, TrendingUp, Clock, Zap, MessageCircle, Play, Sparkles, Shield, Download, BarChart, Crown, Info, Mail, FileText, LogOut, BookOpen, Globe } from 'lucide-react';
+import { Home, History, User, Settings, HelpCircle, Menu, X, ChevronRight, Heart, TrendingUp, Clock, Zap, MessageCircle, Play, Sparkles, Shield, Download, BarChart, Crown, Info, Mail, FileText, LogOut, BookOpen, Globe, Bot } from 'lucide-react';
 import { ScanRecord, UserProfile, SubscriptionTier } from '../../App';
 import { Logo } from '../Logo';
 import { useState } from 'react';
@@ -101,7 +101,7 @@ export function DashboardScreen({ onStartScan, onNavigate, onNavigateToDatingIns
               className="flex items-center justify-start hover:scale-105 transition-transform"
             >
               <div className="flex items-center justify-center">
-                <img src="/logo-full.svg" alt="My Match IQ" className="h-48 w-auto" />
+                <img src="/my-match-iq-logo.png" alt="My Match IQ" className="h-48 w-auto" />
               </div>
             </button>
             

@@ -104,7 +104,7 @@ export function BlueprintSummaryScreen({
             aria-label="Go to dashboard"
           >
             <img 
-              src="/my-match-iq-logo.jpeg" 
+              src="/my-match-iq-logo.png" 
               alt="My Match IQ" 
               className="h-24 w-auto"
             />

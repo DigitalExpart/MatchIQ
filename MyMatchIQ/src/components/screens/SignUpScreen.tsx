@@ -129,7 +129,7 @@ export function SignUpScreen({ onComplete, onBack, onSignIn, datingGoal }: SignU
           </button>
           
           <div className="mb-6">
-            <img src="/my-match-iq-logo.jpeg" alt="My Match IQ" className="h-32 w-auto mx-auto" />
+            <img src="/my-match-iq-logo.png" alt="My Match IQ" className="h-32 w-auto mx-auto" />
           </div>
 
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Create Your Account</h1>
