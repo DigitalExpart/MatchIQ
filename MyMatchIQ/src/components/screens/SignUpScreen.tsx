@@ -73,6 +73,14 @@ export function SignUpScreen({ onComplete, onBack, onSignIn, datingGoal }: SignU
       try {
         const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://macthiq-ai-backend.onrender.com/api/v1';
         
+        console.log('Signing up with API URL:', apiUrl);
+        console.log('Request data:', {
+          name: formData.name,
+          email: formData.email,
+          location: formData.location || null,
+          dating_goal: datingGoal || 'serious'
+        });
+        
         const response = await fetch(`${apiUrl}/auth/signup`, {
           method: 'POST',
           headers: {
@@ -87,14 +95,32 @@ export function SignUpScreen({ onComplete, onBack, onSignIn, datingGoal }: SignU
           }),
         });
 
-        const data = await response.json();
+        console.log('Response status:', response.status);
+        
+        // Read response as text first, then parse JSON
+        const responseText = await response.text();
+        console.log('Response text:', responseText);
+        
+        let data;
+        try {
+          data = JSON.parse(responseText);
+        } catch (jsonError) {
+          console.error('Failed to parse JSON response:', jsonError);
+          setErrors({ email: `Server error (${response.status}): ${responseText || 'Invalid response'}` });
+          return;
+        }
+
+        console.log('Response data:', data);
 
         if (!response.ok) {
-          setErrors({ email: data.detail || 'Registration failed' });
+          const errorMessage = data.detail || data.message || 'Registration failed';
+          console.error('Signup failed:', errorMessage);
+          setErrors({ email: errorMessage });
           return;
         }
 
         // Success - call onComplete with user data
+        console.log('Signup successful!');
         onComplete({
           name: formData.name,
           username: formData.username,
@@ -104,9 +130,32 @@ export function SignUpScreen({ onComplete, onBack, onSignIn, datingGoal }: SignU
           location: formData.location || undefined,
           datingGoal: datingGoal
         });
-      } catch (error) {
+      } catch (error: unknown) {
         console.error('Sign up error:', error);
-        setErrors({ email: 'Failed to connect to server. Please try again.' });
+        
+        // Safely extract error message
+        let errorMessage = 'Failed to connect to server. Please try again.';
+        
+        if (error instanceof Error) {
+          console.error('Error details:', {
+            message: error.message,
+            name: error.name,
+            stack: error.stack
+          });
+          
+          // Handle different error types
+          if (error.message?.includes('Failed to fetch') || error.message?.includes('NetworkError')) {
+            errorMessage = 'Network error: Cannot reach server. The backend may be sleeping. Please wait a moment and try again.';
+          } else if (error.message?.includes('CORS')) {
+            errorMessage = 'CORS error: Server configuration issue. Please contact support.';
+          } else if (error.message) {
+            errorMessage = error.message;
+          }
+        } else if (typeof error === 'string') {
+          errorMessage = error;
+        }
+        
+        setErrors({ email: errorMessage });
       }
     }
   };
