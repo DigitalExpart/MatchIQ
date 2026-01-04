@@ -115,7 +115,7 @@ export function AICoachScreen({ onBack, onNavigateHome }: AICoachScreenProps) {
     {
       id: '1',
       type: 'ai',
-      content: "Hi there! Welcome! I'm Ella, your AI dating coach. I'm here to help you navigate dating with confidence and clarity. Whether you're looking for advice on communication, understanding red flags, or building meaningful connections, I'm here to support you. What would you like to talk about today?",
+      content: "Hi there! Welcome! I'm Amora, your AI dating coach. I'm here to help you navigate dating with confidence and clarity. Whether you're looking for advice on communication, understanding red flags, or building meaningful connections, I'm here to support you. What would you like to talk about today?",
       timestamp: new Date(),
     },
   ]);
@@ -385,7 +385,7 @@ export function AICoachScreen({ onBack, onNavigateHome }: AICoachScreenProps) {
             <img src="/ai-coach-logo.svg" alt="AI Coach" className="w-full h-full" />
           </div>
           <div>
-            <h1 className="text-2xl text-white">Ella - Your AI Dating Coach</h1>
+            <h1 className="text-2xl text-white">Amora - Your AI Dating Coach</h1>
             <p className="text-white/90 text-sm">Get personalized guidance and insights</p>
           </div>
         </div>
@@ -407,8 +407,8 @@ export function AICoachScreen({ onBack, onNavigateHome }: AICoachScreenProps) {
             >
               {message.type === 'ai' && (
                 <div className="flex items-center gap-2 mb-2">
-                  <img src="/ai-coach-logo.svg" alt="Ella" className="w-5 h-5" />
-                  <span className="text-xs text-purple-600">Ella</span>
+                  <img src="/ai-coach-logo.svg" alt="Amora" className="w-5 h-5" />
+                  <span className="text-xs text-purple-600">Amora</span>
                 </div>
               )}
               <p className="text-sm leading-relaxed whitespace-pre-line">{message.content}</p>

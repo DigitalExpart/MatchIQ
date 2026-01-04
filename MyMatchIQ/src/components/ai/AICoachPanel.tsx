@@ -143,7 +143,7 @@ export function AICoachPanel({ scan, userProfile, category = 'general' }: AICoac
         </div>
         <div>
           <h3 className="text-lg font-semibold text-gray-900">
-            Ella - Your AI Coach
+            Amora - Your AI Coach
             {userName && <span className="text-sm font-normal text-gray-600 ml-2">👋 Hi {userName}!</span>}
           </h3>
           <p className="text-xs text-gray-500">Get personalized guidance</p>
@@ -159,7 +159,7 @@ export function AICoachPanel({ scan, userProfile, category = 'general' }: AICoac
           >
             {msg.role === 'ai' && (
               <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-sm p-1">
-                <img src="/ai-coach-logo.svg" alt="Ella" className="w-full h-full" />
+                <img src="/ai-coach-logo.svg" alt="Amora" className="w-full h-full" />
               </div>
             )}
             <div
@@ -182,7 +182,7 @@ export function AICoachPanel({ scan, userProfile, category = 'general' }: AICoac
         {isLoading && (
           <div className="flex gap-3 justify-start">
             <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-sm p-1">
-              <img src="/ai-coach-logo.svg" alt="Ella" className="w-full h-full opacity-50" />
+              <img src="/ai-coach-logo.svg" alt="Amora" className="w-full h-full opacity-50" />
             </div>
             <div className="bg-gray-100 rounded-2xl p-4">
               <div className="flex gap-1">
