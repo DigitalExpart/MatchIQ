@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, ArrowLeft, Target, Heart, Trophy, Globe } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Heart, Globe } from 'lucide-react';
 import { UserProfile } from '../../App';
 import { Logo } from '../Logo';
 import { LanguageSelector } from '../LanguageSelector';
@@ -12,8 +12,6 @@ interface OnboardingScreenProps {
 export function OnboardingScreen({ onComplete }: OnboardingScreenProps) {
   const { t, setLanguage } = useLanguage();
   const [step, setStep] = useState(0);
-  const [name, setName] = useState('');
-  const [age, setAge] = useState('');
   const [datingGoal, setDatingGoal] = useState<UserProfile['datingGoal'] | null>(null);
   const [selectedLanguage, setSelectedLanguage] = useState<Language>('en');
 
@@ -29,11 +27,6 @@ export function OnboardingScreen({ onComplete }: OnboardingScreenProps) {
       description: t('onboarding.languageDesc'),
     },
     {
-      icon: Target,
-      title: t('onboarding.aboutYou'),
-      description: t('onboarding.aboutYouDesc'),
-    },
-    {
       icon: Heart,
       title: t('onboarding.datingGoal'),
       description: t('onboarding.datingGoalDesc'),
@@ -45,9 +38,7 @@ export function OnboardingScreen({ onComplete }: OnboardingScreenProps) {
       // Apply selected language
       setLanguage(selectedLanguage);
       setStep(2);
-    } else if (step === 2) {
-      setStep(3);
-    } else if (step === 3 && datingGoal) {
+    } else if (step === 2 && datingGoal) {
       // After dating goal, go to sign up
       onComplete(datingGoal);
     } else {
@@ -124,31 +115,6 @@ export function OnboardingScreen({ onComplete }: OnboardingScreenProps) {
           )}
 
           {step === 2 && (
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm text-gray-700 mb-2">{t('onboarding.nameLabel')}</label>
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder={t('onboarding.namePlaceholder')}
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-rose-500 text-gray-900"
-                />
-              </div>
-              <div>
-                <label className="block text-sm text-gray-700 mb-2">{t('onboarding.ageLabel')}</label>
-                <input
-                  type="number"
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                  placeholder="25"
-                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-rose-500 text-gray-900"
-                />
-              </div>
-            </div>
-          )}
-
-          {step === 3 && (
             <div className="space-y-3">
               <button
                 onClick={() => setDatingGoal('casual')}
@@ -199,30 +165,11 @@ export function OnboardingScreen({ onComplete }: OnboardingScreenProps) {
               </button>
             </div>
           )}
-
-          {step === 4 && (
-            <div className="text-center space-y-6">
-              <div className="w-24 h-24 bg-gradient-to-br from-emerald-100 to-green-100 rounded-full flex items-center justify-center mx-auto">
-                <Trophy className="w-12 h-12 text-emerald-600" />
-              </div>
-              <div className="bg-white p-6 rounded-2xl shadow-md">
-                <h3 className="text-gray-900 mb-4">{t('onboarding.allSetTitle')}</h3>
-                <p className="text-gray-600 mb-4">
-                  {t('onboarding.allSetMessage')}
-                </p>
-                <div className="bg-gradient-to-br from-rose-50 to-pink-50 p-4 rounded-xl">
-                  <p className="text-sm text-gray-700">
-                    💡 <strong>{t('onboarding.tipLabel')}</strong> {t('onboarding.tipMessage')}
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
 
         {/* Navigation */}
         <div className="flex gap-3 mt-8">
-          {step > 0 && step < 4 && (
+          {step > 0 && (
             <button
               onClick={handleBack}
               className="px-6 py-3 bg-white text-gray-700 rounded-2xl border border-gray-200 hover:bg-gray-50 transition-all flex items-center gap-2"
@@ -233,14 +180,14 @@ export function OnboardingScreen({ onComplete }: OnboardingScreenProps) {
           )}
           <button
             onClick={handleNext}
-            disabled={step === 3 && !datingGoal}
+            disabled={step === 2 && !datingGoal}
             className={`flex-1 px-6 py-3 rounded-2xl transition-all flex items-center justify-center gap-2 ${
-              step === 3 && !datingGoal
+              step === 2 && !datingGoal
                 ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
                 : 'bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-lg hover:shadow-xl'
             }`}
           >
-            <span>{step === 4 ? t('onboarding.startButton') : t('common.continue')}</span>
+            <span>{t('common.continue')}</span>
             <ArrowRight className="w-5 h-5" />
           </button>
         </div>
