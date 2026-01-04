@@ -136,6 +136,12 @@ export function SignUpScreen({ onComplete, onBack, onSignIn, datingGoal }: SignU
         // Safely extract error message
         let errorMessage = 'Failed to connect to server. Please try again.';
         
+        if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
+          errorMessage = 'Network error: Unable to reach the server. Please check your connection and try again.';
+        } else if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        
         if (error instanceof Error) {
           console.error('Error details:', {
             message: error.message,
