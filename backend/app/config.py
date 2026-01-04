@@ -26,10 +26,14 @@ class Settings(BaseSettings):
     AI_VERSION: str = os.getenv("AI_VERSION", "1.0.0")
     
     # CORS
-    CORS_ORIGINS: List[str] = os.getenv(
-        "CORS_ORIGINS",
-        "http://localhost:3000,http://localhost:5173"
-    ).split(",")
+    CORS_ORIGINS: List[str] = [
+        origin.strip() 
+        for origin in os.getenv(
+            "CORS_ORIGINS",
+            "http://localhost:3000,http://localhost:5173,https://match-8wbet35tf-digital-experts.vercel.app"
+        ).split(",")
+        if origin.strip()
+    ]
     
     # Security
     SECRET_KEY: str = os.getenv("SECRET_KEY", "your-secret-key-change-in-production")
