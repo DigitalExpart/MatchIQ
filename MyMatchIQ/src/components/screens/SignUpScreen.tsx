@@ -8,6 +8,7 @@ interface SignUpScreenProps {
     username: string;
     email: string;
     password: string;
+    age?: string;
     gender?: string;
     location?: string;
     datingGoal?: string;
@@ -22,6 +23,7 @@ export function SignUpScreen({ onComplete, onBack, onSignIn, datingGoal }: SignU
     name: '',
     username: '',
     email: '',
+    age: '',
     gender: '',
     location: '',
     password: '',
@@ -126,6 +128,7 @@ export function SignUpScreen({ onComplete, onBack, onSignIn, datingGoal }: SignU
           username: formData.username,
           email: formData.email,
           password: formData.password,
+          age: formData.age || undefined,
           gender: formData.gender || undefined,
           location: formData.location || undefined,
           datingGoal: datingGoal
@@ -257,6 +260,22 @@ export function SignUpScreen({ onComplete, onBack, onSignIn, datingGoal }: SignU
               />
             </div>
             {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
+          </div>
+
+          {/* Age */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Age (Optional)
+            </label>
+            <input
+              type="number"
+              value={formData.age}
+              onChange={(e) => setFormData({ ...formData, age: e.target.value })}
+              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-rose-400 focus:outline-none transition-colors"
+              placeholder="25"
+              min="18"
+              max="100"
+            />
           </div>
 
           {/* Gender */}
