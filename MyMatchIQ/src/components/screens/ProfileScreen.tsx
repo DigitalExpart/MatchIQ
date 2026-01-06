@@ -3,6 +3,7 @@ import { ArrowLeft, User, Edit2, Save, X, Heart, Target, Calendar, MapPin, Mail,
 import { UserProfile, SubscriptionTier } from '../../App';
 import { LanguageSelector } from '../LanguageSelector';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { supabase } from '../../utils/supabaseClient';
 
 interface ProfileScreenProps {
   profile: UserProfile | null;
@@ -24,8 +25,26 @@ export function ProfileScreen({ profile, subscriptionTier, onBack, onSave, onMan
   const [showResetModal, setShowResetModal] = useState(false);
   const [showImageUploadModal, setShowImageUploadModal] = useState(false);
   const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const cameraInputRef = useRef<HTMLInputElement>(null);
+  
+  // Load profile image on mount
+  useEffect(() => {
+    // Try to load from localStorage first for immediate display
+    const cachedImage = localStorage.getItem(`profile_image_${profile?.email}`);
+    if (cachedImage) {
+      setProfileImage(cachedImage);
+    }
+    
+    // Then check if there's a URL from profile data
+    if (profile?.email) {
+      const storedUrl = localStorage.getItem(`profile_image_url_${profile.email}`);
+      if (storedUrl) {
+        setProfileImage(storedUrl);
+      }
+    }
+  }, [profile?.email]);
   
   // Update profile language when language changes in LanguageSelector
   useEffect(() => {
@@ -61,15 +80,70 @@ export function ProfileScreen({ profile, subscriptionTier, onBack, onSave, onMan
     setTimeout(() => setShowSuccessMessage(false), 3000);
   };
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file) {
+    if (!file || !profile?.email) {
+      console.error('No file or profile email');
+      return;
+    }
+
+    try {
+      setIsUploadingImage(true);
+      setShowImageUploadModal(false);
+
+      // First, read file as data URL for immediate display
       const reader = new FileReader();
       reader.onloadend = () => {
-        setProfileImage(reader.result as string);
-        setShowImageUploadModal(false);
+        const dataUrl = reader.result as string;
+        setProfileImage(dataUrl);
+        // Cache in localStorage for persistence
+        localStorage.setItem(`profile_image_${profile.email}`, dataUrl);
       };
       reader.readAsDataURL(file);
+
+      // Then upload to Supabase Storage
+      // Create a safe filename based on email and timestamp
+      const fileExt = file.name.split('.').pop() || 'jpg';
+      const safeEmail = profile.email.replace(/[^a-zA-Z0-9]/g, '_');
+      const fileName = `${safeEmail}/avatar_${Date.now()}.${fileExt}`;
+
+      console.log('Uploading to Supabase:', fileName);
+
+      // Upload to Supabase Storage
+      const { data, error } = await supabase.storage
+        .from('profile-images')
+        .upload(fileName, file, {
+          cacheControl: '3600',
+          upsert: true
+        });
+
+      if (error) {
+        console.error('Supabase upload error:', error);
+        // Still keep the local version
+        setIsUploadingImage(false);
+        return;
+      }
+
+      // Get public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from('profile-images')
+        .getPublicUrl(fileName);
+
+      console.log('Image uploaded successfully:', publicUrl);
+
+      // Store the URL in localStorage
+      localStorage.setItem(`profile_image_url_${profile.email}`, publicUrl);
+      setProfileImage(publicUrl);
+
+      // Show success message
+      setShowSuccessMessage(true);
+      setTimeout(() => setShowSuccessMessage(false), 3000);
+
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      alert('Failed to upload image. Your image is saved locally.');
+    } finally {
+      setIsUploadingImage(false);
     }
   };
 
@@ -153,7 +227,11 @@ export function ProfileScreen({ profile, subscriptionTier, onBack, onSave, onMan
         <div className="flex justify-center">
           <div className="relative">
             <div className="w-32 h-32 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full flex items-center justify-center shadow-2xl border-4 border-white overflow-hidden">
-              {profileImage ? (
+              {isUploadingImage ? (
+                <div className="w-full h-full flex items-center justify-center bg-rose-400/80">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+                </div>
+              ) : profileImage ? (
                 <img src={profileImage} alt="Profile" className="w-full h-full object-cover" />
               ) : (
                 <User className="w-16 h-16 text-white" />
@@ -162,7 +240,8 @@ export function ProfileScreen({ profile, subscriptionTier, onBack, onSave, onMan
             {isEditing && (
               <button 
                 onClick={() => setShowImageUploadModal(true)}
-                className="absolute bottom-0 right-0 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center border-2 border-rose-200 hover:scale-110 transition-transform"
+                disabled={isUploadingImage}
+                className="absolute bottom-0 right-0 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center border-2 border-rose-200 hover:scale-110 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Edit2 className="w-4 h-4 text-rose-600" />
               </button>
