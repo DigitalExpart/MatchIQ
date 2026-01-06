@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { ArrowLeft, User, Edit2, Save, X, Heart, Target, Calendar, MapPin, Mail, Phone, Check, Crown, Sparkles, Zap, Globe } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { ArrowLeft, User, Edit2, Save, X, Heart, Target, Calendar, MapPin, Mail, Phone, Check, Crown, Sparkles, Zap, Globe, Camera, Image as ImageIcon } from 'lucide-react';
 import { UserProfile, SubscriptionTier } from '../../App';
 import { LanguageSelector } from '../LanguageSelector';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -22,6 +22,10 @@ export function ProfileScreen({ profile, subscriptionTier, onBack, onSave, onMan
   );
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showResetModal, setShowResetModal] = useState(false);
+  const [showImageUploadModal, setShowImageUploadModal] = useState(false);
+  const [profileImage, setProfileImage] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
   
   // Update profile language when language changes in LanguageSelector
   useEffect(() => {
@@ -55,6 +59,28 @@ export function ProfileScreen({ profile, subscriptionTier, onBack, onSave, onMan
     setShowResetModal(false);
     setShowSuccessMessage(true);
     setTimeout(() => setShowSuccessMessage(false), 3000);
+  };
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfileImage(reader.result as string);
+        setShowImageUploadModal(false);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleCameraClick = () => {
+    cameraInputRef.current?.click();
+    setShowImageUploadModal(false);
+  };
+
+  const handleGalleryClick = () => {
+    fileInputRef.current?.click();
+    setShowImageUploadModal(false);
   };
 
   const currentGoal = DATING_GOALS.find(g => g.id === editedProfile.datingGoal);
@@ -126,16 +152,40 @@ export function ProfileScreen({ profile, subscriptionTier, onBack, onSave, onMan
         {/* Profile Picture */}
         <div className="flex justify-center">
           <div className="relative">
-            <div className="w-32 h-32 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full flex items-center justify-center shadow-2xl border-4 border-white">
-              <User className="w-16 h-16 text-white" />
+            <div className="w-32 h-32 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full flex items-center justify-center shadow-2xl border-4 border-white overflow-hidden">
+              {profileImage ? (
+                <img src={profileImage} alt="Profile" className="w-full h-full object-cover" />
+              ) : (
+                <User className="w-16 h-16 text-white" />
+              )}
             </div>
             {isEditing && (
-              <button className="absolute bottom-0 right-0 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center border-2 border-rose-200 hover:scale-110 transition-transform">
+              <button 
+                onClick={() => setShowImageUploadModal(true)}
+                className="absolute bottom-0 right-0 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center border-2 border-rose-200 hover:scale-110 transition-transform"
+              >
                 <Edit2 className="w-4 h-4 text-rose-600" />
               </button>
             )}
           </div>
         </div>
+        
+        {/* Hidden file inputs */}
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          onChange={handleImageUpload}
+          className="hidden"
+        />
+        <input
+          ref={cameraInputRef}
+          type="file"
+          accept="image/*"
+          capture="environment"
+          onChange={handleImageUpload}
+          className="hidden"
+        />
 
         {/* Basic Information */}
         <div className="bg-white rounded-3xl shadow-lg p-6 space-y-4">
@@ -554,6 +604,64 @@ export function ProfileScreen({ profile, subscriptionTier, onBack, onSave, onMan
                 className="flex-1 px-6 py-4 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-2xl hover:shadow-lg transition-all"
               >
                 Reset Data
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Image Upload Modal */}
+      {showImageUploadModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-end sm:items-center justify-center p-0 sm:p-6 z-50 animate-[fadeIn_0.2s_ease-out]">
+          <div className="bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl w-full sm:max-w-md animate-[slideUp_0.3s_ease-out]">
+            <div className="p-6 border-b border-gray-200">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl text-gray-900">Change Profile Picture</h2>
+                <button
+                  onClick={() => setShowImageUploadModal(false)}
+                  className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-all"
+                >
+                  <X className="w-4 h-4 text-gray-600" />
+                </button>
+              </div>
+            </div>
+
+            <div className="p-6 space-y-3">
+              {/* Camera Option */}
+              <button
+                onClick={handleCameraClick}
+                className="w-full p-5 bg-gradient-to-br from-rose-50 to-pink-50 border-2 border-rose-200 rounded-2xl hover:shadow-lg transition-all flex items-center gap-4"
+              >
+                <div className="w-12 h-12 bg-gradient-to-br from-rose-400 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Camera className="w-6 h-6 text-white" />
+                </div>
+                <div className="text-left flex-1">
+                  <div className="text-gray-900 font-medium mb-1">Take Photo</div>
+                  <div className="text-sm text-gray-600">Use your camera</div>
+                </div>
+              </button>
+
+              {/* Gallery Option */}
+              <button
+                onClick={handleGalleryClick}
+                className="w-full p-5 bg-gradient-to-br from-purple-50 to-indigo-50 border-2 border-purple-200 rounded-2xl hover:shadow-lg transition-all flex items-center gap-4"
+              >
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <ImageIcon className="w-6 h-6 text-white" />
+                </div>
+                <div className="text-left flex-1">
+                  <div className="text-gray-900 font-medium mb-1">Choose from Gallery</div>
+                  <div className="text-sm text-gray-600">Select from your photos</div>
+                </div>
+              </button>
+            </div>
+
+            <div className="p-6 pt-0">
+              <button
+                onClick={() => setShowImageUploadModal(false)}
+                className="w-full py-4 bg-gray-100 text-gray-700 rounded-2xl hover:bg-gray-200 transition-all font-medium"
+              >
+                Cancel
               </button>
             </div>
           </div>

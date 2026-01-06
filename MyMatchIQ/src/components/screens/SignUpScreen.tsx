@@ -186,8 +186,8 @@ export function SignUpScreen({ onComplete, onBack, onSignIn, datingGoal }: SignU
             Back
           </button>
           
-          <div className="mb-6">
-            <img src="/my-match-iq-logo.png" alt="My Match IQ" className="h-32 w-auto mx-auto" />
+          <div className="mb-4 flex justify-center">
+            <img src="/my-match-iq-logo.png" alt="My Match IQ" className="h-12 sm:h-16 md:h-20 w-auto" />
           </div>
 
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Create Your Account</h1>
@@ -374,7 +374,7 @@ export function SignUpScreen({ onComplete, onBack, onSignIn, datingGoal }: SignU
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-4 bg-gradient-to-r from-rose-500 to-pink-500 text-white rounded-xl shadow-lg hover:shadow-xl transition-all font-medium text-lg hover:scale-[1.02]"
+            className="w-full py-4 bg-gradient-to-r from-rose-500 to-pink-500 text-white rounded-xl shadow-lg hover:shadow-xl transition-all font-medium text-lg hover:scale-[1.02] mt-8"
           >
             Create Account
           </button>
