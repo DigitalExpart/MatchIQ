@@ -25,12 +25,12 @@ class Settings(BaseSettings):
     # AI Version
     AI_VERSION: str = os.getenv("AI_VERSION", "1.0.0")
     
-    # CORS
+    # CORS - Allow frontend origins including Vercel deployments
     CORS_ORIGINS: List[str] = [
-        origin.strip() 
+        origin.strip()
         for origin in os.getenv(
             "CORS_ORIGINS",
-            "http://localhost:3000,http://localhost:5173,https://match-8wbet35tf-digital-experts.vercel.app"
+            "http://localhost:3000,http://localhost:5173,https://match-bgedokie7-digital-experts.vercel.app,https://match-8wbet35tf-digital-experts.vercel.app"
         ).split(",")
         if origin.strip()
     ]

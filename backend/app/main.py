@@ -44,7 +44,7 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# CORS
+# CORS - Configure to allow frontend origins including Vercel deployments
 # Strip whitespace from origins and filter empty strings
 cors_origins = [origin.strip() for origin in settings.CORS_ORIGINS if origin.strip()]
 
