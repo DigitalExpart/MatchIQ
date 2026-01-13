@@ -6,6 +6,10 @@ from typing import List
 class Settings(BaseSettings):
     """Application settings from environment variables."""
     
+    # Environment
+    ENVIRONMENT: str = "production"
+    DEBUG: bool = False
+    
     # Database
     DATABASE_URL: str = "postgresql://localhost:5432/matchiq"
     
