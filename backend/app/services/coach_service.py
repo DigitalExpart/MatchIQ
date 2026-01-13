@@ -4,10 +4,14 @@ Template-based, rule-driven responses (no LLM).
 """
 from typing import Dict, Any, Optional
 from uuid import UUID
+import logging
+import re
 
 from app.models.pydantic_models import CoachMode, CoachRequest, CoachResponse
 from app.database import get_supabase_client
 from app.models.db_models import ScanResult, Scan, Blueprint
+
+logger = logging.getLogger(__name__)
 
 
 class CoachService:
@@ -175,7 +179,6 @@ class CoachService:
     
     def _normalize_question(self, question: str) -> str:
         """Normalize question for better pattern matching."""
-        import re
         # Lowercase
         normalized = question.lower()
         # Replace curly apostrophes with straight ones
@@ -204,9 +207,6 @@ class CoachService:
     
     def _answer_question(self, question: str, context: Optional[Dict[str, Any]] = None) -> str:
         """Answer a learning question (template-based)."""
-        import logging
-        logger = logging.getLogger(__name__)
-        
         # Normalize the question
         question_normalized = self._normalize_question(question)
         logger.info(f"Amora question: original='{question}' normalized='{question_normalized}'")
