@@ -214,14 +214,14 @@ class AmoraEnhancedService:
         7. Update conversation memory
         """
         try:
-            # TASK 1 & 7: Load conversation state
-            conversation_state = self._load_conversation_state(user_id)
+            # TASK 1 & 7: Load conversation state (use session_id from frontend if available)
+            conversation_state = self._load_conversation_state(user_id, request.session_id)
             
             question = (request.specific_question or "").strip()
             
             # TASK 1: First-turn experience
             if conversation_state.is_first_message:
-                return self._handle_first_turn(user_id, question, conversation_state)
+                return self._handle_first_turn(user_id, question, conversation_state, request.session_id)
             
             # TASK 9: Empty input handling
             if not question or len(question) < 3:
@@ -292,7 +292,8 @@ class AmoraEnhancedService:
                 final_response,
                 emotional_signals,
                 intent_signals,
-                confidence_level
+                confidence_level,
+                request.session_id
             )
             
             return CoachResponse(
@@ -315,7 +316,8 @@ class AmoraEnhancedService:
         self,
         user_id: UUID,
         question: str,
-        conversation_state: ConversationState
+        conversation_state: ConversationState,
+        session_id: Optional[str] = None
     ) -> CoachResponse:
         """
         TASK 1: First-turn experience.
@@ -338,9 +340,10 @@ class AmoraEnhancedService:
             ]
             response = random.choice(openings)
         
-        # Mark first turn as complete
+        # Mark first turn as complete and save to correct session
         conversation_state.is_first_message = False
-        self._sessions[str(user_id)] = conversation_state
+        key = session_id if session_id else str(user_id)
+        self._sessions[key] = conversation_state
         
         return CoachResponse(
             message=response,
@@ -741,9 +744,10 @@ class AmoraEnhancedService:
         """Convert confidence level to score."""
         return {"LOW": 0.5, "MEDIUM": 0.7, "HIGH": 0.9}.get(confidence_level, 0.7)
     
-    def _load_conversation_state(self, user_id: UUID) -> ConversationState:
-        """Load conversation state for user."""
-        key = str(user_id)
+    def _load_conversation_state(self, user_id: UUID, session_id: Optional[str] = None) -> ConversationState:
+        """Load conversation state for user + session."""
+        # Use session_id if provided (from frontend), otherwise fall back to user_id
+        key = session_id if session_id else str(user_id)
         if key not in self._sessions:
             self._sessions[key] = ConversationState()
         return self._sessions[key]
@@ -756,7 +760,8 @@ class AmoraEnhancedService:
         response: str,
         emotional_signals: Dict[str, float],
         intent_signals: Dict[str, float],
-        confidence_level: str
+        confidence_level: str,
+        session_id: Optional[str] = None
     ):
         """Update conversation state after turn."""
         state.is_first_message = False
@@ -772,6 +777,10 @@ class AmoraEnhancedService:
         
         # Keep only last 3 themes
         state.recent_themes = state.recent_themes[-3:]
+        
+        # Save to correct session
+        key = session_id if session_id else str(user_id)
+        self._sessions[key] = state
         
         # Update emotional patterns (rolling average)
         for emotion, value in emotional_signals.items():
