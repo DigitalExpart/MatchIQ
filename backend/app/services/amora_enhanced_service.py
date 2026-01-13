@@ -778,10 +778,6 @@ class AmoraEnhancedService:
         # Keep only last 3 themes
         state.recent_themes = state.recent_themes[-3:]
         
-        # Save to correct session
-        key = session_id if session_id else str(user_id)
-        self._sessions[key] = state
-        
         # Update emotional patterns (rolling average)
         for emotion, value in emotional_signals.items():
             if emotion in state.emotional_patterns:
@@ -789,8 +785,9 @@ class AmoraEnhancedService:
             else:
                 state.emotional_patterns[emotion] = value
         
-        # Store updated state
-        self._sessions[str(user_id)] = state
+        # Save to correct session (use session_id consistently)
+        key = session_id if session_id else str(user_id)
+        self._sessions[key] = state
     
     def _handle_empty_input(self, conversation_state: ConversationState) -> CoachResponse:
         """TASK 9: Handle empty input gracefully."""
