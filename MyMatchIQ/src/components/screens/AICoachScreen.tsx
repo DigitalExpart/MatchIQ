@@ -125,11 +125,9 @@ export function AICoachScreen({ onBack, onNavigateHome }: AICoachScreenProps) {
     mentionedIssues: [],
   });
 
-  // Fetch initial greeting from backend on mount
+  // Fetch initial greeting from backend on mount (only once)
   useEffect(() => {
     const fetchInitialGreeting = async () => {
-      if (hasInitialGreeting) return; // Already have greeting
-      
       try {
         const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://macthiq-ai-backend.onrender.com/api/v1';
         const response = await fetch(`${apiUrl}/coach/`, {
@@ -166,7 +164,8 @@ export function AICoachScreen({ onBack, onNavigateHome }: AICoachScreenProps) {
     };
 
     fetchInitialGreeting();
-  }, [sessionId, hasInitialGreeting]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Only run once on mount - sessionId never changes
 
   // Extract context from user messages
   const updateContext = (message: string) => {
