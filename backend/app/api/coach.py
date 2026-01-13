@@ -22,11 +22,19 @@ async def get_coach_response(
 ):
     """Get AI Coach response in specified mode."""
     try:
+        # Debug logging
+        logger.info(f"Amora request: mode={request.mode}, question='{request.specific_question}', has_context={bool(request.context)}")
+        
         coach_service = CoachService()
         response = coach_service.get_response(request, user_id)
         
+        # Debug logging
+        logger.info(f"Amora response: mode={response.mode}, message_length={len(response.message)}, confidence={response.confidence}")
+        logger.debug(f"Amora response message: {response.message[:100]}...")
+        
         # Validate response (but don't fail - just log warning)
-        if not coach_service.validate_response(response):
+        validation_result = coach_service.validate_response(response)
+        if not validation_result:
             logger.warning(f"Coach response validation failed for mode {request.mode}, but continuing")
             # Don't raise exception - just log and continue
             # The response might still be useful even if it doesn't pass strict validation
@@ -34,7 +42,7 @@ async def get_coach_response(
         return response
         
     except ValueError as e:
-        logger.error(f"Validation error in coach request: {e}")
+        logger.error(f"Validation error in coach request: {e}", exc_info=True)
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         logger.error(f"Error getting coach response: {e}", exc_info=True)

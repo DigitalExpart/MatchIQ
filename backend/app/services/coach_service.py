@@ -173,23 +173,69 @@ class CoachService:
         
         return message
     
+    def _normalize_question(self, question: str) -> str:
+        """Normalize question for better pattern matching."""
+        import re
+        # Lowercase
+        normalized = question.lower()
+        # Replace curly apostrophes with straight ones
+        normalized = normalized.replace(''', "'").replace(''', "'")
+        # Normalize contractions: "i'm" -> "im", "don't" -> "dont", etc.
+        normalized = re.sub(r"i'?m\b", "im", normalized)
+        normalized = re.sub(r"don'?t\b", "dont", normalized)
+        normalized = re.sub(r"won'?t\b", "wont", normalized)
+        normalized = re.sub(r"can'?t\b", "cant", normalized)
+        normalized = re.sub(r"isn'?t\b", "isnt", normalized)
+        normalized = re.sub(r"aren'?t\b", "arent", normalized)
+        normalized = re.sub(r"wasn'?t\b", "wasnt", normalized)
+        normalized = re.sub(r"weren'?t\b", "werent", normalized)
+        normalized = re.sub(r"hasn'?t\b", "hasnt", normalized)
+        normalized = re.sub(r"haven'?t\b", "havent", normalized)
+        normalized = re.sub(r"wouldn'?t\b", "wouldnt", normalized)
+        normalized = re.sub(r"shouldn'?t\b", "shouldnt", normalized)
+        normalized = re.sub(r"couldn'?t\b", "couldnt", normalized)
+        # Remove punctuation (keep spaces)
+        normalized = re.sub(r'[^\w\s]', ' ', normalized)
+        # Collapse multiple spaces
+        normalized = re.sub(r'\s+', ' ', normalized)
+        # Strip
+        normalized = normalized.strip()
+        return normalized
+    
     def _answer_question(self, question: str, context: Optional[Dict[str, Any]] = None) -> str:
         """Answer a learning question (template-based)."""
-        question_lower = question.lower()
+        import logging
+        logger = logging.getLogger(__name__)
+        
+        # Normalize the question
+        question_normalized = self._normalize_question(question)
+        logger.info(f"Amora question: original='{question}' normalized='{question_normalized}'")
+        
+        question_lower = question_normalized
         
         # Love and emotional confusion questions (prioritize these)
-        if any(phrase in question_lower for phrase in ["in love", "love them", "love him", "love her", "falling in love", "know if i love", "if im in love", "if i'm in love"]):
-            if any(word in question_lower for word in ["confused", "don't know", "dont know", "unsure", "not sure"]):
+        # Check for love-related phrases (normalized)
+        love_phrases = ["in love", "love them", "love him", "love her", "falling in love", "know if i love", "if im in love", "if i m in love"]
+        confusion_words = ["confused", "dont know", "dont know", "unsure", "not sure"]  # Note: normalized, so "don't" -> "dont"
+        
+        if any(phrase in question_lower for phrase in love_phrases):
+            logger.info("Matched LOVE pattern")
+            if any(word in question_lower for word in confusion_words):
+                logger.info("Matched LOVE + CONFUSION pattern")
                 return "It sounds like you're feeling confused about your feelings, which is completely understandable. Love can be complex and doesn't always arrive with a clear label. You might consider: Do you think about them when they're not around? Do you feel happy and energized when you're together? Are you genuinely interested in their well-being, even when it doesn't directly benefit you? Confusion often comes when feelings are developing—give yourself time and space to notice what your gut tells you when you're with them versus when you're apart."
             else:
+                logger.info("Matched LOVE pattern (no confusion)")
                 return "Understanding your feelings about someone can be complex. Love might feel different for everyone, but some signs could include: thinking about them frequently, feeling genuinely happy when you're together, caring about their well-being, wanting to share experiences with them, and feeling comfortable being yourself around them. Take time to reflect on how you feel when you're with them versus apart, and trust what your heart and intuition are telling you."
         
-        # Confusion and uncertainty questions
-        if any(word in question_lower for word in ["confused", "don't know", "dont know", "unsure", "not sure", "uncertain"]):
+        # Confusion and uncertainty questions (check after love to avoid double-match)
+        if any(word in question_lower for word in confusion_words):
+            logger.info("Matched CONFUSION pattern")
             return "Feeling confused or uncertain in a relationship is normal and often indicates you're taking things seriously. It might help to ask yourself: What specifically feels confusing? Are there patterns from past relationships affecting how you see things now? Sometimes confusion comes from trying to fit feelings into labels too quickly. Give yourself permission to explore your emotions without rushing to define them. Paying attention to your physical responses, your thoughts when you're alone, and how you feel after spending time together could provide clarity over time."
         
-        # Check for relationship readiness questions
-        if any(phrase in question_lower for phrase in ["ready for", "prepared for", "ready to commit", "should i commit"]):
+        # Check for relationship readiness questions (normalized phrases)
+        readiness_phrases = ["ready for", "prepared for", "ready to commit", "should i commit"]
+        if any(phrase in question_lower for phrase in readiness_phrases):
+            logger.info("Matched READINESS pattern")
             return "Readiness for a committed relationship often involves feeling secure in yourself, having clear communication skills, and being open to vulnerability. It might help to consider: Are you able to express your needs? Can you handle conflict constructively? Do you feel ready to invest time and energy into building something meaningful? There's no perfect time, but feeling emotionally available and having realistic expectations could be important indicators."
         
         # Communication and relationships
