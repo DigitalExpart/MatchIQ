@@ -177,6 +177,17 @@ class CoachService:
         """Answer a learning question (template-based)."""
         question_lower = question.lower()
         
+        # Love and emotional confusion questions (prioritize these)
+        if any(phrase in question_lower for phrase in ["in love", "love them", "love him", "love her", "falling in love", "know if i love", "if im in love", "if i'm in love"]):
+            if any(word in question_lower for word in ["confused", "don't know", "dont know", "unsure", "not sure"]):
+                return "It sounds like you're feeling confused about your feelings, which is completely understandable. Love can be complex and doesn't always arrive with a clear label. You might consider: Do you think about them when they're not around? Do you feel happy and energized when you're together? Are you genuinely interested in their well-being, even when it doesn't directly benefit you? Confusion often comes when feelings are developing—give yourself time and space to notice what your gut tells you when you're with them versus when you're apart."
+            else:
+                return "Understanding your feelings about someone can be complex. Love might feel different for everyone, but some signs could include: thinking about them frequently, feeling genuinely happy when you're together, caring about their well-being, wanting to share experiences with them, and feeling comfortable being yourself around them. Take time to reflect on how you feel when you're with them versus apart, and trust what your heart and intuition are telling you."
+        
+        # Confusion and uncertainty questions
+        if any(word in question_lower for word in ["confused", "don't know", "dont know", "unsure", "not sure", "uncertain"]):
+            return "Feeling confused or uncertain in a relationship is normal and often indicates you're taking things seriously. It might help to ask yourself: What specifically feels confusing? Are there patterns from past relationships affecting how you see things now? Sometimes confusion comes from trying to fit feelings into labels too quickly. Give yourself permission to explore your emotions without rushing to define them. Paying attention to your physical responses, your thoughts when you're alone, and how you feel after spending time together could provide clarity over time."
+        
         # Check for relationship readiness questions
         if any(phrase in question_lower for phrase in ["ready for", "prepared for", "ready to commit", "should i commit"]):
             return "Readiness for a committed relationship often involves feeling secure in yourself, having clear communication skills, and being open to vulnerability. It might help to consider: Are you able to express your needs? Can you handle conflict constructively? Do you feel ready to invest time and energy into building something meaningful? There's no perfect time, but feeling emotionally available and having realistic expectations could be important indicators."
@@ -213,13 +224,31 @@ class CoachService:
         if any(word in question_lower for word in ["blueprint", "self-assessment", "assessment"]):
             return "Your blueprint may reflect what matters most to you in relationships. It could help the AI understand your priorities and values when evaluating potential matches or current relationships."
         
+        # Feelings and emotions questions
+        if any(word in question_lower for word in ["feel", "feeling", "feelings", "emotion", "emotional"]):
+            return "Understanding and navigating emotions in relationships can be challenging. Feelings often provide valuable information about what matters to us and how we're experiencing our connections. It might help to reflect on: What physical sensations do you notice when you think about this person or situation? What thoughts come up most often? Are these feelings comfortable or uncomfortable, and what might that tell you? Remember that all feelings are valid and can guide you toward understanding what you truly need and want in a relationship."
+        
         # Default fallback with personalized touch if context available
-        base_message = "I'm here to help you explore relationship topics. I might be able to provide insights on communication, trust, compatibility, boundaries, or any relationship questions you're curious about."
+        # Try to extract keywords and provide a helpful response
+        base_message = "I hear you're asking about relationships, and I want to help you explore this thoughtfully. "
+        
+        # Extract any relationship-related keywords from the question
+        relationship_keywords = ["relationship", "dating", "partner", "boyfriend", "girlfriend", "person", "someone", "them"]
+        found_keywords = [kw for kw in relationship_keywords if kw in question_lower]
+        
+        if found_keywords:
+            base_message += f"You're wondering about {found_keywords[0]}, which suggests you're taking time to reflect—that's a good sign. "
+            base_message += "Every relationship and feeling is unique. It might help to consider what specifically you're curious or concerned about. "
+            base_message += "Sometimes writing down your thoughts or talking through your feelings with a trusted friend can bring clarity. "
+            base_message += "What aspect of this feels most important to you right now?"
+        else:
+            base_message += "I'm here to help you explore relationship topics. I might be able to provide insights on communication, trust, compatibility, boundaries, feelings, or any relationship questions you're curious about. "
+            base_message += "What specific area would you like to explore together?"
         
         if context:
             topics = context.get("topics", [])
             if topics:
-                base_message += f" Based on our conversation, you've been exploring: {', '.join(topics[:3])}. What specific aspect would you like to dive deeper into?"
+                base_message += f" Based on our conversation, you've been exploring: {', '.join(topics[:3])}."
         
         return base_message
     
