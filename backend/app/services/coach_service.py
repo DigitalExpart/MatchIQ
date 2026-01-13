@@ -238,6 +238,18 @@ class CoachService:
             logger.info("Matched READINESS pattern")
             return "Readiness for a committed relationship often involves feeling secure in yourself, having clear communication skills, and being open to vulnerability. It might help to consider: Are you able to express your needs? Can you handle conflict constructively? Do you feel ready to invest time and energy into building something meaningful? There's no perfect time, but feeling emotionally available and having realistic expectations could be important indicators."
         
+        # Marriage and commitment decisions
+        marriage_phrases = ["should i marry", "marry my", "marry her", "marry him", "get married", "propose", "proposal", "engagement"]
+        if any(phrase in question_lower for phrase in marriage_phrases):
+            logger.info("Matched MARRIAGE pattern")
+            return "Deciding whether to marry someone is a significant life choice that deserves thoughtful consideration. It might help to reflect on: Do you share core values and life goals? Can you communicate effectively and resolve conflicts together? Do you feel safe, respected, and genuinely happy in the relationship? Have you discussed important topics like finances, family planning, and long-term goals? There's no universal timeline—what matters is feeling confident in your decision and aligned with your partner about your future together."
+        
+        # Dating vs relationship progression decisions
+        dating_decision_phrases = ["date or marry", "date or commit", "should i date", "continue dating", "take next step", "move forward"]
+        if any(phrase in question_lower for phrase in dating_decision_phrases):
+            logger.info("Matched DATING_DECISION pattern")
+            return "Deciding how to progress in a relationship can feel overwhelming. It might help to consider: What are your feelings telling you? Are you both on the same page about what you want? Have you had honest conversations about your expectations and goals? Sometimes taking time to reflect on what you truly want—separate from external pressures—can bring clarity. There's no rush to make a decision; what matters is that it feels right for both of you when you're ready."
+        
         # Communication and relationships
         if any(word in question_lower for word in ["communication", "communicate", "talk", "conversation", "express"]):
             return "Effective communication might include active listening, expressing feelings clearly, and creating safe space for dialogue. It could help to focus on 'I' statements and validate your partner's perspective."
