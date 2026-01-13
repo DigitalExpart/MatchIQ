@@ -257,7 +257,7 @@ class CoachService:
             return "Choosing between people can be challenging and it's understandable to feel uncertain. It might help to reflect on: What values and qualities matter most to you in a relationship? How do you feel when you're with each person—do you feel like your authentic self? Are you able to communicate openly and honestly with both? Sometimes the person who aligns with your core values and makes you feel most comfortable being yourself could be worth considering. Take time to reflect on what you truly want in a relationship, and consider having honest conversations with both people about your feelings and intentions."
         
         # Advice/guidance requests
-        advice_phrases = ["give me advice", "i want advice", "need advice", "advise me", "want you to advice", "can you advice", "give advice", "some advice"]
+        advice_phrases = ["give me advice", "i want advice", "need advice", "need an advice", "advise me", "want you to advice", "can you advice", "give advice", "some advice", "i need advice", "i need an advice"]
         if any(phrase in question_lower for phrase in advice_phrases):
             logger.info("Matched ADVICE pattern")
             return "I'm here to help you explore relationship topics thoughtfully. It might help to consider: What specific area are you curious about? Are there particular concerns or questions you'd like to explore? Sometimes focusing on one aspect at a time—like communication, trust, boundaries, understanding your feelings, or navigating relationship decisions—can bring clarity. What feels most important to you right now?"
