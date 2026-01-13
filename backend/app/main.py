@@ -6,7 +6,7 @@ import logging
 
 from app.config import settings
 from app.database import init_db
-from app.api import auth, assessments, blueprints, results, coach
+from app.api import auth, assessments, blueprints, results, coach, coach_enhanced
 from app.models.pydantic_models import HealthResponse
 
 # Configure logging
@@ -63,7 +63,11 @@ app.include_router(auth.router, prefix="/api/v1/auth", tags=["auth"])
 app.include_router(assessments.router, prefix="/api/v1/assessments", tags=["assessments"])
 app.include_router(blueprints.router, prefix="/api/v1/blueprints", tags=["blueprints"])
 app.include_router(results.router, prefix="/api/v1/results", tags=["results"])
-app.include_router(coach.router, prefix="/api/v1/coach", tags=["coach"])
+
+# Use Enhanced Amora (V1 Complete - semantic, emotionally intelligent)
+# Comment out old coach router, use coach_enhanced
+# app.include_router(coach.router, prefix="/api/v1/coach", tags=["coach"])
+app.include_router(coach_enhanced.router, prefix="/api/v1", tags=["coach-enhanced"])
 
 
 @app.get("/health", response_model=HealthResponse)

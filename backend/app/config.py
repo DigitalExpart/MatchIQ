@@ -1,48 +1,52 @@
+"""Application configuration."""
 from pydantic_settings import BaseSettings
 from typing import List
-import os
 
 
 class Settings(BaseSettings):
-    # Database (Supabase PostgreSQL)
-    DATABASE_URL: str = os.getenv(
-        "DATABASE_URL",
-        "postgresql://postgres:[PASSWORD]@db.xvicydrqtddctywkvyge.supabase.co:5432/postgres"
-    )
+    """Application settings from environment variables."""
     
-    # Supabase Configuration
-    SUPABASE_PROJECT_ID: str = os.getenv("SUPABASE_PROJECT_ID", "xvicydrqtddctywkvyge")
-    SUPABASE_URL: str = os.getenv(
-        "SUPABASE_URL",
-        "https://xvicydrqtddctywkvyge.supabase.co"
-    )
-    SUPABASE_ANON_KEY: str = os.getenv(
-        "SUPABASE_ANON_KEY",
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2aWN5ZHJxdGRkY3R5d2t2eWdlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY0MTE5MTMsImV4cCI6MjA4MTk4NzkxM30.OlDfoK_IjbWXHRzhaWb3Yo3Zfo40OLvN4e4pFnwHRuA"
-    )
-    SUPABASE_SERVICE_ROLE_KEY: str = os.getenv("SUPABASE_SERVICE_ROLE_KEY", "")
+    # Database
+    DATABASE_URL: str = "postgresql://localhost:5432/matchiq"
+    
+    # Supabase
+    SUPABASE_PROJECT_ID: str
+    SUPABASE_URL: str
+    SUPABASE_ANON_KEY: str
+    
+    # JWT
+    SECRET_KEY: str = "your-secret-key-here-please-change-in-production-min-32-chars"
+    ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    
+    # CORS
+    CORS_ORIGINS: str = "http://localhost:3000"
     
     # AI Version
-    AI_VERSION: str = os.getenv("AI_VERSION", "1.0.0")
+    AI_VERSION: str = "2.0.0"
     
-    # CORS - Allow frontend origins including Vercel deployments
-    CORS_ORIGINS: List[str] = [
-        origin.strip()
-        for origin in os.getenv(
-            "CORS_ORIGINS",
-            "http://localhost:3000,http://localhost:5173,https://match-bgedokie7-digital-experts.vercel.app,https://match-8wbet35tf-digital-experts.vercel.app"
-        ).split(",")
-        if origin.strip()
-    ]
+    # Amora V2 - LLM Configuration
+    OPENAI_API_KEY: str = ""
+    OPENAI_MODEL: str = "gpt-4-turbo-preview"
     
-    # Security
-    SECRET_KEY: str = os.getenv("SECRET_KEY", "your-secret-key-change-in-production")
-    ALGORITHM: str = os.getenv("ALGORITHM", "HS256")
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30"))
+    # Redis
+    REDIS_URL: str = "redis://localhost:6379/0"
     
-    # Environment
-    ENVIRONMENT: str = os.getenv("ENVIRONMENT", "development")
-    DEBUG: bool = os.getenv("DEBUG", "False").lower() == "true"
+    # Feature Flags
+    AMORA_V2_ENABLED: bool = False
+    AMORA_V2_ROLLOUT_PERCENTAGE: int = 0
+    
+    # Rate Limiting
+    FREE_USER_MESSAGE_LIMIT: int = 10
+    PAID_USER_MESSAGE_LIMIT: int = 100
+    
+    # Cost Control
+    MAX_TOKENS_PER_RESPONSE: int = 150
+    CACHE_TTL_SECONDS: int = 604800  # 7 days
+    
+    def get_cors_origins(self) -> List[str]:
+        """Parse CORS origins from comma-separated string."""
+        return [origin.strip() for origin in self.CORS_ORIGINS.split(",")]
     
     class Config:
         env_file = ".env"
@@ -50,4 +54,3 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
-

@@ -10,3 +10,13 @@ psycopg2-binary==2.9.9
 sqlalchemy==2.0.23
 asyncpg==0.29.0
 
+# Amora V1 Enhanced - Self-Hosted AI (No third-party APIs)
+sentence-transformers==2.3.1
+scikit-learn==1.4.0
+joblib==1.3.2
+numpy==1.24.3
+
+# Amora V2 dependencies (optional, not currently used)
+# openai==1.12.0
+# redis==5.0.1
+# tiktoken==0.5.2
