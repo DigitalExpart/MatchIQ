@@ -111,6 +111,9 @@ const KEYWORD_MAP: Record<string, string[]> = {
 };
 
 export function AICoachScreen({ onBack, onNavigateHome }: AICoachScreenProps) {
+  // Generate a unique session ID for this conversation (persists across component lifecycle)
+  const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
+  
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -244,6 +247,7 @@ export function AICoachScreen({ onBack, onNavigateHome }: AICoachScreenProps) {
       const requestPayload = {
         mode: 'LEARN',
         specific_question: content,
+        session_id: sessionId, // Track conversation across turns
         context: {
           topics: userContext.topics,
           mentioned_issues: userContext.mentionedIssues,
