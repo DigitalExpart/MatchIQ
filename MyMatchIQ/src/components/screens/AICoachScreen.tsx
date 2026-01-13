@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowLeft, Send, Heart, Shield, MessageCircle, Sparkles } from 'lucide-react';
 
 interface AICoachScreenProps {
@@ -114,14 +114,9 @@ export function AICoachScreen({ onBack, onNavigateHome }: AICoachScreenProps) {
   // Generate a unique session ID for this conversation (persists across component lifecycle)
   const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
   
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: '1',
-      type: 'ai',
-      content: "Hi there! Welcome! I'm Amora, your AI dating coach. I'm here to help you navigate dating with confidence and clarity. Whether you're looking for advice on communication, understanding red flags, or building meaningful connections, I'm here to support you. What would you like to talk about today?",
-      timestamp: new Date(),
-    },
-  ]);
+  // Start with backend-generated greeting (will be fetched on mount)
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [hasInitialGreeting, setHasInitialGreeting] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [userContext, setUserContext] = useState<UserContext>({
     concerns: [],
@@ -129,6 +124,49 @@ export function AICoachScreen({ onBack, onNavigateHome }: AICoachScreenProps) {
     previousQuestions: [],
     mentionedIssues: [],
   });
+
+  // Fetch initial greeting from backend on mount
+  useEffect(() => {
+    const fetchInitialGreeting = async () => {
+      if (hasInitialGreeting) return; // Already have greeting
+      
+      try {
+        const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://macthiq-ai-backend.onrender.com/api/v1';
+        const response = await fetch(`${apiUrl}/coach/`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            mode: 'LEARN',
+            specific_question: '', // Empty = first turn greeting
+            session_id: sessionId,
+          }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setMessages([{
+            id: '1',
+            type: 'ai',
+            content: data.message,
+            timestamp: new Date(),
+          }]);
+          setHasInitialGreeting(true);
+        }
+      } catch (error) {
+        console.error('Failed to fetch initial greeting:', error);
+        // Fallback to hardcoded greeting
+        setMessages([{
+          id: '1',
+          type: 'ai',
+          content: "I'm Amora. I help people think through love and relationships without judgment or pressure. What's been on your mind lately?",
+          timestamp: new Date(),
+        }]);
+        setHasInitialGreeting(true);
+      }
+    };
+
+    fetchInitialGreeting();
+  }, [sessionId, hasInitialGreeting]);
 
   // Extract context from user messages
   const updateContext = (message: string) => {
