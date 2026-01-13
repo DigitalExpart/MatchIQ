@@ -531,11 +531,15 @@ export function AICoachScreen({ onBack, onNavigateHome }: AICoachScreenProps) {
       <div className="bg-white border-t border-gray-200 px-6 py-4">
         <div className="max-w-3xl mx-auto flex gap-3">
           <input
+            id="amora-chat-input"
+            name="amora-message"
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputValue)}
             placeholder="Ask me anything about dating..."
+            autoComplete="off"
+            aria-label="Chat with Amora"
             className="flex-1 px-5 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900"
           />
           <button
