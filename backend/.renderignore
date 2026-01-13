@@ -1,0 +1,21 @@
+# Render ignore file
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+.env
+.env.local
+test_*.py
+tests/
+*.md
+!README.md

@@ -1,0 +1,136 @@
+<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient Definitions -->
+  <defs>
+    <linearGradient id="heartOuterGradient" x1="250" y1="100" x2="250" y2="350">
+      <stop offset="0%" style="stop-color:#A855F7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="brainGradient" x1="250" y1="120" x2="250" y2="320">
+      <stop offset="0%" style="stop-color:#C084FC;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A78BFA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0" y1="0" x2="500" y2="0">
+      <stop offset="0%" style="stop-color:#EC4899;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A855F7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer Heart Shape (Gradient Pink to Purple) -->
+  <path d="M250 340C250 340 130 260 130 170C130 130 155 110 185 110C210 110 230 125 250 150C270 125 290 110 315 110C345 110 370 130 370 170C370 260 250 340 250 340Z" 
+        fill="url(#heartOuterGradient)" 
+        stroke="#1F2937" 
+        stroke-width="6"
+        stroke-linejoin="round"/>
+  
+  <!-- Middle Heart Border (Black) -->
+  <path d="M250 320C250 320 150 250 150 175C150 142 170 125 195 125C217 125 235 138 250 160C265 138 283 125 305 125C330 125 350 142 350 175C350 250 250 320 250 320Z" 
+        fill="#000000" 
+        stroke="#1F2937" 
+        stroke-width="4"
+        stroke-linejoin="round"/>
+  
+  <!-- Inner Heart with Brain Pattern (Purple Gradient) -->
+  <path d="M250 305C250 305 165 245 165 180C165 152 182 138 202 138C222 138 238 148 250 168C262 148 278 138 298 138C318 138 335 152 335 180C335 245 250 305 250 305Z" 
+        fill="url(#brainGradient)" 
+        stroke="none"/>
+  
+  <!-- Brain Pattern - Left Hemisphere -->
+  <path d="M195 170 Q 202 165 207 172 Q 210 178 206 183 Q 200 186 197 182 Q 194 177 195 170Z" 
+        fill="none" 
+        stroke="#6D28D9" 
+        stroke-width="3"
+        stroke-linecap="round"/>
+  <path d="M200 195 Q 207 192 212 199 Q 215 205 211 210 Q 205 213 202 209 Q 199 204 200 195Z" 
+        fill="none" 
+        stroke="#6D28D9" 
+        stroke-width="3"
+        stroke-linecap="round"/>
+  <path d="M205 220 Q 212 217 217 224 Q 220 230 216 235 Q 210 238 207 234 Q 204 229 205 220Z" 
+        fill="none" 
+        stroke="#6D28D9" 
+        stroke-width="3"
+        stroke-linecap="round"/>
+  <path d="M215 245 Q 222 242 227 249 Q 230 255 226 260 Q 220 263 217 259 Q 214 254 215 245Z" 
+        fill="none" 
+        stroke="#6D28D9" 
+        stroke-width="3"
+        stroke-linecap="round"/>
+  <path d="M225 268 Q 232 265 237 272 Q 240 278 236 283 Q 230 286 227 282 Q 224 277 225 268Z" 
+        fill="none" 
+        stroke="#6D28D9" 
+        stroke-width="3"
+        stroke-linecap="round"/>
+  
+  <!-- Brain Pattern - Right Hemisphere -->
+  <path d="M305 170 Q 298 165 293 172 Q 290 178 294 183 Q 300 186 303 182 Q 306 177 305 170Z" 
+        fill="none" 
+        stroke="#6D28D9" 
+        stroke-width="3"
+        stroke-linecap="round"/>
+  <path d="M300 195 Q 293 192 288 199 Q 285 205 289 210 Q 295 213 298 209 Q 301 204 300 195Z" 
+        fill="none" 
+        stroke="#6D28D9" 
+        stroke-width="3"
+        stroke-linecap="round"/>
+  <path d="M295 220 Q 288 217 283 224 Q 280 230 284 235 Q 290 238 293 234 Q 296 229 295 220Z" 
+        fill="none" 
+        stroke="#6D28D9" 
+        stroke-width="3"
+        stroke-linecap="round"/>
+  <path d="M285 245 Q 278 242 273 249 Q 270 255 274 260 Q 280 263 283 259 Q 286 254 285 245Z" 
+        fill="none" 
+        stroke="#6D28D9" 
+        stroke-width="3"
+        stroke-linecap="round"/>
+  <path d="M275 268 Q 268 265 263 272 Q 260 278 264 283 Q 270 286 273 282 Q 276 277 275 268Z" 
+        fill="none" 
+        stroke="#6D28D9" 
+        stroke-width="3"
+        stroke-linecap="round"/>
+  
+  <!-- Center Line -->
+  <line x1="250" y1="155" x2="250" y2="290" 
+        stroke="#6D28D9" 
+        stroke-width="3.5"
+        stroke-linecap="round"/>
+  
+  <!-- Additional Brain Connection Details -->
+  <path d="M215 175 Q 225 172 235 180" 
+        fill="none" 
+        stroke="#6D28D9" 
+        stroke-width="2.5"
+        stroke-linecap="round"/>
+  <path d="M285 175 Q 275 172 265 180" 
+        fill="none" 
+        stroke="#6D28D9" 
+        stroke-width="2.5"
+        stroke-linecap="round"/>
+  <path d="M220 210 Q 230 207 240 215" 
+        fill="none" 
+        stroke="#6D28D9" 
+        stroke-width="2.5"
+        stroke-linecap="round"/>
+  <path d="M280 210 Q 270 207 260 215" 
+        fill="none" 
+        stroke="#6D28D9" 
+        stroke-width="2.5"
+        stroke-linecap="round"/>
+  <path d="M230 250 Q 240 247 250 255" 
+        fill="none" 
+        stroke="#6D28D9" 
+        stroke-width="2.5"
+        stroke-linecap="round"/>
+  <path d="M270 250 Q 260 247 250 255" 
+        fill="none" 
+        stroke="#6D28D9" 
+        stroke-width="2.5"
+        stroke-linecap="round"/>
+  
+  <!-- Text "My Match IQ" with Gradient -->
+  <text x="250" y="410" font-family="'Arial Black', 'Arial', sans-serif" font-size="62" font-weight="900" fill="url(#textGradient)" text-anchor="middle">
+    My Match IQ
+  </text>
+</svg>
+

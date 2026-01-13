@@ -7,9 +7,9 @@ import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import { WelcomeScreen } from './components/screens/WelcomeScreen';
 import { LandingPage } from './components/LandingPage';
 import { OnboardingScreen } from './components/screens/OnboardingScreen';
+import { SignUpScreen } from './components/screens/SignUpScreen';
 import { DashboardScreen } from './components/screens/DashboardScreen';
 import { SignInScreen } from './components/screens/SignInScreen';
-import { SignUpScreen } from './components/screens/SignUpScreen';
 import { authService } from './utils/authService';
 import { ScanTypeSelectionScreen } from './components/screens/ScanTypeSelectionScreen';
 import { MatchScanFlowScreen } from './components/screens/MatchScanFlowScreen';
@@ -168,6 +168,7 @@ function AppContent() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('welcome');
   const [navigationHistory, setNavigationHistory] = useState<Screen[]>([]);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [onboardingDatingGoal, setOnboardingDatingGoal] = useState<UserProfile['datingGoal'] | null>(null);
   const [scans, setScans] = useState<MatchScan[]>([]);
   const [currentScan, setCurrentScan] = useState<MatchScan | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -297,8 +298,27 @@ function AppContent() {
     }
   }, [blueprintId]);
 
-  const handleCompleteOnboarding = (profile: UserProfile) => {
-    setUserProfile(profile);
+  const handleCompleteOnboarding = (datingGoal: UserProfile['datingGoal']) => {
+    setOnboardingDatingGoal(datingGoal);
+    setCurrentScreen('signUp');
+  };
+
+  const handleCompleteSignUp = (userData: {
+    name: string;
+    email: string;
+    password: string;
+    age?: number;
+    location?: string;
+    datingGoal?: string;
+  }) => {
+    const newProfile: UserProfile = {
+      name: userData.name,
+      email: userData.email,
+      age: userData.age || 25,
+      datingGoal: (userData.datingGoal || onboardingDatingGoal || 'serious') as UserProfile['datingGoal'],
+      location: userData.location || '',
+    };
+    setUserProfile(newProfile);
     setCurrentScreen('dashboard');
   };
 
@@ -736,16 +756,17 @@ function AppContent() {
             onBack={() => setCurrentScreen('welcome')}
           />
         );
+      case 'onboarding':
+        return <OnboardingScreen onComplete={handleCompleteOnboarding} />;
       case 'signUp':
         return (
           <SignUpScreen
-            onSignUp={handleSignUp}
+            onComplete={handleCompleteSignUp}
+            onBack={() => setCurrentScreen('onboarding')}
             onSignIn={() => setCurrentScreen('signIn')}
-            onBack={() => setCurrentScreen('welcome')}
+            datingGoal={onboardingDatingGoal || undefined}
           />
         );
-      case 'onboarding':
-        return <OnboardingScreen onComplete={handleCompleteOnboarding} />;
       case 'dashboard':
         return <DashboardScreen 
           onStartScan={handleStartScan} 
@@ -916,6 +937,7 @@ function AppContent() {
             onShare={() => handleNavigate('blueprintShare')}
             onCompare={() => handleNavigate('blueprintComparison')}
             onBack={handleBack}
+            onNavigateHome={() => handleNavigate('dashboard')}
             userName={userProfile?.name}
           />
         ) : (

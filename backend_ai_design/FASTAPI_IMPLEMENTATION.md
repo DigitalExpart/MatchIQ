@@ -97,8 +97,13 @@ from pydantic_settings import BaseSettings
 from typing import List
 
 class Settings(BaseSettings):
-    # Database
-    DATABASE_URL: str = "postgresql://user:pass@localhost/matchiq"
+    # Database (Supabase PostgreSQL)
+    DATABASE_URL: str = "postgresql://postgres:[PASSWORD]@db.xvicydrqtddctywkvyge.supabase.co:5432/postgres"
+    
+    # Supabase Configuration
+    SUPABASE_PROJECT_ID: str = "xvicydrqtddctywkvyge"
+    SUPABASE_URL: str = "https://xvicydrqtddctywkvyge.supabase.co"
+    SUPABASE_ANON_KEY: str = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2aWN5ZHJxdGRkY3R5d2t2eWdlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY0MTE5MTMsImV4cCI6MjA4MTk4NzkxM30.OlDfoK_IjbWXHRzhaWb3Yo3Zfo40OLvN4e4pFnwHRuA"
     
     # AI Version
     AI_VERSION: str = "1.0.0"

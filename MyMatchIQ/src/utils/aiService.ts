@@ -909,7 +909,7 @@ function getAICoachLocal(
 
   // If this is the initial load (no specific question), add welcome message
   if (!specificQuestion) {
-    message = `Hi! I'm Ella, your AI dating coach. Welcome! `;
+    message = `Hi! I'm Amora, your AI dating coach. Welcome! `;
   }
 
   if (category === 'safety' && categoryAnswers.some(a => a.rating === 'red-flag')) {

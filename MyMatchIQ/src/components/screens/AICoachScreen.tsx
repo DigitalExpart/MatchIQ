@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowLeft, Send, Bot, Heart, Shield, MessageCircle, Sparkles } from 'lucide-react';
+import { ArrowLeft, Send, Heart, Shield, MessageCircle, Sparkles } from 'lucide-react';
 
 interface AICoachScreenProps {
   onBack: () => void;
@@ -111,11 +111,14 @@ const KEYWORD_MAP: Record<string, string[]> = {
 };
 
 export function AICoachScreen({ onBack, onNavigateHome }: AICoachScreenProps) {
+  // Generate a unique session ID for this conversation (persists across component lifecycle)
+  const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
+  
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
       type: 'ai',
-      content: "Hi there! Welcome! I'm Ella, your AI dating coach. I'm here to help you navigate dating with confidence and clarity. Whether you're looking for advice on communication, understanding red flags, or building meaningful connections, I'm here to support you. What would you like to talk about today?",
+      content: "Hi there! Welcome! I'm Amora, your AI dating coach. I'm here to help you navigate dating with confidence and clarity. Whether you're looking for advice on communication, understanding red flags, or building meaningful connections, I'm here to support you. What would you like to talk about today?",
       timestamp: new Date(),
     },
   ]);
@@ -212,7 +215,7 @@ export function AICoachScreen({ onBack, onNavigateHome }: AICoachScreenProps) {
     }));
   };
 
-  const handleSendMessage = (content: string) => {
+  const handleSendMessage = async (content: string) => {
     if (!content.trim()) return;
 
     // Add user message
@@ -229,16 +232,107 @@ export function AICoachScreen({ onBack, onNavigateHome }: AICoachScreenProps) {
     // Update context from user message
     updateContext(content);
 
-    // Simulate AI response
-    setTimeout(() => {
-      const aiMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        type: 'ai',
-        content: getAIResponse(content, userContext),
-        timestamp: new Date(),
+    // Add loading message
+    const loadingMessage: Message = {
+      id: 'loading',
+      type: 'ai',
+      content: '...',
+      timestamp: new Date(),
+    };
+    setMessages(prev => [...prev, loadingMessage]);
+
+    try {
+      // Call backend API for AI response
+      const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://macthiq-ai-backend.onrender.com/api/v1';
+      const requestPayload = {
+        mode: 'LEARN',
+        specific_question: content,
+        session_id: sessionId, // Track conversation across turns
+        context: {
+          topics: userContext.topics,
+          mentioned_issues: userContext.mentionedIssues,
+          relationship_status: userContext.relationshipStatus,
+          partner_name: userContext.partnerName,
+        }
       };
-      setMessages(prev => [...prev, aiMessage]);
-    }, 1000);
+      
+      console.log('🔵 Amora API Call:', {
+        url: `${apiUrl}/coach/`,
+        payload: requestPayload,
+        timestamp: new Date().toISOString()
+      });
+      
+      const response = await fetch(`${apiUrl}/coach/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestPayload),
+        signal: AbortSignal.timeout(30000), // 30 second timeout
+      });
+
+      console.log('🟢 Amora API Response Status:', response.status, response.statusText);
+
+      // Check if response is OK
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('❌ Amora API Error:', {
+          status: response.status,
+          statusText: response.statusText,
+          error: errorText
+        });
+        throw new Error(`API returned ${response.status}: ${errorText}`);
+      }
+
+      const data = await response.json();
+      console.log('✅ Amora API Success:', {
+        mode: data.mode,
+        messageLength: data.message?.length,
+        confidence: data.confidence,
+        messagePreview: data.message?.substring(0, 100)
+      });
+
+      // Remove loading message and add AI response
+      setMessages(prev => {
+        const filtered = prev.filter(m => m.id !== 'loading');
+        return [...filtered, {
+          id: (Date.now() + 1).toString(),
+          type: 'ai',
+          content: data.message || data.response || 'I apologize, but I encountered an error. Please try again.',
+          timestamp: new Date(),
+        }];
+      });
+    } catch (error: any) {
+      console.error('❌ Amora API Exception:', {
+        error: error.message,
+        stack: error.stack,
+        name: error.name,
+        cause: error.cause
+      });
+      
+      // Show error to user instead of silent fallback
+      const errorMessage = error.name === 'TimeoutError' 
+        ? 'The request took too long. Please try again.'
+        : error.message?.includes('Failed to fetch') || error.message?.includes('NetworkError')
+        ? 'Unable to connect to Amora. Please check your internet connection and try again.'
+        : `Backend error: ${error.message}`;
+      
+      // Fallback to local responses if backend fails
+      setMessages(prev => {
+        const filtered = prev.filter(m => m.id !== 'loading');
+        return [...filtered, {
+          id: (Date.now() + 1).toString(),
+          type: 'ai',
+          content: getAIResponse(content, userContext),
+          timestamp: new Date(),
+        }, {
+          id: (Date.now() + 2).toString(),
+          type: 'system',
+          content: `⚠️ Note: Using offline mode. ${errorMessage}`,
+          timestamp: new Date(),
+        }];
+      });
+    }
   };
 
   const getAIResponse = (userMessage: string, context: UserContext): string => {
@@ -335,11 +429,11 @@ export function AICoachScreen({ onBack, onNavigateHome }: AICoachScreenProps) {
           <span>Back</span>
         </button>
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
-            <Bot className="w-6 h-6 text-white" />
+          <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center p-2">
+            <img src="/ai-coach-logo.svg" alt="AI Coach" className="w-full h-full" />
           </div>
           <div>
-            <h1 className="text-2xl text-white">Ella - Your AI Dating Coach</h1>
+            <h1 className="text-2xl text-white">Amora - Your AI Dating Coach</h1>
             <p className="text-white/90 text-sm">Get personalized guidance and insights</p>
           </div>
         </div>
@@ -361,8 +455,8 @@ export function AICoachScreen({ onBack, onNavigateHome }: AICoachScreenProps) {
             >
               {message.type === 'ai' && (
                 <div className="flex items-center gap-2 mb-2">
-                  <Bot className="w-4 h-4 text-purple-600" />
-                  <span className="text-xs text-purple-600">Ella</span>
+                  <img src="/ai-coach-logo.svg" alt="Amora" className="w-5 h-5" />
+                  <span className="text-xs text-purple-600">Amora</span>
                 </div>
               )}
               <p className="text-sm leading-relaxed whitespace-pre-line">{message.content}</p>

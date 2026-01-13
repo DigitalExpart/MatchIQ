@@ -12,6 +12,7 @@ interface BlueprintSummaryScreenProps {
   onShare: () => void;
   onCompare: () => void;
   onBack: () => void;
+  onNavigateHome?: () => void;
   userName?: string;
 }
 
@@ -86,6 +87,7 @@ export function BlueprintSummaryScreen({
   onShare,
   onCompare,
   onBack,
+  onNavigateHome,
   userName = 'Your'
 }: BlueprintSummaryScreenProps) {
   const profile = generateProfile(answers);
@@ -94,9 +96,29 @@ export function BlueprintSummaryScreen({
     <div className="min-h-screen bg-gradient-to-br from-[#F4F4F6] via-white to-[#A79BC8]/10">
       {/* Header */}
       <div className="bg-gradient-to-br from-[#3C2B63] to-[#5A4180] text-white px-6 py-6">
-        <button onClick={onBack} className="mb-4 text-white/80 hover:text-white">
-          <ArrowLeft className="w-6 h-6" />
-        </button>
+        <div className="flex items-center justify-between mb-4">
+          {/* Logo on the left - bigger and clickable to go to dashboard */}
+          <button 
+            onClick={onNavigateHome || onBack}
+            className="hover:scale-105 transition-transform"
+            aria-label="Go to dashboard"
+          >
+            <img 
+              src="/my-match-iq-logo.png" 
+              alt="My Match IQ" 
+              className="h-24 w-auto"
+            />
+          </button>
+          
+          {/* Back button on the right */}
+          <button 
+            onClick={onBack} 
+            className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+            aria-label="Go back"
+          >
+            <ArrowLeft className="w-6 h-6 text-white/80 hover:text-white" />
+          </button>
+        </div>
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}

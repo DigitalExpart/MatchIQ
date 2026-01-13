@@ -1,269 +1,402 @@
 import { useState } from 'react';
-import { ArrowLeft, Mail, Lock, Eye, EyeOff, User, AlertCircle, Check } from 'lucide-react';
-import { Logo } from '../Logo';
+import { ArrowLeft, Mail, Lock, User, MapPin, Eye, EyeOff } from 'lucide-react';
+import { motion } from 'motion/react';
 
 interface SignUpScreenProps {
-  onSignUp: (email: string, password: string, name: string) => Promise<boolean>;
-  onSignIn: () => void;
+  onComplete: (userData: {
+    name: string;
+    username: string;
+    email: string;
+    password: string;
+    age?: string;
+    gender?: string;
+    location?: string;
+    datingGoal?: string;
+  }) => void;
   onBack: () => void;
+  onSignIn?: () => void;
+  datingGoal?: string;
 }
 
-export function SignUpScreen({ onSignUp, onSignIn, onBack }: SignUpScreenProps) {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+export function SignUpScreen({ onComplete, onBack, onSignIn, datingGoal }: SignUpScreenProps) {
+  const [formData, setFormData] = useState({
+    name: '',
+    username: '',
+    email: '',
+    age: '',
+    gender: '',
+    location: '',
+    password: '',
+    confirmPassword: ''
+  });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const validatePassword = (pwd: string): string | null => {
-    if (pwd.length < 6) return 'Password must be at least 6 characters';
-    if (!/[A-Z]/.test(pwd)) return 'Password must contain at least one uppercase letter';
-    if (!/[a-z]/.test(pwd)) return 'Password must contain at least one lowercase letter';
-    return null;
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    }
+
+    if (!formData.username.trim()) {
+      newErrors.username = 'Username is required';
+    } else if (formData.username.length < 3) {
+      newErrors.username = 'Username must be at least 3 characters';
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email';
+    }
+
+    if (!formData.password) {
+      newErrors.password = 'Password is required';
+    } else if (formData.password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
+    }
+
+    if (!formData.confirmPassword) {
+      newErrors.confirmPassword = 'Please confirm your password';
+    } else if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    
+    if (validateForm()) {
+      try {
+        const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://macthiq-ai-backend.onrender.com/api/v1';
+        
+        console.log('Signing up with API URL:', apiUrl);
+        console.log('Request data:', {
+          name: formData.name,
+          email: formData.email,
+          location: formData.location || null,
+          dating_goal: datingGoal || 'serious'
+        });
+        
+        const response = await fetch(`${apiUrl}/auth/signup`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            password: formData.password,
+            location: formData.location || null,
+            dating_goal: datingGoal || 'serious'
+          }),
+        });
 
-    if (!name.trim()) {
-      setError('Please enter your name');
-      return;
-    }
+        console.log('Response status:', response.status);
+        
+        // Read response as text first, then parse JSON
+        const responseText = await response.text();
+        console.log('Response text:', responseText);
+        
+        let data;
+        try {
+          data = JSON.parse(responseText);
+        } catch (jsonError) {
+          console.error('Failed to parse JSON response:', jsonError);
+          setErrors({ email: `Server error (${response.status}): ${responseText || 'Invalid response'}` });
+          return;
+        }
 
-    if (!email.trim()) {
-      setError('Please enter your email address');
-      return;
-    }
+        console.log('Response data:', data);
 
-    if (!password.trim()) {
-      setError('Please enter a password');
-      return;
-    }
+        if (!response.ok) {
+          const errorMessage = data.detail || data.message || 'Registration failed';
+          console.error('Signup failed:', errorMessage);
+          setErrors({ email: errorMessage });
+          return;
+        }
 
-    const passwordError = validatePassword(password);
-    if (passwordError) {
-      setError(passwordError);
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      setError('Passwords do not match');
-      return;
-    }
-
-    if (!agreedToTerms) {
-      setError('Please agree to the Terms of Service and Privacy Policy');
-      return;
-    }
-
-    setIsLoading(true);
-    try {
-      const success = await onSignUp(email.trim(), password, name.trim());
-      if (!success) {
-        setError('An account with this email already exists. Please sign in instead.');
+        // Success - call onComplete with user data
+        console.log('Signup successful!');
+        onComplete({
+          name: formData.name,
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+          age: formData.age || undefined,
+          gender: formData.gender || undefined,
+          location: formData.location || undefined,
+          datingGoal: datingGoal
+        });
+      } catch (error: unknown) {
+        console.error('Sign up error:', error);
+        
+        // Safely extract error message
+        let errorMessage = 'Failed to connect to server. Please try again.';
+        
+        if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
+          errorMessage = 'Network error: Unable to reach the server. Please check your connection and try again.';
+        } else if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        
+        if (error instanceof Error) {
+          console.error('Error details:', {
+            message: error.message,
+            name: error.name,
+            stack: error.stack
+          });
+          
+          // Handle different error types
+          if (error.message?.includes('Failed to fetch') || error.message?.includes('NetworkError')) {
+            errorMessage = 'Network error: Cannot reach server. The backend may be sleeping. Please wait a moment and try again.';
+          } else if (error.message?.includes('CORS')) {
+            errorMessage = 'CORS error: Server configuration issue. Please contact support.';
+          } else if (error.message) {
+            errorMessage = error.message;
+          }
+        } else if (typeof error === 'string') {
+          errorMessage = error;
+        }
+        
+        setErrors({ email: errorMessage });
       }
-    } catch (err) {
-      setError('An error occurred. Please try again.');
-    } finally {
-      setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="px-6 pt-6 pb-4">
-          <button onClick={onBack} className="text-gray-600 hover:text-gray-900 mb-4">
-            <ArrowLeft className="w-6 h-6" />
+    <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 flex items-center justify-center px-6 py-12">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="w-full max-w-md"
+      >
+        {/* Header */}
+        <div className="text-center mb-8">
+          <button
+            onClick={onBack}
+            className="mb-6 text-gray-600 hover:text-gray-900 inline-flex items-center gap-2"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            Back
           </button>
-          <div className="flex items-center justify-center mb-4">
-            <Logo size={64} />
+          
+          <div className="mb-4 flex justify-center">
+            <img src="/my-match-iq-logo.png" alt="My Match IQ" className="h-12 sm:h-16 md:h-20 w-auto" />
           </div>
-          <h1 className="text-2xl font-bold text-center text-gray-900">Create Account</h1>
-          <p className="text-sm text-center text-gray-600 mt-2">Join MyMatchIQ to find your perfect match</p>
+
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Create Your Account</h1>
+          <p className="text-gray-600">Start your journey to meaningful connections</p>
         </div>
-      </div>
 
-      {/* Content */}
-      <div className="flex-1 px-6 py-8 overflow-y-auto">
-        <div className="w-full max-w-md mx-auto">
-          <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Error Message */}
-            {error && (
-              <div className="bg-red-50 border-2 border-red-200 rounded-2xl p-4 flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-red-700 flex-1">{error}</p>
-              </div>
-            )}
-
-            {/* Name Input */}
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                Full Name
-              </label>
-              <div className="relative">
-                <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                  <User className="w-5 h-5 text-gray-400" />
-                </div>
-                <input
-                  id="name"
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Enter your full name"
-                  className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:border-rose-400 focus:outline-none text-gray-900"
-                  disabled={isLoading}
-                  required
-                />
-              </div>
+        {/* Sign Up Form */}
+        <form onSubmit={handleSubmit} className="bg-white rounded-3xl shadow-xl p-8 space-y-5">
+          {/* Name */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Full Name *
+            </label>
+            <div className="relative">
+              <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="text"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl focus:outline-none transition-colors ${
+                  errors.name
+                    ? 'border-red-300 focus:border-red-500'
+                    : 'border-gray-200 focus:border-rose-400'
+                }`}
+                placeholder="Enter your full name"
+              />
             </div>
+            {errors.name && <p className="text-sm text-red-500 mt-1">{errors.name}</p>}
+          </div>
 
-            {/* Email Input */}
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                Email Address
-              </label>
-              <div className="relative">
-                <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                  <Mail className="w-5 h-5 text-gray-400" />
-                </div>
-                <input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your.email@example.com"
-                  className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:border-rose-400 focus:outline-none text-gray-900"
-                  disabled={isLoading}
-                  required
-                />
-              </div>
+          {/* Username */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Username *
+            </label>
+            <div className="relative">
+              <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="text"
+                value={formData.username}
+                onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl focus:outline-none transition-colors ${
+                  errors.username
+                    ? 'border-red-300 focus:border-red-500'
+                    : 'border-gray-200 focus:border-rose-400'
+                }`}
+                placeholder="Choose a username"
+              />
             </div>
+            {errors.username && <p className="text-sm text-red-500 mt-1">{errors.username}</p>}
+          </div>
 
-            {/* Password Input */}
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                Password
-              </label>
-              <div className="relative">
-                <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                  <Lock className="w-5 h-5 text-gray-400" />
-                </div>
-                <input
-                  id="password"
-                  type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Create a password"
-                  className="w-full pl-12 pr-12 py-4 border-2 border-gray-200 rounded-2xl focus:border-rose-400 focus:outline-none text-gray-900"
-                  disabled={isLoading}
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                >
-                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                </button>
-              </div>
-              <p className="text-xs text-gray-500 mt-1">
-                Must be at least 6 characters with uppercase and lowercase letters
-              </p>
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Email Address *
+            </label>
+            <div className="relative">
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className={`w-full pl-12 pr-4 py-3 border-2 rounded-xl focus:outline-none transition-colors ${
+                  errors.email
+                    ? 'border-red-300 focus:border-red-500'
+                    : 'border-gray-200 focus:border-rose-400'
+                }`}
+                placeholder="your.email@example.com"
+              />
             </div>
+            {errors.email && <p className="text-sm text-red-500 mt-1">{errors.email}</p>}
+          </div>
 
-            {/* Confirm Password Input */}
-            <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
-                Confirm Password
-              </label>
-              <div className="relative">
-                <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                  <Lock className="w-5 h-5 text-gray-400" />
-                </div>
-                <input
-                  id="confirmPassword"
-                  type={showConfirmPassword ? 'text' : 'password'}
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Confirm your password"
-                  className="w-full pl-12 pr-12 py-4 border-2 border-gray-200 rounded-2xl focus:border-rose-400 focus:outline-none text-gray-900"
-                  disabled={isLoading}
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                >
-                  {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                </button>
-              </div>
+          {/* Age */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Age (Optional)
+            </label>
+            <input
+              type="number"
+              value={formData.age}
+              onChange={(e) => setFormData({ ...formData, age: e.target.value })}
+              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-rose-400 focus:outline-none transition-colors"
+              placeholder="25"
+              min="18"
+              max="100"
+            />
+          </div>
+
+          {/* Gender */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Gender (Optional)
+            </label>
+            <select
+              value={formData.gender}
+              onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-rose-400 focus:outline-none transition-colors"
+            >
+              <option value="">Select your gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="non-binary">Non-binary</option>
+              <option value="prefer-not-to-say">Prefer not to say</option>
+            </select>
+          </div>
+
+          {/* Location (Optional) */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Location (Optional)
+            </label>
+            <div className="relative">
+              <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="text"
+                value={formData.location}
+                onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:border-rose-400 focus:outline-none transition-colors"
+                placeholder="City, Country"
+              />
             </div>
+          </div>
 
-            {/* Terms Agreement */}
-            <div className="flex items-start gap-3">
+          {/* Password */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Password *
+            </label>
+            <div className="relative">
+              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={formData.password}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                className={`w-full pl-12 pr-12 py-3 border-2 rounded-xl focus:outline-none transition-colors ${
+                  errors.password
+                    ? 'border-red-300 focus:border-red-500'
+                    : 'border-gray-200 focus:border-rose-400'
+                }`}
+                placeholder="Create a password (min. 6 characters)"
+              />
               <button
                 type="button"
-                onClick={() => setAgreedToTerms(!agreedToTerms)}
-                className={`mt-1 w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-all ${
-                  agreedToTerms
-                    ? 'bg-rose-500 border-rose-500'
-                    : 'border-gray-300 hover:border-rose-400'
-                }`}
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
               >
-                {agreedToTerms && <Check className="w-4 h-4 text-white" />}
+                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
               </button>
-              <label className="text-sm text-gray-600 flex-1 cursor-pointer" onClick={() => setAgreedToTerms(!agreedToTerms)}>
-                I agree to the{' '}
-                <button type="button" className="text-rose-600 hover:text-rose-700 underline">
-                  Terms of Service
-                </button>
-                {' '}and{' '}
-                <button type="button" className="text-rose-600 hover:text-rose-700 underline">
-                  Privacy Policy
-                </button>
-              </label>
             </div>
-
-            {/* Sign Up Button */}
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full py-4 bg-gradient-to-r from-rose-500 to-pink-500 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isLoading ? 'Creating Account...' : 'Create Account'}
-            </button>
-          </form>
-
-          {/* Divider */}
-          <div className="my-8 flex items-center">
-            <div className="flex-1 border-t border-gray-200"></div>
-            <span className="px-4 text-sm text-gray-500">OR</span>
-            <div className="flex-1 border-t border-gray-200"></div>
+            {errors.password && <p className="text-sm text-red-500 mt-1">{errors.password}</p>}
           </div>
 
-          {/* Sign In Link */}
-          <div className="text-center">
-            <p className="text-sm text-gray-600">
-              Already have an account?{' '}
+          {/* Confirm Password */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Confirm Password *
+            </label>
+            <div className="relative">
+              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type={showConfirmPassword ? 'text' : 'password'}
+                value={formData.confirmPassword}
+                onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                className={`w-full pl-12 pr-12 py-3 border-2 rounded-xl focus:outline-none transition-colors ${
+                  errors.confirmPassword
+                    ? 'border-red-300 focus:border-red-500'
+                    : 'border-gray-200 focus:border-rose-400'
+                }`}
+                placeholder="Confirm your password"
+              />
               <button
-                onClick={onSignIn}
-                className="text-rose-600 hover:text-rose-700 font-semibold"
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
               >
-                Sign In
+                {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
               </button>
-            </p>
+            </div>
+            {errors.confirmPassword && <p className="text-sm text-red-500 mt-1">{errors.confirmPassword}</p>}
           </div>
-        </div>
-      </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full py-4 bg-gradient-to-r from-rose-500 to-pink-500 text-white rounded-xl shadow-lg hover:shadow-xl transition-all font-medium text-lg hover:scale-[1.02] mt-8"
+          >
+            Create Account
+          </button>
+
+          {/* Terms */}
+          <p className="text-xs text-gray-500 text-center mt-4">
+            By signing up, you agree to our Terms of Service and Privacy Policy
+          </p>
+        </form>
+
+        {/* Already have account */}
+        <p className="text-center mt-6 text-gray-600">
+          Already have an account?{' '}
+          <button 
+            onClick={onSignIn}
+            type="button"
+            className="text-rose-500 hover:text-rose-600 font-medium"
+          >
+            Sign In
+          </button>
+        </p>
+      </motion.div>
     </div>
   );
 }
-

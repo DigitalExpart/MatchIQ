@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Download, Share2, TrendingUp, AlertTriangle, Heart, MessageSquare, Sparkles, Bot, FileText, Tag, Plus, X, RefreshCw } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Download, Share2, TrendingUp, AlertTriangle, Heart, MessageSquare, Sparkles, FileText, Tag, Plus, X, RefreshCw } from 'lucide-react';
 import { MatchScan } from '../../App';
 import { useState, useEffect } from 'react';
 import { runAssessment, getScanResult, convertToCompatibilityAnalysis, generateAISummary, CompatibilityAnalysis, ScanResultResponse } from '../../services/aiService';
@@ -632,8 +632,8 @@ export function ResultsScreen({ scan, onBack, onContinueAssessment, onUpdateScan
         {/* AI Coach CTA */}
         <div className="bg-gradient-to-r from-purple-500 to-violet-500 p-6 rounded-3xl shadow-xl">
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center flex-shrink-0">
-              <Bot className="w-6 h-6 text-white" />
+            <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center flex-shrink-0 p-2">
+              <img src="/ai-coach-logo.svg" alt="AI Coach" className="w-full h-full" />
             </div>
             <div className="flex-1">
               <h3 className="text-lg text-white mb-1">Need Guidance?</h3>

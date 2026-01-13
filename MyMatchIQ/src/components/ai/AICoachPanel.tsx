@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Bot, MessageSquare, Sparkles, Send, Loader2 } from 'lucide-react';
+import { MessageSquare, Send, Loader2 } from 'lucide-react';
 import { getCoachResponse, CoachResponse, getChatSession, ChatSession } from '../../services/aiService';
 import { MatchScan, UserProfile } from '../../App';
 
@@ -135,27 +135,15 @@ export function AICoachPanel({ scan, userProfile, category = 'general' }: AICoac
     }
   };
 
-  const getCategoryColor = () => {
-    switch (category) {
-      case 'safety': return 'red';
-      case 'communication': return 'blue';
-      case 'emotional': return 'purple';
-      case 'values': return 'amber';
-      default: return 'gray';
-    }
-  };
-
-  const color = getCategoryColor();
-
   return (
     <div className="bg-white rounded-3xl shadow-xl p-6 mb-6">
       <div className="flex items-center gap-3 mb-6">
-        <div className={`w-10 h-10 bg-gradient-to-br from-${color}-500 to-${color}-600 rounded-xl flex items-center justify-center`}>
-          <Bot className="w-5 h-5 text-white" />
+        <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center p-1.5 shadow-sm">
+          <img src="/ai-coach-logo.svg" alt="AI Coach" className="w-full h-full" />
         </div>
         <div>
           <h3 className="text-lg font-semibold text-gray-900">
-            Ella - Your AI Coach
+            Amora - Your AI Coach
             {userName && <span className="text-sm font-normal text-gray-600 ml-2">👋 Hi {userName}!</span>}
           </h3>
           <p className="text-xs text-gray-500">Get personalized guidance</p>
@@ -170,8 +158,8 @@ export function AICoachPanel({ scan, userProfile, category = 'general' }: AICoac
             className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             {msg.role === 'ai' && (
-              <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <Sparkles className="w-4 h-4 text-purple-600" />
+              <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-sm p-1">
+                <img src="/ai-coach-logo.svg" alt="Amora" className="w-full h-full" />
               </div>
             )}
             <div
@@ -193,8 +181,8 @@ export function AICoachPanel({ scan, userProfile, category = 'general' }: AICoac
 
         {isLoading && (
           <div className="flex gap-3 justify-start">
-            <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
-              <Loader2 className="w-4 h-4 text-purple-600 animate-spin" />
+            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-sm p-1">
+              <img src="/ai-coach-logo.svg" alt="Amora" className="w-full h-full opacity-50" />
             </div>
             <div className="bg-gray-100 rounded-2xl p-4">
               <div className="flex gap-1">
@@ -247,4 +235,3 @@ export function AICoachPanel({ scan, userProfile, category = 'general' }: AICoac
     </div>
   );
 }
-

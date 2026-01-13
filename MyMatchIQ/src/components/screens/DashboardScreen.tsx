@@ -1,4 +1,4 @@
-import { Home, History, User, Settings, HelpCircle, Menu, X, ChevronRight, Heart, TrendingUp, Clock, Zap, MessageCircle, Play, Bot, Sparkles, Shield, Download, BarChart, Crown, Info, Mail, FileText, LogOut, BookOpen, Globe } from 'lucide-react';
+import { Home, History, User, Settings, HelpCircle, Menu, X, ChevronRight, Heart, TrendingUp, Clock, Zap, MessageCircle, Play, Sparkles, Shield, Download, BarChart, Crown, Info, Mail, FileText, LogOut, BookOpen, Globe, Bot } from 'lucide-react';
 import { ScanRecord, UserProfile, SubscriptionTier } from '../../App';
 import { Logo } from '../Logo';
 import { useState } from 'react';
@@ -95,13 +95,13 @@ export function DashboardScreen({ onStartScan, onNavigate, onNavigateToDatingIns
               </button>
             </div>
 
-            {/* Logo - 3x size, top left */}
+            {/* Logo - Full MyMatchIQ Logo */}
             <button 
               onClick={() => onNavigate('dashboard')}
               className="flex items-center justify-start hover:scale-105 transition-transform"
             >
-              <div className="flex items-center justify-center p-1">
-                <Logo size={144} />
+              <div className="flex items-center justify-center">
+                <img src="/my-match-iq-logo.png" alt="My Match IQ" className="h-48 w-auto" />
               </div>
             </button>
             
@@ -226,8 +226,8 @@ export function DashboardScreen({ onStartScan, onNavigate, onNavigateToDatingIns
             onClick={() => onNavigate('aiCoach')}
             className="bg-white p-6 rounded-3xl shadow-lg hover:shadow-xl transition-all"
           >
-            <div className="w-12 h-12 bg-purple-100 rounded-2xl flex items-center justify-center mb-3">
-              <Bot className="w-6 h-6 text-purple-600" />
+            <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center mb-3 shadow-sm p-2">
+              <img src="/ai-coach-logo.svg" alt="AI Coach" className="w-full h-full" />
             </div>
             <h3 className="text-gray-900 mb-1">{t('dashboard.aiCoach')}</h3>
             <p className="text-sm text-gray-600">{t('dashboard.aiCoachShort')}</p>
