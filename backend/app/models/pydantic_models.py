@@ -80,6 +80,8 @@ class CoachRequest(BaseModel):
     blueprint_id: Optional[UUID] = None
     specific_question: Optional[str] = None
     category: Optional[str] = None
+    context: Optional[Dict[str, Any]] = None  # Additional context from frontend
+    session_id: Optional[str] = None  # Chat session ID
 
 
 # Response Models

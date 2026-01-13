@@ -259,6 +259,13 @@ export function AICoachScreen({ onBack, onNavigateHome }: AICoachScreenProps) {
         }),
       });
 
+      // Check if response is OK
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('API Error:', response.status, errorText);
+        throw new Error(`API returned ${response.status}: ${errorText}`);
+      }
+
       const data = await response.json();
 
       // Remove loading message and add AI response

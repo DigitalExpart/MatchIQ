@@ -93,13 +93,16 @@ class CoachService:
         if not request.specific_question:
             message = "I'm here to help you explore various relationship topics. I could provide insights on compatibility, communication, trust, boundaries, or any patterns you're curious about. What might you like to learn more about?"
         else:
-            message = self._answer_question(request.specific_question)
+            message = self._answer_question(request.specific_question, request.context)
         
         return CoachResponse(
             message=message,
             mode=CoachMode.LEARN,
             confidence=0.8,
-            referenced_data={"question": request.specific_question}
+            referenced_data={
+                "question": request.specific_question,
+                "context": request.context or {}
+            }
         )
     
     def _safety_mode(
@@ -170,9 +173,13 @@ class CoachService:
         
         return message
     
-    def _answer_question(self, question: str) -> str:
+    def _answer_question(self, question: str, context: Optional[Dict[str, Any]] = None) -> str:
         """Answer a learning question (template-based)."""
         question_lower = question.lower()
+        
+        # Check for relationship readiness questions
+        if any(phrase in question_lower for phrase in ["ready for", "prepared for", "ready to commit", "should i commit"]):
+            return "Readiness for a committed relationship often involves feeling secure in yourself, having clear communication skills, and being open to vulnerability. It might help to consider: Are you able to express your needs? Can you handle conflict constructively? Do you feel ready to invest time and energy into building something meaningful? There's no perfect time, but feeling emotionally available and having realistic expectations could be important indicators."
         
         # Communication and relationships
         if any(word in question_lower for word in ["communication", "communicate", "talk", "conversation", "express"]):
@@ -206,8 +213,15 @@ class CoachService:
         if any(word in question_lower for word in ["blueprint", "self-assessment", "assessment"]):
             return "Your blueprint may reflect what matters most to you in relationships. It could help the AI understand your priorities and values when evaluating potential matches or current relationships."
         
-        # Default fallback
-        return "I'm here to help you explore relationship topics. I might be able to provide insights on communication, trust, compatibility, boundaries, or any relationship questions you're curious about. What specific area interests you?"
+        # Default fallback with personalized touch if context available
+        base_message = "I'm here to help you explore relationship topics. I might be able to provide insights on communication, trust, compatibility, boundaries, or any relationship questions you're curious about."
+        
+        if context:
+            topics = context.get("topics", [])
+            if topics:
+                base_message += f" Based on our conversation, you've been exploring: {', '.join(topics[:3])}. What specific aspect would you like to dive deeper into?"
+        
+        return base_message
     
     def validate_response(self, response: CoachResponse) -> bool:
         """Validate coach response meets requirements."""
