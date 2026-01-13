@@ -250,6 +250,12 @@ class CoachService:
             logger.info("Matched DATING_DECISION pattern")
             return "Deciding how to progress in a relationship can feel overwhelming. It might help to consider: What are your feelings telling you? Are you both on the same page about what you want? Have you had honest conversations about your expectations and goals? Sometimes taking time to reflect on what you truly want—separate from external pressures—can bring clarity. There's no rush to make a decision; what matters is that it feels right for both of you when you're ready."
         
+        # Choosing between multiple people/partners
+        choice_phrases = ["which one", "choose between", "pick between", "two ladies", "two guys", "multiple people", "dont know which", "cant decide between", "between two", "have 2", "have two"]
+        if any(phrase in question_lower for phrase in choice_phrases):
+            logger.info("Matched CHOICE pattern")
+            return "Choosing between people can be challenging and it's understandable to feel uncertain. It might help to reflect on: What values and qualities matter most to you in a relationship? How do you feel when you're with each person—do you feel like your authentic self? Are you able to communicate openly and honestly with both? Sometimes the person who aligns with your core values and makes you feel most comfortable being yourself could be worth considering. Take time to reflect on what you truly want in a relationship, and consider having honest conversations with both people about your feelings and intentions."
+        
         # Communication and relationships
         if any(word in question_lower for word in ["communication", "communicate", "talk", "conversation", "express"]):
             return "Effective communication might include active listening, expressing feelings clearly, and creating safe space for dialogue. It could help to focus on 'I' statements and validate your partner's perspective."
