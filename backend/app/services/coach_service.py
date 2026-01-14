@@ -294,7 +294,52 @@ class CoachService:
         if any(word in question_lower for word in ["blueprint", "self-assessment", "assessment"]):
             return "Your blueprint may reflect what matters most to you in relationships. It could help the AI understand your priorities and values when evaluating potential matches or current relationships."
         
-        # Feelings and emotions questions
+        # Past relationships and baggage
+        past_phrases = ["past relationship", "my past", "my ex", "previous relationship", "past affect", "past is affecting", "thinking about my past"]
+        if any(phrase in question_lower for phrase in past_phrases):
+            logger.info("Matched PAST_RELATIONSHIPS pattern")
+            return "Your past experiences often shape how you approach relationships now—that's natural. Sometimes patterns from previous relationships can influence what feels safe or comfortable. It might help to reflect: What specific patterns do you notice? Are there certain reactions or fears that seem familiar? Understanding these connections can help you decide what to carry forward and what to release."
+        
+        # Relationship feeling messy/complicated
+        mess_phrases = ["love life is a mess", "relationship is a mess", "so complicated", "its complicated", "relationship status is complicated", "relationship status is very complicated", "relationships are messy", "status is very"]
+        if any(phrase in question_lower for phrase in mess_phrases):
+            logger.info("Matched RELATIONSHIP_MESS/COMPLICATED pattern")
+            if "complicated" in question_lower:
+                return "Feeling uncertain about where you stand with someone can create a lot of mental and emotional energy. Sometimes 'complicated' means there are different expectations, unclear boundaries, or mixed signals. What would help you feel more clear about what you want from this connection?"
+            else:
+                return "It sounds like things feel really overwhelming right now, and that can be exhausting. When relationships feel messy, it often means there's a lot happening at once—emotions, situations, uncertainty. What part of this feels most tangled or confusing to you right now?"
+        
+        # Relationship patterns and cycles
+        pattern_phrases = ["same mistakes", "same type of person", "pattern in relationships", "relationships always fail", "same relationship patterns", "keep repeating", "attract the wrong people"]
+        if any(phrase in question_lower for phrase in pattern_phrases):
+            logger.info("Matched RELATIONSHIP_PATTERNS pattern")
+            return "Noticing patterns in your relationships shows real self-awareness, and that's an important first step. Patterns often develop because they once served a purpose—maybe they felt familiar or safe in some way. It might help to reflect: What draws you to these situations initially? What needs might these patterns have been trying to meet? Understanding the 'why' can help you make different choices moving forward."
+        
+        # Doubts and uncertainty
+        doubt_phrases = ["doubts about", "should i be having doubts", "is it normal to have doubts", "doubting everything", "what if im making a mistake", "second guessing"]
+        if any(phrase in question_lower for phrase in doubt_phrases):
+            logger.info("Matched RELATIONSHIP_DOUBT pattern")
+            return "Having doubts can feel unsettling, and it's understandable that you're trying to make sense of them. Doubts sometimes signal that something needs attention, but they can also come from anxiety or fear of vulnerability. When you notice these doubts, what specifically are they about? Are they about your partner, about yourself, or about the relationship itself?"
+        
+        # Jealousy
+        jealousy_phrases = ["feel jealous", "deal with jealousy", "is jealousy normal", "jealous of their ex", "makes me jealous", "why am i so jealous"]
+        if any(phrase in question_lower for phrase in jealousy_phrases):
+            logger.info("Matched JEALOUSY pattern")
+            return "Jealousy is a common emotion that often signals underlying needs or insecurities. It might help to explore: What specifically triggers the jealousy? Is it rooted in past experiences, current relationship dynamics, or your own self-perception? Understanding where it comes from can help you address it constructively—through communication, building security, or working on your own emotional needs."
+        
+        # Toxic relationship concerns
+        toxic_phrases = ["relationship toxic", "toxic relationship", "am i in a toxic", "what makes a relationship toxic", "signs of toxic"]
+        if any(phrase in question_lower for phrase in toxic_phrases):
+            logger.info("Matched TOXIC_RELATIONSHIP pattern")
+            return "It takes courage to question whether a relationship is healthy. Toxic relationships often involve patterns like manipulation, disrespect, control, constant criticism, or feeling worse about yourself when you're with them. When you think about your relationship, what specific behaviors or patterns are making you feel concerned?"
+        
+        # Emotional availability
+        emotional_avail_phrases = ["emotionally available", "emotional availability", "cant open up emotionally", "become emotionally available"]
+        if any(phrase in question_lower for phrase in emotional_avail_phrases):
+            logger.info("Matched EMOTIONAL_AVAILABILITY pattern")
+            return "Emotional availability often involves being able to recognize, process, and share your feelings with another person. It might help to consider: Can you identify and name your emotions when they arise? Do you feel safe being vulnerable? Are you able to be present for someone else's emotions without shutting down or taking over? Sometimes building emotional availability is a gradual process—noticing where you feel blocked can be a helpful starting point."
+        
+        # Feelings and emotions questions (keep existing)
         if any(word in question_lower for word in ["feel", "feeling", "feelings", "emotion", "emotional"]):
             return "Understanding and navigating emotions in relationships can be challenging. Feelings often provide valuable information about what matters to us and how we're experiencing our connections. It might help to reflect on: What physical sensations do you notice when you think about this person or situation? What thoughts come up most often? Are these feelings comfortable or uncomfortable, and what might that tell you? Remember that all feelings are valid and can guide you toward understanding what you truly need and want in a relationship."
         
