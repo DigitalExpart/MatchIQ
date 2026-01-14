@@ -322,35 +322,98 @@ class AmoraEnhancedService:
         """
         TASK 1: First-turn experience.
         Warm, safe opening that invites without assuming.
+        
+        If user asks a real question, process it normally and add brief intro.
+        If empty/short input, send warm greeting.
         """
-        # If user already said something meaningful, acknowledge it
+        # If user asks a meaningful question on first turn, process it normally
         if question and len(question) > 10:
-            # User opened with a real question, respond normally but add intro
-            intro = "I'm Amora. I help people think through love and relationships without judgment or pressure. "
+            logger.info(f"🎯 First turn with real question: {question[:50]}...")
             
-            # Generate normal response for their question
-            # (simplified for first turn)
-            response = intro + "What's been weighing on you lately?"
+            # Mark as not first message so we process normally
+            conversation_state.is_first_message = False
+            key = session_id if session_id else str(user_id)
+            self._sessions[key] = conversation_state
+            
+            # Process the question through normal flow
+            # Generate embedding
+            question_embedding = self._generate_embedding(question)
+            
+            # Detect emotions and intent
+            emotional_signals = self._detect_emotions(question, question_embedding)
+            intent_signals = self._classify_intent(question, question_embedding)
+            confidence_level = self._compute_confidence_level(emotional_signals, intent_signals)
+            
+            # Find template
+            template = self._find_best_template(
+                question,
+                question_embedding,
+                emotional_signals,
+                intent_signals,
+                confidence_level
+            )
+            
+            # Apply confidence gating
+            gated_response = self._apply_confidence_gate(
+                template,
+                confidence_level,
+                emotional_signals,
+                intent_signals
+            )
+            
+            # Add emotional mirroring
+            response_with_mirroring = self._add_emotional_mirroring(
+                gated_response,
+                emotional_signals
+            )
+            
+            # Add brief intro for first turn
+            intro = "I'm Amora. I'm here to help you think through this. "
+            final_response = intro + response_with_mirroring
+            
+            # Update state
+            self._update_conversation_state(
+                user_id,
+                conversation_state,
+                question,
+                final_response,
+                emotional_signals,
+                intent_signals,
+                confidence_level,
+                session_id
+            )
+            
+            # Map confidence level to numeric value
+            confidence_map = {"LOW": 0.5, "MEDIUM": 0.7, "HIGH": 0.9}
+            confidence_value = confidence_map.get(confidence_level, 0.7)
+            
+            return CoachResponse(
+                message=final_response,
+                mode=CoachMode.LEARN,
+                confidence=confidence_value,
+                referenced_data={"first_turn": True, "processed_question": True}
+            )
         else:
-            # Generic first interaction
+            # Generic first interaction (empty or very short input)
+            logger.info(f"👋 First turn with no/short question, sending greeting")
             openings = [
                 "I'm Amora. I help people think through love and relationships without judgment or pressure. What's been on your mind lately?",
                 "I'm Amora. I'm here to help you explore relationships and emotions at your own pace. What would you like to talk about?",
                 "I'm Amora. I create a space to think through relationships without pressure or judgment. What's been weighing on you?"
             ]
             response = random.choice(openings)
-        
-        # Mark first turn as complete and save to correct session
-        conversation_state.is_first_message = False
-        key = session_id if session_id else str(user_id)
-        self._sessions[key] = conversation_state
-        
-        return CoachResponse(
-            message=response,
-            mode=CoachMode.LEARN,
-            confidence=0.7,
-            referenced_data={"first_turn": True}
-        )
+            
+            # Mark first turn as complete and save to correct session
+            conversation_state.is_first_message = False
+            key = session_id if session_id else str(user_id)
+            self._sessions[key] = conversation_state
+            
+            return CoachResponse(
+                message=response,
+                mode=CoachMode.LEARN,
+                confidence=0.7,
+                referenced_data={"first_turn": True, "greeting_only": True}
+            )
     
     def _should_clarify(
         self,
