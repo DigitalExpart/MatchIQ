@@ -35,8 +35,16 @@ def get_embedding_model():
 
 @dataclass
 class ConversationState:
-    """Track conversation state for adaptive responses."""
+    """
+    Track conversation state for adaptive responses.
+    
+    IMPORTANT: has_introduced_amora tracks whether Amora has already
+    introduced herself in this session. Since the frontend shows an
+    initial greeting, we default this to True so the backend never
+    sends "I'm Amora..." in responses.
+    """
     is_first_message: bool = True
+    has_introduced_amora: bool = True  # Frontend handles initial intro
     turns_count: int = 0
     confidence_history: List[str] = None
     recent_themes: List[str] = None
@@ -367,9 +375,9 @@ class AmoraEnhancedService:
                 emotional_signals
             )
             
-            # Add brief intro for first turn
-            intro = "I'm Amora. I'm here to help you think through this. "
-            final_response = intro + response_with_mirroring
+            # Remove any self-intro phrases since frontend already introduced Amora
+            # This ensures Amora never re-introduces herself after the initial greeting
+            final_response = self._remove_intro_phrases(response_with_mirroring)
             
             # Update state
             self._update_conversation_state(
@@ -873,6 +881,32 @@ class AmoraEnhancedService:
             confidence=0.6,
             referenced_data={"empty_input": True}
         )
+    
+    def _remove_intro_phrases(self, response: str) -> str:
+        """
+        Remove self-introduction phrases from responses.
+        
+        Since the frontend already introduces Amora with an initial greeting,
+        we strip out any "I'm Amora..." phrases from backend responses to
+        ensure Amora only introduces herself once per session.
+        """
+        intro_phrases = [
+            "I'm Amora. I'm here to help you think through this. ",
+            "I'm Amora. ",
+            "I'm Amora, ",
+            "My name is Amora. ",
+            "My name is Amora, ",
+        ]
+        
+        cleaned_response = response
+        for phrase in intro_phrases:
+            cleaned_response = cleaned_response.replace(phrase, "")
+        
+        # Capitalize first letter if needed after removal
+        if cleaned_response and cleaned_response[0].islower():
+            cleaned_response = cleaned_response[0].upper() + cleaned_response[1:]
+        
+        return cleaned_response.strip()
     
     def _safe_fallback(self) -> CoachResponse:
         """TASK 9: Safe fallback that never sounds broken."""
