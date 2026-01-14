@@ -748,8 +748,13 @@ class AmoraEnhancedService:
         """Load conversation state for user + session."""
         # Use session_id if provided (from frontend), otherwise fall back to user_id
         key = session_id if session_id else str(user_id)
+        logger.info(f"🔍 Loading conversation state - session_id: {session_id}, key: {key}, exists: {key in self._sessions}")
         if key not in self._sessions:
+            logger.info(f"✨ Creating NEW conversation state for key: {key}")
             self._sessions[key] = ConversationState()
+        else:
+            state = self._sessions[key]
+            logger.info(f"📖 Loaded EXISTING state - is_first: {state.is_first_message}, turns: {state.turns_count}")
         return self._sessions[key]
     
     def _update_conversation_state(
@@ -764,6 +769,7 @@ class AmoraEnhancedService:
         session_id: Optional[str] = None
     ):
         """Update conversation state after turn."""
+        logger.info(f"💾 Updating conversation state - session_id: {session_id}, turns: {state.turns_count} -> {state.turns_count + 1}")
         state.is_first_message = False
         state.turns_count += 1
         state.confidence_history.append(confidence_level)
@@ -788,6 +794,7 @@ class AmoraEnhancedService:
         # Save to correct session (use session_id consistently)
         key = session_id if session_id else str(user_id)
         self._sessions[key] = state
+        logger.info(f"✅ Saved state to key: {key}, total sessions: {len(self._sessions)}")
     
     def _handle_empty_input(self, conversation_state: ConversationState) -> CoachResponse:
         """TASK 9: Handle empty input gracefully."""

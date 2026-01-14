@@ -89,5 +89,6 @@ async def health_check():
     return {
         "status": "healthy",
         "service": "amora_enhanced",
-        "version": "1.0.0"
+        "version": "1.0.1-session-fix",
+        "git_commit": "c674ffa"
     }
