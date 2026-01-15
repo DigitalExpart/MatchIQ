@@ -515,6 +515,15 @@ class AmoraBlocksService:
                     recent_block_ids=state.recent_block_ids
                 )
             
+            # Log selected blocks
+            logger.info(f"Selected blocks: reflection={reflection is not None}, normalization={normalization is not None}, exploration={exploration is not None}, reframe={reframe is not None}")
+            if reflection:
+                logger.info(f"Reflection text length: {len(reflection.text)}, preview: {reflection.text[:50]}...")
+            if normalization:
+                logger.info(f"Normalization text length: {len(normalization.text)}, preview: {normalization.text[:50]}...")
+            if exploration:
+                logger.info(f"Exploration text length: {len(exploration.text)}, preview: {exploration.text[:50]}...")
+            
             # Compose response
             message = ResponseComposer.compose(
                 reflection=reflection,
@@ -523,6 +532,8 @@ class AmoraBlocksService:
                 reframe=reframe,
                 state=state
             )
+            
+            logger.info(f"Composed message length: {len(message)}, preview: {message[:100]}...")
             
             # Update state
             self._update_state(
@@ -543,7 +554,8 @@ class AmoraBlocksService:
                     'topics': topics[:3],
                     'emotions': emotions[:2],
                     'stage': stage,
-                    'turn_count': state.turn_count
+                    'turn_count': state.turn_count,
+                    'engine': 'blocks'  # Set engine here
                 }
             )
         

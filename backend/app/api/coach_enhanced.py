@@ -67,9 +67,11 @@ async def get_coach_response(
             try:
                 blocks_service = AmoraBlocksService()
                 response = blocks_service.get_response(request, user_id)
-                response.engine = "blocks"
+                # Engine is set in referenced_data by the service
+                response.engine = response.referenced_data.get('engine', 'blocks')
                 
-                logger.info(f"Amora BLOCKS response: {response.message[:100]}... (confidence={response.confidence})")
+                logger.info(f"Amora BLOCKS response: message_length={len(response.message)}, confidence={response.confidence}, engine={response.engine}")
+                logger.info(f"Message preview: {response.message[:150]}...")
                 return response
                 
             except Exception as blocks_error:
@@ -79,6 +81,7 @@ async def get_coach_response(
                 enhanced_service = AmoraEnhancedService()
                 response = enhanced_service.get_response(request, user_id, is_paid_user)
                 response.engine = "legacy_templates"
+                response.referenced_data['engine'] = "legacy_templates"
                 
                 logger.warning(f"Using legacy templates as fallback: {response.message[:100]}...")
                 return response
