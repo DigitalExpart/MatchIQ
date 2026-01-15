@@ -17,7 +17,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 from app.models.pydantic_models import CoachMode, CoachRequest, CoachResponse
 from app.database import get_supabase_client
-from app.services.embedding_model import get_embedding_model
+
+# Import embedding model function from enhanced service
+from app.services.amora_enhanced_service import get_embedding_model
 
 logger = logging.getLogger(__name__)
 
