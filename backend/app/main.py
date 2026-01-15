@@ -55,7 +55,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="MyMatchIQ AI Backend",
     description="Decision intelligence engine for relationship compatibility",
-    version="1.0.0",
+    version="2.0.0-blocks",  # Updated to reflect blocks architecture
     lifespan=lifespan
 )
 
