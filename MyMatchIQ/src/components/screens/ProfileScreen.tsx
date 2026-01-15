@@ -110,7 +110,7 @@ export function ProfileScreen({ profile, subscriptionTier, onBack, onSave, onMan
       console.log('Uploading to Supabase:', fileName);
 
       // Upload to Supabase Storage
-      const { data, error } = await supabase.storage
+      const { error } = await supabase.storage
         .from('profile-images')
         .upload(fileName, file, {
           cacheControl: '3600',

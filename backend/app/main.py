@@ -31,6 +31,21 @@ async def lifespan(app: FastAPI):
     else:
         logger.warning("Database connection check failed - tables may not exist yet")
     
+    # Check Amora Blocks Service status
+    try:
+        from app.services.amora_blocks_service import AmoraBlocksService
+        blocks_service = AmoraBlocksService()
+        blocks_count = blocks_service.get_blocks_count()
+        
+        if blocks_count > 0:
+            logger.info(f"✅ Amora Blocks Service: Loaded {blocks_count} blocks with embeddings")
+        else:
+            logger.warning(f"⚠️  Amora Blocks Service: NO BLOCKS FOUND! Will fall back to legacy templates.")
+            logger.warning("    Run: python backend/scripts/compute_block_embeddings.py")
+    except Exception as e:
+        logger.error(f"❌ Amora Blocks Service initialization failed: {e}")
+        logger.error("    Falling back to legacy template system")
+    
     yield
     
     # Shutdown

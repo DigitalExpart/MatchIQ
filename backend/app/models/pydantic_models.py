@@ -148,6 +148,7 @@ class CoachResponse(BaseModel):
     mode: CoachMode
     confidence: float
     referenced_data: Dict[str, Any]
+    engine: Optional[str] = "unknown"  # Debug field: "blocks", "legacy_templates", "pattern_matching"
 
 
 class HealthResponse(BaseModel):

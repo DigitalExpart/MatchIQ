@@ -410,6 +410,20 @@ class AmoraBlocksService:
         # In-memory session storage (use Redis in production)
         self._sessions: Dict[str, ConversationState] = {}
     
+    def get_blocks_count(self) -> int:
+        """Get count of blocks with embeddings for health check."""
+        try:
+            response = self.supabase.table('amora_response_blocks') \
+                .select('id', count='exact') \
+                .not_.is_('embedding', 'null') \
+                .eq('active', True) \
+                .execute()
+            
+            return response.count if hasattr(response, 'count') else 0
+        except Exception as e:
+            logger.error(f"Error counting blocks: {e}")
+            return 0
+    
     def get_response(
         self,
         request: CoachRequest,
