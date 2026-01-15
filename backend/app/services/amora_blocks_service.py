@@ -196,14 +196,17 @@ class BlockSelector:
         5. Return highest scoring block above threshold
         """
         try:
-            # Fetch candidate blocks
+            # Fetch candidate blocks (only those with embeddings)
             query = self.supabase.table("amora_response_blocks") \
                 .select("*") \
                 .eq("block_type", block_type) \
                 .eq("stage", stage) \
-                .eq("active", True)
+                .eq("active", True) \
+                .not_.is_("embedding", "null")
             
             response = query.execute()
+            
+            logger.info(f"Query for {block_type} stage {stage}: found {len(response.data) if response.data else 0} blocks")
             
             if not response.data:
                 # Try adjacent stages if exact stage has no blocks
@@ -214,7 +217,9 @@ class BlockSelector:
                             .eq("block_type", block_type) \
                             .eq("stage", adjacent_stage) \
                             .eq("active", True) \
+                            .not_.is_("embedding", "null") \
                             .execute()
+                        logger.info(f"Trying adjacent stage {adjacent_stage}: found {len(response.data) if response.data else 0} blocks")
                         if response.data:
                             break
             
