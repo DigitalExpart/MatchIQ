@@ -231,6 +231,13 @@ class BlockSelector:
             # Convert to ResponseBlock objects
             candidates = []
             for block_data in response.data:
+                # Debug: Check what we got
+                has_embedding = block_data.get('embedding') is not None
+                has_text = bool(block_data.get('text'))
+                text_length = len(block_data.get('text', ''))
+                
+                logger.info(f"Block {block_data.get('id', 'unknown')[:8]}: has_embedding={has_embedding}, has_text={has_text}, text_length={text_length}")
+                
                 if block_data.get('embedding'):
                     candidates.append(ResponseBlock(
                         id=block_data['id'],
@@ -242,6 +249,8 @@ class BlockSelector:
                         priority=block_data.get('priority', 50),
                         embedding=np.array(block_data['embedding'])
                     ))
+                else:
+                    logger.warning(f"Block {block_data.get('id', 'unknown')[:8]} filtered out: no embedding")
             
             if not candidates:
                 logger.warning(f"No blocks with embeddings for type={block_type}")

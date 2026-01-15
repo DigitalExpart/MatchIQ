@@ -2,17 +2,17 @@
 
 $backendUrl = "https://macthiq-ai-backend.onrender.com"
 $healthEndpoint = "/api/v1/coach/health"
-$targetCommit = "4a0ac51"
+$targetCommit = "966b453"
 
 Write-Host "========================================"
 Write-Host " MONITORING RENDER DEPLOYMENT"
 Write-Host "========================================"
 Write-Host ""
 Write-Host "Target commit: $targetCommit"
-Write-Host "Fix: Changed .not_.is_() to .is_('embedding', 'not.null')"
+Write-Host "Fix: Use .neq(field, None) for NOT NULL filter"
 Write-Host ""
 
-$maxAttempts = 30
+$maxAttempts = 40
 $attempt = 0
 
 while ($attempt -lt $maxAttempts) {
@@ -24,21 +24,19 @@ while ($attempt -lt $maxAttempts) {
         
         Write-Host "[$timestamp] Attempt $attempt/$maxAttempts" -NoNewline
         
-        if ($health.git_commit -like "*$targetCommit*" -or $health.git_commit -like "*4a0ac51*") {
+        if ($health.blocks_loaded -gt 0) {
             Write-Host " - [DEPLOYED]" -ForegroundColor Green
             Write-Host ""
             Write-Host "  Version: $($health.version)"
-            Write-Host "  Git commit: $($health.git_commit)"
             Write-Host "  Blocks loaded: $($health.blocks_loaded)"
             Write-Host ""
-            Write-Host "[SUCCESS] New version is live!" -ForegroundColor Green
+            Write-Host "[SUCCESS] Blocks are loading! Testing now..." -ForegroundColor Green
             Write-Host ""
-            Write-Host "Running test..."
             Start-Sleep -Seconds 2
             & ".\test_amora_detailed.ps1"
             exit 0
         } else {
-            Write-Host " - Old version: $($health.git_commit)" -ForegroundColor Yellow
+            Write-Host " - Blocks: $($health.blocks_loaded) (waiting...)" -ForegroundColor Yellow
         }
     } catch {
         Write-Host "[$timestamp] Attempt $attempt/$maxAttempts - Service unavailable (deploying...)" -ForegroundColor Yellow
