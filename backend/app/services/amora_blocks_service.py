@@ -197,12 +197,13 @@ class BlockSelector:
         """
         try:
             # Fetch candidate blocks (only those with embeddings)
+            # Use neq filter for null check (embedding IS NOT NULL)
             query = self.supabase.table("amora_response_blocks") \
                 .select("*") \
                 .eq("block_type", block_type) \
                 .eq("stage", stage) \
                 .eq("active", True) \
-                .is_("embedding", "not.null")
+                .neq("embedding", None)
             
             response = query.execute()
             
@@ -217,7 +218,7 @@ class BlockSelector:
                             .eq("block_type", block_type) \
                             .eq("stage", adjacent_stage) \
                             .eq("active", True) \
-                            .is_("embedding", "not.null") \
+                            .neq("embedding", None) \
                             .execute()
                         logger.info(f"Trying adjacent stage {adjacent_stage}: found {len(response.data) if response.data else 0} blocks")
                         if response.data:
@@ -422,7 +423,7 @@ class AmoraBlocksService:
         try:
             response = self.supabase.table('amora_response_blocks') \
                 .select('id', count='exact') \
-                .is_('embedding', 'not.null') \
+                .neq('embedding', None) \
                 .eq('active', True) \
                 .execute()
             
