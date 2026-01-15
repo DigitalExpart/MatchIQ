@@ -6,7 +6,7 @@ import logging
 
 from app.config import settings
 from app.database import init_db
-from app.api import auth, assessments, blueprints, results, coach, coach_enhanced
+from app.api import auth, assessments, blueprints, results, coach, coach_enhanced, admin
 from app.models.pydantic_models import HealthResponse
 
 # Configure logging
@@ -83,6 +83,9 @@ app.include_router(results.router, prefix="/api/v1/results", tags=["results"])
 # Comment out old coach router, use coach_enhanced
 # app.include_router(coach.router, prefix="/api/v1/coach", tags=["coach"])
 app.include_router(coach_enhanced.router, prefix="/api/v1", tags=["coach-enhanced"])
+
+# Admin endpoints for maintenance (compute embeddings, etc.)
+app.include_router(admin.router, prefix="/api/v1", tags=["admin"])
 
 
 @app.get("/health", response_model=HealthResponse)
