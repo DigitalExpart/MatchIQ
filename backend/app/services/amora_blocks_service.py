@@ -11,6 +11,7 @@ from typing import Dict, Any, List, Optional, Set
 from uuid import UUID
 from dataclasses import dataclass, field
 from datetime import datetime
+from enum import Enum
 
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
@@ -22,6 +23,144 @@ from app.database import get_supabase_client
 from app.services.amora_enhanced_service import get_embedding_model
 
 logger = logging.getLogger(__name__)
+
+
+# ============================================
+# RESPONSE STYLE SYSTEM
+# ============================================
+
+class ResponseStyle(str, Enum):
+    """Dynamic response styles based on conversation context."""
+    LIGHT_TOUCH = "LIGHT_TOUCH"              # Brief reflection + 1 question
+    GROUNDING = "GROUNDING"                  # 1-2 paragraphs, grounding response
+    DEEPENING = "DEEPENING"                  # 2-3 paragraphs, building depth
+    GUIDANCE_SESSION = "GUIDANCE_SESSION"    # Long micro-session with insights
+
+
+# Response style configuration: maps style to block counts
+STYLE_BLOCK_CONFIG = {
+    ResponseStyle.LIGHT_TOUCH: {
+        'reflection': 1,
+        'normalization': 0,
+        'insight': 0,
+        'exploration': 1,
+        'max_questions': 1
+    },
+    ResponseStyle.GROUNDING: {
+        'reflection': 1,
+        'normalization': 1,
+        'insight': 0,
+        'exploration': 1,
+        'max_questions': 1
+    },
+    ResponseStyle.DEEPENING: {
+        'reflection': 2,
+        'normalization': 2,
+        'insight': 1,
+        'exploration': 1,
+        'max_questions': 2
+    },
+    ResponseStyle.GUIDANCE_SESSION: {
+        'reflection': 2,
+        'normalization': 2,
+        'insight': 2,
+        'exploration': 2,
+        'max_questions': 2
+    }
+}
+
+# Advice/guidance request keywords
+ADVICE_REQUEST_KEYWORDS = [
+    'can you give me advice',
+    'give me advice',
+    'what should i do',
+    'how can i deal',
+    'how do i handle',
+    'how do i cope',
+    'please help me',
+    'help me',
+    'what do i do',
+    'how to deal with',
+    'how to handle',
+    'need advice',
+    'need help',
+    'tell me what to do'
+]
+
+# Heavy/intense topics that warrant GROUNDING on first turn
+HEAVY_TOPICS = [
+    'heartbreak',
+    'cheating',
+    'toxic_or_abusive_dynamic',
+    'partner_mental_health_or_addiction',
+    'low_self_worth_in_love',
+    'lgbtq_identity_and_family_pressure',
+    'non_monogamy_open_or_poly',
+    'divorce',
+    'separation'
+]
+
+
+def choose_response_style(
+    user_message: str,
+    topics: List[str],
+    emotions: List[str],
+    topic_stage: int,
+    turn_index_for_topic: int,
+    previous_style: Optional[ResponseStyle] = None
+) -> ResponseStyle:
+    """
+    Choose appropriate response style based on conversation context.
+    
+    Heuristics:
+    1. Explicit advice requests → GUIDANCE_SESSION
+    2. First turn on heavy topic → GROUNDING
+    3. Second-fourth turns on same topic → DEEPENING
+    4. Very short messages → LIGHT_TOUCH
+    5. Later turns (5+) → alternate DEEPENING/GROUNDING
+    """
+    message_lower = user_message.lower()
+    message_length = len(user_message)
+    
+    # 1. Check for explicit advice/guidance requests
+    if any(keyword in message_lower for keyword in ADVICE_REQUEST_KEYWORDS):
+        logger.info(f"Style: GUIDANCE_SESSION (advice request detected)")
+        return ResponseStyle.GUIDANCE_SESSION
+    
+    # 2. First turn on heavy topic → GROUNDING
+    if turn_index_for_topic == 1 and topic_stage == 1:
+        if any(topic in HEAVY_TOPICS for topic in topics):
+            logger.info(f"Style: GROUNDING (first turn on heavy topic: {topics})")
+            return ResponseStyle.GROUNDING
+    
+    # 3. Very short messages (clarifications) → LIGHT_TOUCH
+    if message_length < 50 and turn_index_for_topic > 1:
+        # But not if it's an advice request
+        if not any(keyword in message_lower for keyword in ['help', 'advice', 'what', 'how']):
+            logger.info(f"Style: LIGHT_TOUCH (short message: {message_length} chars)")
+            return ResponseStyle.LIGHT_TOUCH
+    
+    # 4. Turns 2-4 on same topic with emotional sharing → DEEPENING
+    if 2 <= turn_index_for_topic <= 4 and topic_stage <= 2:
+        # Check if user is sharing feelings/details (not just asking questions)
+        sharing_indicators = ['i feel', 'i dont', 'i cant', 'i keep', 'i miss', 'i want', 'i need', 'im']
+        if any(indicator in message_lower for indicator in sharing_indicators):
+            logger.info(f"Style: DEEPENING (turn {turn_index_for_topic}, emotional sharing)")
+            return ResponseStyle.DEEPENING
+    
+    # 5. Later turns (5+) → alternate or adapt
+    if turn_index_for_topic >= 5:
+        # If user brings new emotional angle, deepen
+        if any(emotion in ['confused', 'torn', 'conflicted', 'stuck'] for emotion in emotions):
+            logger.info(f"Style: DEEPENING (later turn with new emotional angle)")
+            return ResponseStyle.DEEPENING
+        # Otherwise, stay grounded but shorter
+        logger.info(f"Style: GROUNDING (later turn, keeping grounded)")
+        return ResponseStyle.GROUNDING
+    
+    # Default: DEEPENING for most middle-conversation turns
+    logger.info(f"Style: DEEPENING (default for turn {turn_index_for_topic})")
+    return ResponseStyle.DEEPENING
 
 
 # ============================================
@@ -41,6 +180,11 @@ class ConversationState:
     # Progressive depth per topic
     topic_stages: Dict[str, int] = field(default_factory=dict)  # topic -> stage (1-4)
     active_topics: List[str] = field(default_factory=list)  # Topics discussed this session
+    topic_turn_counts: Dict[str, int] = field(default_factory=dict)  # topic -> turn count
+    
+    # Response style tracking
+    last_response_style: Optional[ResponseStyle] = None
+    current_dominant_topic: Optional[str] = None
     
     # Context personalization
     partner_label: Optional[str] = None  # "partner", "boyfriend", "girlfriend", etc.
@@ -483,50 +627,85 @@ class AmoraBlocksService:
             
             logger.info(f"Detected topics: {topics[:3]}, emotions: {emotions[:2]}")
             
-            # Update active topics
+            # Update active topics and track turn counts
             for topic in topics:
                 if topic not in state.active_topics:
                     state.active_topics.append(topic)
                     state.topic_stages[topic] = 1
+                    state.topic_turn_counts[topic] = 0
+                # Increment turn count for this topic
+                state.topic_turn_counts[topic] = state.topic_turn_counts.get(topic, 0) + 1
             
             # Determine stage for primary topic
             primary_topic = topics[0] if topics else 'general'
             stage = state.topic_stages.get(primary_topic, 1)
+            turn_index_for_topic = state.topic_turn_counts.get(primary_topic, 1)
+            
+            # Track dominant topic for style decisions
+            state.current_dominant_topic = primary_topic
             
             # Extract short user phrase for exploration blocks
             state.last_user_phrase = self._extract_key_phrase(question)
             
-            # Select blocks
-            reflection = self.block_selector.select_block(
-                block_type='reflection',
-                question_embedding=question_embedding,
+            # Choose response style dynamically
+            response_style = choose_response_style(
+                user_message=question,
                 topics=topics,
                 emotions=emotions,
-                stage=stage,
-                recent_block_ids=state.recent_block_ids
+                topic_stage=stage,
+                turn_index_for_topic=turn_index_for_topic,
+                previous_style=state.last_response_style
             )
             
-            normalization = self.block_selector.select_block(
-                block_type='normalization',
-                question_embedding=question_embedding,
-                topics=topics,
-                emotions=emotions,
-                stage=stage,
-                recent_block_ids=state.recent_block_ids
-            )
+            # Get block configuration for this style
+            block_config = STYLE_BLOCK_CONFIG[response_style]
             
-            exploration = self.block_selector.select_block(
-                block_type='exploration',
-                question_embedding=question_embedding,
-                topics=topics,
-                emotions=emotions,
-                stage=stage,
-                recent_block_ids=state.recent_block_ids
-            )
+            logger.info(f"Response style: {response_style}, config: {block_config}")
             
-            # Optionally select reframe for stage 2+
+            # Select blocks based on style configuration
+            reflection = None
+            normalization = None
+            exploration = None
+            insight = None
+            
+            # Select reflection blocks
+            if block_config['reflection'] > 0:
+                reflection = self.block_selector.select_block(
+                    block_type='reflection',
+                    question_embedding=question_embedding,
+                    topics=topics,
+                    emotions=emotions,
+                    stage=stage,
+                    recent_block_ids=state.recent_block_ids
+                )
+            
+            # Select normalization blocks
+            if block_config['normalization'] > 0:
+                normalization = self.block_selector.select_block(
+                    block_type='normalization',
+                    question_embedding=question_embedding,
+                    topics=topics,
+                    emotions=emotions,
+                    stage=stage,
+                    recent_block_ids=state.recent_block_ids
+                )
+            
+            # Select exploration blocks
+            if block_config['exploration'] > 0:
+                exploration = self.block_selector.select_block(
+                    block_type='exploration',
+                    question_embedding=question_embedding,
+                    topics=topics,
+                    emotions=emotions,
+                    stage=stage,
+                    recent_block_ids=state.recent_block_ids
+                )
+            
+            # Select insight blocks for DEEPENING and GUIDANCE_SESSION
+            # Note: We'll need to add 'insight' block_type to database
+            # For now, use 'reframe' as insight placeholder
             reframe = None
-            if stage >= 2 and random.random() < 0.3:
+            if block_config['insight'] > 0 and stage >= 2:
                 reframe = self.block_selector.select_block(
                     block_type='reframe',
                     question_embedding=question_embedding,
@@ -557,6 +736,7 @@ class AmoraBlocksService:
             logger.info(f"Composed message length: {len(message)}, preview: {message[:100]}...")
             
             # Update state
+            state.last_response_style = response_style
             self._update_state(
                 state=state,
                 blocks_used=[reflection, normalization, exploration, reframe],
@@ -576,6 +756,7 @@ class AmoraBlocksService:
                     'emotions': emotions[:2],
                     'stage': stage,
                     'turn_count': state.turn_count,
+                    'response_style': response_style.value,
                     'engine': 'blocks'  # Set engine here
                 }
             )
