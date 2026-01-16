@@ -239,6 +239,12 @@ class BlockSelector:
                 logger.info(f"Block {block_data.get('id', 'unknown')[:8]}: has_embedding={has_embedding}, has_text={has_text}, text_length={text_length}")
                 
                 if block_data.get('embedding'):
+                    # Parse embedding (may be string or list)
+                    embedding_data = block_data['embedding']
+                    if isinstance(embedding_data, str):
+                        import json
+                        embedding_data = json.loads(embedding_data)
+                    
                     candidates.append(ResponseBlock(
                         id=block_data['id'],
                         block_type=block_data['block_type'],
@@ -247,7 +253,7 @@ class BlockSelector:
                         emotions=block_data.get('emotions', []),
                         stage=block_data['stage'],
                         priority=block_data.get('priority', 50),
-                        embedding=np.array(block_data['embedding'])
+                        embedding=np.array(embedding_data)
                     ))
                 else:
                     logger.warning(f"Block {block_data.get('id', 'unknown')[:8]} filtered out: no embedding")
