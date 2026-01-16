@@ -24,6 +24,14 @@ from app.services.amora_enhanced_service import get_embedding_model
 
 logger = logging.getLogger(__name__)
 
+# ============================================
+# CONFIGURATION
+# ============================================
+
+# Top-K for weighted random selection
+# Higher = more variation, but may reduce quality if set too high
+TOP_K_CANDIDATES = 5  # Choose randomly among top 5 scored blocks
+
 
 # ============================================
 # RESPONSE STYLE SYSTEM
@@ -421,20 +429,85 @@ class BlockSelector:
             # Sort by score descending
             scored_blocks.sort(key=lambda x: x[1], reverse=True)
             
-            # Return best block above threshold
+            # Use weighted random selection from top-K candidates
+            selected_block = self._weighted_random_choice(scored_blocks, min_similarity)
+            
+            if selected_block:
+                # Find the score for logging
+                selected_score = next((score for block, score in scored_blocks if block.id == selected_block.id), 0.0)
+                logger.info(f"Selected {block_type} block: score={selected_score:.3f}, topics={selected_block.topics[:2]}")
+                return selected_block
+            
+            # Fallback: return best block if weighted selection failed
             best_block, best_score = scored_blocks[0]
-            
-            if best_score >= min_similarity:
-                logger.info(f"Selected {block_type} block: score={best_score:.3f}, topics={best_block.topics[:2]}")
-                return best_block
-            
-            # If no block above threshold, return best anyway (safety)
-            logger.warning(f"Best {block_type} block below threshold: {best_score:.3f}")
+            logger.warning(f"Fallback to best {block_type} block: score={best_score:.3f}")
             return best_block
         
         except Exception as e:
             logger.error(f"Error selecting block: {e}", exc_info=True)
             return None
+    
+    def _weighted_random_choice(
+        self,
+        scored_blocks: List[tuple[ResponseBlock, float]],
+        min_similarity: float
+    ) -> Optional[ResponseBlock]:
+        """
+        Choose a block randomly from top-K candidates, weighted by score.
+        
+        Higher scores = higher probability of selection.
+        This adds variation while maintaining quality.
+        
+        Args:
+            scored_blocks: List of (block, score) tuples, sorted descending by score
+            min_similarity: Minimum score threshold
+            
+        Returns:
+            Selected block, or None if no valid candidates
+        """
+        if not scored_blocks:
+            return None
+        
+        # Get top-K candidates
+        top_k = scored_blocks[:TOP_K_CANDIDATES]
+        
+        # Filter by minimum similarity
+        valid_candidates = [(block, score) for block, score in top_k if score >= min_similarity]
+        
+        # If no candidates above threshold, use all top-K (safety fallback)
+        if not valid_candidates:
+            valid_candidates = top_k
+        
+        # If only one candidate, return it
+        if len(valid_candidates) == 1:
+            return valid_candidates[0][0]
+        
+        # Extract blocks and scores
+        blocks = [block for block, score in valid_candidates]
+        scores = [score for block, score in valid_candidates]
+        
+        # Normalize scores to positive weights
+        min_score = min(scores)
+        if min_score < 0:
+            # Shift all scores to be positive
+            scores = [s - min_score + 0.01 for s in scores]
+        
+        # Handle case where all scores are identical or very close
+        if max(scores) - min(scores) < 0.001:
+            # Uniform random choice
+            return random.choice(blocks)
+        
+        # Weighted random choice
+        # Use exponential weighting to emphasize higher scores
+        # but still give lower-scored blocks a chance
+        weights = [s ** 1.5 for s in scores]  # Moderate exponential weighting
+        
+        try:
+            selected = random.choices(blocks, weights=weights, k=1)[0]
+            return selected
+        except (ValueError, IndexError) as e:
+            logger.warning(f"Weighted random choice failed: {e}, falling back to uniform choice")
+            return random.choice(blocks)
     
     def _score_block(
         self,
