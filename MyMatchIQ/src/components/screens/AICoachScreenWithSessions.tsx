@@ -19,7 +19,7 @@ interface Message {
   messageId?: string; // For feedback
 }
 
-export function AICoachScreenWithSessions({ onBack, onNavigateHome }: AICoachScreenProps) {
+export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
   // Session management
   const [currentSession, setCurrentSession] = useState<AmoraSession | null>(null);
   const [showSessionList, setShowSessionList] = useState(false);

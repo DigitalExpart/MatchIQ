@@ -21,6 +21,8 @@ from app.database import get_supabase_client
 
 # Import embedding model function from enhanced service
 from app.services.amora_enhanced_service import get_embedding_model
+# Import crisis detection
+from app.services.crisis_detection import CrisisDetector, get_crisis_response
 
 logger = logging.getLogger(__name__)
 
@@ -105,7 +107,9 @@ HEAVY_TOPICS = [
     'lgbtq_identity_and_family_pressure',
     'non_monogamy_open_or_poly',
     'divorce',
-    'separation'
+    'separation',
+    'user_anxiety_distress',  # User-side anxiety feelings
+    'user_depression_distress'  # User-side depression feelings
 ]
 
 
@@ -253,6 +257,34 @@ class TopicEmotionDetector:
         'moving_on': ['move on', 'moving on', 'get over', 'let go', 'moving forward'],
         'confused': ['confused', 'dont know', 'unsure', 'uncertain', 'mixed feelings'],
         'doubt': ['doubt', 'doubting', 'second guessing', 'questioning', 'not sure if'],
+        # User-side anxiety and depression (feeling states, not diagnoses)
+        'user_anxiety_distress': [
+            'i have so much anxiety', 'i feel so anxious', 'constantly anxious', 'always anxious',
+            'panic attacks', 'im having a panic attack', 'anxiety attacks', 'having panic',
+            'anxious about my relationship', 'anxious he will leave', 'anxious she will leave',
+            'anxious they will leave', 'anxiety about my partner', 'relationship anxiety',
+            'im always worried', 'constant worry', 'can never relax', 'never stop worrying',
+            'my heart races', 'cant stop thinking', 'overthinking everything', 'overthinking',
+            'anxiety is killing me', 'anxiety is overwhelming', 'drowning in anxiety',
+            'anxiety is ruining', 'anxiety controls me', 'cant control my anxiety',
+            'on edge all the time', 'always on edge', 'constantly on edge',
+            'anxious when we fight', 'anxious when they dont text', 'anxious about commitment',
+            'fear of abandonment', 'afraid they will leave', 'scared they will leave',
+            'nervous about relationships', 'relationship makes me anxious', 'dating anxiety'
+        ],
+        'user_depression_distress': [
+            'i feel so depressed', 'i feel depressed since', 'depressed all the time', 'always depressed',
+            'dont want to get out of bed', 'cant get out of bed', 'cant function', 'barely functioning',
+            'feel empty and numb', 'numb all the time', 'dont feel anything', 'cant feel anything',
+            'life feels pointless', 'nothing matters anymore', 'whats the point', 'no point to anything',
+            'dont see the point', 'no motivation', 'lost all motivation', 'zero motivation',
+            'dont enjoy anything', 'nothing brings me joy', 'cant feel happy', 'nothing makes me happy',
+            'heavy and empty', 'feeling heavy', 'everything feels heavy', 'constant heaviness',
+            'depressed since the breakup', 'depressed after breakup', 'breakup depression',
+            'dont want to do anything', 'cant do anything', 'no energy for anything',
+            'feel hopeless about love', 'hopeless about relationships', 'no hope for love',
+            'relationship depression', 'depressed about my relationship', 'marriage depression'
+        ],
     }
     
     # Emotion keywords
@@ -646,6 +678,7 @@ class AmoraBlocksService:
         self.embedding_model = get_embedding_model()
         self.block_selector = BlockSelector(self.supabase, self.embedding_model)
         self.detector = TopicEmotionDetector()
+        self.crisis_detector = CrisisDetector()
         
         # In-memory session storage (use Redis in production)
         self._sessions: Dict[str, ConversationState] = {}
@@ -692,6 +725,49 @@ class AmoraBlocksService:
             # Handle empty input
             if not question or len(question) < 3:
                 return self._handle_empty_input(state)
+            
+            # CRISIS DETECTION - Check BEFORE normal processing (highest priority)
+            crisis_intent = self.crisis_detector.detect_crisis_intent(question)
+            if crisis_intent:
+                logger.warning(f"🚨 CRISIS detected - short-circuiting normal pipeline. Intent: {crisis_intent}, user_id={user_id}, session_id={coach_session_id}")
+                crisis_message = get_crisis_response()
+                
+                # Log crisis detection for safety audit
+                if coach_session_id:
+                    try:
+                        from app.services.amora_session_service import AmoraSessionService
+                        session_service = AmoraSessionService()
+                        # Save crisis message with special metadata
+                        session_service.save_message(
+                            session_id=coach_session_id,
+                            sender="amora",
+                            message_text=crisis_message,
+                            metadata={
+                                "is_crisis": True,
+                                "crisis_intent": crisis_intent,
+                                "engine": "crisis_response"
+                            }
+                        )
+                    except Exception as e:
+                        logger.error(f"Failed to save crisis message: {e}")
+                
+                # Return crisis response (bypasses normal block generation)
+                return CoachResponse(
+                    message=crisis_message,
+                    mode=CoachMode.LEARN,
+                    confidence=1.0,  # High confidence on crisis response
+                    referenced_data={
+                        'is_crisis': True,
+                        'intent': crisis_intent,
+                        'topics': [],  # No topic analysis for crisis
+                        'emotions': [],
+                    },
+                    engine='crisis_response',
+                    response_style=None,  # No style for crisis
+                    coach_session_id=coach_session_id,
+                    is_crisis=True,  # Explicit flag
+                    crisis_intent=crisis_intent,  # Explicit intent
+                )
             
             # Generate embedding
             question_embedding = self.embedding_model.encode(question)

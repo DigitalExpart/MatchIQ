@@ -149,10 +149,12 @@ class CoachResponse(BaseModel):
     mode: CoachMode
     confidence: float
     referenced_data: Dict[str, Any]
-    engine: Optional[str] = "unknown"  # Debug field: "blocks", "legacy_templates", "pattern_matching"
+    engine: Optional[str] = "unknown"  # Debug field: "blocks", "legacy_templates", "pattern_matching", "crisis_response"
     response_style: Optional[str] = None  # Dynamic style: "GROUNDING", "DEEPENING", "GUIDANCE_SESSION"
     coach_session_id: Optional[UUID] = None  # Echo back the session ID
     message_id: Optional[UUID] = None  # ID of the saved message for feedback
+    is_crisis: Optional[bool] = False  # True if this is a crisis response
+    crisis_intent: Optional[str] = None  # "CRISIS_SELF_HARM" if crisis detected
 
 
 class HealthResponse(BaseModel):

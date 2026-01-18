@@ -121,7 +121,9 @@ async def get_coach_response(
                                 "emotions": emotions,
                                 "response_style": response.referenced_data.get('response_style'),
                                 "engine": response.engine,
-                                "confidence": response.confidence
+                                "confidence": response.confidence,
+                                "is_crisis": response.is_crisis or False,
+                                "crisis_intent": response.crisis_intent
                             }
                         )
                         
