@@ -55,20 +55,96 @@ async def get_coach_response(
     - Progressive depth per topic
     - Simple personalization with context variables
     - Graceful fallback to legacy templates if blocks unavailable
+    - Multi-session support with coach_session_id
     """
+    from app.services.amora_session_service import AmoraSessionService
+    
     try:
-        logger.info(f"Amora request from user {user_id}: mode={request.mode}, question='{request.specific_question}'")
+        logger.info(f"Amora request from user {user_id}: mode={request.mode}, question='{request.specific_question}', coach_session_id={request.coach_session_id}")
+        
+        # Validate coach_session_id if provided
+        session_service = AmoraSessionService()
+        coach_session_id = request.coach_session_id
+        
+        if coach_session_id:
+            # Verify session belongs to user
+            session = session_service.get_session(user_id, coach_session_id)
+            if not session:
+                raise HTTPException(status_code=404, detail="Coaching session not found or access denied")
         
         # Check subscription status
         is_paid_user = await check_subscription_status(user_id)
+        
+        # Save user message if we have a session
+        user_message_id = None
+        if coach_session_id and request.specific_question:
+            try:
+                user_message_id = session_service.save_message(
+                    session_id=coach_session_id,
+                    sender="user",
+                    message_text=request.specific_question,
+                    metadata={
+                        "mode": request.mode,
+                        "context": request.context or {}
+                    }
+                )
+            except Exception as e:
+                logger.warning(f"Failed to save user message: {e}")
         
         # Try blocks service first (for LEARN mode)
         if request.mode == "LEARN":
             try:
                 blocks_service = AmoraBlocksService()
-                response = blocks_service.get_response(request, user_id)
+                response = blocks_service.get_response(request, user_id, coach_session_id)
                 # Engine is set in referenced_data by the service
                 response.engine = response.referenced_data.get('engine', 'blocks')
+                
+                # Save Amora's response if we have a session
+                amora_message_id = None
+                if coach_session_id:
+                    try:
+                        topics = response.referenced_data.get('topics', [])
+                        emotions = response.referenced_data.get('emotions', [])
+                        primary_topic = topics[0] if topics else None
+                        
+                        # Update session topic if needed
+                        if primary_topic:
+                            session_service.update_session_topic(coach_session_id, primary_topic)
+                        
+                        # Save Amora's response
+                        amora_message_id = session_service.save_message(
+                            session_id=coach_session_id,
+                            sender="amora",
+                            message_text=response.message,
+                            metadata={
+                                "topics": topics,
+                                "emotions": emotions,
+                                "response_style": response.referenced_data.get('response_style'),
+                                "engine": response.engine,
+                                "confidence": response.confidence
+                            }
+                        )
+                        
+                        # Check if we should update summary
+                        if session_service.should_update_summary(coach_session_id):
+                            recent_messages = session_service.get_recent_messages(coach_session_id, limit=10)
+                            summary_text, next_plan_text = session_service.generate_summary(
+                                session_id=coach_session_id,
+                                topics=topics,
+                                recent_messages=recent_messages,
+                                emotions=emotions
+                            )
+                            session_service.update_session_summary(
+                                session_id=coach_session_id,
+                                summary_text=summary_text,
+                                next_plan_text=next_plan_text
+                            )
+                    except Exception as e:
+                        logger.warning(f"Failed to save Amora message or update summary: {e}")
+                
+                # Add session and message IDs to response
+                response.coach_session_id = coach_session_id
+                response.message_id = amora_message_id
                 
                 logger.info(f"Amora BLOCKS response: message_length={len(response.message)}, confidence={response.confidence}, engine={response.engine}")
                 logger.info(f"Message preview: {response.message[:150]}...")
@@ -82,6 +158,20 @@ async def get_coach_response(
                 response = enhanced_service.get_response(request, user_id, is_paid_user)
                 response.engine = "legacy_templates"
                 response.referenced_data['engine'] = "legacy_templates"
+                response.coach_session_id = coach_session_id
+                
+                # Save Amora's response if we have a session
+                if coach_session_id:
+                    try:
+                        amora_message_id = session_service.save_message(
+                            session_id=coach_session_id,
+                            sender="amora",
+                            message_text=response.message,
+                            metadata={"engine": "legacy_templates"}
+                        )
+                        response.message_id = amora_message_id
+                    except Exception as e:
+                        logger.warning(f"Failed to save Amora message: {e}")
                 
                 logger.warning(f"Using legacy templates as fallback: {response.message[:100]}...")
                 return response
@@ -90,10 +180,26 @@ async def get_coach_response(
             enhanced_service = AmoraEnhancedService()
             response = enhanced_service.get_response(request, user_id, is_paid_user)
             response.engine = "legacy_templates"
+            response.coach_session_id = coach_session_id
+            
+            # Save Amora's response if we have a session
+            if coach_session_id:
+                try:
+                    amora_message_id = session_service.save_message(
+                        session_id=coach_session_id,
+                        sender="amora",
+                        message_text=response.message,
+                        metadata={"engine": "legacy_templates", "mode": request.mode}
+                    )
+                    response.message_id = amora_message_id
+                except Exception as e:
+                    logger.warning(f"Failed to save Amora message: {e}")
             
             logger.info(f"Amora Enhanced response (mode={request.mode}): {response.message[:100]}...")
             return response
         
+    except HTTPException:
+        raise
     except Exception as e:
         logger.error(f"Error in coach endpoint: {e}", exc_info=True)
         
@@ -103,7 +209,8 @@ async def get_coach_response(
             mode=request.mode,
             confidence=0.5,
             referenced_data={"error": True},
-            engine="error_fallback"
+            engine="error_fallback",
+            coach_session_id=request.coach_session_id
         )
 
 

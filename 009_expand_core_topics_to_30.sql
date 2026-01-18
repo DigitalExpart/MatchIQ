@@ -1,0 +1,74 @@
+-- Migration 009: Expand Core Topics to 30+ Blocks Each
+-- Adds ~410 new blocks across 18 core relationship topics
+-- Ensures balanced distribution: REFLECTION, NORMALIZATION, EXPLORATION, INSIGHT
+-- All blocks follow Amora's non-directive, validating, relationship-focused style
+
+-- ============================================================================
+-- HEARTBREAK (Current: 15, Need: 15 more to reach 30)
+-- Distribution: 4 reflection, 4 normalization, 4 exploration, 3 insight
+-- ============================================================================
+
+INSERT INTO amora_response_blocks (block_type, text, topics, emotions, stage, priority, active) VALUES
+
+-- HEARTBREAK - Reflection blocks (4)
+('reflection', 'It sounds like you''re carrying a weight of grief right now, and that heaviness makes sense after losing someone who mattered so much to you.', ARRAY['heartbreak', 'breakup', 'loss'], ARRAY['sad', 'hurt', 'grief'], 2, 50, true),
+('reflection', 'The pain of heartbreak can show up in unexpected moments, even when you think you''re okay, and that''s part of how deep connections leave their mark on us.', ARRAY['heartbreak', 'grief', 'moving_on'], ARRAY['sad', 'overwhelmed'], 2, 50, true),
+('reflection', 'It sounds like part of you is still holding onto the relationship, even though it''s over, and that in-between space can feel really disorienting.', ARRAY['heartbreak', 'stuck', 'moving_on'], ARRAY['confused', 'sad'], 2, 50, true),
+('reflection', 'Heartbreak often brings up questions about your worth and whether you''ll find that kind of connection again, and those fears are real and valid.', ARRAY['heartbreak', 'self_doubt', 'worthiness'], ARRAY['worried', 'sad'], 2, 50, true),
+
+-- HEARTBREAK - Normalization blocks (4)
+('normalization', 'Many people find that heartbreak brings waves of different emotions, sometimes sadness, sometimes anger, sometimes numbness, and all of that is part of the grieving process.', ARRAY['heartbreak', 'grief', 'mixed_emotions'], ARRAY['sad', 'confused'], 2, 50, true),
+('normalization', 'It''s common to feel like you''ll never love like that again, even though rationally you know that''s not true. The intensity of loss can make it hard to imagine a different future.', ARRAY['heartbreak', 'fear', 'future'], ARRAY['worried', 'sad'], 2, 50, true),
+('normalization', 'After a significant relationship ends, it''s normal to feel like a part of your identity is missing. You built routines, dreams, and a sense of self that included that person.', ARRAY['heartbreak', 'identity', 'loss'], ARRAY['lost', 'confused'], 2, 50, true),
+('normalization', 'Healing from heartbreak doesn''t follow a straight line. Some days you''ll feel okay, and others the pain will feel fresh again, and that''s how grief works.', ARRAY['heartbreak', 'healing', 'grief'], ARRAY['sad', 'hopeful'], 2, 50, true),
+
+-- HEARTBREAK - Exploration blocks (4)
+('exploration', 'When you imagine your life without this person, what comes up for you? Fear, relief, sadness, something else?', ARRAY['heartbreak', 'future', 'feelings'], ARRAY['confused', 'sad'], 2, 50, true),
+('exploration', 'Looking back at the relationship now, what do you think you needed that you weren''t getting?', ARRAY['heartbreak', 'needs', 'patterns'], ARRAY['reflective', 'sad'], 2, 50, true),
+('exploration', 'How has this heartbreak changed the way you see yourself or what you want in future relationships?', ARRAY['heartbreak', 'growth', 'self'], ARRAY['reflective', 'hopeful'], 2, 50, true),
+('exploration', 'When the pain feels overwhelming, what helps you ground yourself, even for a moment?', ARRAY['heartbreak', 'coping', 'self_care'], ARRAY['overwhelmed', 'sad'], 2, 50, true),
+
+-- HEARTBREAK - Reframe blocks (deeper perspective, 3)
+('reframe', 'Heartbreak often triggers a kind of mourning that goes beyond just missing the person. You might be grieving the future you imagined together, the version of yourself you were in that relationship, or the safety and familiarity of the routine you built. This layered grief can make recovery feel slower and more complicated than you expected, and that''s okay. Each layer needs its own time to be felt and released.', ARRAY['heartbreak', 'grief', 'identity', 'future'], ARRAY['sad', 'reflective'], 2, 50, true),
+('reframe', 'Sometimes after heartbreak, people find themselves replaying conversations, analyzing what they could have done differently, or searching for a reason why it ended. This is a natural attempt to regain control over something that felt out of your hands. But the truth is, not every ending has a clear explanation, and sometimes the closure comes from accepting the uncertainty rather than solving it.', ARRAY['heartbreak', 'closure', 'patterns', 'understanding'], ARRAY['confused', 'sad'], 2, 50, true),
+('reframe', 'Heartbreak can also bring up old wounds from past relationships or even childhood. If this pain feels disproportionately intense, it might be touching on deeper fears about being abandoned, unworthy, or unlovable. Recognizing those patterns doesn''t minimize your current pain, but it can help you see what needs healing beyond just this one relationship.', ARRAY['heartbreak', 'past', 'patterns', 'worthiness', 'healing'], ARRAY['sad', 'reflective'], 2, 50, true),
+
+-- ============================================================================
+-- BREAKUP (Current: 11, Need: 19 more to reach 30)
+-- Distribution: 5 reflection, 5 normalization, 5 exploration, 4 insight
+-- ============================================================================
+
+-- BREAKUP - Reflection blocks (5)
+('reflection', 'It sounds like the ending still feels fresh, and part of you is struggling to accept that this chapter is really over.', ARRAY['breakup', 'ending', 'grief'], ARRAY['sad', 'confused'], 1, 50, true),
+('reflection', 'Breakups can leave you questioning everything, not just about the relationship but about your own judgment and whether you can trust yourself going forward.', ARRAY['breakup', 'self_doubt', 'trust'], ARRAY['confused', 'worried'], 2, 50, true),
+('reflection', 'It sounds like you''re caught between wanting to move on and still feeling tied to what you had, and that push-pull is exhausting.', ARRAY['breakup', 'stuck', 'moving_on'], ARRAY['confused', 'tired'], 2, 50, true),
+('reflection', 'The practical side of a breakup, losing routines and shared spaces, can sometimes hurt just as much as the emotional loss.', ARRAY['breakup', 'loss', 'change'], ARRAY['sad', 'overwhelmed'], 2, 50, true),
+('reflection', 'It sounds like part of you wonders if you made the right choice, even if you know logically that things weren''t working.', ARRAY['breakup', 'decision', 'doubt'], ARRAY['confused', 'regret'], 2, 50, true),
+
+-- BREAKUP - Normalization blocks (5)
+('normalization', 'It''s common to feel a mix of relief and sadness after a breakup, even when you know it was the right decision. Endings are complicated, and you can mourn something that wasn''t working anymore.', ARRAY['breakup', 'mixed_emotions', 'grief'], ARRAY['sad', 'relieved'], 2, 50, true),
+('normalization', 'Many people experience what feels like withdrawal after a breakup, almost like their body is missing the person. That physical ache is real and reflects how deeply intertwined your lives were.', ARRAY['breakup', 'longing', 'attachment'], ARRAY['sad', 'lonely'], 2, 50, true),
+('normalization', 'After a breakup, it''s normal to wonder if you''ll find someone else, or if this was your "one chance" at love. Those fears are common, even though they''re not true.', ARRAY['breakup', 'fear', 'future', 'hope'], ARRAY['worried', 'sad'], 2, 50, true),
+('normalization', 'Some people feel surprisingly numb after a breakup, almost like they''re watching their life from a distance. That''s a protective response to overwhelming emotions, and feelings will come when you''re ready.', ARRAY['breakup', 'numb', 'emotions'], ARRAY['disconnected', 'confused'], 2, 50, true),
+('normalization', 'It''s okay to still care about someone even after you''ve broken up. Love doesn''t just disappear overnight, and that lingering affection doesn''t mean you made the wrong choice.', ARRAY['breakup', 'love', 'feelings', 'decision'], ARRAY['confused', 'sad'], 2, 50, true),
+
+-- BREAKUP - Exploration blocks (5)
+('exploration', 'When you think about why the relationship ended, what comes up first for you? The specific moment, a pattern, or something else?', ARRAY['breakup', 'reasons', 'patterns'], ARRAY['reflective', 'sad'], 2, 50, true),
+('exploration', 'What parts of yourself do you feel like you lost or put aside in that relationship, and what would it look like to reconnect with those parts now?', ARRAY['breakup', 'self', 'identity', 'growth'], ARRAY['reflective', 'hopeful'], 2, 50, true),
+('exploration', 'If you could say one thing to your past self before this relationship, what would you want them to know?', ARRAY['breakup', 'past', 'wisdom', 'self'], ARRAY['reflective', 'compassionate'], 2, 50, true),
+('exploration', 'What do you think you need most right now? Space to grieve, distraction, connection with others, something else?', ARRAY['breakup', 'needs', 'healing', 'self_care'], ARRAY['confused', 'tired'], 2, 50, true),
+('exploration', 'When you imagine being fully healed from this, what does that version of you look like?', ARRAY['breakup', 'healing', 'future', 'hope'], ARRAY['hopeful', 'reflective'], 2, 50, true),
+
+-- BREAKUP - Reframe blocks (deeper perspective, 4)
+('reframe', 'Breakups often trigger a kind of identity crisis because so much of how we see ourselves gets tied up in our relationships. You might find yourself asking, "Who am I without this person?" or feeling like you need to rediscover parts of yourself you''d set aside. This process of reclaiming your individual identity is a natural and important part of healing, even though it can feel disorienting at first.', ARRAY['breakup', 'identity', 'self', 'healing', 'growth'], ARRAY['confused', 'reflective'], 2, 50, true),
+('reframe', 'Sometimes breakups reveal patterns that have been there all along, either in what you choose in partners or in how you show up in relationships. Recognizing those patterns doesn''t mean you''re broken or that you caused the breakup; it just means you have information now that you didn''t have before. That awareness is valuable as you move forward.', ARRAY['breakup', 'patterns', 'awareness', 'growth'], ARRAY['reflective', 'hopeful'], 2, 50, true),
+('reframe', 'One of the hardest parts of a breakup is accepting that both people can be good individuals and still not be right for each other. It''s tempting to assign blame or look for a clear villain, but most relationships end because of incompatibility, not because someone is fundamentally flawed. Holding that complexity can be painful, but it''s also more honest.', ARRAY['breakup', 'understanding', 'acceptance', 'complexity'], ARRAY['sad', 'reflective'], 2, 50, true),
+('reframe', 'After a breakup, people often go through a phase of either idealizing what they had or vilifying their ex. Both are ways of trying to make sense of the loss, but neither captures the full truth. Relationships are messy and contradictory, and it''s okay if your feelings about it change over time as you gain perspective.', ARRAY['breakup', 'perspective', 'emotions', 'understanding'], ARRAY['confused', 'reflective'], 2, 50, true);
+
+-- ============================================================================
+-- Migration complete for heartbreak (15 blocks) and breakup (19 blocks)
+-- Total: 34 blocks added
+-- 
+-- NOTE: This is Phase 1 Part 1 of the core topics expansion
+-- Remaining topics will be added in subsequent parts
+-- ============================================================================

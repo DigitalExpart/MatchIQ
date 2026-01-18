@@ -200,3 +200,95 @@ class ScanResult:
             "ai_version": self.ai_version,
         }
 
+
+@dataclass
+class AmoraSession:
+    """Amora coaching session model."""
+    id: UUID
+    user_id: UUID
+    title: str
+    primary_topic: Optional[str] = None
+    status: str = "ACTIVE"  # ACTIVE, PAUSED, COMPLETED
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
+    last_message_at: Optional[datetime] = None
+    follow_up_enabled: bool = False
+    follow_up_time: Optional[str] = None  # HH:MM format
+    last_follow_up_at: Optional[datetime] = None
+    summary_text: Optional[str] = None
+    next_plan_text: Optional[str] = None
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "AmoraSession":
+        """Create AmoraSession from Supabase response."""
+        return cls(
+            id=UUID(data["id"]),
+            user_id=UUID(data["user_id"]),
+            title=data["title"],
+            primary_topic=data.get("primary_topic"),
+            status=data.get("status", "ACTIVE"),
+            created_at=data.get("created_at"),
+            updated_at=data.get("updated_at"),
+            last_message_at=data.get("last_message_at"),
+            follow_up_enabled=data.get("follow_up_enabled", False),
+            follow_up_time=data.get("follow_up_time"),
+            last_follow_up_at=data.get("last_follow_up_at"),
+            summary_text=data.get("summary_text"),
+            next_plan_text=data.get("next_plan_text"),
+        )
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for Supabase insert/update."""
+        result = {
+            "id": str(self.id),
+            "user_id": str(self.user_id),
+            "title": self.title,
+            "status": self.status,
+            "follow_up_enabled": self.follow_up_enabled,
+        }
+        if self.primary_topic:
+            result["primary_topic"] = self.primary_topic
+        if self.last_message_at:
+            result["last_message_at"] = self.last_message_at.isoformat()
+        if self.follow_up_time:
+            result["follow_up_time"] = self.follow_up_time
+        if self.last_follow_up_at:
+            result["last_follow_up_at"] = self.last_follow_up_at.isoformat()
+        if self.summary_text:
+            result["summary_text"] = self.summary_text
+        if self.next_plan_text:
+            result["next_plan_text"] = self.next_plan_text
+        return result
+
+
+@dataclass
+class AmoraSessionMessage:
+    """Amora session message model."""
+    id: UUID
+    session_id: UUID
+    sender: str  # "user" or "amora"
+    message_text: str
+    created_at: Optional[datetime] = None
+    metadata: Dict[str, Any] = field(default_factory=dict)
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "AmoraSessionMessage":
+        """Create AmoraSessionMessage from Supabase response."""
+        return cls(
+            id=UUID(data["id"]),
+            session_id=UUID(data["session_id"]),
+            sender=data["sender"],
+            message_text=data["message_text"],
+            created_at=data.get("created_at"),
+            metadata=data.get("metadata", {}),
+        )
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for Supabase insert."""
+        return {
+            "id": str(self.id),
+            "session_id": str(self.session_id),
+            "sender": self.sender,
+            "message_text": self.message_text,
+            "metadata": self.metadata,
+        }

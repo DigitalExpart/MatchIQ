@@ -667,7 +667,8 @@ class AmoraBlocksService:
     def get_response(
         self,
         request: CoachRequest,
-        user_id: UUID
+        user_id: UUID,
+        coach_session_id: Optional[UUID] = None
     ) -> CoachResponse:
         """
         Generate LLM-like response using block architecture.
@@ -681,8 +682,10 @@ class AmoraBlocksService:
         6. Update state (anti-repetition, stage progression)
         """
         try:
-            # Load conversation state
-            state = self._load_state(user_id, request.session_id, request.context)
+            # Use coach_session_id if provided, otherwise fall back to session_id (legacy)
+            session_key = str(coach_session_id) if coach_session_id else request.session_id
+            # Load conversation state keyed by (user_id, coach_session_id)
+            state = self._load_state(user_id, session_key, request.context, coach_session_id)
             
             question = (request.specific_question or "").strip()
             
@@ -842,10 +845,21 @@ class AmoraBlocksService:
         self,
         user_id: UUID,
         session_id: Optional[str],
-        context: Optional[Dict[str, Any]]
+        context: Optional[Dict[str, Any]],
+        coach_session_id: Optional[UUID] = None
     ) -> ConversationState:
-        """Load or create conversation state."""
-        key = session_id if session_id else str(user_id)
+        """
+        Load or create conversation state.
+        State is keyed by (user_id, coach_session_id) to ensure separation between sessions.
+        """
+        # Create composite key: (user_id, coach_session_id) or (user_id, session_id) for legacy
+        if coach_session_id:
+            key = f"{user_id}:{coach_session_id}"
+        elif session_id:
+            key = f"{user_id}:{session_id}"
+        else:
+            # Legacy: fallback to user_id only (single session per user)
+            key = f"{user_id}:default"
         
         if key in self._sessions:
             state = self._sessions[key]

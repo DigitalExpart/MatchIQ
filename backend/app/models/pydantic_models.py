@@ -81,7 +81,8 @@ class CoachRequest(BaseModel):
     specific_question: Optional[str] = None
     category: Optional[str] = None
     context: Optional[Dict[str, Any]] = None  # Additional context from frontend
-    session_id: Optional[str] = None  # Chat session ID
+    session_id: Optional[str] = None  # Chat session ID (legacy)
+    coach_session_id: Optional[UUID] = None  # New: coaching session ID from amora_sessions
 
 
 # Response Models
@@ -150,6 +151,8 @@ class CoachResponse(BaseModel):
     referenced_data: Dict[str, Any]
     engine: Optional[str] = "unknown"  # Debug field: "blocks", "legacy_templates", "pattern_matching"
     response_style: Optional[str] = None  # Dynamic style: "GROUNDING", "DEEPENING", "GUIDANCE_SESSION"
+    coach_session_id: Optional[UUID] = None  # Echo back the session ID
+    message_id: Optional[UUID] = None  # ID of the saved message for feedback
 
 
 class HealthResponse(BaseModel):
@@ -161,4 +164,51 @@ class HealthResponse(BaseModel):
 class ErrorResponse(BaseModel):
     error: str
     detail: Optional[str] = None
+
+
+# Session Management Models
+class SessionStatus(str, Enum):
+    ACTIVE = "ACTIVE"
+    PAUSED = "PAUSED"
+    COMPLETED = "COMPLETED"
+
+
+class CreateSessionRequest(BaseModel):
+    title: str
+    primary_topic: Optional[str] = None
+    follow_up_enabled: bool = False
+    follow_up_time: Optional[str] = None  # HH:MM format
+
+
+class UpdateSessionRequest(BaseModel):
+    title: Optional[str] = None
+    status: Optional[SessionStatus] = None
+    follow_up_enabled: Optional[bool] = None
+    follow_up_time: Optional[str] = None  # HH:MM format
+
+
+class SessionResponse(BaseModel):
+    id: UUID
+    title: str
+    primary_topic: Optional[str] = None
+    status: SessionStatus
+    created_at: datetime
+    updated_at: datetime
+    last_message_at: Optional[datetime] = None
+    follow_up_enabled: bool
+    follow_up_time: Optional[str] = None
+    summary_text: Optional[str] = None
+    next_plan_text: Optional[str] = None
+
+
+class FollowUpResponse(BaseModel):
+    coach_session_id: UUID
+    title: str
+    primary_topic: Optional[str] = None
+    prompt: str  # Suggested check-in prompt
+
+
+class FeedbackRequest(BaseModel):
+    message_id: UUID
+    feedback_type: str  # "like", "dislike", "regenerate"
 

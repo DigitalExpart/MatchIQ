@@ -1,0 +1,394 @@
+[
+  {
+    "comment": "=== STAGE 3 & 4 BLOCKS FOR DEEPER CONVERSATIONS ==="
+  },
+  {
+    "comment": "--- MISMATCHED EXPECTATIONS (Stage 3-4) ---"
+  },
+  {
+    "id": "mismatched_expectations_reflection_10",
+    "block_type": "REFLECTION",
+    "topics": ["mismatched_expectations"],
+    "stage": 3,
+    "text": "It sounds like you have been sitting with this mismatch for a while now, and the weight of choosing between love and your own needs feels unbearable."
+  },
+  {
+    "id": "mismatched_expectations_normalization_09",
+    "block_type": "NORMALIZATION",
+    "topics": ["mismatched_expectations"],
+    "stage": 3,
+    "text": "Choosing yourself and your future does not make you selfish, even when it means letting go of someone you deeply care about."
+  },
+  {
+    "id": "mismatched_expectations_exploration_09",
+    "block_type": "EXPLORATION",
+    "topics": ["mismatched_expectations"],
+    "stage": 3,
+    "text": "What would it mean for you to honor both your love for this person and your need for a different kind of future?"
+  },
+  {
+    "id": "mismatched_expectations_reflection_11",
+    "block_type": "REFLECTION",
+    "topics": ["mismatched_expectations"],
+    "stage": 4,
+    "text": "You seem to be arriving at a place where you can hold both the grief of what will not be and the clarity of what you truly need."
+  },
+  {
+    "id": "mismatched_expectations_normalization_10",
+    "block_type": "NORMALIZATION",
+    "topics": ["mismatched_expectations"],
+    "stage": 4,
+    "text": "Sometimes the most loving thing you can do is acknowledge that you want different lives, even when the love itself is real."
+  },
+
+  {
+    "comment": "--- FEELING UNAPPRECIATED (Stage 3-4) ---"
+  },
+  {
+    "id": "unappreciated_reflection_10",
+    "block_type": "REFLECTION",
+    "topics": ["feeling_unappreciated"],
+    "stage": 3,
+    "text": "It sounds like you are beginning to see that your need to feel valued is not something you can compromise on forever."
+  },
+  {
+    "id": "unappreciated_normalization_09",
+    "block_type": "NORMALIZATION",
+    "topics": ["feeling_unappreciated"],
+    "stage": 3,
+    "text": "Deciding to prioritize your own well-being over maintaining a relationship that drains you is an act of self-respect, not selfishness."
+  },
+  {
+    "id": "unappreciated_exploration_09",
+    "block_type": "EXPLORATION",
+    "topics": ["feeling_unappreciated"],
+    "stage": 3,
+    "text": "What would it look like for you to set a boundary around how much you give without receiving appreciation in return?"
+  },
+  {
+    "id": "unappreciated_reflection_11",
+    "block_type": "REFLECTION",
+    "topics": ["feeling_unappreciated"],
+    "stage": 4,
+    "text": "You seem to be recognizing that you deserve to be in a relationship where your care is met with care, not taken for granted."
+  },
+  {
+    "id": "unappreciated_normalization_10",
+    "block_type": "NORMALIZATION",
+    "topics": ["feeling_unappreciated"],
+    "stage": 4,
+    "text": "Learning to value yourself enough to walk away from being undervalued is one of the hardest and most important lessons in love."
+  },
+
+  {
+    "comment": "--- CONSTANT FIGHTING (Stage 3-4) ---"
+  },
+  {
+    "id": "constant_fighting_reflection_10",
+    "block_type": "REFLECTION",
+    "topics": ["constant_fighting"],
+    "stage": 3,
+    "text": "It sounds like you are realizing that the fighting might be a symptom of something deeper that neither of you has been able to address."
+  },
+  {
+    "id": "constant_fighting_normalization_09",
+    "block_type": "NORMALIZATION",
+    "topics": ["constant_fighting"],
+    "stage": 3,
+    "text": "Sometimes conflict is a sign that both people are trying to be heard but do not yet have the tools or safety to really listen."
+  },
+  {
+    "id": "constant_fighting_exploration_09",
+    "block_type": "EXPLORATION",
+    "topics": ["constant_fighting"],
+    "stage": 3,
+    "text": "What would need to shift between you and your partner for you to feel safe enough to be vulnerable instead of defensive?"
+  },
+  {
+    "id": "constant_fighting_reflection_11",
+    "block_type": "REFLECTION",
+    "topics": ["constant_fighting"],
+    "stage": 4,
+    "text": "You seem to be at a point where you can see the pattern clearly, and now you are deciding whether you both want to break it together."
+  },
+  {
+    "id": "constant_fighting_normalization_10",
+    "block_type": "NORMALIZATION",
+    "topics": ["constant_fighting"],
+    "stage": 4,
+    "text": "Recognizing when a relationship has become more painful than nourishing is not giving up; it is honoring what you both deserve."
+  },
+
+  {
+    "comment": "--- LONG DISTANCE (Stage 3-4) ---"
+  },
+  {
+    "id": "long_distance_reflection_10",
+    "block_type": "REFLECTION",
+    "topics": ["long_distance"],
+    "stage": 3,
+    "text": "It sounds like you are starting to accept that love alone might not be enough if the practical realities do not support the relationship."
+  },
+  {
+    "id": "long_distance_normalization_09",
+    "block_type": "NORMALIZATION",
+    "topics": ["long_distance"],
+    "stage": 3,
+    "text": "Wanting physical closeness and a shared life is not asking for too much; it is a fundamental part of how many people experience intimacy."
+  },
+  {
+    "id": "long_distance_exploration_09",
+    "block_type": "EXPLORATION",
+    "topics": ["long_distance"],
+    "stage": 3,
+    "text": "What would you need to see or hear from your partner to feel confident that the distance will not be permanent?"
+  },
+  {
+    "id": "long_distance_reflection_11",
+    "block_type": "REFLECTION",
+    "topics": ["long_distance"],
+    "stage": 4,
+    "text": "You seem to be arriving at a place where you can honor both the love you share and the reality that distance might be too much for you."
+  },
+  {
+    "id": "long_distance_normalization_10",
+    "block_type": "NORMALIZATION",
+    "topics": ["long_distance"],
+    "stage": 4,
+    "text": "Choosing to end a long-distance relationship does not mean the love was not real; it means you are choosing what you need to thrive."
+  },
+
+  {
+    "comment": "--- ONE-SIDED EFFORT (Stage 3-4) ---"
+  },
+  {
+    "id": "one_sided_effort_reflection_10",
+    "block_type": "REFLECTION",
+    "topics": ["one_sided_effort"],
+    "stage": 3,
+    "text": "It sounds like you are beginning to see that you cannot single-handedly sustain a relationship that requires two people to show up."
+  },
+  {
+    "id": "one_sided_effort_normalization_09",
+    "block_type": "NORMALIZATION",
+    "topics": ["one_sided_effort"],
+    "stage": 3,
+    "text": "Stepping back from over-functioning in a relationship can feel scary, but it also creates space to see what your partner will do on their own."
+  },
+  {
+    "id": "one_sided_effort_exploration_09",
+    "block_type": "EXPLORATION",
+    "topics": ["one_sided_effort"],
+    "stage": 3,
+    "text": "What would it feel like to trust that if this relationship is meant to work, your partner will step up without you having to carry everything?"
+  },
+  {
+    "id": "one_sided_effort_reflection_11",
+    "block_type": "REFLECTION",
+    "topics": ["one_sided_effort"],
+    "stage": 4,
+    "text": "You seem to be recognizing that your worth is not measured by how much you can give, but by how you allow yourself to be treated."
+  },
+  {
+    "id": "one_sided_effort_normalization_10",
+    "block_type": "NORMALIZATION",
+    "topics": ["one_sided_effort"],
+    "stage": 4,
+    "text": "Releasing yourself from a one-sided dynamic is not abandonment; it is choosing to invest your energy where it is valued."
+  },
+
+  {
+    "comment": "--- FRIEND VS ROMANTIC CONFUSION (Stage 3-4) ---"
+  },
+  {
+    "id": "friend_vs_romance_reflection_10",
+    "block_type": "REFLECTION",
+    "topics": ["friend_vs_romantic_confusion"],
+    "stage": 3,
+    "text": "It sounds like you are realizing that not knowing where you stand is becoming more painful than the risk of finding out."
+  },
+  {
+    "id": "friend_vs_romance_normalization_09",
+    "block_type": "NORMALIZATION",
+    "topics": ["friend_vs_romantic_confusion"],
+    "stage": 3,
+    "text": "Being honest about your feelings, even when the outcome is uncertain, is an act of courage and self-respect."
+  },
+  {
+    "id": "friend_vs_romance_exploration_09",
+    "block_type": "EXPLORATION",
+    "topics": ["friend_vs_romantic_confusion"],
+    "stage": 3,
+    "text": "What would it mean for you to honor your feelings by sharing them, regardless of how they respond?"
+  },
+  {
+    "id": "friend_vs_romance_reflection_11",
+    "block_type": "REFLECTION",
+    "topics": ["friend_vs_romantic_confusion"],
+    "stage": 4,
+    "text": "You seem to be arriving at a place where you can accept whatever happens, knowing you were true to yourself."
+  },
+  {
+    "id": "friend_vs_romance_normalization_10",
+    "block_type": "NORMALIZATION",
+    "topics": ["friend_vs_romantic_confusion"],
+    "stage": 4,
+    "text": "Whether this becomes romance or stays friendship, being honest about your feelings is how you honor the connection and yourself."
+  },
+
+  {
+    "comment": "--- STUCK ON EX (Stage 3-4) ---"
+  },
+  {
+    "id": "stuck_on_ex_reflection_10",
+    "block_type": "REFLECTION",
+    "topics": ["stuck_on_ex"],
+    "stage": 3,
+    "text": "It sounds like you are beginning to separate the person you loved from the relationship that actually existed, and that is painful but important."
+  },
+  {
+    "id": "stuck_on_ex_normalization_09",
+    "block_type": "NORMALIZATION",
+    "topics": ["stuck_on_ex"],
+    "stage": 3,
+    "text": "Grieving what you hoped the relationship could have been is just as important as grieving what it actually was."
+  },
+  {
+    "id": "stuck_on_ex_exploration_09",
+    "block_type": "EXPLORATION",
+    "topics": ["stuck_on_ex"],
+    "stage": 3,
+    "text": "What parts of yourself did you lose or set aside in that relationship, and how might you begin to reclaim them now?"
+  },
+  {
+    "id": "stuck_on_ex_reflection_11",
+    "block_type": "REFLECTION",
+    "topics": ["stuck_on_ex"],
+    "stage": 4,
+    "text": "You seem to be recognizing that letting go of your ex is also about letting go of who you were in that relationship."
+  },
+  {
+    "id": "stuck_on_ex_normalization_10",
+    "block_type": "NORMALIZATION",
+    "topics": ["stuck_on_ex"],
+    "stage": 4,
+    "text": "Moving on does not mean forgetting or erasing what you shared; it means making space for a future that is truly yours."
+  },
+
+  {
+    "comment": "--- COMPARISON TO OTHERS (Stage 3-4) ---"
+  },
+  {
+    "id": "comparison_reflection_10",
+    "block_type": "REFLECTION",
+    "topics": ["comparison_to_others"],
+    "stage": 3,
+    "text": "It sounds like you are starting to see that these comparisons are less about the other person and more about your own fear of not being enough."
+  },
+  {
+    "id": "comparison_normalization_09",
+    "block_type": "NORMALIZATION",
+    "topics": ["comparison_to_others"],
+    "stage": 3,
+    "text": "Your worth is inherent and does not depend on how you rank against anyone else, even though your mind keeps trying to measure it that way."
+  },
+  {
+    "id": "comparison_exploration_09",
+    "block_type": "EXPLORATION",
+    "topics": ["comparison_to_others"],
+    "stage": 3,
+    "text": "What would it feel like to trust that your partner chose you for reasons that have nothing to do with comparison?"
+  },
+  {
+    "id": "comparison_reflection_11",
+    "block_type": "REFLECTION",
+    "topics": ["comparison_to_others"],
+    "stage": 4,
+    "text": "You seem to be recognizing that the real work is not about being 'better' than someone else, but about believing you are enough as you are."
+  },
+  {
+    "id": "comparison_normalization_10",
+    "block_type": "NORMALIZATION",
+    "topics": ["comparison_to_others"],
+    "stage": 4,
+    "text": "Releasing the need to compare yourself is a process, and it starts with noticing when you do it and gently redirecting your attention back to yourself."
+  },
+
+  {
+    "comment": "--- LOW SELF-WORTH IN LOVE (Stage 3-4) ---"
+  },
+  {
+    "id": "low_self_worth_reflection_10",
+    "block_type": "REFLECTION",
+    "topics": ["low_self_worth_in_love"],
+    "stage": 3,
+    "text": "It sounds like you are beginning to question the old stories you have carried about your worth, even if they still feel very loud."
+  },
+  {
+    "id": "low_self_worth_normalization_09",
+    "block_type": "NORMALIZATION",
+    "topics": ["low_self_worth_in_love"],
+    "stage": 3,
+    "text": "Healing from feeling unlovable is not about convincing yourself overnight; it is about slowly building evidence that contradicts the old story."
+  },
+  {
+    "id": "low_self_worth_exploration_09",
+    "block_type": "EXPLORATION",
+    "topics": ["low_self_worth_in_love"],
+    "stage": 3,
+    "text": "What would it be like to treat yourself as someone who is inherently worthy of love, even before you fully believe it?"
+  },
+  {
+    "id": "low_self_worth_reflection_11",
+    "block_type": "REFLECTION",
+    "topics": ["low_self_worth_in_love"],
+    "stage": 4,
+    "text": "You seem to be arriving at a place where you can hold both the pain of the past and a new possibility about your worth."
+  },
+  {
+    "id": "low_self_worth_normalization_10",
+    "block_type": "NORMALIZATION",
+    "topics": ["low_self_worth_in_love"],
+    "stage": 4,
+    "text": "Your worthiness of love is not something you earn or prove; it is something you are learning to remember and reclaim."
+  },
+
+  {
+    "comment": "--- ONLINE DATING BURNOUT (Stage 3-4) ---"
+  },
+  {
+    "id": "online_dating_burnout_reflection_10",
+    "block_type": "REFLECTION",
+    "topics": ["online_dating_burnout"],
+    "stage": 3,
+    "text": "It sounds like you are realizing that the way you have been dating is not sustainable, and you need to find a different approach."
+  },
+  {
+    "id": "online_dating_burnout_normalization_09",
+    "block_type": "NORMALIZATION",
+    "topics": ["online_dating_burnout"],
+    "stage": 3,
+    "text": "Taking a break from dating to reconnect with yourself is not giving up; it is choosing to date from a place of fullness rather than depletion."
+  },
+  {
+    "id": "online_dating_burnout_exploration_09",
+    "block_type": "EXPLORATION",
+    "topics": ["online_dating_burnout"],
+    "stage": 3,
+    "text": "What would it look like to approach dating as something that adds to your life rather than something you have to endure?"
+  },
+  {
+    "id": "online_dating_burnout_reflection_11",
+    "block_type": "REFLECTION",
+    "topics": ["online_dating_burnout"],
+    "stage": 4,
+    "text": "You seem to be recognizing that finding love starts with honoring your own needs and energy, not with forcing yourself to keep trying."
+  },
+  {
+    "id": "online_dating_burnout_normalization_10",
+    "block_type": "NORMALIZATION",
+    "topics": ["online_dating_burnout"],
+    "stage": 4,
+    "text": "The right connection will not require you to exhaust yourself to find it; it will meet you when you are ready and whole."
+  }
+]

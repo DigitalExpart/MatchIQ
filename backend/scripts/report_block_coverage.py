@@ -31,6 +31,50 @@ BLOCK_TYPE_ORDER = [
     'reframe'
 ]
 
+# Core topics we intentionally grow to 30+ blocks
+# Focus on main relationship/dating issues, not stray keywords
+CORE_TOPICS = [
+    "heartbreak",
+    "breakup",
+    "cheating",
+    "infidelity",
+    "cheating_self",
+    "divorce",
+    "separation",
+    "marriage_strain",
+    "constant_fighting",
+    "communication",  # "communication_problems" in data
+    "mismatched_expectations",
+    "feeling_unappreciated",
+    "long_distance",
+    "one_sided_effort",
+    "talking_stage",  # "talking_stage_or_situationship"
+    "situationship",
+    "unclear",  # "unclear_relationship_status"
+    "lust_vs_love",
+    "pretense",  # "pretense_or_inauthenticity"
+    "inauthenticity",
+    "jealousy",  # "jealousy_or_trust_issues"
+    "trust",
+    "stuck_on_ex",
+    "comparison_to_others",
+    "low_self_worth_in_love",
+    "unlovable",  # Related to low self-worth
+    "online_dating_burnout",
+    "toxic_or_abusive_dynamic",
+    "partner_mental_health_or_addiction",
+    "intimacy_mismatch",
+    "sexual_compatibility",
+    "core_values_conflict",
+    "coparenting_and_family_dynamics",
+    "non_monogamy_open_or_poly",
+    "asexual_or_low_desire_identity",
+    "lgbtq_identity_and_family_pressure"
+]
+
+# Minimum target blocks per core topic
+MIN_BLOCKS_PER_CORE_TOPIC = 30
+
 
 def get_supabase_client() -> Client:
     """Create Supabase client from environment variables."""
@@ -193,6 +237,79 @@ def print_coverage_report(coverage: Dict, all_topics: List[str]):
     print("=" * 80)
 
 
+def print_core_topics_report(coverage: Dict, all_topics: List[str]):
+    """Print focused report on CORE_TOPICS only."""
+    print()
+    print("=" * 80)
+    print(f" CORE TOPICS COVERAGE (target: {MIN_BLOCKS_PER_CORE_TOPIC}+ blocks per topic)")
+    print("=" * 80)
+    print()
+    
+    # Filter to core topics that exist in coverage
+    core_topics_in_data = [t for t in CORE_TOPICS if t in coverage]
+    
+    if not core_topics_in_data:
+        print("No core topics found in database.")
+        return
+    
+    # Calculate totals for each core topic
+    core_topic_totals = {}
+    for topic in core_topics_in_data:
+        total = sum(
+            count
+            for block_type in coverage[topic]
+            for count in coverage[topic][block_type].values()
+        )
+        core_topic_totals[topic] = total
+    
+    # Sort by total (ascending) so we see gaps first
+    sorted_core_topics = sorted(core_topics_in_data, key=lambda t: core_topic_totals[t])
+    
+    # Print each core topic
+    topics_below_target = []
+    for topic in sorted_core_topics:
+        total = core_topic_totals[topic]
+        status = "[OK]" if total >= MIN_BLOCKS_PER_CORE_TOPIC else "[NEED MORE]"
+        
+        print(f"{status} Topic: {topic}")
+        print(f"  TOTAL BLOCKS: {total} / {MIN_BLOCKS_PER_CORE_TOPIC}")
+        
+        if total < MIN_BLOCKS_PER_CORE_TOPIC:
+            topics_below_target.append((topic, total))
+        
+        # Show breakdown by type/stage
+        for block_type in BLOCK_TYPE_ORDER:
+            if block_type not in coverage[topic]:
+                continue
+            
+            stages = coverage[topic][block_type]
+            if not stages:
+                continue
+            
+            stage_str = ", ".join([f"s{s}:{count}" for s, count in sorted(stages.items())])
+            print(f"  {block_type.upper()}: {stage_str}")
+        
+        print()
+    
+    print("=" * 80)
+    print()
+    
+    # Summary of topics below target
+    if topics_below_target:
+        print(f"TOPICS BELOW {MIN_BLOCKS_PER_CORE_TOPIC} BLOCKS:")
+        print()
+        for topic, total in topics_below_target:
+            needed = MIN_BLOCKS_PER_CORE_TOPIC - total
+            print(f"  {topic}: {total} blocks (need {needed} more)")
+        print()
+        print(f"Total topics below target: {len(topics_below_target)} / {len(core_topics_in_data)}")
+    else:
+        print(f"[OK] All core topics have >= {MIN_BLOCKS_PER_CORE_TOPIC} blocks!")
+    
+    print()
+    print("=" * 80)
+
+
 def main():
     """Main entry point."""
     print("Fetching blocks from database...")
@@ -206,6 +323,10 @@ def main():
     
     coverage, all_topics = analyze_coverage(blocks)
     
+    # Print core topics report first (most important)
+    print_core_topics_report(coverage, all_topics)
+    
+    # Then full report
     print_coverage_report(coverage, all_topics)
     
     print("Report complete.")

@@ -1,0 +1,741 @@
+[
+  {
+    "comment": "=== MISMATCHED EXPECTATIONS - Additional 10 blocks ==="
+  },
+  {
+    "id": "mismatched_expectations_reflection_06",
+    "block_type": "REFLECTION",
+    "topics": ["mismatched_expectations", "commitment"],
+    "stage": 1,
+    "text": "It sounds like you are realizing that what you both want from this relationship might not be pointing in the same direction."
+  },
+  {
+    "id": "mismatched_expectations_reflection_07",
+    "block_type": "REFLECTION",
+    "topics": ["mismatched_expectations"],
+    "stage": 2,
+    "text": "You seem caught between hoping your partner will change their mind and accepting that they might not want what you want."
+  },
+  {
+    "id": "mismatched_expectations_normalization_06",
+    "block_type": "NORMALIZATION",
+    "topics": ["mismatched_expectations"],
+    "stage": 1,
+    "text": "Discovering that you have different visions for the future can feel like the ground shifting beneath you, and that is deeply unsettling."
+  },
+  {
+    "id": "mismatched_expectations_normalization_07",
+    "block_type": "NORMALIZATION",
+    "topics": ["mismatched_expectations", "kids"],
+    "stage": 2,
+    "text": "Differences about children or marriage are not small things to compromise on; they touch the core of how you imagine your life unfolding."
+  },
+  {
+    "id": "mismatched_expectations_exploration_06",
+    "block_type": "EXPLORATION",
+    "topics": ["mismatched_expectations"],
+    "stage": 1,
+    "text": "Have you and your partner been able to talk openly about these differences, or does it feel too scary to bring up directly?"
+  },
+  {
+    "id": "mismatched_expectations_exploration_07",
+    "block_type": "EXPLORATION",
+    "topics": ["mismatched_expectations"],
+    "stage": 2,
+    "text": "What would it mean for you to stay in this relationship if these core expectations never align?"
+  },
+  {
+    "id": "mismatched_expectations_reflection_08",
+    "block_type": "REFLECTION",
+    "topics": ["mismatched_expectations"],
+    "stage": 1,
+    "text": "It sounds like you are grieving the future you thought you were building together, even while the relationship is still here."
+  },
+  {
+    "id": "mismatched_expectations_normalization_08",
+    "block_type": "NORMALIZATION",
+    "topics": ["mismatched_expectations"],
+    "stage": 1,
+    "text": "Sometimes love alone is not enough if the paths you want to walk are going in opposite directions, and recognizing that takes courage."
+  },
+  {
+    "id": "mismatched_expectations_exploration_08",
+    "block_type": "EXPLORATION",
+    "topics": ["mismatched_expectations"],
+    "stage": 1,
+    "text": "When you imagine yourself five years from now, what feels non-negotiable about the life you want to be living?"
+  },
+  {
+    "id": "mismatched_expectations_reflection_09",
+    "block_type": "REFLECTION",
+    "topics": ["mismatched_expectations"],
+    "stage": 2,
+    "text": "You seem to be wrestling with whether to compromise on something deeply important to you or to honor what your heart is asking for."
+  },
+
+  {
+    "comment": "=== FEELING UNAPPRECIATED - Additional 10 blocks ==="
+  },
+  {
+    "id": "unappreciated_reflection_06",
+    "block_type": "REFLECTION",
+    "topics": ["feeling_unappreciated"],
+    "stage": 1,
+    "text": "It sounds like you keep hoping your partner will notice what you do, but that recognition never quite comes."
+  },
+  {
+    "id": "unappreciated_reflection_07",
+    "block_type": "REFLECTION",
+    "topics": ["feeling_unappreciated"],
+    "stage": 2,
+    "text": "You seem to be reaching a point where the lack of appreciation is affecting how you see yourself and your worth in this relationship."
+  },
+  {
+    "id": "unappreciated_normalization_06",
+    "block_type": "NORMALIZATION",
+    "topics": ["feeling_unappreciated"],
+    "stage": 1,
+    "text": "Over time, feeling invisible in your own relationship can chip away at your sense of self, even when you try to stay strong."
+  },
+  {
+    "id": "unappreciated_normalization_07",
+    "block_type": "NORMALIZATION",
+    "topics": ["feeling_unappreciated"],
+    "stage": 2,
+    "text": "Your desire to feel seen and valued is not selfish; it is a fundamental human need in any close relationship."
+  },
+  {
+    "id": "unappreciated_exploration_06",
+    "block_type": "EXPLORATION",
+    "topics": ["feeling_unappreciated"],
+    "stage": 1,
+    "text": "What would it look like for your partner to show appreciation in a way that would actually feel meaningful to you?"
+  },
+  {
+    "id": "unappreciated_exploration_07",
+    "block_type": "EXPLORATION",
+    "topics": ["feeling_unappreciated"],
+    "stage": 2,
+    "text": "If you stopped doing some of the things you do to keep the relationship going, what feelings come up for you about that?"
+  },
+  {
+    "id": "unappreciated_reflection_08",
+    "block_type": "REFLECTION",
+    "topics": ["feeling_unappreciated"],
+    "stage": 1,
+    "text": "It sounds like you have been running on empty for a while, giving more than you are receiving back."
+  },
+  {
+    "id": "unappreciated_normalization_08",
+    "block_type": "NORMALIZATION",
+    "topics": ["feeling_unappreciated"],
+    "stage": 1,
+    "text": "Many people stay quiet about feeling unappreciated because they worry it will sound needy, but your feelings are completely valid."
+  },
+  {
+    "id": "unappreciated_exploration_08",
+    "block_type": "EXPLORATION",
+    "topics": ["feeling_unappreciated"],
+    "stage": 1,
+    "text": "Have you been able to tell your partner directly how you feel, or does something hold you back from that conversation?"
+  },
+  {
+    "id": "unappreciated_reflection_09",
+    "block_type": "REFLECTION",
+    "topics": ["feeling_unappreciated"],
+    "stage": 2,
+    "text": "You seem to be questioning whether you can keep showing up this way without something shifting in how you are met."
+  },
+
+  {
+    "comment": "=== CONSTANT FIGHTING - Additional 10 blocks ==="
+  },
+  {
+    "id": "constant_fighting_reflection_06",
+    "block_type": "REFLECTION",
+    "topics": ["constant_fighting"],
+    "stage": 1,
+    "text": "It sounds like you are both stuck in a loop where neither of you feels heard, and the distance between you keeps growing."
+  },
+  {
+    "id": "constant_fighting_reflection_07",
+    "block_type": "REFLECTION",
+    "topics": ["constant_fighting"],
+    "stage": 2,
+    "text": "You seem to be wondering whether all this fighting means the relationship is broken or if there is still a way through."
+  },
+  {
+    "id": "constant_fighting_normalization_06",
+    "block_type": "NORMALIZATION",
+    "topics": ["constant_fighting"],
+    "stage": 1,
+    "text": "When conflict becomes the norm, it can feel like you are losing the person you love underneath all the tension and hurt."
+  },
+  {
+    "id": "constant_fighting_normalization_07",
+    "block_type": "NORMALIZATION",
+    "topics": ["constant_fighting"],
+    "stage": 2,
+    "text": "Repeated arguments often point to unmet needs or old wounds that have not been addressed, not just the surface disagreements."
+  },
+  {
+    "id": "constant_fighting_exploration_06",
+    "block_type": "EXPLORATION",
+    "topics": ["constant_fighting"],
+    "stage": 1,
+    "text": "When you think back to before the fighting started, what was different about how you and your partner connected?"
+  },
+  {
+    "id": "constant_fighting_exploration_07",
+    "block_type": "EXPLORATION",
+    "topics": ["constant_fighting"],
+    "stage": 2,
+    "text": "What do you notice you are really fighting for underneath the words — connection, respect, safety, something else?"
+  },
+  {
+    "id": "constant_fighting_reflection_08",
+    "block_type": "REFLECTION",
+    "topics": ["constant_fighting"],
+    "stage": 1,
+    "text": "It sounds like you are both hurting each other while also wanting to feel close, and that contradiction is exhausting."
+  },
+  {
+    "id": "constant_fighting_normalization_08",
+    "block_type": "NORMALIZATION",
+    "topics": ["constant_fighting"],
+    "stage": 1,
+    "text": "It is common to feel hopeless when fights keep happening, but recognizing the pattern is often the first step toward change."
+  },
+  {
+    "id": "constant_fighting_exploration_08",
+    "block_type": "EXPLORATION",
+    "topics": ["constant_fighting"],
+    "stage": 1,
+    "text": "If you could change one thing about how you respond during arguments, what would feel most important to try?"
+  },
+  {
+    "id": "constant_fighting_reflection_09",
+    "block_type": "REFLECTION",
+    "topics": ["constant_fighting"],
+    "stage": 2,
+    "text": "You seem torn between wanting to repair things and feeling too tired to keep trying in the same ways."
+  },
+
+  {
+    "comment": "=== LONG DISTANCE - Additional 10 blocks ==="
+  },
+  {
+    "id": "long_distance_reflection_06",
+    "block_type": "REFLECTION",
+    "topics": ["long_distance"],
+    "stage": 1,
+    "text": "It sounds like the distance is making you question whether this relationship can really work long term."
+  },
+  {
+    "id": "long_distance_reflection_07",
+    "block_type": "REFLECTION",
+    "topics": ["long_distance"],
+    "stage": 2,
+    "text": "You seem to be carrying a lot of loneliness while also trying to stay hopeful and committed."
+  },
+  {
+    "id": "long_distance_normalization_06",
+    "block_type": "NORMALIZATION",
+    "topics": ["long_distance"],
+    "stage": 1,
+    "text": "Being physically apart can amplify insecurities and doubts that might feel smaller if you were together more often."
+  },
+  {
+    "id": "long_distance_normalization_07",
+    "block_type": "NORMALIZATION",
+    "topics": ["long_distance"],
+    "stage": 2,
+    "text": "Long-distance relationships require a different kind of trust and patience, and it is okay if that feels harder than you expected."
+  },
+  {
+    "id": "long_distance_exploration_06",
+    "block_type": "EXPLORATION",
+    "topics": ["long_distance"],
+    "stage": 1,
+    "text": "What keeps you holding on to this relationship despite the distance, and what makes you question whether to continue?"
+  },
+  {
+    "id": "long_distance_exploration_07",
+    "block_type": "EXPLORATION",
+    "topics": ["long_distance"],
+    "stage": 2,
+    "text": "If there were a clear plan for closing the distance, how would that change how you feel about things right now?"
+  },
+  {
+    "id": "long_distance_reflection_08",
+    "block_type": "REFLECTION",
+    "topics": ["long_distance"],
+    "stage": 1,
+    "text": "It sounds like you are trying to hold onto connection across the miles, but the gap feels wider than just geography."
+  },
+  {
+    "id": "long_distance_normalization_08",
+    "block_type": "NORMALIZATION",
+    "topics": ["long_distance"],
+    "stage": 1,
+    "text": "Missing someone you love while not knowing when you will see them again can create a unique kind of ache."
+  },
+  {
+    "id": "long_distance_exploration_08",
+    "block_type": "EXPLORATION",
+    "topics": ["long_distance"],
+    "stage": 1,
+    "text": "What moments in your day or week make the distance feel most painful, and what helps you feel more connected despite it?"
+  },
+  {
+    "id": "long_distance_reflection_09",
+    "block_type": "REFLECTION",
+    "topics": ["long_distance"],
+    "stage": 2,
+    "text": "You seem to be weighing whether the love you share is strong enough to sustain this kind of separation."
+  },
+
+  {
+    "comment": "=== ONE-SIDED EFFORT - Additional 10 blocks ==="
+  },
+  {
+    "id": "one_sided_effort_reflection_06",
+    "block_type": "REFLECTION",
+    "topics": ["one_sided_effort"],
+    "stage": 1,
+    "text": "It sounds like you are the one keeping this relationship alive, and that weight is becoming too heavy to carry alone."
+  },
+  {
+    "id": "one_sided_effort_reflection_07",
+    "block_type": "REFLECTION",
+    "topics": ["one_sided_effort"],
+    "stage": 2,
+    "text": "You seem to be realizing that no matter how much you give, your partner is not meeting you halfway."
+  },
+  {
+    "id": "one_sided_effort_normalization_06",
+    "block_type": "NORMALIZATION",
+    "topics": ["one_sided_effort"],
+    "stage": 1,
+    "text": "When one person consistently does more, resentment can build quietly until it becomes impossible to ignore."
+  },
+  {
+    "id": "one_sided_effort_normalization_07",
+    "block_type": "NORMALIZATION",
+    "topics": ["one_sided_effort"],
+    "stage": 2,
+    "text": "Recognizing that you deserve reciprocity is not selfish; it is honoring your own needs and capacity."
+  },
+  {
+    "id": "one_sided_effort_exploration_06",
+    "block_type": "EXPLORATION",
+    "topics": ["one_sided_effort"],
+    "stage": 1,
+    "text": "What would it feel like to let go of some of the responsibility you have been carrying and see what happens?"
+  },
+  {
+    "id": "one_sided_effort_exploration_07",
+    "block_type": "EXPLORATION",
+    "topics": ["one_sided_effort"],
+    "stage": 2,
+    "text": "If your partner suddenly started showing up more, what would that look like, and how would you know it was real?"
+  },
+  {
+    "id": "one_sided_effort_reflection_08",
+    "block_type": "REFLECTION",
+    "topics": ["one_sided_effort"],
+    "stage": 1,
+    "text": "It sounds like you have been hoping that if you just do enough, your partner will eventually match your effort."
+  },
+  {
+    "id": "one_sided_effort_normalization_08",
+    "block_type": "NORMALIZATION",
+    "topics": ["one_sided_effort"],
+    "stage": 1,
+    "text": "Many people stay in one-sided dynamics longer than they want to because they fear what it means if they stop trying."
+  },
+  {
+    "id": "one_sided_effort_exploration_08",
+    "block_type": "EXPLORATION",
+    "topics": ["one_sided_effort"],
+    "stage": 1,
+    "text": "What do you imagine would happen if you expressed to your partner how unbalanced things feel for you?"
+  },
+  {
+    "id": "one_sided_effort_reflection_09",
+    "block_type": "REFLECTION",
+    "topics": ["one_sided_effort"],
+    "stage": 2,
+    "text": "You seem to be at a crossroads between continuing to give and starting to protect your own energy."
+  },
+
+  {
+    "comment": "=== FRIEND VS ROMANTIC CONFUSION - Additional 10 blocks ==="
+  },
+  {
+    "id": "friend_vs_romance_reflection_06",
+    "block_type": "REFLECTION",
+    "topics": ["friend_vs_romantic_confusion"],
+    "stage": 1,
+    "text": "It sounds like your feelings for this person are more complicated than just friendship, and that uncertainty is confusing."
+  },
+  {
+    "id": "friend_vs_romance_reflection_07",
+    "block_type": "REFLECTION",
+    "topics": ["friend_vs_romantic_confusion"],
+    "stage": 2,
+    "text": "You seem to be holding these feelings quietly, unsure whether to risk the friendship by naming what you really want."
+  },
+  {
+    "id": "friend_vs_romance_normalization_06",
+    "block_type": "NORMALIZATION",
+    "topics": ["friend_vs_romantic_confusion"],
+    "stage": 1,
+    "text": "Feelings can shift and deepen in ways that surprise us, and that does not mean anything is wrong with you or the friendship."
+  },
+  {
+    "id": "friend_vs_romance_normalization_07",
+    "block_type": "NORMALIZATION",
+    "topics": ["friend_vs_romantic_confusion"],
+    "stage": 2,
+    "text": "The fear of losing someone important by being honest about your feelings is one of the hardest tensions to sit with."
+  },
+  {
+    "id": "friend_vs_romance_exploration_06",
+    "block_type": "EXPLORATION",
+    "topics": ["friend_vs_romantic_confusion"],
+    "stage": 1,
+    "text": "What signs or moments have made you wonder if there might be something more than friendship between you?"
+  },
+  {
+    "id": "friend_vs_romance_exploration_07",
+    "block_type": "EXPLORATION",
+    "topics": ["friend_vs_romantic_confusion"],
+    "stage": 2,
+    "text": "If you knew for certain they did not feel the same way, what would you want to do with your feelings?"
+  },
+  {
+    "id": "friend_vs_romance_reflection_08",
+    "block_type": "REFLECTION",
+    "topics": ["friend_vs_romantic_confusion"],
+    "stage": 1,
+    "text": "It sounds like you are caught between wanting clarity and being afraid of what that clarity might reveal."
+  },
+  {
+    "id": "friend_vs_romance_normalization_08",
+    "block_type": "NORMALIZATION",
+    "topics": ["friend_vs_romantic_confusion"],
+    "stage": 1,
+    "text": "Romantic feelings for a friend can feel both exciting and terrifying because the stakes feel so high."
+  },
+  {
+    "id": "friend_vs_romance_exploration_08",
+    "block_type": "EXPLORATION",
+    "topics": ["friend_vs_romantic_confusion"],
+    "stage": 1,
+    "text": "What would it take for you to feel ready to have an honest conversation with them about what you are feeling?"
+  },
+  {
+    "id": "friend_vs_romance_reflection_09",
+    "block_type": "REFLECTION",
+    "topics": ["friend_vs_romantic_confusion"],
+    "stage": 2,
+    "text": "You seem to be navigating a space where your heart wants more but your mind is trying to protect what you already have."
+  },
+
+  {
+    "comment": "=== STUCK ON EX - Additional 10 blocks ==="
+  },
+  {
+    "id": "stuck_on_ex_reflection_06",
+    "block_type": "REFLECTION",
+    "topics": ["stuck_on_ex"],
+    "stage": 1,
+    "text": "It sounds like your ex still occupies a lot of space in your thoughts and heart, even though the relationship is over."
+  },
+  {
+    "id": "stuck_on_ex_reflection_07",
+    "block_type": "REFLECTION",
+    "topics": ["stuck_on_ex"],
+    "stage": 2,
+    "text": "You seem to be stuck between remembering the good parts and trying to accept that it ended for real reasons."
+  },
+  {
+    "id": "stuck_on_ex_normalization_06",
+    "block_type": "NORMALIZATION",
+    "topics": ["stuck_on_ex"],
+    "stage": 1,
+    "text": "Letting go of someone you loved deeply is not a linear process, and it is okay if you are not 'over it' yet."
+  },
+  {
+    "id": "stuck_on_ex_normalization_07",
+    "block_type": "NORMALIZATION",
+    "topics": ["stuck_on_ex"],
+    "stage": 2,
+    "text": "Your mind might keep returning to your ex because you are still processing what the relationship meant and who you are without it."
+  },
+  {
+    "id": "stuck_on_ex_exploration_06",
+    "block_type": "EXPLORATION",
+    "topics": ["stuck_on_ex"],
+    "stage": 1,
+    "text": "What do you think keeps pulling you back to thoughts of your ex, even when you try to move forward?"
+  },
+  {
+    "id": "stuck_on_ex_exploration_07",
+    "block_type": "EXPLORATION",
+    "topics": ["stuck_on_ex"],
+    "stage": 2,
+    "text": "If you imagine yourself fully healed from this breakup, what does that version of you look like, and what has changed?"
+  },
+  {
+    "id": "stuck_on_ex_reflection_08",
+    "block_type": "REFLECTION",
+    "topics": ["stuck_on_ex"],
+    "stage": 1,
+    "text": "It sounds like part of you is still hoping for reconciliation while another part knows it might not be what is best."
+  },
+  {
+    "id": "stuck_on_ex_normalization_08",
+    "block_type": "NORMALIZATION",
+    "topics": ["stuck_on_ex"],
+    "stage": 1,
+    "text": "Grieving an ex can take much longer than people expect, especially if the relationship was a big part of your identity."
+  },
+  {
+    "id": "stuck_on_ex_exploration_08",
+    "block_type": "EXPLORATION",
+    "topics": ["stuck_on_ex"],
+    "stage": 1,
+    "text": "What would need to happen for you to feel like you could truly let go and start fresh?"
+  },
+  {
+    "id": "stuck_on_ex_reflection_09",
+    "block_type": "REFLECTION",
+    "topics": ["stuck_on_ex"],
+    "stage": 2,
+    "text": "You seem to be carrying both the love you had for them and the pain of how it ended, and that is a heavy mix."
+  },
+
+  {
+    "comment": "=== COMPARISON TO OTHERS - Additional 10 blocks ==="
+  },
+  {
+    "id": "comparison_reflection_06",
+    "block_type": "REFLECTION",
+    "topics": ["comparison_to_others"],
+    "stage": 1,
+    "text": "It sounds like comparing yourself to someone else is eating away at your confidence and peace of mind."
+  },
+  {
+    "id": "comparison_reflection_07",
+    "block_type": "REFLECTION",
+    "topics": ["comparison_to_others"],
+    "stage": 2,
+    "text": "You seem to be measuring your worth by how you stack up against another person, and that is exhausting."
+  },
+  {
+    "id": "comparison_normalization_06",
+    "block_type": "NORMALIZATION",
+    "topics": ["comparison_to_others"],
+    "stage": 1,
+    "text": "When trust or security feels shaky, it is common to fixate on comparisons as a way to try to make sense of your fears."
+  },
+  {
+    "id": "comparison_normalization_07",
+    "block_type": "NORMALIZATION",
+    "topics": ["comparison_to_others"],
+    "stage": 2,
+    "text": "These comparisons often say more about your own insecurities than about any real competition or inadequacy."
+  },
+  {
+    "id": "comparison_exploration_06",
+    "block_type": "EXPLORATION",
+    "topics": ["comparison_to_others"],
+    "stage": 1,
+    "text": "What do you imagine would change if you felt completely secure in your partner's choice to be with you?"
+  },
+  {
+    "id": "comparison_exploration_07",
+    "block_type": "EXPLORATION",
+    "topics": ["comparison_to_others"],
+    "stage": 2,
+    "text": "When you compare yourself to someone else, what specific qualities or traits do you focus on, and why do you think those matter to you?"
+  },
+  {
+    "id": "comparison_reflection_08",
+    "block_type": "REFLECTION",
+    "topics": ["comparison_to_others"],
+    "stage": 1,
+    "text": "It sounds like these comparisons are keeping you from seeing your own value clearly."
+  },
+  {
+    "id": "comparison_normalization_08",
+    "block_type": "NORMALIZATION",
+    "topics": ["comparison_to_others"],
+    "stage": 1,
+    "text": "Social media and modern dating can make comparison feel almost unavoidable, but it does not mean you have to let it define you."
+  },
+  {
+    "id": "comparison_exploration_08",
+    "block_type": "EXPLORATION",
+    "topics": ["comparison_to_others"],
+    "stage": 1,
+    "text": "What would it be like to focus less on how you measure up and more on what you genuinely bring to a relationship?"
+  },
+  {
+    "id": "comparison_reflection_09",
+    "block_type": "REFLECTION",
+    "topics": ["comparison_to_others"],
+    "stage": 2,
+    "text": "You seem to be trapped in a cycle of self-doubt that is making it hard to trust your partner's feelings for you."
+  },
+
+  {
+    "comment": "=== LOW SELF-WORTH IN LOVE - Additional 10 blocks ==="
+  },
+  {
+    "id": "low_self_worth_reflection_06",
+    "block_type": "REFLECTION",
+    "topics": ["low_self_worth_in_love"],
+    "stage": 1,
+    "text": "It sounds like you have been carrying a belief that you are not enough for a very long time, and it is affecting how you show up in relationships."
+  },
+  {
+    "id": "low_self_worth_reflection_07",
+    "block_type": "REFLECTION",
+    "topics": ["low_self_worth_in_love"],
+    "stage": 2,
+    "text": "You seem to be stuck in a pattern of expecting rejection or abandonment before it even happens."
+  },
+  {
+    "id": "low_self_worth_normalization_06",
+    "block_type": "NORMALIZATION",
+    "topics": ["low_self_worth_in_love"],
+    "stage": 1,
+    "text": "When you have been hurt or rejected repeatedly, it can start to feel like proof that something is wrong with you, even though that is not true."
+  },
+  {
+    "id": "low_self_worth_normalization_07",
+    "block_type": "NORMALIZATION",
+    "topics": ["low_self_worth_in_love"],
+    "stage": 2,
+    "text": "Your worth is not determined by whether someone chose to stay or leave; those are their choices, not reflections of your value."
+  },
+  {
+    "id": "low_self_worth_exploration_06",
+    "block_type": "EXPLORATION",
+    "topics": ["low_self_worth_in_love"],
+    "stage": 1,
+    "text": "What messages did you receive growing up about your worthiness of love, and how do those show up in your relationships now?"
+  },
+  {
+    "id": "low_self_worth_exploration_07",
+    "block_type": "EXPLORATION",
+    "topics": ["low_self_worth_in_love"],
+    "stage": 2,
+    "text": "If you could speak to the part of you that feels unlovable, what would you want that part to know or hear?"
+  },
+  {
+    "id": "low_self_worth_reflection_08",
+    "block_type": "REFLECTION",
+    "topics": ["low_self_worth_in_love"],
+    "stage": 1,
+    "text": "It sounds like you have been treating yourself as though you need to earn love rather than simply receive it."
+  },
+  {
+    "id": "low_self_worth_normalization_08",
+    "block_type": "NORMALIZATION",
+    "topics": ["low_self_worth_in_love"],
+    "stage": 1,
+    "text": "Many people struggle with feeling lovable after experiences that made them feel rejected, invisible, or not good enough."
+  },
+  {
+    "id": "low_self_worth_exploration_08",
+    "block_type": "EXPLORATION",
+    "topics": ["low_self_worth_in_love"],
+    "stage": 1,
+    "text": "What small step could you take to treat yourself with more kindness, even if you do not fully believe you deserve it yet?"
+  },
+  {
+    "id": "low_self_worth_reflection_09",
+    "block_type": "REFLECTION",
+    "topics": ["low_self_worth_in_love"],
+    "stage": 2,
+    "text": "You seem to be realizing that the story you tell yourself about your worth might not be the whole truth."
+  },
+
+  {
+    "comment": "=== ONLINE DATING BURNOUT - Additional 10 blocks ==="
+  },
+  {
+    "id": "online_dating_burnout_reflection_06",
+    "block_type": "REFLECTION",
+    "topics": ["online_dating_burnout"],
+    "stage": 1,
+    "text": "It sounds like dating has started to feel more like a job than something that brings you joy or hope."
+  },
+  {
+    "id": "online_dating_burnout_reflection_07",
+    "block_type": "REFLECTION",
+    "topics": ["online_dating_burnout"],
+    "stage": 2,
+    "text": "You seem to be questioning whether putting yourself out there again and again is even worth the emotional toll."
+  },
+  {
+    "id": "online_dating_burnout_normalization_06",
+    "block_type": "NORMALIZATION",
+    "topics": ["online_dating_burnout"],
+    "stage": 1,
+    "text": "The cycle of matching, chatting, getting excited, and then being disappointed can wear anyone down over time."
+  },
+  {
+    "id": "online_dating_burnout_normalization_07",
+    "block_type": "NORMALIZATION",
+    "topics": ["online_dating_burnout"],
+    "stage": 2,
+    "text": "Taking a break from dating apps does not mean you are giving up on love; it can mean you are choosing to protect your energy."
+  },
+  {
+    "id": "online_dating_burnout_exploration_06",
+    "block_type": "EXPLORATION",
+    "topics": ["online_dating_burnout"],
+    "stage": 1,
+    "text": "What would it feel like to step away from dating apps for a while and focus on other parts of your life?"
+  },
+  {
+    "id": "online_dating_burnout_exploration_07",
+    "block_type": "EXPLORATION",
+    "topics": ["online_dating_burnout"],
+    "stage": 2,
+    "text": "If you could redesign your approach to dating in a way that felt lighter and more authentic, what would that look like?"
+  },
+  {
+    "id": "online_dating_burnout_reflection_08",
+    "block_type": "REFLECTION",
+    "topics": ["online_dating_burnout"],
+    "stage": 1,
+    "text": "It sounds like you are exhausted from trying to present yourself in a way that will be chosen, rather than just being yourself."
+  },
+  {
+    "id": "online_dating_burnout_normalization_08",
+    "block_type": "NORMALIZATION",
+    "topics": ["online_dating_burnout"],
+    "stage": 1,
+    "text": "Dating app fatigue is incredibly common, and it does not reflect anything lacking in you or your desirability."
+  },
+  {
+    "id": "online_dating_burnout_exploration_08",
+    "block_type": "EXPLORATION",
+    "topics": ["online_dating_burnout"],
+    "stage": 1,
+    "text": "What parts of dating still feel meaningful or hopeful to you, if any, and how could you focus more on those?"
+  },
+  {
+    "id": "online_dating_burnout_reflection_09",
+    "block_type": "REFLECTION",
+    "topics": ["online_dating_burnout"],
+    "stage": 2,
+    "text": "You seem to be at a point where you need to decide whether to keep pushing through or to give yourself permission to rest."
+  }
+]
