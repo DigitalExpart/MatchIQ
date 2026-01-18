@@ -39,14 +39,41 @@ def main():
     if force_recompute:
         print("[INFO] --force flag: Will recompute ALL block embeddings")
         response = supabase.table("amora_response_blocks").select("*").execute()
+        blocks = response.data
     else:
-        print("[INFO] Fetching blocks without embeddings...")
-        response = supabase.table("amora_response_blocks") \
-            .select("*") \
-            .is_("embedding", "null") \
-            .execute()
-    
-    blocks = response.data
+        print("[INFO] Fetching all blocks to check for missing embeddings...")
+        # Fetch all active blocks with pagination (Supabase returns max 1000 per page)
+        all_blocks = []
+        page_size = 1000
+        offset = 0
+        
+        while True:
+            response = supabase.table("amora_response_blocks") \
+                .select("*") \
+                .range(offset, offset + page_size - 1) \
+                .execute()
+            
+            page_blocks = response.data or []
+            if not page_blocks:
+                break
+            
+            all_blocks.extend(page_blocks)
+            print(f"[INFO] Fetched {len(page_blocks)} blocks (total so far: {len(all_blocks)})")
+            
+            if len(page_blocks) < page_size:
+                break  # Last page
+            
+            offset += page_size
+        
+        # Filter for blocks without embeddings (None, empty list, or not a list)
+        blocks = []
+        for b in all_blocks:
+            embedding = b.get("embedding")
+            # Check if embedding is None, empty list, or not properly set
+            if embedding is None or (isinstance(embedding, list) and len(embedding) == 0):
+                blocks.append(b)
+        
+        print(f"[INFO] Found {len(blocks)} blocks without embeddings out of {len(all_blocks)} total blocks")
     
     if not blocks:
         print("[SUCCESS] All blocks already have embeddings!")
