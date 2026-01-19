@@ -4,9 +4,10 @@ import { useLanguage } from '../../contexts/LanguageContext';
 
 interface WelcomeScreenProps {
   onStart: () => void;
+  onSignIn?: () => void;
 }
 
-export function WelcomeScreen({ onStart }: WelcomeScreenProps) {
+export function WelcomeScreen({ onStart, onSignIn }: WelcomeScreenProps) {
   const { t } = useLanguage();
   
   return (
@@ -91,6 +92,21 @@ export function WelcomeScreen({ onStart }: WelcomeScreenProps) {
         <p className="text-sm text-gray-500 mt-6">
           {t('welcome.freeToStart')}
         </p>
+
+        {/* Sign In Link */}
+        {onSignIn && (
+          <div className="mt-6">
+            <p className="text-sm text-gray-600">
+              {t('welcome.alreadyHaveAccount')}{' '}
+              <button
+                onClick={onSignIn}
+                className="text-rose-600 hover:text-rose-700 font-semibold underline transition-colors"
+              >
+                {t('welcome.signIn')}
+              </button>
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Bottom Wave Decoration */}

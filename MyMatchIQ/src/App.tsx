@@ -745,7 +745,10 @@ function AppContent() {
   const renderScreen = () => {
     switch (currentScreen) {
       case 'welcome':
-        return <WelcomeScreen onStart={() => setCurrentScreen('onboarding')} />;
+        return <WelcomeScreen 
+          onStart={() => setCurrentScreen('onboarding')} 
+          onSignIn={() => setCurrentScreen('signIn')}
+        />;
       case 'landing':
         return <LandingPage onStart={() => setCurrentScreen('onboarding')} />;
       case 'signIn':

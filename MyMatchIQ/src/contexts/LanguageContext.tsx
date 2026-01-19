@@ -47,6 +47,8 @@ const translations: Record<Language, Record<string, string>> = {
     'welcome.actionableInsightsDesc': 'Get clear scores and next-step recommendations',
     'welcome.getStarted': 'Get Started',
     'welcome.freeToStart': 'Free to start • No credit card required',
+    'welcome.alreadyHaveAccount': 'Already have an account?',
+    'welcome.signIn': 'Sign in',
     
     // Invite Modal
     'invite.title': 'Invite {partner}',
