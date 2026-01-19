@@ -20,9 +20,9 @@ INSERT INTO amora_response_blocks (block_type, text, topics, emotions, stage, pr
 ('normalization', 'Missing someone after a breakup, even when you know it''s over, is very common. Your feelings don''t have to make logical sense right now.', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'lonely'], 2, 90, true),
 ('normalization', 'Sometimes the hardest part isn''t the end itself, but learning who you are without them, and that process takes time.', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'confused'], 2, 90, true),
 
--- Stage 2 Insight
-('insight', 'Grief often comes in waves—moments where you feel okay, followed by moments where the loss hits you all over again. This isn''t a sign that you''re not healing; it''s how grief works.', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'hurt'], 2, 90, true),
-('insight', 'When a relationship ends, you''re not just losing the person—you''re losing the routines, the inside jokes, the way you saw yourself through their eyes. That''s a lot to process.', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'lonely'], 2, 90, true),
+-- Stage 2 Insight (using 'reframe' block_type as insight blocks)
+('reframe', 'Grief often comes in waves—moments where you feel okay, followed by moments where the loss hits you all over again. This isn''t a sign that you''re not healing; it''s how grief works.', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'hurt'], 2, 90, true),
+('reframe', 'When a relationship ends, you''re not just losing the person—you''re losing the routines, the inside jokes, the way you saw yourself through their eyes. That''s a lot to process.', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'lonely'], 2, 90, true),
 
 -- Stage 1-2 Exploration
 ('exploration', 'What part of this loss feels hardest to sit with right now?', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'hurt'], 1, 90, true),
@@ -48,9 +48,9 @@ INSERT INTO amora_response_blocks (block_type, text, topics, emotions, stage, pr
 ('normalization', 'Physical intimacy often represents safety, closeness, and being seen in a particular way. Missing that doesn''t mean you''re just missing sex—it''s often about missing that sense of connection.', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'lonely'], 2, 95, true),
 ('normalization', 'The way you connected physically with your ex was unique to that relationship, and it makes sense that you''d miss that specific kind of closeness.', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'hurt'], 2, 95, true),
 
--- Stage 2 Insight
-('insight', 'Physical intimacy in a relationship often represents more than just physical connection—it can be about feeling desired, safe, understood, or fully yourself with someone. Missing that can feel like missing a whole dimension of how you related to each other.', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'lonely'], 2, 95, true),
-('insight', 'Sometimes what we miss most about physical intimacy with an ex isn''t just the act itself, but the way it made us feel—seen, wanted, connected, or at ease. That emotional layer is part of what you''re grieving.', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'hurt'], 2, 95, true),
+-- Stage 2 Insight (using 'reframe' block_type as insight blocks)
+('reframe', 'Physical intimacy in a relationship often represents more than just physical connection—it can be about feeling desired, safe, understood, or fully yourself with someone. Missing that can feel like missing a whole dimension of how you related to each other.', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'lonely'], 2, 95, true),
+('reframe', 'Sometimes what we miss most about physical intimacy with an ex isn''t just the act itself, but the way it made us feel—seen, wanted, connected, or at ease. That emotional layer is part of what you''re grieving.', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'hurt'], 2, 95, true),
 
 -- Stage 1-2 Exploration
 ('exploration', 'What was it about the physical connection you had that feels hardest to let go of?', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'lonely'], 1, 95, true),
