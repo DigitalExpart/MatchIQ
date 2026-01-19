@@ -29,6 +29,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://macthiq-ai-ba
 class AmoraSessionService {
   /**
    * Get auth headers - prioritizes user ID from auth service (custom auth, not Supabase)
+   * Throws error if no userId found to prevent silent 401 loops
    */
   private async getAuthHeaders(): Promise<HeadersInit> {
     const headers: Record<string, string> = {
@@ -36,26 +37,31 @@ class AmoraSessionService {
     };
     
     // Primary: Get user ID from auth service (custom auth)
+    let userId: string | null = null;
     try {
       const { authService } = await import('../utils/authService');
-      const userId = authService.getCurrentUserId();
-      
-      if (userId) {
-        headers['X-User-Id'] = userId;
-        console.log('[AmoraSessionService] ✅ Using X-User-Id from authService:', userId);
-        return headers;
-      }
+      userId = authService.getCurrentUserId();
     } catch (error) {
       console.warn('[AmoraSessionService] ⚠️ Failed to get user ID from authService:', error);
     }
     
     // Fallback: Try localStorage directly
-    const userId = localStorage.getItem('myMatchIQ_currentUserId');
-    if (userId) {
-      headers['X-User-Id'] = userId;
-      console.log('[AmoraSessionService] ✅ Using X-User-Id from localStorage:', userId);
-      return headers;
+    if (!userId) {
+      userId = localStorage.getItem('myMatchIQ_currentUserId');
     }
+    
+    // FAIL LOUDLY if no userId found
+    if (!userId) {
+      const errorMsg = 'No userId found. Cannot call coach API. User is not authenticated in this origin.';
+      console.error('[AmoraSessionService] ❌', errorMsg);
+      console.error('[AmoraSessionService] localStorage keys:', Object.keys(localStorage));
+      throw new Error(errorMsg);
+    }
+    
+    // Set the header
+    headers['X-User-Id'] = userId;
+    console.log('[AmoraSessionService] ✅ Using X-User-Id:', userId);
+    return headers;
     
     // Try Supabase session (if user is using Supabase Auth)
     try {
