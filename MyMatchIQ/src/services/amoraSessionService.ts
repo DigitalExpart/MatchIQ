@@ -28,61 +28,62 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://macthiq-ai-ba
 
 class AmoraSessionService {
   /**
-   * Get auth token from Supabase session or auth service
+   * Get auth headers - prioritizes user ID from auth service (custom auth, not Supabase)
    */
   private async getAuthHeaders(): Promise<HeadersInit> {
-    const headers: HeadersInit = {
+    const headers: Record<string, string> = {
       'Content-Type': 'application/json',
     };
     
-    // Try to get token from Supabase session first
-    try {
-      const { supabase } = await import('../utils/supabaseClient');
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      if (session?.access_token) {
-        headers['Authorization'] = `Bearer ${session.access_token}`;
-        console.log('[AmoraSessionService] Using Supabase access token');
-        return headers;
-      }
-    } catch (error) {
-      console.warn('[AmoraSessionService] Failed to get Supabase session:', error);
-    }
-    
-    // Fallback: Try to get token from localStorage
-    const token = localStorage.getItem('token') || 
-                  localStorage.getItem('myMatchIQ_token') ||
-                  localStorage.getItem('myMatchIQ_authToken');
-    
-    if (token) {
-      headers['Authorization'] = `Bearer ${token}`;
-      console.log('[AmoraSessionService] Using localStorage token');
-      return headers;
-    }
-    
-    // Last resort: Try to get user ID from auth service or localStorage
+    // Primary: Get user ID from auth service (custom auth)
     try {
       const { authService } = await import('../utils/authService');
       const userId = authService.getCurrentUserId();
       
       if (userId) {
         headers['X-User-Id'] = userId;
-        console.log('[AmoraSessionService] Using X-User-Id header from authService:', userId);
+        console.log('[AmoraSessionService] ✅ Using X-User-Id from authService:', userId);
         return headers;
       }
     } catch (error) {
-      console.warn('[AmoraSessionService] Failed to get user ID from authService:', error);
+      console.warn('[AmoraSessionService] ⚠️ Failed to get user ID from authService:', error);
     }
     
-    // Final fallback: Try localStorage directly
+    // Fallback: Try localStorage directly
     const userId = localStorage.getItem('myMatchIQ_currentUserId');
     if (userId) {
       headers['X-User-Id'] = userId;
-      console.log('[AmoraSessionService] Using X-User-Id header from localStorage:', userId);
+      console.log('[AmoraSessionService] ✅ Using X-User-Id from localStorage:', userId);
       return headers;
     }
     
-    console.warn('[AmoraSessionService] No authentication found - user may not be logged in');
+    // Try Supabase session (if user is using Supabase Auth)
+    try {
+      const { supabase } = await import('../utils/supabaseClient');
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (session?.access_token) {
+        headers['Authorization'] = `Bearer ${session.access_token}`;
+        console.log('[AmoraSessionService] ✅ Using Supabase access token');
+        return headers;
+      }
+    } catch (error) {
+      // Supabase not available or not using Supabase Auth - that's okay
+    }
+    
+    // Try JWT token from localStorage
+    const token = localStorage.getItem('token') || 
+                  localStorage.getItem('myMatchIQ_token') ||
+                  localStorage.getItem('myMatchIQ_authToken');
+    
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+      console.log('[AmoraSessionService] ✅ Using JWT token from localStorage');
+      return headers;
+    }
+    
+    console.error('[AmoraSessionService] ❌ No authentication found! User may not be logged in.');
+    console.error('[AmoraSessionService] localStorage keys:', Object.keys(localStorage));
     return headers;
   }
 
@@ -92,13 +93,19 @@ class AmoraSessionService {
   async listSessions(): Promise<AmoraSession[]> {
     try {
       const headers = await this.getAuthHeaders();
+      console.log('[AmoraSessionService] listSessions - Headers:', headers);
+      
       const response = await fetch(`${API_BASE_URL}/coach/sessions`, {
         method: 'GET',
         headers,
       });
 
+      console.log('[AmoraSessionService] listSessions - Response status:', response.status);
+      
       if (!response.ok) {
-        throw new Error(`Failed to fetch sessions: ${response.statusText}`);
+        const errorText = await response.text();
+        console.error('[AmoraSessionService] listSessions - Error response:', errorText);
+        throw new Error(`Failed to fetch sessions: ${response.status} ${errorText}`);
       }
 
       return await response.json();
@@ -119,14 +126,20 @@ class AmoraSessionService {
   }): Promise<AmoraSession> {
     try {
       const headers = await this.getAuthHeaders();
+      console.log('[AmoraSessionService] createSession - Headers:', headers);
+      console.log('[AmoraSessionService] createSession - Data:', data);
+      
       const response = await fetch(`${API_BASE_URL}/coach/sessions`, {
         method: 'POST',
         headers,
         body: JSON.stringify(data),
       });
 
+      console.log('[AmoraSessionService] createSession - Response status:', response.status);
+
       if (!response.ok) {
         const errorText = await response.text();
+        console.error('[AmoraSessionService] createSession - Error response:', errorText);
         throw new Error(`Failed to create session: ${errorText}`);
       }
 
