@@ -18,34 +18,45 @@ logger = logging.getLogger(__name__)
 async def get_user_id_from_auth(request: Request) -> UUID:
     """Extract user ID from authentication token."""
     # Try to get user ID from Authorization header (JWT token)
-    if request:
-        auth_header = request.headers.get("Authorization", "")
-        if auth_header.startswith("Bearer "):
-            token = auth_header.replace("Bearer ", "")
+    auth_header = request.headers.get("Authorization", "")
+    
+    if auth_header.startswith("Bearer "):
+        token = auth_header.replace("Bearer ", "").strip()
+        if token:
             # Decode JWT token to get user_id (Supabase JWT contains 'sub' claim with user ID)
             try:
-                import jwt
+                from jose import jwt
                 # For Supabase tokens, decode without verification for now
                 # In production, verify with Supabase JWT secret
-                decoded = jwt.decode(token, options={"verify_signature": False})
+                # python-jose: pass None as key and options to skip verification
+                decoded = jwt.decode(token, None, options={"verify_signature": False})
                 user_id_str = decoded.get("sub")  # Supabase JWT uses 'sub' for user ID
                 
                 if user_id_str:
+                    logger.debug(f"Extracted user_id from JWT: {user_id_str}")
                     return UUID(user_id_str)
+                else:
+                    logger.warning(f"JWT decoded but no 'sub' claim found. Claims: {list(decoded.keys())}")
             except ImportError:
-                logger.warning("PyJWT not installed, cannot decode JWT tokens")
+                logger.error("python-jose not installed, cannot decode JWT tokens")
             except Exception as e:
                 logger.warning(f"Failed to decode JWT token: {e}")
-        
-        # Fallback: Try X-User-Id header (for development/testing)
-        user_id_header = request.headers.get("X-User-Id")
-        if user_id_header:
-            try:
-                return UUID(user_id_header)
-            except ValueError:
-                pass
+        else:
+            logger.warning("Bearer token is empty")
+    else:
+        logger.debug(f"No Bearer token found. Authorization header: {auth_header[:50] if auth_header else 'None'}")
+    
+    # Fallback: Try X-User-Id header (for development/testing)
+    user_id_header = request.headers.get("X-User-Id")
+    if user_id_header:
+        try:
+            logger.debug(f"Using X-User-Id header: {user_id_header}")
+            return UUID(user_id_header)
+        except ValueError:
+            logger.warning(f"Invalid X-User-Id header format: {user_id_header}")
     
     # If no valid authentication found, raise 401
+    logger.warning(f"Authentication failed. Headers: Authorization={bool(auth_header)}, X-User-Id={bool(user_id_header)}")
     raise HTTPException(
         status_code=401,
         detail="Authentication required. Please provide a valid JWT token in Authorization header."
