@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X, Clock } from 'lucide-react';
 import { amoraSessionService, AmoraSession } from '../../services/amoraSessionService';
+import { authService } from '../../utils/authService';
 
 interface CreateSessionModalProps {
   isOpen: boolean;
@@ -33,6 +34,21 @@ export function CreateSessionModal({ isOpen, onClose, onSessionCreated }: Create
   const [followUpTime, setFollowUpTime] = useState('09:00');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Check authentication status
+  useEffect(() => {
+    if (isOpen) {
+      const authenticated = authService.isAuthenticated();
+      setIsAuthenticated(authenticated);
+      
+      if (!authenticated) {
+        setError('Please sign in to create a coaching session');
+      } else {
+        setError(null);
+      }
+    }
+  }, [isOpen]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,7 +78,16 @@ export function CreateSessionModal({ isOpen, onClose, onSessionCreated }: Create
       onSessionCreated(session);
       onClose();
     } catch (err: any) {
-      setError(err.message || 'Failed to create session');
+      const errorMessage = err.message || 'Failed to create session';
+      
+      // Check if it's an authentication error
+      if (errorMessage.includes('Authentication required') || errorMessage.includes('401')) {
+        setError('Please sign in to create a coaching session. If you are signed in, please try refreshing the page.');
+      } else {
+        setError(errorMessage);
+      }
+      
+      console.error('Error creating session:', err);
     } finally {
       setLoading(false);
     }
@@ -170,7 +195,7 @@ export function CreateSessionModal({ isOpen, onClose, onSessionCreated }: Create
               </button>
               <button
                 type="submit"
-                disabled={loading || !title.trim()}
+                disabled={loading || !title.trim() || !isAuthenticated}
                 className="flex-1 px-4 py-3 bg-gradient-to-r from-purple-500 to-violet-500 text-white rounded-xl hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? 'Creating...' : 'Create Session'}
