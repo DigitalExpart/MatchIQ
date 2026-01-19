@@ -100,6 +100,8 @@ ADVICE_REQUEST_KEYWORDS = [
 # Heavy/intense topics that warrant GROUNDING on first turn
 HEAVY_TOPICS = [
     'heartbreak',
+    'breakup_grief',
+    'breakup_intimacy_loss',
     'cheating',
     'toxic_or_abusive_dynamic',
     'partner_mental_health_or_addiction',
@@ -232,10 +234,95 @@ class ResponseBlock:
 class TopicEmotionDetector:
     """Detect topics and emotions from user messages."""
     
+    @staticmethod
+    def normalize_text(text: str) -> str:
+        """
+        Normalize text for better keyword matching.
+        - Lowercase
+        - Remove punctuation (keep spaces)
+        - Normalize contractions (im -> i'm, dont -> don't)
+        - Collapse whitespace
+        """
+        import re
+        # Lowercase
+        text = text.lower()
+        
+        # Normalize common contractions and typos
+        contractions = {
+            r'\bim\b': 'i am',
+            r'\bdont\b': 'do not',
+            r'\bwont\b': 'will not',
+            r'\bcant\b': 'cannot',
+            r'\bwouldnt\b': 'would not',
+            r'\bshouldnt\b': 'should not',
+            r'\bcouldnt\b': 'could not',
+            r'\bisnt\b': 'is not',
+            r'\baren\'t\b': 'are not',
+            r'\bwasnt\b': 'was not',
+            r'\bwerent\b': 'were not',
+            r'\bhavent\b': 'have not',
+            r'\bhasnt\b': 'has not',
+            r'\bhadnt\b': 'had not',
+            r'\bive\b': 'i have',
+            r'\byouve\b': 'you have',
+            r'\bweve\b': 'we have',
+            r'\btheyve\b': 'they have',
+            r'\bid\b': 'i would',
+            r'\byoud\b': 'you would',
+            r'\bhed\b': 'he would',
+            r'\bshed\b': 'she would',
+            r'\bwed\b': 'we would',
+            r'\btheyd\b': 'they would',
+        }
+        
+        for pattern, replacement in contractions.items():
+            text = re.sub(pattern, replacement, text)
+        
+        # Remove punctuation but keep spaces
+        text = re.sub(r'[^\w\s]', ' ', text)
+        
+        # Collapse multiple spaces
+        text = re.sub(r'\s+', ' ', text)
+        
+        return text.strip()
+    
     # Comprehensive topic keywords
+    # HIGH PRIORITY topics (checked first, override others)
+    HIGH_PRIORITY_TOPICS = {
+        'breakup_intimacy_loss': [
+            # Missing sex/intimacy with ex
+            'miss our sex', 'miss our sex life', 'miss the sex', 'miss having sex',
+            'miss the way we', 'miss how we', 'miss the way i and my ex',
+            'miss the way me and my ex', 'miss the way my ex and i',
+            'miss our intimacy', 'miss the intimacy', 'miss the physical',
+            'miss the physical connection', 'miss the chemistry',
+            'miss our chemistry', 'miss the way we connected',
+            'miss our connection', 'miss the closeness',
+            'missing sex with my ex', 'missing intimacy with ex',
+            'missing the way we had sex', 'missing how we had sex',
+            'i miss our sex', 'i miss the sex', 'i miss having sex',
+            'i miss the way we did', 'i miss how we did',
+            'missing the sex life', 'missing our sex life',
+            'miss the physical intimacy', 'miss our physical intimacy',
+        ],
+        'breakup_grief': [
+            'heartbroken', 'heartbreak', 'broken heart',
+            'grieving the breakup', 'grieving the loss',
+            'still grieving', 'grieving our breakup',
+        ],
+    }
+    
     TOPIC_KEYWORDS = {
         'heartbreak': ['heartbreak', 'heartbroken', 'broken heart', 'breakup', 'broke up', 'ended things', 'dumped', 'left me'],
         'breakup': ['breakup', 'broke up', 'breaking up', 'ended', 'split up', 'separated'],
+        'breakup_grief': ['heartbroken', 'heartbreak', 'broken heart', 'grieving', 'grieving the breakup', 'grieving the loss', 'still grieving'],
+        'breakup_intimacy_loss': [
+            'miss our sex', 'miss our sex life', 'miss the sex', 'miss having sex',
+            'miss the way we', 'miss how we', 'miss the way i and my ex',
+            'miss our intimacy', 'miss the intimacy', 'miss the physical',
+            'miss the physical connection', 'miss the chemistry',
+            'missing sex with my ex', 'missing intimacy with ex',
+        ],
         'cheating': ['cheating', 'cheated', 'affair', 'infidelity', 'unfaithful', 'seeing someone else', 'caught them'],
         'cheating_self': ['i cheated', 'i had an affair', 'i was unfaithful', 'i kissed someone', 'i slept with'],
         'divorce': ['divorce', 'divorcing', 'getting divorced', 'filing for divorce', 'separated legally'],
@@ -309,29 +396,89 @@ class TopicEmotionDetector:
     
     @classmethod
     def detect_topics(cls, text: str, context_topics: Optional[List[str]] = None) -> List[str]:
-        """Detect topics from user message."""
-        text_lower = text.lower()
+        """
+        Detect topics from user message with priority-based routing.
+        
+        Process:
+        1. Normalize text (lowercase, contractions, punctuation)
+        2. Check HIGH_PRIORITY_TOPICS first (these override others)
+        3. Check regular TOPIC_KEYWORDS
+        4. Apply topic whitelist guardrails
+        """
+        # Normalize text for better matching
+        normalized_text = cls.normalize_text(text)
+        text_lower = normalized_text.lower()
+        
         detected = set()
+        high_priority_detected = []
         
-        for topic, keywords in cls.TOPIC_KEYWORDS.items():
+        # Step 1: Check HIGH_PRIORITY topics first (these override)
+        for topic, keywords in cls.HIGH_PRIORITY_TOPICS.items():
             if any(keyword in text_lower for keyword in keywords):
+                high_priority_detected.append(topic)
                 detected.add(topic)
+                logger.info(f"[TopicDetection] HIGH PRIORITY topic detected: {topic} (normalized text: {normalized_text[:100]})")
         
-        # Add context topics if they're still relevant
+        # Step 2: Check regular topics (always check, but high-priority takes precedence)
+        for topic, keywords in cls.TOPIC_KEYWORDS.items():
+            # Skip if already detected as high-priority (avoid duplicates)
+            if topic not in high_priority_detected:
+                if any(keyword in text_lower for keyword in keywords):
+                    detected.add(topic)
+        
+        # Step 3: Add context topics if still relevant (and not conflicting)
         if context_topics:
             for topic in context_topics:
-                if topic in cls.TOPIC_KEYWORDS:
+                if topic in cls.TOPIC_KEYWORDS or topic in cls.HIGH_PRIORITY_TOPICS:
                     # Check if topic is still being discussed
-                    keywords = cls.TOPIC_KEYWORDS[topic]
-                    if any(keyword in text_lower for keyword in keywords[:3]):  # Loose check
+                    all_keywords = cls.TOPIC_KEYWORDS.get(topic, []) + cls.HIGH_PRIORITY_TOPICS.get(topic, [])
+                    if all_keywords and any(keyword in text_lower for keyword in all_keywords[:3]):
                         detected.add(topic)
         
-        return list(detected) if detected else ['general']
+        # Step 4: Apply guardrails - prevent wrong topics when specific intent detected
+        detected = cls._apply_topic_guardrails(detected, text_lower, high_priority_detected)
+        
+        result = list(detected) if detected else ['general']
+        logger.info(f"[TopicDetection] Final topics: {result} (from normalized: {normalized_text[:100]})")
+        return result
+    
+    @classmethod
+    def _apply_topic_guardrails(cls, detected: set, text_lower: str, high_priority: List[str]) -> set:
+        """
+        Apply guardrails to prevent wrong topic blocks.
+        
+        Rules:
+        - If breakup_intimacy_loss detected, remove unrelated topics like 'unlovable', 'lust_vs_love' (unless explicitly stated)
+        - If breakup_grief detected, remove 'unlovable' unless user explicitly says they feel unlovable
+        - If breakup context, prioritize breakup-related topics
+        """
+        filtered = detected.copy()
+        
+        # If breakup_intimacy_loss is detected, remove conflicting topics
+        if 'breakup_intimacy_loss' in detected or 'breakup_intimacy_loss' in high_priority:
+            # Remove 'unlovable' unless explicitly stated
+            if 'unlovable' in filtered and not any(word in text_lower for word in ['feel unlovable', 'i am unlovable', 'im unlovable', 'unlovable']):
+                filtered.discard('unlovable')
+                logger.info("[TopicGuardrail] Removed 'unlovable' - not explicitly stated, breakup_intimacy_loss context")
+            
+            # Remove 'lust_vs_love' - not relevant when missing ex
+            if 'lust_vs_love' in filtered:
+                filtered.discard('lust_vs_love')
+                logger.info("[TopicGuardrail] Removed 'lust_vs_love' - not relevant for breakup_intimacy_loss")
+        
+        # If breakup_grief detected, remove 'unlovable' unless explicitly stated
+        if 'breakup_grief' in detected or 'heartbreak' in detected or 'breakup' in detected:
+            if 'unlovable' in filtered and not any(word in text_lower for word in ['feel unlovable', 'i am unlovable', 'im unlovable', 'unlovable']):
+                filtered.discard('unlovable')
+                logger.info("[TopicGuardrail] Removed 'unlovable' - not explicitly stated, breakup context")
+        
+        return filtered
     
     @classmethod
     def detect_emotions(cls, text: str, embedding: Optional[np.ndarray] = None) -> List[str]:
-        """Detect emotions from user message."""
-        text_lower = text.lower()
+        """Detect emotions from user message using normalized text."""
+        normalized_text = cls.normalize_text(text)
+        text_lower = normalized_text.lower()
         detected = {}
         
         for emotion, keywords in cls.EMOTION_KEYWORDS.items():
@@ -467,7 +614,7 @@ class BlockSelector:
             if selected_block:
                 # Find the score for logging
                 selected_score = next((score for block, score in scored_blocks if block.id == selected_block.id), 0.0)
-                logger.info(f"Selected {block_type} block: score={selected_score:.3f}, topics={selected_block.topics[:2]}")
+                logger.info(f"[BlockSelection] Selected {block_type} block: id={selected_block.id[:8]}, score={selected_score:.3f}, topics={selected_block.topics}, text_preview={selected_block.text[:80]}...")
                 return selected_block
             
             # Fallback: return best block if weighted selection failed
@@ -774,10 +921,13 @@ class AmoraBlocksService:
             
             # Detect topics and emotions
             context_topics = request.context.get('topics', []) if request.context else []
+            normalized_question = self.detector.normalize_text(question)
             topics = self.detector.detect_topics(question, context_topics)
             emotions = self.detector.detect_emotions(question, question_embedding)
             
-            logger.info(f"Detected topics: {topics[:3]}, emotions: {emotions[:2]}")
+            logger.info(f"[AmoraBlocks] User message: '{question[:100]}'")
+            logger.info(f"[AmoraBlocks] Normalized: '{normalized_question[:100]}'")
+            logger.info(f"[AmoraBlocks] Detected topics: {topics}, emotions: {emotions}")
             
             # Update active topics and track turn counts
             for topic in topics:
