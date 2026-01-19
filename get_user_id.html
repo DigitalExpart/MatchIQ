@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Get User ID from localStorage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .result {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            word-break: break-all;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Get Your User ID</h1>
+    <p>This will read your user ID from localStorage.</p>
+    <button onclick="getUserId()">Get User ID</button>
+    <div id="result"></div>
+
+    <script>
+        function getUserId() {
+            const userId = localStorage.getItem('myMatchIQ_currentUserId');
+            const resultDiv = document.getElementById('result');
+            
+            if (userId) {
+                resultDiv.innerHTML = `
+                    <div class="result">
+                        <h3>✅ User ID Found:</h3>
+                        <p><strong>${userId}</strong></p>
+                        <p>Copy this ID and use it to test the backend:</p>
+                        <code>powershell -ExecutionPolicy Bypass -File "test_backend_auth.ps1" "${userId}"</code>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="result" style="background: #ffebee;">
+                        <h3>❌ No User ID Found</h3>
+                        <p>You are not logged in. Please sign in first.</p>
+                        <p>Available localStorage keys:</p>
+                        <ul>
+                            ${Object.keys(localStorage).map(key => `<li>${key}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+        }
+        
+        // Auto-run on load
+        window.onload = getUserId;
+    </script>
+</body>
+</html>

@@ -172,11 +172,35 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
         }
       };
 
+      // Get auth headers (same logic as amoraSessionService)
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+      };
+      
+      // Get user ID from auth service or localStorage
+      let userId: string | null = null;
+      try {
+        const { authService } = await import('../../utils/authService');
+        userId = authService.getCurrentUserId();
+      } catch (error) {
+        console.warn('Failed to get user ID from authService:', error);
+      }
+      
+      if (!userId) {
+        userId = localStorage.getItem('myMatchIQ_currentUserId');
+      }
+      
+      if (userId) {
+        headers['X-User-Id'] = userId;
+        console.log('[AICoachScreen] ✅ Using X-User-Id:', userId);
+      } else {
+        console.error('[AICoachScreen] ❌ No userId found! Cannot send message.');
+        throw new Error('No userId found. Please sign in again.');
+      }
+
       const response = await fetch(`${apiUrl}/coach/`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers,
         body: JSON.stringify(requestPayload),
         signal: AbortSignal.timeout(30000),
       });
