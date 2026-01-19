@@ -28,7 +28,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://macthiq-ai-ba
 
 class AmoraSessionService {
   /**
-   * Get auth token from Supabase session or localStorage
+   * Get auth token from Supabase session or auth service
    */
   private async getAuthHeaders(): Promise<HeadersInit> {
     const headers: HeadersInit = {
@@ -60,11 +60,25 @@ class AmoraSessionService {
       return headers;
     }
     
-    // Last resort: Try to get user ID from localStorage
+    // Last resort: Try to get user ID from auth service or localStorage
+    try {
+      const { authService } = await import('../utils/authService');
+      const userId = authService.getCurrentUserId();
+      
+      if (userId) {
+        headers['X-User-Id'] = userId;
+        console.log('[AmoraSessionService] Using X-User-Id header from authService:', userId);
+        return headers;
+      }
+    } catch (error) {
+      console.warn('[AmoraSessionService] Failed to get user ID from authService:', error);
+    }
+    
+    // Final fallback: Try localStorage directly
     const userId = localStorage.getItem('myMatchIQ_currentUserId');
     if (userId) {
       headers['X-User-Id'] = userId;
-      console.log('[AmoraSessionService] Using X-User-Id header:', userId);
+      console.log('[AmoraSessionService] Using X-User-Id header from localStorage:', userId);
       return headers;
     }
     
