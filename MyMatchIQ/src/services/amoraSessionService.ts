@@ -28,19 +28,47 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://macthiq-ai-ba
 
 class AmoraSessionService {
   /**
-   * Get auth token from localStorage or auth service
+   * Get auth token from Supabase session or localStorage
    */
-  private getAuthHeaders(): HeadersInit {
+  private async getAuthHeaders(): Promise<HeadersInit> {
     const headers: HeadersInit = {
       'Content-Type': 'application/json',
     };
     
-    // Try to get token from localStorage
-    const token = localStorage.getItem('token') || localStorage.getItem('myMatchIQ_token');
-    if (token) {
-      headers['Authorization'] = `Bearer ${token}`;
+    // Try to get token from Supabase session first
+    try {
+      const { supabase } = await import('../utils/supabaseClient');
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (session?.access_token) {
+        headers['Authorization'] = `Bearer ${session.access_token}`;
+        console.log('[AmoraSessionService] Using Supabase access token');
+        return headers;
+      }
+    } catch (error) {
+      console.warn('[AmoraSessionService] Failed to get Supabase session:', error);
     }
     
+    // Fallback: Try to get token from localStorage
+    const token = localStorage.getItem('token') || 
+                  localStorage.getItem('myMatchIQ_token') ||
+                  localStorage.getItem('myMatchIQ_authToken');
+    
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+      console.log('[AmoraSessionService] Using localStorage token');
+      return headers;
+    }
+    
+    // Last resort: Try to get user ID from localStorage
+    const userId = localStorage.getItem('myMatchIQ_currentUserId');
+    if (userId) {
+      headers['X-User-Id'] = userId;
+      console.log('[AmoraSessionService] Using X-User-Id header:', userId);
+      return headers;
+    }
+    
+    console.warn('[AmoraSessionService] No authentication found - user may not be logged in');
     return headers;
   }
 
@@ -49,9 +77,10 @@ class AmoraSessionService {
    */
   async listSessions(): Promise<AmoraSession[]> {
     try {
+      const headers = await this.getAuthHeaders();
       const response = await fetch(`${API_BASE_URL}/coach/sessions`, {
         method: 'GET',
-        headers: this.getAuthHeaders(),
+        headers,
       });
 
       if (!response.ok) {
@@ -75,9 +104,10 @@ class AmoraSessionService {
     follow_up_time?: string;
   }): Promise<AmoraSession> {
     try {
+      const headers = await this.getAuthHeaders();
       const response = await fetch(`${API_BASE_URL}/coach/sessions`, {
         method: 'POST',
-        headers: this.getAuthHeaders(),
+        headers,
         body: JSON.stringify(data),
       });
 
@@ -100,7 +130,7 @@ class AmoraSessionService {
     try {
       const response = await fetch(`${API_BASE_URL}/coach/sessions/${sessionId}`, {
         method: 'GET',
-        headers: this.getAuthHeaders(),
+        headers: await this.getAuthHeaders(),
       });
 
       if (!response.ok) {
@@ -129,7 +159,7 @@ class AmoraSessionService {
     try {
       const response = await fetch(`${API_BASE_URL}/coach/sessions/${sessionId}`, {
         method: 'PATCH',
-        headers: this.getAuthHeaders(),
+        headers: await this.getAuthHeaders(),
         body: JSON.stringify(data),
       });
 
@@ -152,7 +182,7 @@ class AmoraSessionService {
     try {
       const response = await fetch(`${API_BASE_URL}/coach/sessions/followups/due`, {
         method: 'GET',
-        headers: this.getAuthHeaders(),
+        headers: await this.getAuthHeaders(),
       });
 
       if (!response.ok) {
@@ -173,7 +203,7 @@ class AmoraSessionService {
     try {
       const response = await fetch(`${API_BASE_URL}/coach/sessions/feedback`, {
         method: 'POST',
-        headers: this.getAuthHeaders(),
+        headers: await this.getAuthHeaders(),
         body: JSON.stringify({
           message_id: messageId,
           feedback_type: feedbackType,
