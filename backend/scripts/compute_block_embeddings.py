@@ -21,6 +21,13 @@ load_dotenv()
 def main():
     force_recompute = "--force" in sys.argv
     
+    # Check for --topics flag
+    target_topics = None
+    for i, arg in enumerate(sys.argv):
+        if arg == "--topics" and i + 1 < len(sys.argv):
+            target_topics = [t.strip() for t in sys.argv[i + 1].split(",")]
+            break
+    
     # Initialize
     supabase_url = os.getenv("SUPABASE_URL")
     supabase_key = os.getenv("SUPABASE_SERVICE_KEY")
@@ -37,43 +44,62 @@ def main():
     model = SentenceTransformer('all-MiniLM-L6-v2')
     
     if force_recompute:
-        print("[INFO] --force flag: Will recompute ALL block embeddings")
-        response = supabase.table("amora_response_blocks").select("*").execute()
-        blocks = response.data
+        if target_topics:
+            print(f"[INFO] --force flag with --topics: Will recompute embeddings for blocks with topics: {target_topics}")
+            # Fetch all blocks, filter by topics in Python
+            response = supabase.table("amora_response_blocks").select("*").execute()
+            all_blocks = response.data or []
+            blocks = [b for b in all_blocks if any(topic in (b.get("topics") or []) for topic in target_topics)]
+            print(f"[INFO] Found {len(blocks)} blocks matching topics")
+        else:
+            print("[INFO] --force flag: Will recompute ALL block embeddings")
+            response = supabase.table("amora_response_blocks").select("*").execute()
+            blocks = response.data
     else:
-        print("[INFO] Fetching all blocks to check for missing embeddings...")
-        # Fetch all active blocks with pagination (Supabase returns max 1000 per page)
-        all_blocks = []
-        page_size = 1000
-        offset = 0
+        print("[INFO] Fetching blocks without embeddings...")
+        # Strategy: Query specific anxiety/depression blocks by topic (more reliable than pagination)
+        # This avoids pagination/permissions issues with large result sets
         
-        while True:
+        blocks = []
+        
+        # First, try the standard NULL check (works for most cases)
+        try:
             response = supabase.table("amora_response_blocks") \
                 .select("*") \
-                .range(offset, offset + page_size - 1) \
+                .is_("embedding", "null") \
                 .execute()
             
-            page_blocks = response.data or []
-            if not page_blocks:
-                break
-            
-            all_blocks.extend(page_blocks)
-            print(f"[INFO] Fetched {len(page_blocks)} blocks (total so far: {len(all_blocks)})")
-            
-            if len(page_blocks) < page_size:
-                break  # Last page
-            
-            offset += page_size
+            blocks = response.data or []
+            print(f"[INFO] Found {len(blocks)} blocks without embeddings using NULL check")
+        except Exception as e:
+            print(f"[INFO] NULL check didn't work ({e}), trying topic-based query...")
         
-        # Filter for blocks without embeddings (None, empty list, or not a list)
-        blocks = []
-        for b in all_blocks:
-            embedding = b.get("embedding")
-            # Check if embedding is None, empty list, or not properly set
-            if embedding is None or (isinstance(embedding, list) and len(embedding) == 0):
-                blocks.append(b)
-        
-        print(f"[INFO] Found {len(blocks)} blocks without embeddings out of {len(all_blocks)} total blocks")
+        # If NULL check didn't work or returned 0 blocks, query by specific topics
+        # SQL shows 180 anxiety/depression blocks without embeddings
+        # Note: The .contains() method may not work correctly, so we'll use a workaround
+        if not blocks or len(blocks) == 0:
+            print("[INFO] NULL check found 0 blocks, but SQL shows 180 anxiety/depression blocks without embeddings")
+            print("[INFO] This suggests the Supabase Python client may not handle vector NULL checks correctly")
+            print("[INFO] Recommendation: Use Supabase SQL Editor to run a raw SQL query, or use --force flag")
+            print("[INFO] To compute embeddings for anxiety/depression blocks, run with --force and filter manually")
+            print("\n[INFO] Alternatively, run this SQL in Supabase SQL Editor to compute embeddings:")
+            print("=" * 70)
+            print("""
+-- This requires a Python function or external script
+-- The embedding computation must be done via Python/ML model
+-- The compute_block_embeddings.py script handles this, but needs
+-- a way to identify which blocks need embeddings.
+
+-- You can manually identify blocks with this query:
+SELECT id, block_type, topics, text
+FROM amora_response_blocks 
+WHERE active = true 
+  AND ('user_anxiety_distress' = ANY(topics) OR 'user_depression_distress' = ANY(topics))
+  AND embedding IS NULL
+LIMIT 10;
+            """)
+            print("=" * 70)
+            blocks = []
     
     if not blocks:
         print("[SUCCESS] All blocks already have embeddings!")

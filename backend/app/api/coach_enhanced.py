@@ -2,7 +2,7 @@
 Enhanced Coach API endpoints for Amora V1.
 Now uses BLOCKS architecture for rich, varied, non-repetitive responses.
 """
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from uuid import UUID
 import logging
 
@@ -15,11 +15,41 @@ router = APIRouter(prefix="/coach", tags=["coach"])
 logger = logging.getLogger(__name__)
 
 
-async def get_user_id_from_auth() -> UUID:
+async def get_user_id_from_auth(request: Request) -> UUID:
     """Extract user ID from authentication token."""
-    # TODO: Implement actual JWT token validation
-    # For now, return a test UUID
-    return UUID("00000000-0000-0000-0000-000000000000")
+    # Try to get user ID from Authorization header (JWT token)
+    if request:
+        auth_header = request.headers.get("Authorization", "")
+        if auth_header.startswith("Bearer "):
+            token = auth_header.replace("Bearer ", "")
+            # Decode JWT token to get user_id (Supabase JWT contains 'sub' claim with user ID)
+            try:
+                import jwt
+                # For Supabase tokens, decode without verification for now
+                # In production, verify with Supabase JWT secret
+                decoded = jwt.decode(token, options={"verify_signature": False})
+                user_id_str = decoded.get("sub")  # Supabase JWT uses 'sub' for user ID
+                
+                if user_id_str:
+                    return UUID(user_id_str)
+            except ImportError:
+                logger.warning("PyJWT not installed, cannot decode JWT tokens")
+            except Exception as e:
+                logger.warning(f"Failed to decode JWT token: {e}")
+        
+        # Fallback: Try X-User-Id header (for development/testing)
+        user_id_header = request.headers.get("X-User-Id")
+        if user_id_header:
+            try:
+                return UUID(user_id_header)
+            except ValueError:
+                pass
+    
+    # If no valid authentication found, raise 401
+    raise HTTPException(
+        status_code=401,
+        detail="Authentication required. Please provide a valid JWT token in Authorization header."
+    )
 
 
 async def check_subscription_status(user_id: UUID) -> bool:
