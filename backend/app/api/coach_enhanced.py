@@ -10,14 +10,20 @@ from app.models.pydantic_models import CoachRequest, CoachResponse
 from app.services.amora_blocks_service import AmoraBlocksService
 from app.services.amora_enhanced_service import AmoraEnhancedService
 from app.database import get_supabase_client
+from app.config import settings
 
 router = APIRouter(prefix="/coach", tags=["coach"])
 logger = logging.getLogger(__name__)
 
 
 async def get_user_id_from_auth(request: Request) -> UUID:
-    """Extract user ID from authentication token."""
-    # Try to get user ID from Authorization header (JWT token)
+    """Extract user ID from authentication token or X-User-Id header."""
+    # Log all headers for debugging (in development)
+    if settings.DEBUG:
+        all_headers = dict(request.headers)
+        logger.debug(f"Request headers: {list(all_headers.keys())}")
+    
+    # Try to get user ID from Authorization header (JWT token) first
     auth_header = request.headers.get("Authorization", "")
     
     if auth_header.startswith("Bearer "):
@@ -33,7 +39,7 @@ async def get_user_id_from_auth(request: Request) -> UUID:
                 user_id_str = decoded.get("sub")  # Supabase JWT uses 'sub' for user ID
                 
                 if user_id_str:
-                    logger.debug(f"Extracted user_id from JWT: {user_id_str}")
+                    logger.info(f"✅ Authenticated via JWT: {user_id_str}")
                     return UUID(user_id_str)
                 else:
                     logger.warning(f"JWT decoded but no 'sub' claim found. Claims: {list(decoded.keys())}")
@@ -44,22 +50,29 @@ async def get_user_id_from_auth(request: Request) -> UUID:
         else:
             logger.warning("Bearer token is empty")
     else:
-        logger.debug(f"No Bearer token found. Authorization header: {auth_header[:50] if auth_header else 'None'}")
+        if auth_header:
+            logger.debug(f"Authorization header present but not Bearer: {auth_header[:50]}")
+        else:
+            logger.debug("No Authorization header found")
     
-    # Fallback: Try X-User-Id header (for development/testing)
-    user_id_header = request.headers.get("X-User-Id")
+    # Fallback: Try X-User-Id header (for custom auth / development)
+    user_id_header = request.headers.get("X-User-Id") or request.headers.get("x-user-id")
     if user_id_header:
         try:
-            logger.debug(f"Using X-User-Id header: {user_id_header}")
-            return UUID(user_id_header)
-        except ValueError:
-            logger.warning(f"Invalid X-User-Id header format: {user_id_header}")
+            user_id = UUID(user_id_header)
+            logger.info(f"✅ Authenticated via X-User-Id: {user_id}")
+            return user_id
+        except ValueError as e:
+            logger.warning(f"Invalid X-User-Id header format: {user_id_header} - {e}")
     
     # If no valid authentication found, raise 401
-    logger.warning(f"Authentication failed. Headers: Authorization={bool(auth_header)}, X-User-Id={bool(user_id_header)}")
+    logger.warning(f"❌ Authentication failed. Authorization header present: {bool(auth_header)}, X-User-Id present: {bool(user_id_header)}")
+    if user_id_header:
+        logger.warning(f"   X-User-Id value: {user_id_header} (could not parse as UUID)")
+    
     raise HTTPException(
         status_code=401,
-        detail="Authentication required. Please provide a valid JWT token in Authorization header."
+        detail="Authentication required. Please provide either a valid JWT token in Authorization header (Bearer <token>) or X-User-Id header."
     )
 
 
