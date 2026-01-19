@@ -62,35 +62,6 @@ class AmoraSessionService {
     headers['X-User-Id'] = userId;
     console.log('[AmoraSessionService] ✅ Using X-User-Id:', userId);
     return headers;
-    
-    // Try Supabase session (if user is using Supabase Auth)
-    try {
-      const { supabase } = await import('../utils/supabaseClient');
-      const { data: { session } } = await supabase.auth.getSession();
-      
-      if (session?.access_token) {
-        headers['Authorization'] = `Bearer ${session.access_token}`;
-        console.log('[AmoraSessionService] ✅ Using Supabase access token');
-        return headers;
-      }
-    } catch (error) {
-      // Supabase not available or not using Supabase Auth - that's okay
-    }
-    
-    // Try JWT token from localStorage
-    const token = localStorage.getItem('token') || 
-                  localStorage.getItem('myMatchIQ_token') ||
-                  localStorage.getItem('myMatchIQ_authToken');
-    
-    if (token) {
-      headers['Authorization'] = `Bearer ${token}`;
-      console.log('[AmoraSessionService] ✅ Using JWT token from localStorage');
-      return headers;
-    }
-    
-    console.error('[AmoraSessionService] ❌ No authentication found! User may not be logged in.');
-    console.error('[AmoraSessionService] localStorage keys:', Object.keys(localStorage));
-    return headers;
   }
 
   /**
