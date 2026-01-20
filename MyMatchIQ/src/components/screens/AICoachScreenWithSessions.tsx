@@ -460,8 +460,52 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
 
       {/* Input + Disclaimer (sticky) */}
       <div className="sticky bottom-0 bg-white border-t border-gray-200">
-        {/* Disclaimer Footer */}
-        <div className="bg-amber-50 border-b border-amber-200 px-6 py-2">
+        {/* Input */}
+        <div className="px-6 py-4">
+          {!currentSession && (
+            <div className="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
+              <p className="text-sm text-yellow-800 mb-2">
+                Please create or select a session to start chatting
+              </p>
+              <button
+                onClick={() => setShowCreateModal(true)}
+                className="text-sm font-medium text-yellow-900 hover:underline"
+              >
+                Create a new session →
+              </button>
+            </div>
+          )}
+          <div className="max-w-3xl mx-auto flex gap-3">
+            <input
+              ref={inputRef}
+              id="amora-chat-input"
+              name="amora-message"
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputValue)}
+              placeholder={currentSession ? "Ask me anything about dating..." : "Create a session first..."}
+              autoComplete="off"
+              aria-label="Chat with Amora"
+              disabled={!currentSession || isLoading}
+              className="flex-1 px-5 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 disabled:opacity-50"
+            />
+            <button
+              onClick={() => handleSendMessage(inputValue)}
+              disabled={!inputValue.trim() || isLoading || !currentSession}
+              className={`px-6 py-3 rounded-2xl transition-all ${
+                inputValue.trim() && currentSession && !isLoading
+                  ? 'bg-gradient-to-r from-purple-500 to-violet-500 text-white shadow-lg hover:shadow-xl'
+                  : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+              }`}
+            >
+              <Send className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        {/* Disclaimer Footer (under input) */}
+        <div className="bg-amber-50 border-t border-amber-200 px-6 py-2">
           <div className="max-w-3xl mx-auto flex items-start gap-2">
             <AlertTriangle className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
             <div className="flex-1">
@@ -478,50 +522,6 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
               </button>
             </div>
           </div>
-        </div>
-
-        {/* Input */}
-        <div className="px-6 py-4">
-        {!currentSession && (
-          <div className="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
-            <p className="text-sm text-yellow-800 mb-2">
-              Please create or select a session to start chatting
-            </p>
-            <button
-              onClick={() => setShowCreateModal(true)}
-              className="text-sm font-medium text-yellow-900 hover:underline"
-            >
-              Create a new session →
-            </button>
-          </div>
-        )}
-        <div className="max-w-3xl mx-auto flex gap-3">
-          <input
-            ref={inputRef}
-            id="amora-chat-input"
-            name="amora-message"
-            type="text"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputValue)}
-            placeholder={currentSession ? "Ask me anything about dating..." : "Create a session first..."}
-            autoComplete="off"
-            aria-label="Chat with Amora"
-            disabled={!currentSession || isLoading}
-            className="flex-1 px-5 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 disabled:opacity-50"
-          />
-          <button
-            onClick={() => handleSendMessage(inputValue)}
-            disabled={!inputValue.trim() || isLoading || !currentSession}
-            className={`px-6 py-3 rounded-2xl transition-all ${
-              inputValue.trim() && currentSession && !isLoading
-                ? 'bg-gradient-to-r from-purple-500 to-violet-500 text-white shadow-lg hover:shadow-xl'
-                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-            }`}
-          >
-            <Send className="w-5 h-5" />
-          </button>
-        </div>
         </div>
       </div>
     </div>
