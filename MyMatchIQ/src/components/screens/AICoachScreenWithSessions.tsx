@@ -506,12 +506,22 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
       <div className="bg-amber-50 border-t border-amber-200 px-6 py-3">
         <div className="max-w-3xl mx-auto flex items-start gap-2">
           <AlertTriangle className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
-          <p className="text-xs text-amber-800 leading-relaxed">
-            <strong>Disclaimer:</strong> Amora's responses are generated using AI technology and are not 100% accurate. 
-            The AI may make mistakes, misunderstand context, or provide responses that don't fully match your situation. 
-            Amora is not a replacement for professional therapy or counseling. For serious relationship issues or mental 
-            health concerns, please seek professional help.
-          </p>
+          <div className="flex-1">
+            <p className="text-xs text-amber-800 leading-relaxed">
+              <strong>Disclaimer:</strong> Amora's responses are generated using AI technology and are not 100% accurate.
+              The AI may make mistakes, misunderstand context, or provide responses that don't fully match your situation.
+              Amora is not a replacement for professional therapy or counseling. For serious relationship issues or mental
+              health concerns, please seek professional help.
+            </p>
+            <button
+              type="button"
+              onClick={() => setShowDisclaimer(true)}
+              className="mt-1 text-xs font-medium text-amber-900 underline underline-offset-2 hover:text-amber-950"
+              aria-label="View AI Coach disclaimer"
+            >
+              View disclaimer
+            </button>
+          </div>
         </div>
       </div>
     </div>
