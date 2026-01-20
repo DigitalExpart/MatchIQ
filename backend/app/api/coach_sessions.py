@@ -2,7 +2,7 @@
 Coaching Session Management API endpoints.
 Handles CRUD operations for Amora coaching sessions.
 """
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from uuid import UUID
 from typing import List, Optional
 import logging
@@ -13,7 +13,8 @@ from app.models.pydantic_models import (
     UpdateSessionRequest,
     SessionResponse,
     FollowUpResponse,
-    FeedbackRequest
+    FeedbackRequest,
+    SessionMessageResponse
 )
 from app.models.db_models import AmoraSession
 from app.database import get_supabase_client
@@ -144,6 +145,54 @@ async def get_session(
         raise
     except Exception as e:
         logger.error(f"Error getting session: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/{session_id}/messages", response_model=List[SessionMessageResponse])
+async def list_session_messages(
+    session_id: UUID,
+    limit: int = Query(default=50, ge=1, le=200),
+    user_id: UUID = Depends(get_user_id_from_auth)
+):
+    """Get recent messages for a specific coaching session (for chat history)."""
+    try:
+        supabase = get_supabase_client()
+
+        # Verify session belongs to user
+        session_response = supabase.table("amora_sessions") \
+            .select("id") \
+            .eq("id", str(session_id)) \
+            .eq("user_id", str(user_id)) \
+            .single() \
+            .execute()
+
+        if not session_response.data:
+            raise HTTPException(status_code=404, detail="Session not found")
+
+        # Fetch messages oldest -> newest (so UI can render naturally)
+        messages_response = supabase.table("amora_session_messages") \
+            .select("*") \
+            .eq("session_id", str(session_id)) \
+            .order("created_at", desc=False) \
+            .limit(limit) \
+            .execute()
+
+        results: List[SessionMessageResponse] = []
+        for row in (messages_response.data or []):
+            results.append(SessionMessageResponse(
+                id=UUID(row["id"]),
+                session_id=UUID(row["session_id"]),
+                sender=row["sender"],
+                message_text=row.get("message_text", ""),
+                created_at=row.get("created_at") or datetime.now(),
+                metadata=row.get("metadata") or None
+            ))
+
+        return results
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error listing session messages: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 

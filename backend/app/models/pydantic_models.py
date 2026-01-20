@@ -214,3 +214,13 @@ class FeedbackRequest(BaseModel):
     message_id: UUID
     feedback_type: str  # "like", "dislike", "regenerate"
 
+
+# Session message history
+class SessionMessageResponse(BaseModel):
+    id: UUID
+    session_id: UUID
+    sender: str  # "user" | "amora"
+    message_text: str
+    created_at: datetime
+    metadata: Optional[Dict[str, Any]] = None
+
