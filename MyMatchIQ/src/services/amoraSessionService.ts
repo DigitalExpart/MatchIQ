@@ -24,6 +24,15 @@ export interface FollowUp {
   prompt: string;
 }
 
+export interface AmoraSessionMessage {
+  id: string;
+  session_id: string;
+  sender: 'user' | 'amora';
+  message_text: string;
+  created_at: string;
+  metadata?: Record<string, any> | null;
+}
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://macthiq-ai-backend.onrender.com/api/v1';
 
 class AmoraSessionService {
@@ -145,6 +154,28 @@ class AmoraSessionService {
     } catch (error) {
       console.error('Error getting session:', error);
       throw error;
+    }
+  }
+
+  /**
+   * Get recent messages for a session (chat history)
+   */
+  async getSessionMessages(sessionId: string, limit: number = 50): Promise<AmoraSessionMessage[]> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/coach/sessions/${sessionId}/messages?limit=${limit}`, {
+        method: 'GET',
+        headers: await this.getAuthHeaders(),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Failed to fetch session messages: ${errorText}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting session messages:', error);
+      return [];
     }
   }
 

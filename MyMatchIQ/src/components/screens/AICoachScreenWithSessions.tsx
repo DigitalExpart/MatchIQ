@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { ArrowLeft, Send, Heart, Menu, X, FileText, AlertTriangle } from 'lucide-react';
-import { amoraSessionService, AmoraSession } from '../../services/amoraSessionService';
+import { amoraSessionService, AmoraSession, AmoraSessionMessage } from '../../services/amoraSessionService';
 import { SessionList } from '../ai/SessionList';
 import { CreateSessionModal } from '../ai/CreateSessionModal';
 import { MessageFeedback } from '../ai/MessageFeedback';
@@ -103,6 +103,22 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
     // Load session summary if available
     if (session.summary_text) {
       setShowSummary(true);
+    }
+
+    // Load recent message history for this session
+    try {
+      const history: AmoraSessionMessage[] = await amoraSessionService.getSessionMessages(session.id, 100);
+      const mapped: Message[] = history.map((m) => ({
+        id: m.id,
+        type: m.sender === 'amora' ? 'ai' : 'user',
+        content: m.message_text,
+        timestamp: new Date(m.created_at),
+        // Enable feedback buttons for AI messages (messageId = backend message UUID)
+        messageId: m.sender === 'amora' ? m.id : undefined,
+      }));
+      setMessages(mapped);
+    } catch (e) {
+      console.error('Failed to load session history:', e);
     }
   };
 
