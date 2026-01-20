@@ -13,7 +13,8 @@ from app.models.pydantic_models import (
     UpdateSessionRequest,
     SessionResponse,
     FollowUpResponse,
-    FeedbackRequest
+    FeedbackRequest,
+    SessionMessageResponse
 )
 from app.models.db_models import AmoraSession
 from app.database import get_supabase_client
@@ -206,6 +207,69 @@ async def update_session(
         raise
     except Exception as e:
         logger.error(f"Error updating session: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/{session_id}/messages", response_model=List[SessionMessageResponse])
+async def get_session_messages(
+    session_id: UUID,
+    limit: int = 100,
+    user_id: UUID = Depends(get_user_id_from_auth)
+):
+    """Get message history for a coaching session."""
+    try:
+        supabase = get_supabase_client()
+        
+        # First verify the session belongs to the user
+        session_check = supabase.table("amora_sessions") \
+            .select("id") \
+            .eq("id", str(session_id)) \
+            .eq("user_id", str(user_id)) \
+            .single() \
+            .execute()
+        
+        if not session_check.data:
+            raise HTTPException(status_code=404, detail="Session not found or access denied")
+        
+        # Fetch messages for this session
+        response = supabase.table("amora_session_messages") \
+            .select("*") \
+            .eq("session_id", str(session_id)) \
+            .order("created_at", desc=False) \
+            .limit(limit) \
+            .execute()
+        
+        messages = []
+        for row in (response.data or []):
+            # Parse created_at (Supabase returns ISO strings)
+            created_at_value = row.get("created_at")
+            if isinstance(created_at_value, str):
+                try:
+                    # Handle both "2024-01-01T12:00:00Z" and "2024-01-01T12:00:00+00:00" formats
+                    if created_at_value.endswith("Z"):
+                        created_at_value = created_at_value.replace("Z", "+00:00")
+                    created_at_parsed = datetime.fromisoformat(created_at_value)
+                except Exception:
+                    created_at_parsed = datetime.now()
+            elif isinstance(created_at_value, datetime):
+                created_at_parsed = created_at_value
+            else:
+                created_at_parsed = datetime.now()
+            
+            messages.append(SessionMessageResponse(
+                id=UUID(row["id"]),
+                session_id=UUID(row["session_id"]),
+                sender=row["sender"],
+                message_text=row["message_text"],
+                created_at=created_at_parsed,
+                metadata=row.get("metadata")
+            ))
+        
+        return messages
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error getting session messages: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 
