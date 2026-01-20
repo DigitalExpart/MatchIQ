@@ -21,6 +21,7 @@ interface Message {
 }
 
 const DISCLAIMER_ACCEPTANCE_KEY = 'amora_disclaimer_accepted';
+const LAST_SELECTED_SESSION_KEY = 'amora_last_selected_session_id';
 
 export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
   // Disclaimer state
@@ -82,8 +83,10 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
       
       // Auto-select first active session or create one if none exist
       if (data.length > 0 && !currentSession) {
-        const activeSession = data.find(s => s.status === 'ACTIVE') || data[0];
-        selectSession(activeSession);
+        const lastSelectedId = localStorage.getItem(LAST_SELECTED_SESSION_KEY);
+        const lastSelectedSession = lastSelectedId ? data.find(s => s.id === lastSelectedId) : undefined;
+        const fallbackSession = data.find(s => s.status === 'ACTIVE') || data[0];
+        selectSession(lastSelectedSession || fallbackSession);
       }
     } catch (error) {
       console.error('Failed to load sessions:', error);
@@ -154,6 +157,13 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
   };
 
   const selectSession = async (session: AmoraSession) => {
+    // Persist selection so refresh returns to the same session
+    try {
+      localStorage.setItem(LAST_SELECTED_SESSION_KEY, session.id);
+    } catch (e) {
+      console.warn('Failed to persist last selected session:', e);
+    }
+
     setCurrentSession(session);
     setShowSessionList(false);
     setMessages([]);
