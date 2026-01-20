@@ -290,11 +290,19 @@ class TopicEmotionDetector:
     TOPIC_POLICIES = {
         'breakup_intimacy_loss': {
             'allow': {'breakup_intimacy_loss', 'breakup_grief', 'breakup', 'heartbreak'},
-            'deny': {'unlovable', 'lust_vs_love', 'future_mismatch', 'different_futures'},
+            'deny': {'unlovable', 'lust_vs_love', 'future_mismatch', 'different_futures', 'relationship_intimacy_concerns'},
         },
         'breakup_grief': {
             'allow': {'breakup_grief', 'heartbreak', 'breakup'},
-            'deny': {'unlovable'},
+            'deny': {'unlovable', 'relationship_intimacy_concerns'},
+        },
+        'relationship_intimacy_concerns': {
+            'allow': {'relationship_intimacy_concerns', 'marriage_strain', 'communication'},
+            'deny': {'breakup_intimacy_loss', 'breakup_grief', 'breakup'},
+        },
+        'heartbreak_general': {
+            'allow': {'heartbreak_general'},
+            'deny': {'breakup_grief', 'breakup_intimacy_loss', 'breakup'},
         },
     }
     
@@ -340,6 +348,21 @@ class TopicEmotionDetector:
             'miss our intimacy', 'miss the intimacy', 'miss the physical',
             'miss the physical connection', 'miss the chemistry',
             'missing sex with my ex', 'missing intimacy with ex',
+        ],
+        # NEW: Heartbreak NOT explicitly about breakup
+        'heartbreak_general': ['heartbroken', 'heartbreak', 'broken heart'],
+        # NEW: Intimacy concerns in CURRENT relationship (no breakup/ex signal)
+        'relationship_intimacy_concerns': [
+            'miss our sex life', 'miss our sex', 'miss the sex', 'miss having sex',
+            'miss our intimacy', 'miss the intimacy', 'miss the physical',
+            'miss the physical connection', 'missing sex life', 'missing our sex',
+        ],
+        # NEW: Partner withdrawing/pulling away
+        'partner_withdrawing': [
+            'no longer gives attention', 'ignores messages', 'leaves unread', 'doesn\'t pick calls',
+            'used to call', 'used to text', 'now opposite', 'pulling away', 'distant',
+            'leaves my messages unread', 'doesn\'t pick my calls', 'ignoring me',
+            'not responding', 'not calling back', 'stopped calling', 'stopped texting',
         ],
         'cheating': ['cheating', 'cheated', 'affair', 'infidelity', 'unfaithful', 'seeing someone else', 'caught them'],
         'cheating_self': ['i cheated', 'i had an affair', 'i was unfaithful', 'i kissed someone', 'i slept with'],
@@ -431,29 +454,46 @@ class TopicEmotionDetector:
         detected = set()
         high_priority_detected = []
         
-        # Step 1: Check HIGH_PRIORITY topics with dual-signal requirement for breakup_intimacy_loss
-        # breakup_intimacy_loss requires BOTH breakup/ex signal AND intimacy signal
-        breakup_signals = ['ex', 'my ex', 'breakup', 'broke up', 'heartbroken', 'ended things', 'dumped', 'left me']
+        # Step 1: Check HIGH_PRIORITY topics with dual-signal requirements
+        breakup_signals = ['ex', 'my ex', 'breakup', 'broke up', 'ended things', 'dumped', 'left me']
         intimacy_signals = ['sex life', 'miss sex', 'miss our sex', 'intimacy', 'physical connection', 'chemistry', 'miss the way we', 'miss how we']
+        heartbreak_words = ['heartbroken', 'heartbreak', 'broken heart']
         
         is_breakup = any(signal in text_lower for signal in breakup_signals)
         is_intimacy = any(signal in text_lower for signal in intimacy_signals)
+        is_heartbreak = any(kw in text_lower for kw in heartbreak_words)
         
+        # breakup_intimacy_loss requires BOTH breakup/ex signal AND intimacy signal
         if is_breakup and is_intimacy:
             high_priority_detected.append('breakup_intimacy_loss')
             detected.add('breakup_intimacy_loss')
             logger.info(f"[TopicDetection] HIGH PRIORITY topic detected: breakup_intimacy_loss (dual-signal: breakup={is_breakup}, intimacy={is_intimacy}, normalized text: {normalized_text[:100]})")
         
-        # breakup_grief: check for heartbreak/grieving keywords
-        if any(kw in text_lower for kw in ['heartbroken', 'heartbreak', 'broken heart', 'grieving the breakup', 'grieving the loss', 'still grieving']):
+        # breakup_grief requires BOTH heartbreak word AND breakup signal
+        if is_heartbreak and is_breakup:
             high_priority_detected.append('breakup_grief')
             detected.add('breakup_grief')
-            logger.info(f"[TopicDetection] HIGH PRIORITY topic detected: breakup_grief (normalized text: {normalized_text[:100]})")
+            logger.info(f"[TopicDetection] HIGH PRIORITY topic detected: breakup_grief (dual-signal: heartbreak={is_heartbreak}, breakup={is_breakup}, normalized text: {normalized_text[:100]})")
+        
+        # heartbreak_general: heartbreak WITHOUT breakup signal
+        if is_heartbreak and not is_breakup:
+            high_priority_detected.append('heartbreak_general')
+            detected.add('heartbreak_general')
+            logger.info(f"[TopicDetection] HIGH PRIORITY topic detected: heartbreak_general (heartbreak without breakup signal, normalized text: {normalized_text[:100]})")
+        
+        # relationship_intimacy_concerns: intimacy signal WITHOUT breakup/ex signal
+        if is_intimacy and not is_breakup:
+            high_priority_detected.append('relationship_intimacy_concerns')
+            detected.add('relationship_intimacy_concerns')
+            logger.info(f"[TopicDetection] HIGH PRIORITY topic detected: relationship_intimacy_concerns (intimacy without breakup signal, normalized text: {normalized_text[:100]})")
         
         # Step 2: Check regular topics (always check, but high-priority takes precedence)
         for topic, keywords in cls.TOPIC_KEYWORDS.items():
             # Skip if already detected as high-priority (avoid duplicates)
             if topic not in high_priority_detected:
+                # Skip topics that require dual-signal detection (handled in Step 1)
+                if topic in ['breakup_intimacy_loss', 'breakup_grief', 'heartbreak_general', 'relationship_intimacy_concerns']:
+                    continue
                 if any(keyword in text_lower for keyword in keywords):
                     detected.add(topic)
         
@@ -638,6 +678,9 @@ class BlockSelector:
                 return None
             
             # Score each candidate
+            # Extract context topics from state if available (for linking bonus)
+            context_topics = getattr(self, '_context_topics', None)
+            
             scored_blocks = []
             for block in candidates:
                 score = self._score_block(
@@ -645,7 +688,8 @@ class BlockSelector:
                     question_embedding,
                     topics,
                     emotions,
-                    recent_block_ids
+                    recent_block_ids,
+                    context_topics=context_topics
                 )
                 scored_blocks.append((block, score))
             
@@ -710,10 +754,39 @@ class BlockSelector:
         denied_topics = policy.get('deny', set())
         text_lower = normalized_text.lower() if normalized_text else ""
         
+        # Check if detected topics include breakup-related topics
+        breakup_related_topics = {'breakup_grief', 'breakup_intimacy_loss', 'breakup'}
+        has_breakup_topic = bool(set(topics) & breakup_related_topics)
+        
         filtered_blocks = []
         for block, score in scored_blocks:
             # Defensive: handle None or empty topics
             block_topics = set(block.topics or [])
+            
+            # BLOCK TEXT VALIDATION: Filter out blocks with "ex"/"breakup" if user hasn't mentioned them
+            # Check for breakup/ex language in block text (more specific patterns)
+            breakup_phrases_in_block = [
+                'with an ex', 'with your ex', 'with my ex', 'with the ex',
+                'your ex', 'my ex', 'the ex',
+                'breakup', 'broke up', 'ended things', 'after the breakup',
+                'since the breakup', 'since we broke up'
+            ]
+            breakup_keywords_in_block = any(phrase in block.text.lower() for phrase in breakup_phrases_in_block)
+            
+            # Check if user mentioned breakup/ex in current message
+            breakup_keywords_in_user = any(kw in text_lower for kw in [
+                'ex', 'my ex', 'your ex', 'the ex',
+                'breakup', 'broke up', 'breaking up', 'ended things', 
+                'dumped', 'left me', 'after we broke up', 'since the breakup'
+            ])
+            
+            # CRITICAL: Filter out blocks with breakup/ex language if:
+            # 1. Block text contains breakup/ex phrases AND
+            # 2. User didn't mention breakup/ex in current message AND
+            # 3. Detected topics don't include breakup-related topics
+            if breakup_keywords_in_block and not breakup_keywords_in_user and not has_breakup_topic:
+                logger.warning(f"[BlockFilter] FILTERED OUT block {block.id[:8]} - contains breakup/ex language but user didn't mention breakup and no breakup topic detected. Block text: '{block.text[:100]}...' User text: '{normalized_text[:100]}...' Detected topics: {topics}")
+                continue
             
             # Check if block has any denied topics
             has_denied = bool(block_topics & denied_topics)
@@ -817,7 +890,8 @@ class BlockSelector:
         question_embedding: np.ndarray,
         topics: List[str],
         emotions: List[str],
-        recent_block_ids: List[str]
+        recent_block_ids: List[str],
+        context_topics: Optional[List[str]] = None
     ) -> float:
         """
         Score a block based on multiple factors.
@@ -825,6 +899,7 @@ class BlockSelector:
         Factors:
         - Semantic similarity (0-1)
         - Topic overlap (0-0.3 bonus)
+        - Linking bonus: if block has multiple topics matching current + context (0-0.4 bonus)
         - Emotion overlap (0-0.2 bonus)
         - Priority (normalized 0-0.1 bonus)
         - Repetition penalty (-0.5 if recently used)
@@ -841,6 +916,23 @@ class BlockSelector:
         topic_overlap = len(set(topics) & set(block.topics))
         if topic_overlap > 0:
             score += min(topic_overlap * 0.15, 0.3)
+        
+        # LINKING BONUS: If block has multiple topics matching current + context topics
+        # This prioritizes linking blocks when session continuity is present
+        if context_topics and len(block.topics) > 1:
+            current_topics_set = set(topics)
+            context_topics_set = set(context_topics)
+            block_topics_set = set(block.topics)
+            
+            # Check if block has topics from BOTH current and context
+            has_current_topic = bool(block_topics_set & current_topics_set)
+            has_context_topic = bool(block_topics_set & context_topics_set)
+            
+            if has_current_topic and has_context_topic:
+                # Strong bonus for linking blocks (0.3-0.4)
+                linking_bonus = 0.3 + (len(block_topics_set & (current_topics_set | context_topics_set)) * 0.05)
+                score += min(linking_bonus, 0.4)
+                logger.info(f"[BlockScoring] Linking bonus applied: +{min(linking_bonus, 0.4):.3f} (block topics: {block.topics}, current: {topics}, context: {context_topics})")
         
         # Emotion overlap bonus
         emotion_overlap = len(set(emotions) & set(block.emotions))
@@ -1097,6 +1189,9 @@ class AmoraBlocksService:
             normalization = None
             exploration = None
             insight = None
+            
+            # Set context topics in block selector for linking bonus
+            self.block_selector._context_topics = context_topics[:3] if context_topics else []
             
             # Select reflection blocks
             if block_config['reflection'] > 0:
