@@ -187,13 +187,22 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
     selectSession(session);
   };
 
-  const handleFollowUpSelect = (sessionId: string, prompt: string) => {
+  const handleFollowUpSelect = async (sessionId: string, prompt: string) => {
     // Find and select the session
     const session = sessions.find(s => s.id === sessionId);
     if (session) {
-      selectSession(session);
-      // Pre-fill the prompt
-      setInputValue(prompt);
+      await selectSession(session);
+      // Automatically send the follow-up prompt as a message from Amora
+      // Add it as an AI message in the chat history
+      const followUpMessage: Message = {
+        id: `followup-${Date.now()}`,
+        type: 'ai',
+        content: prompt,
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, followUpMessage]);
+      // Pre-fill the input so user can respond
+      setInputValue('');
       inputRef.current?.focus();
     }
   };
