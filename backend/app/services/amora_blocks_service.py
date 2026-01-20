@@ -286,6 +286,24 @@ class TopicEmotionDetector:
         
         return text.strip()
     
+    # Topic conflict policies: define allowed/denied topics per forced intent
+    TOPIC_POLICIES = {
+        'breakup_intimacy_loss': {
+            'allow': {'breakup_intimacy_loss', 'breakup_grief', 'breakup', 'heartbreak'},
+            'deny': {'unlovable', 'lust_vs_love', 'future_mismatch', 'different_futures'},
+        },
+        'breakup_grief': {
+            'allow': {'breakup_grief', 'heartbreak', 'breakup'},
+            'deny': {'unlovable'},
+        },
+    }
+    
+    # Explicit mention gates: topics that require explicit user statements
+    EXPLICIT_MENTION_GATES = {
+        'unlovable': ['unlovable', 'not lovable', 'no one will love me', 'worthless', 'feel unlovable', 'i am unlovable', 'im unlovable'],
+        'lust_vs_love': ['lust or love', 'attraction or love', 'just lust', 'sexual chemistry'],
+    }
+    
     # Comprehensive topic keywords
     # HIGH PRIORITY topics (checked first, override others)
     HIGH_PRIORITY_TOPICS = {
@@ -397,13 +415,14 @@ class TopicEmotionDetector:
     @classmethod
     def detect_topics(cls, text: str, context_topics: Optional[List[str]] = None) -> List[str]:
         """
-        Detect topics from user message with priority-based routing.
+        Detect topics from user message with priority-based routing and deterministic ordering.
         
         Process:
         1. Normalize text (lowercase, contractions, punctuation)
-        2. Check HIGH_PRIORITY_TOPICS first (these override others)
+        2. Check HIGH_PRIORITY topics with dual-signal detection
         3. Check regular TOPIC_KEYWORDS
         4. Apply topic whitelist guardrails
+        5. Return topics in deterministic order (high-priority first)
         """
         # Normalize text for better matching
         normalized_text = cls.normalize_text(text)
@@ -412,12 +431,24 @@ class TopicEmotionDetector:
         detected = set()
         high_priority_detected = []
         
-        # Step 1: Check HIGH_PRIORITY topics first (these override)
-        for topic, keywords in cls.HIGH_PRIORITY_TOPICS.items():
-            if any(keyword in text_lower for keyword in keywords):
-                high_priority_detected.append(topic)
-                detected.add(topic)
-                logger.info(f"[TopicDetection] HIGH PRIORITY topic detected: {topic} (normalized text: {normalized_text[:100]})")
+        # Step 1: Check HIGH_PRIORITY topics with dual-signal requirement for breakup_intimacy_loss
+        # breakup_intimacy_loss requires BOTH breakup/ex signal AND intimacy signal
+        breakup_signals = ['ex', 'my ex', 'breakup', 'broke up', 'heartbroken', 'ended things', 'dumped', 'left me']
+        intimacy_signals = ['sex life', 'miss sex', 'miss our sex', 'intimacy', 'physical connection', 'chemistry', 'miss the way we', 'miss how we']
+        
+        is_breakup = any(signal in text_lower for signal in breakup_signals)
+        is_intimacy = any(signal in text_lower for signal in intimacy_signals)
+        
+        if is_breakup and is_intimacy:
+            high_priority_detected.append('breakup_intimacy_loss')
+            detected.add('breakup_intimacy_loss')
+            logger.info(f"[TopicDetection] HIGH PRIORITY topic detected: breakup_intimacy_loss (dual-signal: breakup={is_breakup}, intimacy={is_intimacy}, normalized text: {normalized_text[:100]})")
+        
+        # breakup_grief: check for heartbreak/grieving keywords
+        if any(kw in text_lower for kw in ['heartbroken', 'heartbreak', 'broken heart', 'grieving the breakup', 'grieving the loss', 'still grieving']):
+            high_priority_detected.append('breakup_grief')
+            detected.add('breakup_grief')
+            logger.info(f"[TopicDetection] HIGH PRIORITY topic detected: breakup_grief (normalized text: {normalized_text[:100]})")
         
         # Step 2: Check regular topics (always check, but high-priority takes precedence)
         for topic, keywords in cls.TOPIC_KEYWORDS.items():
@@ -429,17 +460,25 @@ class TopicEmotionDetector:
         # Step 3: Add context topics if still relevant (and not conflicting)
         if context_topics:
             for topic in context_topics:
-                if topic in cls.TOPIC_KEYWORDS or topic in cls.HIGH_PRIORITY_TOPICS:
-                    # Check if topic is still being discussed
-                    all_keywords = cls.TOPIC_KEYWORDS.get(topic, []) + cls.HIGH_PRIORITY_TOPICS.get(topic, [])
-                    if all_keywords and any(keyword in text_lower for keyword in all_keywords[:3]):
+                if topic in cls.TOPIC_KEYWORDS:
+                    keywords = cls.TOPIC_KEYWORDS[topic]
+                    if any(keyword in text_lower for keyword in keywords[:3]):
                         detected.add(topic)
         
         # Step 4: Apply guardrails - prevent wrong topics when specific intent detected
         detected = cls._apply_topic_guardrails(detected, text_lower, high_priority_detected)
         
-        result = list(detected) if detected else ['general']
-        logger.info(f"[TopicDetection] Final topics: {result} (from normalized: {normalized_text[:100]})")
+        # Step 5: Return in deterministic order (high-priority first, then sorted rest)
+        result = []
+        for t in high_priority_detected:
+            result.append(t)
+        for t in sorted(detected - set(high_priority_detected)):
+            result.append(t)
+        
+        if not result:
+            result = ['general']
+        
+        logger.info(f"[TopicDetection] Final topics (ordered): {result} (from normalized: {normalized_text[:100]})")
         return result
     
     @classmethod
@@ -457,9 +496,11 @@ class TopicEmotionDetector:
         # If breakup_intimacy_loss is detected, remove conflicting topics
         if 'breakup_intimacy_loss' in detected or 'breakup_intimacy_loss' in high_priority:
             # Remove 'unlovable' unless explicitly stated
-            if 'unlovable' in filtered and not any(word in text_lower for word in ['feel unlovable', 'i am unlovable', 'im unlovable', 'unlovable']):
-                filtered.discard('unlovable')
-                logger.info("[TopicGuardrail] Removed 'unlovable' - not explicitly stated, breakup_intimacy_loss context")
+            if 'unlovable' in filtered:
+                explicit_mentions = cls.EXPLICIT_MENTION_GATES.get('unlovable', [])
+                if not any(mention in text_lower for mention in explicit_mentions):
+                    filtered.discard('unlovable')
+                    logger.info("[TopicGuardrail] Removed 'unlovable' - not explicitly stated, breakup_intimacy_loss context")
             
             # Remove 'lust_vs_love' - not relevant when missing ex
             if 'lust_vs_love' in filtered:
@@ -468,9 +509,11 @@ class TopicEmotionDetector:
         
         # If breakup_grief detected, remove 'unlovable' unless explicitly stated
         if 'breakup_grief' in detected or 'heartbreak' in detected or 'breakup' in detected:
-            if 'unlovable' in filtered and not any(word in text_lower for word in ['feel unlovable', 'i am unlovable', 'im unlovable', 'unlovable']):
-                filtered.discard('unlovable')
-                logger.info("[TopicGuardrail] Removed 'unlovable' - not explicitly stated, breakup context")
+            if 'unlovable' in filtered:
+                explicit_mentions = cls.EXPLICIT_MENTION_GATES.get('unlovable', [])
+                if not any(mention in text_lower for mention in explicit_mentions):
+                    filtered.discard('unlovable')
+                    logger.info("[TopicGuardrail] Removed 'unlovable' - not explicitly stated, breakup context")
         
         return filtered
     
@@ -514,7 +557,8 @@ class BlockSelector:
         emotions: List[str],
         stage: int,
         recent_block_ids: List[str],
-        min_similarity: float = 0.3
+        min_similarity: float = 0.3,
+        normalized_text: str = ""
     ) -> Optional[ResponseBlock]:
         """
         Select best matching block with anti-repetition.
@@ -608,12 +652,26 @@ class BlockSelector:
             # Sort by score descending
             scored_blocks.sort(key=lambda x: x[1], reverse=True)
             
+            # Apply topic policy filtering at block selection time
+            scored_blocks = self._apply_block_selection_filtering(
+                scored_blocks,
+                topics,
+                normalized_text=normalized_text
+            )
+            
             # Use weighted random selection from top-K candidates
             selected_block = self._weighted_random_choice(scored_blocks, min_similarity)
             
             if selected_block:
                 # Find the score for logging
                 selected_score = next((score for block, score in scored_blocks if block.id == selected_block.id), 0.0)
+                # Enhanced debug logging
+                forced_topic = topics[0] if topics else 'none'
+                logger.info(f"[BlockSelection] normalized_text={normalized_text[:100] if normalized_text else 'N/A'}")
+                logger.info(f"[BlockSelection] forced_topic={forced_topic}")
+                logger.info(f"[BlockSelection] selected_block_id={selected_block.id[:8]}")
+                logger.info(f"[BlockSelection] selected_block_topic={selected_block.topics}")
+                logger.info(f"[BlockSelection] similarity_score={selected_score:.3f}")
                 logger.info(f"[BlockSelection] Selected {block_type} block: id={selected_block.id[:8]}, score={selected_score:.3f}, topics={selected_block.topics}, text_preview={selected_block.text[:80]}...")
                 return selected_block
             
@@ -625,6 +683,71 @@ class BlockSelector:
         except Exception as e:
             logger.error(f"Error selecting block: {e}", exc_info=True)
             return None
+    
+    def _apply_block_selection_filtering(
+        self,
+        scored_blocks: List[tuple[ResponseBlock, float]],
+        topics: List[str],
+        normalized_text: str = ""
+    ) -> List[tuple[ResponseBlock, float]]:
+        """
+        Apply topic policy filtering at block selection time.
+        
+        When a high-priority topic is detected, restrict eligible blocks to allowed topics
+        and block denied topics unless explicitly mentioned.
+        """
+        if not topics:
+            return scored_blocks
+        
+        forced_topic = topics[0]  # First topic is the forced/high-priority one
+        policy = TopicEmotionDetector.TOPIC_POLICIES.get(forced_topic)
+        
+        if not policy:
+            # No policy for this topic, allow all blocks
+            return scored_blocks
+        
+        allowed_topics = policy.get('allow', set())
+        denied_topics = policy.get('deny', set())
+        text_lower = normalized_text.lower() if normalized_text else ""
+        
+        filtered_blocks = []
+        for block, score in scored_blocks:
+            # Defensive: handle None or empty topics
+            block_topics = set(block.topics or [])
+            
+            # Check if block has any denied topics
+            has_denied = bool(block_topics & denied_topics)
+            if has_denied:
+                # Check explicit mention gates for denied topics
+                should_allow = False
+                for denied_topic in (block_topics & denied_topics):
+                    explicit_mentions = TopicEmotionDetector.EXPLICIT_MENTION_GATES.get(denied_topic, [])
+                    if any(mention in text_lower for mention in explicit_mentions):
+                        should_allow = True
+                        logger.info(f"[BlockFilter] Allowing block with denied topic '{denied_topic}' - explicit mention detected")
+                        break
+                
+                if not should_allow:
+                    logger.info(f"[BlockFilter] Filtered out block {block.id[:8]} - contains denied topics: {list(block_topics & denied_topics)}")
+                    continue
+            
+            # Check if block has any allowed topics (if allowlist exists)
+            if allowed_topics:
+                has_allowed = bool(block_topics & allowed_topics)
+                if not has_allowed:
+                    logger.info(f"[BlockFilter] Filtered out block {block.id[:8]} - no allowed topics, has: {list(block_topics)}")
+                    continue
+            
+            # Block passes filtering
+            filtered_blocks.append((block, score))
+        
+        if not filtered_blocks:
+            # Fallback: if filtering removed all blocks, return original (safety)
+            logger.warning(f"[BlockFilter] All blocks filtered out for forced_topic={forced_topic}, using original list")
+            return scored_blocks
+        
+        logger.info(f"[BlockFilter] Filtered {len(scored_blocks)} -> {len(filtered_blocks)} blocks for forced_topic={forced_topic}")
+        return filtered_blocks
     
     def _weighted_random_choice(
         self,
@@ -978,7 +1101,8 @@ class AmoraBlocksService:
                     topics=topics,
                     emotions=emotions,
                     stage=stage,
-                    recent_block_ids=state.recent_block_ids
+                    recent_block_ids=state.recent_block_ids,
+                    normalized_text=normalized_question  # Pass for filtering
                 )
             
             # Select normalization blocks
@@ -989,7 +1113,8 @@ class AmoraBlocksService:
                     topics=topics,
                     emotions=emotions,
                     stage=stage,
-                    recent_block_ids=state.recent_block_ids
+                    recent_block_ids=state.recent_block_ids,
+                    normalized_text=normalized_question  # Pass for filtering
                 )
             
             # Select exploration blocks
@@ -1000,7 +1125,8 @@ class AmoraBlocksService:
                     topics=topics,
                     emotions=emotions,
                     stage=stage,
-                    recent_block_ids=state.recent_block_ids
+                    recent_block_ids=state.recent_block_ids,
+                    normalized_text=normalized_question  # Pass for filtering
                 )
             
             # Select insight blocks for DEEPENING and GUIDANCE_SESSION
@@ -1014,7 +1140,8 @@ class AmoraBlocksService:
                     topics=topics,
                     emotions=emotions,
                     stage=stage,
-                    recent_block_ids=state.recent_block_ids
+                    recent_block_ids=state.recent_block_ids,
+                    normalized_text=normalized_question  # Pass for filtering
                 )
             
             # Log selected blocks
