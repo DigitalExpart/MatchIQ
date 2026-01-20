@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { ArrowLeft, Send, Heart, Menu, X, FileText, AlertTriangle } from 'lucide-react';
-import { amoraSessionService, AmoraSession, AmoraSessionMessage } from '../../services/amoraSessionService';
+import { amoraSessionService, AmoraSession } from '../../services/amoraSessionService';
 import { SessionList } from '../ai/SessionList';
 import { CreateSessionModal } from '../ai/CreateSessionModal';
 import { MessageFeedback } from '../ai/MessageFeedback';
@@ -94,6 +94,65 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
     // FollowUpNotification component handles this
   };
 
+  type SessionMessageApiRow = {
+    id: string;
+    session_id: string;
+    sender: 'user' | 'amora';
+    message_text: string;
+    created_at: string;
+    metadata?: Record<string, any> | null;
+  };
+
+  const loadSessionHistory = async (sessionId: string) => {
+    const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://macthiq-ai-backend.onrender.com/api/v1';
+
+    // Build auth headers (same approach used in handleSendMessage)
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+    };
+
+    let userId: string | null = null;
+    try {
+      const { authService } = await import('../../utils/authService');
+      userId = authService.getCurrentUserId();
+    } catch (error) {
+      console.warn('Failed to get user ID from authService:', error);
+    }
+
+    if (!userId) {
+      userId = localStorage.getItem('myMatchIQ_currentUserId');
+    }
+
+    if (!userId) {
+      throw new Error('No userId found. Please sign in again.');
+    }
+
+    headers['X-User-Id'] = userId;
+
+    const resp = await fetch(`${apiUrl}/coach/sessions/${sessionId}/messages?limit=100`, {
+      method: 'GET',
+      headers,
+      signal: AbortSignal.timeout(30000),
+    });
+
+    if (!resp.ok) {
+      const errorText = await resp.text();
+      throw new Error(`Failed to load session history: ${resp.status} ${errorText}`);
+    }
+
+    const data: SessionMessageApiRow[] = await resp.json();
+    const mapped: Message[] = (data || []).map((m) => ({
+      id: m.id,
+      type: m.sender === 'amora' ? 'ai' : 'user',
+      content: m.message_text,
+      timestamp: new Date(m.created_at),
+      // enable feedback buttons for AI messages
+      messageId: m.sender === 'amora' ? m.id : undefined,
+    }));
+
+    setMessages(mapped);
+  };
+
   const selectSession = async (session: AmoraSession) => {
     setCurrentSession(session);
     setShowSessionList(false);
@@ -107,16 +166,7 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
 
     // Load recent message history for this session
     try {
-      const history: AmoraSessionMessage[] = await amoraSessionService.getSessionMessages(session.id, 100);
-      const mapped: Message[] = history.map((m) => ({
-        id: m.id,
-        type: m.sender === 'amora' ? 'ai' : 'user',
-        content: m.message_text,
-        timestamp: new Date(m.created_at),
-        // Enable feedback buttons for AI messages (messageId = backend message UUID)
-        messageId: m.sender === 'amora' ? m.id : undefined,
-      }));
-      setMessages(mapped);
+      await loadSessionHistory(session.id);
     } catch (e) {
       console.error('Failed to load session history:', e);
     }
