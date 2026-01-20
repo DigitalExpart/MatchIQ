@@ -1043,7 +1043,12 @@ class AmoraBlocksService:
             question_embedding = self.embedding_model.encode(question)
             
             # Detect topics and emotions
-            context_topics = request.context.get('topics', []) if request.context else []
+            # Use previous topics from state as context for better continuity
+            context_topics = state.active_topics[:3] if state.active_topics else []
+            if request.context and request.context.get('topics'):
+                # Merge request context topics with state topics
+                context_topics = list(set(context_topics + request.context.get('topics', [])))
+            
             normalized_question = self.detector.normalize_text(question)
             topics = self.detector.detect_topics(question, context_topics)
             emotions = self.detector.detect_emotions(question, question_embedding)
@@ -1176,6 +1181,12 @@ class AmoraBlocksService:
             # Save state
             self._save_state(state)
             
+            # Collect block IDs for metadata
+            block_ids = []
+            for block in [reflection, normalization, exploration, reframe]:
+                if block and block.id:
+                    block_ids.append(block.id)
+            
             return CoachResponse(
                 message=message,
                 mode=CoachMode.LEARN,
@@ -1186,7 +1197,8 @@ class AmoraBlocksService:
                     'stage': stage,
                     'turn_count': state.turn_count,
                     'response_style': response_style.value,
-                    'engine': 'blocks'  # Set engine here
+                    'engine': 'blocks',  # Set engine here
+                    'block_ids': block_ids  # Include block IDs for state reconstruction
                 }
             )
         
@@ -1204,6 +1216,8 @@ class AmoraBlocksService:
         """
         Load or create conversation state.
         State is keyed by (user_id, coach_session_id) to ensure separation between sessions.
+        
+        If coach_session_id is provided, loads previous messages from database to rebuild state.
         """
         # Create composite key: (user_id, coach_session_id) or (user_id, session_id) for legacy
         if coach_session_id:
@@ -1214,10 +1228,76 @@ class AmoraBlocksService:
             # Legacy: fallback to user_id only (single session per user)
             key = f"{user_id}:default"
         
+        # Check in-memory cache first
         if key in self._sessions:
             state = self._sessions[key]
             state.updated_at = datetime.now()
+            logger.info(f"[StateLoad] Loaded from memory: key={key}, turn_count={state.turn_count}, active_topics={state.active_topics}")
             return state
+        
+        # If coach_session_id provided, load from database
+        if coach_session_id:
+            try:
+                from app.services.amora_session_service import AmoraSessionService
+                session_service = AmoraSessionService()
+                
+                # Load recent messages from database
+                recent_messages = session_service.get_recent_messages(coach_session_id, limit=20)
+                
+                # Rebuild state from messages
+                state = ConversationState(
+                    session_id=key,
+                    user_id=user_id
+                )
+                
+                # Extract topics and build conversation history from messages
+                user_messages = [msg for msg in recent_messages if msg.sender == "user"]
+                amora_messages = [msg for msg in recent_messages if msg.sender == "amora"]
+                
+                # Track topics from previous messages
+                all_topics_seen = set()
+                for msg in user_messages:
+                    # Extract topics from message metadata if available
+                    if msg.metadata and 'topics' in msg.metadata:
+                        topics = msg.metadata.get('topics', [])
+                        for topic in topics:
+                            all_topics_seen.add(topic)
+                            if topic not in state.active_topics:
+                                state.active_topics.append(topic)
+                                state.topic_stages[topic] = 1
+                                state.topic_turn_counts[topic] = 0
+                            state.topic_turn_counts[topic] = state.topic_turn_counts.get(topic, 0) + 1
+                
+                # Track block IDs from Amora's previous responses
+                for msg in amora_messages:
+                    if msg.metadata and 'block_ids' in msg.metadata:
+                        block_ids = msg.metadata.get('block_ids', [])
+                        for block_id in block_ids:
+                            if block_id not in state.recent_block_ids:
+                                state.recent_block_ids.insert(0, block_id)
+                
+                # Set turn count based on user messages
+                state.turn_count = len(user_messages)
+                
+                # Extract context from session if available
+                session = session_service.get_session(user_id, coach_session_id)
+                if session:
+                    state.relationship_status = session.primary_topic  # Can be used as context
+                
+                # Extract context if available from request
+                if context:
+                    state.relationship_status = context.get('relationship_status') or state.relationship_status
+                    state.partner_label = self._infer_partner_label(context)
+                
+                logger.info(f"[StateLoad] Rebuilt from DB: key={key}, messages={len(recent_messages)}, turn_count={state.turn_count}, active_topics={state.active_topics}")
+                
+                # Cache in memory
+                self._sessions[key] = state
+                return state
+                
+            except Exception as e:
+                logger.warning(f"[StateLoad] Failed to load from DB, creating new state: {e}")
+                # Fall through to create new state
         
         # Create new state
         state = ConversationState(
@@ -1230,6 +1310,7 @@ class AmoraBlocksService:
             state.relationship_status = context.get('relationship_status')
             state.partner_label = self._infer_partner_label(context)
         
+        logger.info(f"[StateLoad] Created NEW state: key={key}")
         self._sessions[key] = state
         return state
     

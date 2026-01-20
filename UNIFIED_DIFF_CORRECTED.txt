@@ -1,0 +1,323 @@
+diff --git a/backend/app/services/amora_blocks_service.py b/backend/app/services/amora_blocks_service.py
+index abc1234..def5678 100644
+--- a/backend/app/services/amora_blocks_service.py
++++ b/backend/app/services/amora_blocks_service.py
+@@ -234,6 +234,60 @@ class TopicEmotionDetector:
+         return text.strip()
+     
++    # HIGH PRIORITY topics (checked first, override others)
++    HIGH_PRIORITY_TOPICS = {
++        'breakup_intimacy_loss': [
++            # Missing sex/intimacy with ex
++            'miss our sex', 'miss our sex life', 'miss the sex', 'miss having sex',
++            'miss the way we', 'miss how we', 'miss the way i and my ex',
++            'miss the way me and my ex', 'miss the way my ex and i',
++            'miss our intimacy', 'miss the intimacy', 'miss the physical',
++            'miss the physical connection', 'miss the chemistry',
++            'miss our chemistry', 'miss the way we connected',
++            'miss our connection', 'miss the closeness',
++            'missing sex with my ex', 'missing intimacy with ex',
++            'missing the way we had sex', 'missing how we had sex',
++            'i miss our sex', 'i miss the sex', 'i miss having sex',
++            'i miss the way we did', 'i miss how we did',
++            'missing the sex life', 'missing our sex life',
++            'miss the physical intimacy', 'miss our physical intimacy',
++        ],
++        'breakup_grief': [
++            'heartbroken', 'heartbreak', 'broken heart',
++            'grieving the breakup', 'grieving the loss',
++            'still grieving', 'grieving our breakup',
++        ],
++    }
++    
+     # Comprehensive topic keywords
+     TOPIC_KEYWORDS = {
+         'heartbreak': ['heartbreak', 'heartbroken', 'broken heart', 'breakup', 'broke up', 'ended things', 'dumped', 'left me'],
+         'breakup': ['breakup', 'broke up', 'breaking up', 'ended', 'split up', 'separated'],
+-        'breakup_grief': ['heartbroken', 'heartbreak', 'broken heart', 'grieving', 'grieving the breakup', 'grieving the loss', 'still grieving'],
+-        'breakup_intimacy_loss': [
+-            'miss our sex', 'miss our sex life', 'miss the sex', 'miss having sex',
+-            'miss the way we', 'miss how we', 'miss the way i and my ex',
+-            'miss our intimacy', 'miss the intimacy', 'miss the physical',
+-            'miss the physical connection', 'miss the chemistry',
+-            'missing sex with my ex', 'missing intimacy with ex',
+-        ],
++        'breakup_grief': ['heartbroken', 'heartbreak', 'broken heart', 'grieving', 'grieving the breakup', 'grieving the loss', 'still grieving'],
++        'breakup_intimacy_loss': [
++            'miss our sex', 'miss our sex life', 'miss the sex', 'miss having sex',
++            'miss the way we', 'miss how we', 'miss the way i and my ex',
++            'miss our intimacy', 'miss the intimacy', 'miss the physical',
++            'miss the physical connection', 'miss the chemistry',
++            'missing sex with my ex', 'missing intimacy with ex',
++        ],
+@@ -395,7 +449,7 @@ class TopicEmotionDetector:
+     @classmethod
+     def detect_topics(cls, text: str, context_topics: Optional[List[str]] = None) -> List[str]:
+         """
+-        Detect topics from user message.
++        Detect topics from user message with priority-based routing.
+         
+         Process:
+         1. Normalize text (lowercase, contractions, punctuation)
+@@ -403,20 +457,40 @@ class TopicEmotionDetector:
+         3. Check regular TOPIC_KEYWORDS
+         4. Apply topic whitelist guardrails
+         """
+-        text_lower = text.lower()
++        # Normalize text for better matching
++        normalized_text = cls.normalize_text(text)
++        text_lower = normalized_text.lower()
+         
+         detected = set()
++        high_priority_detected = []
+         
+-        # Check topics
++        # Step 1: Check HIGH_PRIORITY topics first (these override)
++        for topic, keywords in cls.HIGH_PRIORITY_TOPICS.items():
++            if any(keyword in text_lower for keyword in keywords):
++                high_priority_detected.append(topic)
++                detected.add(topic)
++                logger.info(f"[TopicDetection] HIGH PRIORITY topic detected: {topic} (normalized text: {normalized_text[:100]})")
++        
++        # Step 2: Check regular topics (always check, but high-priority takes precedence)
+         for topic, keywords in cls.TOPIC_KEYWORDS.items():
++            # Skip if already detected as high-priority (avoid duplicates)
++            if topic not in high_priority_detected:
+                 if any(keyword in text_lower for keyword in keywords):
+                     detected.add(topic)
+         
+-        # Add context topics if still relevant
++        # Step 3: Add context topics if still relevant (and not conflicting)
+         if context_topics:
+             for topic in context_topics:
+-                if topic in cls.TOPIC_KEYWORDS:
+-                    keywords = cls.TOPIC_KEYWORDS[topic]
+-                    if any(keyword in text_lower for keyword in keywords[:3]):
++                if topic in cls.TOPIC_KEYWORDS or topic in cls.HIGH_PRIORITY_TOPICS:
++                    # Check if topic is still being discussed
++                    all_keywords = cls.TOPIC_KEYWORDS.get(topic, []) + cls.HIGH_PRIORITY_TOPICS.get(topic, [])
++                    if all_keywords and any(keyword in text_lower for keyword in all_keywords[:3]):
+                         detected.add(topic)
+         
+-        return list(detected) if detected else ['general']
++        # Step 4: Apply guardrails - prevent wrong topics when specific intent detected
++        detected = cls._apply_topic_guardrails(detected, text_lower, high_priority_detected)
++        
++        result = list(detected) if detected else ['general']
++        logger.info(f"[TopicDetection] Final topics: {result} (from normalized: {normalized_text[:100]})")
++        return result
++    
++    @classmethod
++    def _apply_topic_guardrails(cls, detected: set, text_lower: str, high_priority: List[str]) -> set:
++        """
++        Apply guardrails to prevent wrong topic blocks.
++        
++        Rules:
++        - If breakup_intimacy_loss detected, remove unrelated topics like 'unlovable', 'lust_vs_love' (unless explicitly stated)
++        - If breakup_grief detected, remove 'unlovable' unless user explicitly says they feel unlovable
++        - If breakup context, prioritize breakup-related topics
++        """
++        filtered = detected.copy()
++        
++        # If breakup_intimacy_loss is detected, remove conflicting topics
++        if 'breakup_intimacy_loss' in detected or 'breakup_intimacy_loss' in high_priority:
++            # Remove 'unlovable' unless explicitly stated
++            if 'unlovable' in filtered and not any(word in text_lower for word in ['feel unlovable', 'i am unlovable', 'im unlovable', 'unlovable']):
++                filtered.discard('unlovable')
++                logger.info("[TopicGuardrail] Removed 'unlovable' - not explicitly stated, breakup_intimacy_loss context")
++            
++            # Remove 'lust_vs_love' - not relevant when missing ex
++            if 'lust_vs_love' in filtered:
++                filtered.discard('lust_vs_love')
++                logger.info("[TopicGuardrail] Removed 'lust_vs_love' - not relevant for breakup_intimacy_loss")
++        
++        # If breakup_grief detected, remove 'unlovable' unless explicitly stated
++        if 'breakup_grief' in detected or 'heartbreak' in detected or 'breakup' in detected:
++            if 'unlovable' in filtered and not any(word in text_lower for word in ['feel unlovable', 'i am unlovable', 'im unlovable', 'unlovable']):
++                filtered.discard('unlovable')
++                logger.info("[TopicGuardrail] Removed 'unlovable' - not explicitly stated, breakup context")
++        
++        return filtered
+     
+     @classmethod
+     def detect_emotions(cls, text: str, embedding: Optional[np.ndarray] = None) -> List[str]:
+-        """Detect emotions from user message."""
+-        text_lower = text.lower()
++        """Detect emotions from user message using normalized text."""
++        normalized_text = cls.normalize_text(text)
++        text_lower = normalized_text.lower()
+         detected = {}
+         
+         for emotion, keywords in cls.EMOTION_KEYWORDS.items():
+@@ -614,6 +678,11 @@ class BlockSelector:
+             if selected_block:
+                 # Find the score for logging
+                 selected_score = next((score for block, score in scored_blocks if block.id == selected_block.id), 0.0)
++                # Enhanced debug logging
++                logger.info(f"[BlockSelection] forced_topic={topics[0] if topics else 'none'}")
++                logger.info(f"[BlockSelection] selected_block_id={selected_block.id[:8]}")
++                logger.info(f"[BlockSelection] selected_block_topic={selected_block.topics}")
++                logger.info(f"[BlockSelection] similarity_score={selected_score:.3f}")
+                 logger.info(f"[BlockSelection] Selected {block_type} block: id={selected_block.id[:8]}, score={selected_score:.3f}, topics={selected_block.topics}, text_preview={selected_block.text[:80]}...")
+                 return selected_block
+             
+@@ -920,6 +989,7 @@ class AmoraBlocksService:
+             # Detect topics and emotions
+             context_topics = request.context.get('topics', []) if request.context else []
++            normalized_question = self.detector.normalize_text(question)
+             topics = self.detector.detect_topics(question, context_topics)
+             emotions = self.detector.detect_emotions(question, question_embedding)
+             
+             logger.info(f"[AmoraBlocks] User message: '{question[:100]}'")
++            logger.info(f"[AmoraBlocks] Normalized: '{normalized_question[:100]}'")
+             logger.info(f"[AmoraBlocks] Detected topics: {topics}, emotions: {emotions}")
+
+diff --git a/backend/migrations/009_breakup_intimacy_blocks.sql b/backend/migrations/009_breakup_intimacy_blocks.sql
+new file mode 100644
+index 0000000..9dca6e0
+--- /dev/null
++++ b/backend/migrations/009_breakup_intimacy_blocks.sql
+@@ -0,0 +1,62 @@
++-- Migration: Add blocks for breakup_grief and breakup_intimacy_loss topics
++-- These blocks handle grief after breakups and missing physical intimacy/connection with an ex
++-- All blocks are non-explicit, ethical, and relationship-focused
++
++-- ============================================
++-- BREAKUP GRIEF BLOCKS (10-15 blocks)
++-- ============================================
++
++-- Reflection blocks for breakup grief
++INSERT INTO amora_response_blocks (block_type, text, topics, emotions, stage, priority, active) VALUES
++-- Stage 1-2 Reflection
++('reflection', 'It sounds like this breakup has left you feeling a deep sense of loss, and that grief is real and valid.', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'hurt', 'lonely'], 1, 90, true),
++('reflection', 'I hear that you''re carrying a lot of pain right now, and the weight of this ending feels heavy.', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'hurt', 'overwhelmed'], 1, 90, true),
++('reflection', 'It sounds like you''re grieving not just the person, but the future you imagined together, and that''s a profound kind of loss.', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'hurt', 'lonely'], 2, 90, true),
++('reflection', 'I can hear how much this relationship meant to you, and how disorienting it feels to have it end.', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'confused', 'hurt'], 1, 90, true),
++
++-- Stage 1-2 Normalization
++('normalization', 'Grief after a breakup isn''t linear—some days feel okay, others feel impossible, and that''s completely normal.', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'hurt'], 1, 90, true),
++('normalization', 'It''s natural to wonder if you''ll ever feel okay again. Healing takes time, and there''s no "should" about how fast that happens.', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'hopeless'], 1, 90, true),
++('normalization', 'Missing someone after a breakup, even when you know it''s over, is very common. Your feelings don''t have to make logical sense right now.', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'lonely'], 2, 90, true),
++('normalization', 'Sometimes the hardest part isn''t the end itself, but learning who you are without them, and that process takes time.', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'confused'], 2, 90, true),
++
++-- Stage 2 Insight (using 'reframe' block_type as insight blocks)
++('reframe', 'Grief often comes in waves—moments where you feel okay, followed by moments where the loss hits you all over again. This isn''t a sign that you''re not healing; it''s how grief works.', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'hurt'], 2, 90, true),
++('reframe', 'When a relationship ends, you''re not just losing the person—you''re losing the routines, the inside jokes, the way you saw yourself through their eyes. That''s a lot to process.', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'lonely'], 2, 90, true),
++
++-- Stage 1-2 Exploration
++('exploration', 'What part of this loss feels hardest to sit with right now?', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'hurt'], 1, 90, true),
++('exploration', 'When you think about moving forward, what comes up for you?', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'confused'], 1, 90, true),
++('exploration', 'What do you find yourself missing most—the person, or the feeling of being with them?', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'lonely'], 2, 90, true),
++('exploration', 'Looking back, what needs of yours weren''t being met in that relationship?', ARRAY['breakup_grief', 'heartbreak', 'breakup'], ARRAY['sad', 'hurt'], 2, 90, true);
++
++-- ============================================
++-- BREAKUP INTIMACY LOSS BLOCKS (10-15 blocks)
++-- ============================================
++
++-- Reflection blocks for missing intimacy with ex
++INSERT INTO amora_response_blocks (block_type, text, topics, emotions, stage, priority, active) VALUES
++-- Stage 1-2 Reflection
++('reflection', 'It sounds like you''re missing the physical closeness and connection you had with your ex, and that''s a real part of what you''re grieving.', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'lonely', 'hurt'], 1, 95, true),
++('reflection', 'I hear that you miss the way you and your ex connected physically, and that loss feels significant to you.', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'lonely'], 1, 95, true),
++('reflection', 'It sounds like the physical intimacy you shared was an important part of what made that relationship feel special, and missing that is natural.', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'hurt'], 2, 95, true),
++('reflection', 'I can hear how much you miss the closeness and chemistry you had together, and that''s a real part of what you''re processing right now.', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'lonely'], 1, 95, true),
++
++-- Stage 1-2 Normalization
++('normalization', 'Missing the physical connection you had with an ex is very common, especially when that was a meaningful part of your relationship.', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'lonely'], 1, 95, true),
++('normalization', 'It''s natural to grieve the loss of physical intimacy along with the emotional connection. Both were part of what made that relationship what it was.', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'hurt'], 1, 95, true),
++('normalization', 'Physical intimacy often represents safety, closeness, and being seen in a particular way. Missing that doesn''t mean you''re just missing sex—it''s often about missing that sense of connection.', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'lonely'], 2, 95, true),
++('normalization', 'The way you connected physically with your ex was unique to that relationship, and it makes sense that you''d miss that specific kind of closeness.', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'hurt'], 2, 95, true),
++
++-- Stage 2 Insight (using 'reframe' block_type as insight blocks)
++('reframe', 'Physical intimacy in a relationship often represents more than just physical connection—it can be about feeling desired, safe, understood, or fully yourself with someone. Missing that can feel like missing a whole dimension of how you related to each other.', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'lonely'], 2, 95, true),
++('reframe', 'Sometimes what we miss most about physical intimacy with an ex isn''t just the act itself, but the way it made us feel—seen, wanted, connected, or at ease. That emotional layer is part of what you''re grieving.', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'hurt'], 2, 95, true),
++
++-- Stage 1-2 Exploration
++('exploration', 'What was it about the physical connection you had that feels hardest to let go of?', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'lonely'], 1, 95, true),
++('exploration', 'When you think about missing that intimacy, what comes up for you—is it more about the physical closeness, or what it represented in your relationship?', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'hurt'], 1, 95, true),
++('exploration', 'What did that physical connection give you that feels missing now?', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'lonely'], 2, 95, true),
++('exploration', 'How does missing that intimacy connect to other parts of what you''re grieving about the relationship?', ARRAY['breakup_intimacy_loss', 'breakup_grief', 'heartbreak'], ARRAY['sad', 'hurt'], 2, 95, true);
++
++-- Add comment
++COMMENT ON TABLE amora_response_blocks IS 'Block-based response architecture. Includes breakup_grief and breakup_intimacy_loss topics for handling post-breakup grief and missing physical intimacy with an ex (non-explicit, relationship-focused).';
++
++diff --git a/backend/tests/test_topic_detection.py b/backend/tests/test_topic_detection.py
++new file mode 100644
++index 0000000..a1b2c3d
++--- /dev/null
++++ b/backend/tests/test_topic_detection.py
+@@ -0,0 +1,79 @@
++"""
++Test suite for topic detection improvements.
++Tests that breakup grief and breakup intimacy loss are correctly detected.
++"""
++import pytest
++from app.services.amora_blocks_service import TopicEmotionDetector
++
++
++class TestTopicDetection:
++    \"\"\"Test topic detection with normalization and priority routing.\"\"\"
++    
++    def test_heartbreak_detection(self):
++        \"\"\"Test that 'Im heartbroken' detects breakup_grief/heartbreak.\"\"\"
++        topics = TopicEmotionDetector.detect_topics(\"Im heartbroken\")
++        assert 'heartbreak' in topics or 'breakup_grief' in topics
++        assert topics != ['general']
++    
++    def test_missing_ex_detection(self):
++        \"\"\"Test that 'I miss my ex' detects breakup_grief.\"\"\"
++        topics = TopicEmotionDetector.detect_topics(\"I miss my ex\")
++        assert 'breakup' in topics or 'breakup_grief' in topics or 'heartbreak' in topics
++        assert topics != ['general']
++    
++    def test_missing_sex_life_detection(self):
++        \"\"\"Test that 'I miss our sex life' detects breakup_intimacy_loss.\"\"\"
++        topics = TopicEmotionDetector.detect_topics(\"I miss our sex life\")
++        assert 'breakup_intimacy_loss' in topics
++        assert topics != ['general']
++    
++    def test_missing_way_we_had_sex_detection(self):
++        \"\"\"Test that 'i miss the way i and my ex do have sex' detects breakup_intimacy_loss.\"\"\"
++        topics = TopicEmotionDetector.detect_topics(\"i miss the way i and my ex do have sex\")
++        assert 'breakup_intimacy_loss' in topics
++        assert topics != ['general']
++    
++    def test_missing_sex_with_explicit_unlovable(self):
++        \"\"\"Test that 'I miss our sex and I feel unlovable' keeps both topics.\"\"\"
++        topics = TopicEmotionDetector.detect_topics(\"I miss our sex and I feel unlovable\")
++        assert 'breakup_intimacy_loss' in topics
++        assert 'unlovable' in topics  # Should keep it because explicitly stated
++    
++    def test_missing_sex_without_unlovable(self):
++        \"\"\"Test that 'I miss our sex life' does NOT detect unlovable.\"\"\"
++        topics = TopicEmotionDetector.detect_topics(\"I miss our sex life\")
++        assert 'breakup_intimacy_loss' in topics
++        assert 'unlovable' not in topics  # Should NOT have unlovable
++    
++    def test_text_normalization(self):
++        \"\"\"Test that text normalization handles contractions and typos.\"\"\"
++        normalized = TopicEmotionDetector.normalize_text(\"Im heartbroken and I dont know what to do\")
++        assert \"i am\" in normalized or \"im\" not in normalized.lower()
++        assert \"do not\" in normalized or \"dont\" not in normalized.lower()
++    
++    def test_contractions_handling(self):
++        \"\"\"Test that 'Im' is normalized to 'i am' for better matching.\"\"\"
++        topics1 = TopicEmotionDetector.detect_topics(\"Im heartbroken\")
++        topics2 = TopicEmotionDetector.detect_topics(\"I am heartbroken\")
++        # Both should detect heartbreak
++        assert (('heartbreak' in topics1 or 'breakup_grief' in topics1) and
++                ('heartbreak' in topics2 or 'breakup_grief' in topics2))
++    
++    def test_priority_routing(self):
++        \"\"\"Test that breakup_intimacy_loss has priority over generic topics.\"\"\"
++        topics = TopicEmotionDetector.detect_topics(\"i miss the way me and my ex do have sex\")
++        assert 'breakup_intimacy_loss' in topics
++        # Should NOT have unrelated topics
++        assert 'lust_vs_love' not in topics
++    
++    def test_breakup_context_removes_unlovable(self):
++        \"\"\"Test that breakup context removes unlovable unless explicitly stated.\"\"\"
++        topics = TopicEmotionDetector.detect_topics(\"Im heartbroken and everything feels wrong\")
++        assert 'heartbreak' in topics or 'breakup_grief' in topics
++        # Should NOT have unlovable unless explicitly stated
++        assert 'unlovable' not in topics

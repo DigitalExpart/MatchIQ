@@ -165,7 +165,28 @@ async def get_coach_response(
                         if primary_topic:
                             session_service.update_session_topic(coach_session_id, primary_topic)
                         
-                        # Save Amora's response
+                        # Extract block IDs from referenced_data if available
+                        block_ids = response.referenced_data.get('block_ids', [])
+                        
+                        # Update user message metadata with detected topics (for state reconstruction)
+                        if user_message_id and topics:
+                            try:
+                                from app.database import get_supabase_client
+                                supabase = get_supabase_client()
+                                supabase.table("amora_session_messages") \
+                                    .update({
+                                        "metadata": {
+                                            "mode": request.mode,
+                                            "context": request.context or {},
+                                            "topics": topics  # Add detected topics
+                                        }
+                                    }) \
+                                    .eq("id", str(user_message_id)) \
+                                    .execute()
+                            except Exception as e:
+                                logger.warning(f"Failed to update user message with topics: {e}")
+                        
+                        # Save Amora's response with block IDs for state reconstruction
                         amora_message_id = session_service.save_message(
                             session_id=coach_session_id,
                             sender="amora",
@@ -177,7 +198,8 @@ async def get_coach_response(
                                 "engine": response.engine,
                                 "confidence": response.confidence,
                                 "is_crisis": response.is_crisis or False,
-                                "crisis_intent": response.crisis_intent
+                                "crisis_intent": response.crisis_intent,
+                                "block_ids": block_ids  # Save block IDs for state reconstruction
                             }
                         )
                         

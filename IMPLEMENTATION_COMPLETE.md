@@ -1,257 +1,190 @@
-# ✅ Amora Blocks Architecture - Implementation Complete
+# ✅ Implementation Complete - Breakup Intimacy Topic Detection Fix
 
-## What Was Done
+## Status: All Code Changes Applied ✅
 
-### 1. **Wired Blocks Service to Production Endpoint** ✅
-
-**File: `backend/app/api/coach_enhanced.py`**
-
-The `/api/v1/coach/` endpoint now:
-- Tries `AmoraBlocksService` first for `LEARN` mode
-- Falls back to `AmoraEnhancedService` (legacy templates) if blocks fail
-- Sets `engine` field in response:
-  - `"blocks"` = New block-based system working
-  - `"legacy_templates"` = Fallback to old templates
-  - `"error_fallback"` = Critical error, using safe fallback
-
-### 2. **Added Engine Debug Field** ✅
-
-**File: `backend/app/models/pydantic_models.py`**
-
-```python
-class CoachResponse(BaseModel):
-    message: str
-    mode: CoachMode
-    confidence: float
-    referenced_data: Dict[str, Any]
-    engine: Optional[str] = "unknown"  # NEW FIELD
-```
-
-Now you can see in browser console which engine is being used!
-
-### 3. **Added Startup Logging** ✅
-
-**File: `backend/app/main.py`**
-
-On startup, the backend now logs:
-```
-✅ Amora Blocks Service: Loaded 87 blocks with embeddings
-```
-
-Or warns if blocks are missing:
-```
-⚠️  Amora Blocks Service: NO BLOCKS FOUND! Will fall back to legacy templates.
-```
-
-### 4. **Added Health Check for Blocks** ✅
-
-**File: `backend/app/services/amora_blocks_service.py`**
-
-Added `get_blocks_count()` method to check how many blocks are loaded.
-
-Health endpoint now returns:
-```json
-{
-  "status": "healthy",
-  "service": "amora_blocks_primary",
-  "version": "2.0.0-blocks",
-  "blocks_loaded": 87,
-  "fallback": "legacy_templates"
-}
-```
-
-### 5. **Error Handling & Logging** ✅
-
-- All errors from `AmoraBlocksService` are caught and logged with stack traces
-- Graceful fallback to legacy templates
-- Clear indication in logs when fallback occurs
+All critical changes have been manually applied to `backend/app/services/amora_blocks_service.py`. The code compiles successfully.
 
 ---
 
-## What You Need to Do Next
+## ✅ Changes Verified
 
-### Step 1: Wait for Render to Deploy
+### 1. **TopicEmotionDetector Class** ✅
 
-Go to: https://dashboard.render.com
+- [x] **TOPIC_POLICIES** defined (lines 290-299)
+  - `breakup_intimacy_loss` policy with allow/deny lists
+  - `breakup_grief` policy with allow/deny lists
 
-Check your backend service:
-- Status should show "Deploying..." then "Live"
-- Check logs for:
-  ```
-  ✅ Amora Blocks Service: Loaded X blocks with embeddings
-  ```
+- [x] **EXPLICIT_MENTION_GATES** defined (lines 302-305)
+  - `unlovable` gate phrases
+  - `lust_vs_love` gate phrases
 
-### Step 2: Run the Migration
+- [x] **detect_topics()** updated (lines 415-477)
+  - ✅ Dual-signal detection for `breakup_intimacy_loss` (requires BOTH breakup + intimacy signals)
+  - ✅ Deterministic ordering (high-priority first, then sorted rest)
+  - ✅ Uses `normalized_text` throughout
+  - ✅ Calls `_apply_topic_guardrails()` with `EXPLICIT_MENTION_GATES`
 
-**In Supabase SQL Editor:**
+- [x] **_apply_topic_guardrails()** updated (lines 464-497)
+  - ✅ Uses `EXPLICIT_MENTION_GATES` for explicit mention checks
+  - ✅ Removes `unlovable` and `lust_vs_love` from breakup contexts unless explicitly stated
 
+- [x] **detect_emotions()** uses normalized text ✅
+
+---
+
+### 2. **BlockSelector Class** ✅
+
+- [x] **select_block()** signature updated (line 540)
+  - ✅ Added `normalized_text: str = ""` parameter
+
+- [x] **select_block()** calls filtering (lines 634-639)
+  - ✅ Calls `_apply_block_selection_filtering()` after sorting
+  - ✅ Enhanced debug logging with `normalized_text`, `forced_topic`, `selected_block_id`, `selected_block_topic`, `similarity_score`
+
+- [x] **_apply_block_selection_filtering()** method added (lines 666-729)
+  - ✅ Implements topic policy filtering
+  - ✅ Defensive None handling: `block_topics = set(block.topics or [])`
+  - ✅ Checks `TOPIC_POLICIES` allow/deny lists
+  - ✅ Checks `EXPLICIT_MENTION_GATES` for denied topics
+  - ✅ Safety fallback if all blocks filtered
+
+---
+
+### 3. **AmoraBlocksService Class** ✅
+
+- [x] **get_response()** normalizes question (line 961)
+  - ✅ `normalized_question = self.detector.normalize_text(question)`
+  - ✅ Logs normalized question
+
+- [x] **All select_block() calls updated** (lines 1012-1058)
+  - ✅ `reflection` block selection passes `normalized_text=normalized_question`
+  - ✅ `normalization` block selection passes `normalized_text=normalized_question`
+  - ✅ `exploration` block selection passes `normalized_text=normalized_question`
+  - ✅ `reframe` block selection passes `normalized_text=normalized_question`
+
+---
+
+### 4. **Database Migration** ✅
+
+- [x] **009_breakup_intimacy_blocks.sql** exists
+  - ✅ 14 blocks for `breakup_grief`
+  - ✅ 14 blocks for `breakup_intimacy_loss`
+  - ✅ No `COMMENT ON TABLE` statements
+  - ✅ Properly escaped strings
+
+---
+
+### 5. **Tests** ✅
+
+- [x] **test_topic_detection.py** exists
+  - ✅ Import path: `from app.services.amora_blocks_service import TopicEmotionDetector`
+  - ✅ Tests for dual-signal detection
+  - ✅ Tests for deterministic ordering
+  - ✅ Tests for explicit mention gates
+
+---
+
+## 🔍 Syntax Check Results
+
+```bash
+✅ python -m py_compile app/services/amora_blocks_service.py  # PASSED
+✅ python -m py_compile tests/test_topic_detection.py       # PASSED
+```
+
+---
+
+## 📋 Next Steps (From Deployment Checklist)
+
+### Step 1: ✅ Code Changes Applied
+- All changes manually applied and verified
+
+### Step 2: ✅ Syntax Check
+- Both files compile successfully
+
+### Step 3: Run Tests
+```bash
+cd backend
+pytest tests/test_topic_detection.py -v
+```
+**Note:** pytest may need to be installed: `pip install pytest`
+
+### Step 4: Apply Database Migration
 ```sql
--- Run this file:
--- backend/migrations/005_amora_blocks_architecture.sql
+-- Run in Supabase SQL Editor:
+-- Copy contents of backend/migrations/009_breakup_intimacy_blocks.sql
 ```
 
-This creates the `amora_response_blocks` table with 87 pre-populated blocks.
-
-### Step 3: Compute Embeddings
-
-**Option A: Via Render Dashboard (Recommended)**
-
-1. Go to your service in Render
-2. Click "Shell" (if available) or use their console
-3. Run:
-   ```bash
-   cd /opt/render/project/src
-   python backend/scripts/compute_block_embeddings.py
-   ```
-
-**Option B: Locally (if you have production env vars)**
-
-```powershell
-cd "C:\Users\Shilley Pc\MatchIQ"
-python backend/scripts/compute_block_embeddings.py
+Then verify:
+```sql
+SELECT COUNT(*) 
+FROM amora_response_blocks 
+WHERE 'breakup_intimacy_loss' = ANY(topics)
+   OR 'breakup_grief' = ANY(topics);
+-- Expected: 28 blocks
 ```
 
-### Step 4: Test the Deployment
+### Step 5: Compute Embeddings
+```bash
+# Option 1: Use admin endpoint
+curl -X POST http://localhost:8000/api/v1/admin/compute-embeddings \
+  -H "Authorization: Bearer YOUR_TOKEN"
 
-Run the test script:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File test_blocks_deployed.ps1
+# Option 2: Use script
+python backend/scripts/compute_block_embeddings.py --topics breakup_intimacy_loss breakup_grief
 ```
 
-**What to look for:**
+### Step 6: Manual QA Testing
+Test these scenarios and watch logs:
 
-✅ `blocks_loaded: 87` (or some number > 0)
+1. **"I miss our sex life"** → Should NOT detect `breakup_intimacy_loss`
+2. **"I miss our sex life with my ex"** → Should detect `breakup_intimacy_loss` (first position)
+3. **"I'm heartbroken"** → Should detect `breakup_grief` / `heartbreak`, no `unlovable`
+4. **"I miss my ex and I feel unlovable"** → Should keep both topics
 
-✅ `engine: "blocks"` in API responses
+### Step 7: Create PR
+```bash
+git add backend/app/services/amora_blocks_service.py \
+        backend/migrations/009_breakup_intimacy_blocks.sql \
+        backend/tests/test_topic_detection.py \
+        DEPLOYMENT_CHECKLIST.md \
+        IMPLEMENTATION_COMPLETE.md
 
-✅ Multi-sentence, emotionally specific responses
+git commit -m "Harden breakup intimacy topic detection & block filtering
 
-✅ No repeated "Can you share more?" lines
-
----
-
-## Expected Results
-
-### Before (Old System)
-
-**User:** "My girlfriend cheated on me with my best friend"
-
-**Amora (OLD):** "I'm here to help. Can you share a bit more about what you're thinking?"
-
-- ❌ Generic, repetitive
-- ❌ No emotional awareness
-- ❌ Sounds robotic
-
-### After (Blocks System)
-
-**User:** "My girlfriend cheated on me with my best friend"
-
-**Amora (NEW):** "I can hear how much pain you're in right now, and I'm so sorry this happened. Being betrayed by both your girlfriend and your best friend—that's a double loss, and it makes sense you feel lost. When you think about everything that happened, what part hurts the most right now?"
-
-- ✅ Emotionally aware
-- ✅ Specific to situation
-- ✅ Conversational, empathetic
-- ✅ Multi-sentence
-- ✅ Feels human
+- Dual-signal detection for breakup_intimacy_loss (requires breakup + intimacy)
+- Deterministic topic ordering (high-priority first)
+- Topic policies and explicit mention gates for block filtering
+- Block-level filtering to prevent wrong-topic responses
+- New breakup_grief and breakup_intimacy_loss blocks
+- Comprehensive test suite"
+```
 
 ---
 
-## Troubleshooting
+## 🎯 Key Improvements Summary
 
-### Problem: Still seeing `engine: "legacy_templates"`
-
-**Check Render logs:**
-
-1. Go to https://dashboard.render.com
-2. Open your backend service
-3. Click "Logs"
-4. Look for:
-   ```
-   AmoraBlocksService failed, falling back to legacy templates: {error}
-   ```
-
-**Common causes:**
-
-1. **Embeddings not computed**
-   - Fix: Run Step 3 above
-
-2. **Migration not run**
-   - Error: `relation "amora_response_blocks" does not exist`
-   - Fix: Run Step 2 above
-
-3. **pgvector extension not enabled**
-   - Error: `type "vector" does not exist`
-   - Fix: Run in Supabase:
-     ```sql
-     CREATE EXTENSION IF NOT EXISTS vector;
-     ```
-
-### Problem: `blocks_loaded: 0`
-
-**Cause:** Embeddings haven't been computed yet.
-
-**Fix:** Run Step 3 (compute embeddings).
-
-### Problem: Responses still generic
-
-**Possible causes:**
-
-1. Frontend is cached
-   - Clear browser cache
-   - Use a new `session_id`
-
-2. Blocks are empty
-   - Check: `blocks_loaded` should be > 0
-   - Run embedding script if needed
-
-3. Block selection is failing
-   - Check Render logs for errors
-   - Verify database connection
+1. **Dual-Signal Detection**: `breakup_intimacy_loss` only triggers when BOTH breakup AND intimacy signals present
+2. **Deterministic Ordering**: Topics returned in consistent order (high-priority first)
+3. **Block-Level Filtering**: Blocks filtered by topic policies at selection time
+4. **Explicit Mention Gates**: Sensitive topics like `unlovable` only activate if user explicitly mentions them
+5. **Defensive Programming**: None handling for `block.topics` prevents crashes
+6. **Enhanced Logging**: Comprehensive debug logs for troubleshooting
 
 ---
 
-## Files Changed in This Implementation
+## ⚠️ Important Notes
 
-1. `backend/app/models/pydantic_models.py` - Added `engine` field
-2. `backend/app/api/coach_enhanced.py` - Wired blocks service, added fallback logic
-3. `backend/app/main.py` - Added startup logging for blocks count
-4. `backend/app/services/amora_blocks_service.py` - Added `get_blocks_count()` method
-5. `DEPLOY_BLOCKS_PRODUCTION.md` - Deployment guide
-6. `test_blocks_deployed.ps1` - Deployment test script
+- **HIGH_PRIORITY_TOPICS still exists** but is no longer used for `breakup_intimacy_loss` detection (dual-signal logic replaces it)
+- **TOPIC_KEYWORDS['breakup_intimacy_loss']** still exists but won't trigger the high-priority topic (dual-signal takes precedence)
+- The old keyword-based detection in `HIGH_PRIORITY_TOPICS` can be removed in a future cleanup, but leaving it doesn't hurt since dual-signal logic runs first
 
 ---
 
-## Success Criteria
+## ✅ Ready for Testing & Deployment
 
-✅ Render deployment completes successfully
-
-✅ Startup logs show: `✅ Amora Blocks Service: Loaded 87 blocks with embeddings`
-
-✅ Health endpoint returns: `"blocks_loaded": 87`
-
-✅ API responses include: `"engine": "blocks"`
-
-✅ User receives multi-sentence, contextual, emotionally aware responses
-
-✅ No repeated generic fallback lines in same conversation
-
----
-
-## Next Actions
-
-1. **Monitor Render Dashboard** - Wait for "Live" status
-2. **Run Migration** - Execute 005_amora_blocks_architecture.sql in Supabase
-3. **Compute Embeddings** - Run compute_block_embeddings.py script
-4. **Test Deployment** - Run test_blocks_deployed.ps1
-5. **Test in Your App** - Try real conversations with Amora
-
----
-
-## Questions?
-
-- Check `DEPLOY_BLOCKS_PRODUCTION.md` for detailed deployment steps
-- Check Render logs if you see errors
-- Test locally first if unsure about production changes
-
-**You're ready to deploy! 🚀**
+All code changes are complete and syntax-validated. Proceed with:
+1. Running tests (install pytest if needed)
+2. Applying database migration
+3. Computing embeddings
+4. Manual QA
+5. PR creation
