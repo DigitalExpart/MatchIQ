@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
-import { ArrowLeft, Send, Heart, Menu, X, FileText } from 'lucide-react';
+import { ArrowLeft, Send, Heart, Menu, X, FileText, AlertTriangle } from 'lucide-react';
 import { amoraSessionService, AmoraSession } from '../../services/amoraSessionService';
 import { SessionList } from '../ai/SessionList';
 import { CreateSessionModal } from '../ai/CreateSessionModal';
 import { MessageFeedback } from '../ai/MessageFeedback';
 import { FollowUpNotification } from '../ai/FollowUpNotification';
+import { AICoachDisclaimerModal } from '../ai/AICoachDisclaimerModal';
 
 export interface AICoachScreenProps {
   onBack: () => void;
@@ -19,7 +20,15 @@ interface Message {
   messageId?: string; // For feedback
 }
 
+const DISCLAIMER_ACCEPTANCE_KEY = 'amora_disclaimer_accepted';
+
 export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
+  // Disclaimer state
+  const [showDisclaimer, setShowDisclaimer] = useState(false);
+  const [disclaimerAccepted, setDisclaimerAccepted] = useState(() => {
+    return localStorage.getItem(DISCLAIMER_ACCEPTANCE_KEY) === 'true';
+  });
+  
   // Session management
   const [currentSession, setCurrentSession] = useState<AmoraSession | null>(null);
   const [showSessionList, setShowSessionList] = useState(false);
@@ -43,10 +52,22 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Load sessions on mount
+  // Check disclaimer on mount
   useEffect(() => {
-    loadSessions();
-    checkForFollowUps();
+    if (!disclaimerAccepted) {
+      setShowDisclaimer(true);
+    } else {
+      loadSessions();
+      checkForFollowUps();
+    }
+  }, [disclaimerAccepted]);
+
+  // Load sessions on mount (if disclaimer already accepted)
+  useEffect(() => {
+    if (disclaimerAccepted) {
+      loadSessions();
+      checkForFollowUps();
+    }
   }, []);
 
   // Auto-scroll to bottom
@@ -271,8 +292,27 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
     }
   };
 
+  const handleAcceptDisclaimer = () => {
+    localStorage.setItem(DISCLAIMER_ACCEPTANCE_KEY, 'true');
+    setDisclaimerAccepted(true);
+    setShowDisclaimer(false);
+    loadSessions();
+    checkForFollowUps();
+  };
+
+  const handleDeclineDisclaimer = () => {
+    // User declined, go back
+    onBack();
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50">
+      {/* Disclaimer Modal */}
+      <AICoachDisclaimerModal
+        isOpen={showDisclaimer}
+        onAccept={handleAcceptDisclaimer}
+        onDecline={handleDeclineDisclaimer}
+      />
       {/* Header */}
       <div className="bg-gradient-to-br from-purple-500 via-violet-500 to-purple-600 px-6 pt-12 pb-6">
         <div className="flex items-center justify-between mb-6">
@@ -459,6 +499,19 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
           >
             <Send className="w-5 h-5" />
           </button>
+        </div>
+      </div>
+
+      {/* Disclaimer Footer */}
+      <div className="bg-amber-50 border-t border-amber-200 px-6 py-3">
+        <div className="max-w-3xl mx-auto flex items-start gap-2">
+          <AlertTriangle className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
+          <p className="text-xs text-amber-800 leading-relaxed">
+            <strong>Disclaimer:</strong> Amora's responses are generated using AI technology and are not 100% accurate. 
+            The AI may make mistakes, misunderstand context, or provide responses that don't fully match your situation. 
+            Amora is not a replacement for professional therapy or counseling. For serious relationship issues or mental 
+            health concerns, please seek professional help.
+          </p>
         </div>
       </div>
     </div>
