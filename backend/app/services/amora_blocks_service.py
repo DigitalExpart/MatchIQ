@@ -455,13 +455,43 @@ class TopicEmotionDetector:
         high_priority_detected = []
         
         # Step 1: Check HIGH_PRIORITY topics with dual-signal requirements
-        breakup_signals = ['ex', 'my ex', 'breakup', 'broke up', 'ended things', 'dumped', 'left me']
-        intimacy_signals = ['sex life', 'miss sex', 'miss our sex', 'intimacy', 'physical connection', 'chemistry', 'miss the way we', 'miss how we']
-        heartbreak_words = ['heartbroken', 'heartbreak', 'broken heart']
+        # Expanded breakup signals to catch more variations
+        breakup_signals = [
+            'ex', 'my ex', 'your ex', 'the ex', 'with ex', 'with my ex', 'with your ex',
+            'breakup', 'broke up', 'breaking up', 'ended things', 'dumped', 'left me',
+            'after we broke up', 'since the breakup', 'since we broke up', 'after breakup',
+            'previous relationship', 'past relationship', 'former partner'
+        ]
+        # Expanded intimacy signals to catch more variations (including grammatically unusual but clear messages)
+        intimacy_signals = [
+            'sex life', 'miss sex', 'miss our sex', 'miss the sex', 'miss having sex',
+            'intimacy', 'physical connection', 'chemistry', 'miss the way we', 'miss how we',
+            'miss the way i and', 'miss the way me and', 'miss how me and', 'miss how i and',
+            'miss the way we do', 'miss how we do', 'miss the way we did', 'miss how we did',
+            'miss the way we have', 'miss how we have', 'miss the way we had', 'miss how we had',
+            'miss our intimacy', 'miss the intimacy', 'miss the physical', 'miss our physical',
+            'miss the physical connection', 'miss the chemistry', 'miss our chemistry',
+            'miss the way we connected', 'miss our connection', 'miss the closeness',
+            'missing sex', 'missing intimacy', 'missing the sex', 'missing our sex',
+            'nice time', 'our nice time', 'the nice time',  # Catch "miss our nice time our sex life"
+            'do have sex', 'we do have sex', 'how we do have sex', 'the way we do have sex',
+            'time to time', 'have time to time', 'sex we have time to time'  # Catch "the sex we have time to time"
+        ]
+        heartbreak_words = ['heartbroken', 'heartbreak', 'broken heart', 'my heart is broken', 'heart is broken']
         
         is_breakup = any(signal in text_lower for signal in breakup_signals)
         is_intimacy = any(signal in text_lower for signal in intimacy_signals)
         is_heartbreak = any(kw in text_lower for kw in heartbreak_words)
+        
+        # Also check context_topics for breakup signals (if previous messages mentioned breakup/ex)
+        # This allows us to detect breakup_intimacy_loss even if current message doesn't say "ex"
+        if context_topics:
+            context_lower = ' '.join(context_topics).lower()
+            # Check if any context topic is breakup-related
+            breakup_context_topics = ['breakup', 'breakup_grief', 'breakup_intimacy_loss', 'ex']
+            if any(ct in context_topics for ct in breakup_context_topics):
+                is_breakup = True  # Use context to infer breakup if not explicitly stated
+                logger.info(f"[TopicDetection] Using context to infer breakup signal from context_topics: {context_topics}")
         
         # breakup_intimacy_loss requires BOTH breakup/ex signal AND intimacy signal
         if is_breakup and is_intimacy:
