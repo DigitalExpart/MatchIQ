@@ -21,7 +21,6 @@ interface Message {
 }
 
 const DISCLAIMER_ACCEPTANCE_KEY = 'amora_disclaimer_accepted';
-const LAST_SELECTED_SESSION_KEY = 'amora_last_selected_session_id';
 
 export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
   // Disclaimer state
@@ -29,6 +28,10 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(() => {
     return localStorage.getItem(DISCLAIMER_ACCEPTANCE_KEY) === 'true';
   });
+  
+  // Auth state
+  const [isAuthReady, setIsAuthReady] = useState(false);
+  const [authError, setAuthError] = useState<string | null>(null);
   
   // Session management
   const [currentSession, setCurrentSession] = useState<AmoraSession | null>(null);
@@ -53,23 +56,54 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Check disclaimer on mount
+  // Check authentication and disclaimer on mount
   useEffect(() => {
-    if (!disclaimerAccepted) {
-      setShowDisclaimer(true);
-    } else {
-      loadSessions();
-      checkForFollowUps();
-    }
-  }, [disclaimerAccepted]);
+    const checkAuthAndDisclaimer = async () => {
+      try {
+        // Import authService dynamically to ensure it's initialized
+        const { authService } = await import('../../utils/authService');
+        
+        // Wait a bit for authService to load from localStorage
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        // Check if user is authenticated
+        const isAuthenticated = authService.isAuthenticated();
+        const userId = authService.getCurrentUserId() || localStorage.getItem('myMatchIQ_currentUserId');
+        
+        if (!isAuthenticated && !userId) {
+          setAuthError('Please sign in to use Amora');
+          setIsAuthReady(false);
+          return;
+        }
+        
+        setIsAuthReady(true);
+        setAuthError(null);
+        
+        // Now check disclaimer - show it if not accepted
+        if (!disclaimerAccepted) {
+          setShowDisclaimer(true);
+        } else {
+          // Disclaimer already accepted, load sessions
+          await loadSessions();
+          checkForFollowUps();
+        }
+      } catch (error) {
+        console.error('Error checking auth:', error);
+        setAuthError('Failed to verify authentication. Please try refreshing the page.');
+        setIsAuthReady(false);
+      }
+    };
+    
+    checkAuthAndDisclaimer();
+  }, []); // Only run on mount
 
-  // Load sessions on mount (if disclaimer already accepted)
+  // Load sessions when disclaimer is accepted (if auth is ready)
   useEffect(() => {
-    if (disclaimerAccepted) {
+    if (disclaimerAccepted && isAuthReady && !authError) {
       loadSessions();
       checkForFollowUps();
     }
-  }, []);
+  }, [disclaimerAccepted, isAuthReady]);
 
   // Auto-scroll to bottom
   useEffect(() => {
@@ -83,10 +117,8 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
       
       // Auto-select first active session or create one if none exist
       if (data.length > 0 && !currentSession) {
-        const lastSelectedId = localStorage.getItem(LAST_SELECTED_SESSION_KEY);
-        const lastSelectedSession = lastSelectedId ? data.find(s => s.id === lastSelectedId) : undefined;
-        const fallbackSession = data.find(s => s.status === 'ACTIVE') || data[0];
-        selectSession(lastSelectedSession || fallbackSession);
+        const activeSession = data.find(s => s.status === 'ACTIVE') || data[0];
+        selectSession(activeSession);
       }
     } catch (error) {
       console.error('Failed to load sessions:', error);
@@ -97,73 +129,7 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
     // FollowUpNotification component handles this
   };
 
-  type SessionMessageApiRow = {
-    id: string;
-    session_id: string;
-    sender: 'user' | 'amora';
-    message_text: string;
-    created_at: string;
-    metadata?: Record<string, any> | null;
-  };
-
-  const loadSessionHistory = async (sessionId: string) => {
-    const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://macthiq-ai-backend.onrender.com/api/v1';
-
-    // Build auth headers (same approach used in handleSendMessage)
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
-    };
-
-    let userId: string | null = null;
-    try {
-      const { authService } = await import('../../utils/authService');
-      userId = authService.getCurrentUserId();
-    } catch (error) {
-      console.warn('Failed to get user ID from authService:', error);
-    }
-
-    if (!userId) {
-      userId = localStorage.getItem('myMatchIQ_currentUserId');
-    }
-
-    if (!userId) {
-      throw new Error('No userId found. Please sign in again.');
-    }
-
-    headers['X-User-Id'] = userId;
-
-    const resp = await fetch(`${apiUrl}/coach/sessions/${sessionId}/messages?limit=100`, {
-      method: 'GET',
-      headers,
-      signal: AbortSignal.timeout(30000),
-    });
-
-    if (!resp.ok) {
-      const errorText = await resp.text();
-      throw new Error(`Failed to load session history: ${resp.status} ${errorText}`);
-    }
-
-    const data: SessionMessageApiRow[] = await resp.json();
-    const mapped: Message[] = (data || []).map((m) => ({
-      id: m.id,
-      type: m.sender === 'amora' ? 'ai' : 'user',
-      content: m.message_text,
-      timestamp: new Date(m.created_at),
-      // enable feedback buttons for AI messages
-      messageId: m.sender === 'amora' ? m.id : undefined,
-    }));
-
-    setMessages(mapped);
-  };
-
   const selectSession = async (session: AmoraSession) => {
-    // Persist selection so refresh returns to the same session
-    try {
-      localStorage.setItem(LAST_SELECTED_SESSION_KEY, session.id);
-    } catch (e) {
-      console.warn('Failed to persist last selected session:', e);
-    }
-
     setCurrentSession(session);
     setShowSessionList(false);
     setMessages([]);
@@ -173,13 +139,6 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
     if (session.summary_text) {
       setShowSummary(true);
     }
-
-    // Load recent message history for this session
-    try {
-      await loadSessionHistory(session.id);
-    } catch (e) {
-      console.error('Failed to load session history:', e);
-    }
   };
 
   const handleCreateSession = async (session: AmoraSession) => {
@@ -187,22 +146,13 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
     selectSession(session);
   };
 
-  const handleFollowUpSelect = async (sessionId: string, prompt: string) => {
+  const handleFollowUpSelect = (sessionId: string, prompt: string) => {
     // Find and select the session
     const session = sessions.find(s => s.id === sessionId);
     if (session) {
-      await selectSession(session);
-      // Automatically send the follow-up prompt as a message from Amora
-      // Add it as an AI message in the chat history
-      const followUpMessage: Message = {
-        id: `followup-${Date.now()}`,
-        type: 'ai',
-        content: prompt,
-        timestamp: new Date(),
-      };
-      setMessages(prev => [...prev, followUpMessage]);
-      // Pre-fill the input so user can respond
-      setInputValue('');
+      selectSession(session);
+      // Pre-fill the prompt
+      setInputValue(prompt);
       inputRef.current?.focus();
     }
   };
@@ -235,6 +185,12 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
 
   const handleSendMessage = async (content: string) => {
     if (!content.trim() || isLoading) return;
+    
+    // Require auth to be ready
+    if (!isAuthReady || authError) {
+      setAuthError('Please sign in to use Amora. If you are signed in, please try refreshing the page.');
+      return;
+    }
 
     // Require a session
     if (!currentSession) {
@@ -377,12 +333,22 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
     }
   };
 
-  const handleAcceptDisclaimer = () => {
+  const handleAcceptDisclaimer = async () => {
+    // Verify auth is ready before accepting
+    if (!isAuthReady || authError) {
+      setAuthError('Please sign in to use Amora. If you are signed in, please try refreshing the page.');
+      return;
+    }
+    
     localStorage.setItem(DISCLAIMER_ACCEPTANCE_KEY, 'true');
     setDisclaimerAccepted(true);
     setShowDisclaimer(false);
-    loadSessions();
-    checkForFollowUps();
+    
+    // Load sessions after disclaimer is accepted
+    if (isAuthReady && !authError) {
+      await loadSessions();
+      checkForFollowUps();
+    }
   };
 
   const handleDeclineDisclaimer = () => {
@@ -468,6 +434,25 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
       {/* Follow-up Notifications */}
       <FollowUpNotification onSelectFollowUp={handleFollowUpSelect} />
 
+      {/* Auth Error Display */}
+      {authError && (
+        <div className="px-6 py-4 bg-red-50 border-b border-red-200">
+          <div className="flex items-start gap-3">
+            <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <p className="text-sm font-medium text-red-900 mb-1">Authentication Required</p>
+              <p className="text-sm text-red-700">{authError}</p>
+              <button
+                onClick={() => window.location.reload()}
+                className="mt-2 text-sm text-red-800 underline hover:text-red-900"
+              >
+                Refresh Page
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Session Summary */}
       {showSummary && currentSession && (currentSession.summary_text || currentSession.next_plan_text) && (
         <div className="px-6 py-4 bg-purple-50 border-b border-purple-200">
@@ -497,7 +482,13 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4">
-        {messages.length === 0 && currentSession && (
+        {!isAuthReady && !authError && (
+          <div className="text-center py-12">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto mb-4"></div>
+            <p className="text-sm text-gray-600">Verifying authentication...</p>
+          </div>
+        )}
+        {messages.length === 0 && currentSession && isAuthReady && !authError && (
           <div className="text-center py-12">
             <Heart className="w-16 h-16 mx-auto mb-4 text-purple-300" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -543,70 +534,60 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input + Disclaimer (sticky) */}
-      <div className="sticky bottom-0 bg-white border-t border-gray-200">
-        {/* Input */}
-        <div className="px-6 py-4">
-          {!currentSession && (
-            <div className="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
-              <p className="text-sm text-yellow-800 mb-2">
-                Please create or select a session to start chatting
-              </p>
-              <button
-                onClick={() => setShowCreateModal(true)}
-                className="text-sm font-medium text-yellow-900 hover:underline"
-              >
-                Create a new session →
-              </button>
-            </div>
-          )}
-          <div className="max-w-3xl mx-auto flex gap-3">
-            <input
-              ref={inputRef}
-              id="amora-chat-input"
-              name="amora-message"
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputValue)}
-              placeholder={currentSession ? "Ask me anything about dating..." : "Create a session first..."}
-              autoComplete="off"
-              aria-label="Chat with Amora"
-              disabled={!currentSession || isLoading}
-              className="flex-1 px-5 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 disabled:opacity-50"
-            />
+      {/* Input */}
+      <div className="bg-white border-t border-gray-200 px-6 py-4">
+        {!currentSession && (
+          <div className="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
+            <p className="text-sm text-yellow-800 mb-2">
+              Please create or select a session to start chatting
+            </p>
             <button
-              onClick={() => handleSendMessage(inputValue)}
-              disabled={!inputValue.trim() || isLoading || !currentSession}
-              className={`px-6 py-3 rounded-2xl transition-all ${
-                inputValue.trim() && currentSession && !isLoading
-                  ? 'bg-gradient-to-r from-purple-500 to-violet-500 text-white shadow-lg hover:shadow-xl'
-                  : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-              }`}
+              onClick={() => setShowCreateModal(true)}
+              className="text-sm font-medium text-yellow-900 hover:underline"
             >
-              <Send className="w-5 h-5" />
+              Create a new session →
             </button>
           </div>
+        )}
+        <div className="max-w-3xl mx-auto flex gap-3">
+          <input
+            ref={inputRef}
+            id="amora-chat-input"
+            name="amora-message"
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyPress={(e) => e.key === 'Enter' && handleSendMessage(inputValue)}
+            placeholder={currentSession ? "Ask me anything about dating..." : "Create a session first..."}
+            autoComplete="off"
+            aria-label="Chat with Amora"
+            disabled={!currentSession || isLoading || !isAuthReady || !!authError}
+            className="flex-1 px-5 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900 disabled:opacity-50"
+          />
+          <button
+            onClick={() => handleSendMessage(inputValue)}
+            disabled={!inputValue.trim() || isLoading || !currentSession || !isAuthReady || !!authError}
+            className={`px-6 py-3 rounded-2xl transition-all ${
+              inputValue.trim() && currentSession && !isLoading
+                ? 'bg-gradient-to-r from-purple-500 to-violet-500 text-white shadow-lg hover:shadow-xl'
+                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+            }`}
+          >
+            <Send className="w-5 h-5" />
+          </button>
         </div>
+      </div>
 
-        {/* Disclaimer Footer (under input) */}
-        <div className="bg-amber-50 border-t border-amber-200 px-6 py-2">
-          <div className="max-w-3xl mx-auto flex items-start gap-2">
-            <AlertTriangle className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
-            <div className="flex-1">
-              <p className="text-[11px] text-amber-800 leading-snug">
-                <strong>Disclaimer:</strong> Amora is AI and can make mistakes. Not professional advice.
-              </p>
-              <button
-                type="button"
-                onClick={() => setShowDisclaimer(true)}
-                className="mt-0.5 text-[11px] font-medium text-amber-900 underline underline-offset-2 hover:text-amber-950"
-                aria-label="View AI Coach disclaimer"
-              >
-                View disclaimer
-              </button>
-            </div>
-          </div>
+      {/* Disclaimer Footer */}
+      <div className="bg-amber-50 border-t border-amber-200 px-6 py-3">
+        <div className="max-w-3xl mx-auto flex items-start gap-2">
+          <AlertTriangle className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
+          <p className="text-xs text-amber-800 leading-relaxed">
+            <strong>Disclaimer:</strong> Amora's responses are generated using AI technology and are not 100% accurate. 
+            The AI may make mistakes, misunderstand context, or provide responses that don't fully match your situation. 
+            Amora is not a replacement for professional therapy or counseling. For serious relationship issues or mental 
+            health concerns, please seek professional help.
+          </p>
         </div>
       </div>
     </div>
