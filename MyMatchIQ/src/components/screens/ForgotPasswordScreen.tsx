@@ -36,12 +36,31 @@ export function ForgotPasswordScreen({ onBack, onResetPassword }: ForgotPassword
         body: JSON.stringify({ email: email.trim() }),
       });
 
-      const data = await response.json();
-
+      // Handle non-OK responses
       if (!response.ok) {
-        setError(data.detail || 'Failed to send reset link');
+        let errorMessage = 'Failed to send reset link';
+        
+        // Try to parse JSON error response
+        try {
+          const errorData = await response.json();
+          errorMessage = errorData.detail || errorData.message || errorMessage;
+        } catch {
+          // If response is not JSON, provide helpful error based on status
+          if (response.status === 404) {
+            errorMessage = 'Password reset feature is not available yet. The backend may still be deploying. Please try again in a few minutes or contact support.';
+          } else if (response.status >= 500) {
+            errorMessage = 'Server error. Please try again later.';
+          } else {
+            errorMessage = `Error ${response.status}: ${response.statusText || 'Failed to send reset link'}`;
+          }
+        }
+        
+        setError(errorMessage);
         return;
       }
+
+      // Parse successful response
+      const data = await response.json();
 
       // Success - show message
       setSuccess(true);
