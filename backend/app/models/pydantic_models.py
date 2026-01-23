@@ -223,4 +223,3 @@ class SessionMessageResponse(BaseModel):
     message_text: str
     created_at: datetime
     metadata: Optional[Dict[str, Any]] = None
-
