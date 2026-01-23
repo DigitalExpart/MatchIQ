@@ -238,6 +238,15 @@ export function SessionList({ onSelectSession, onCreateSession, currentSessionId
                         </div>
                         <div className="flex items-center gap-2 flex-shrink-0">
                           {getStatusIcon(session.status)}
+                          <div onClick={(e) => e.stopPropagation()}>
+                            <SessionMenu
+                              session={session}
+                              onShare={handleShare}
+                              onPin={handlePin}
+                              onEdit={handleEdit}
+                              onDelete={handleDelete}
+                            />
+                          </div>
                         </div>
                       </div>
                       {session.primary_topic && (
@@ -255,15 +264,6 @@ export function SessionList({ onSelectSession, onCreateSession, currentSessionId
                         </p>
                       )}
                     </button>
-                    <div className="absolute top-2 right-2" onClick={(e) => e.stopPropagation()}>
-                      <SessionMenu
-                        session={session}
-                        onShare={handleShare}
-                        onPin={handlePin}
-                        onEdit={handleEdit}
-                        onDelete={handleDelete}
-                      />
-                    </div>
                   </>
                 )}
               </div>

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { MoreVertical, Share2, Pin, Edit, Trash2, PinOff } from 'lucide-react';
+import { MoreHorizontal, Share2, Pin, Edit, Trash2, PinOff } from 'lucide-react';
 import { AmoraSession } from '../../services/amoraSessionService';
 
 interface SessionMenuProps {
@@ -48,7 +48,7 @@ export function SessionMenu({ session, onShare, onPin, onEdit, onDelete }: Sessi
         className="p-1.5 hover:bg-gray-100 rounded-full transition-colors"
         aria-label="Session options"
       >
-        <MoreVertical className="w-4 h-4 text-gray-500" />
+        <MoreHorizontal className="w-4 h-4 text-gray-500" />
       </button>
 
       {isOpen && (
