@@ -1,0 +1,3 @@
+# Ensure Python files are treated as text with LF line endings
+*.py text eol=lf
+backend/app/models/pydantic_models.py text eol=lf
