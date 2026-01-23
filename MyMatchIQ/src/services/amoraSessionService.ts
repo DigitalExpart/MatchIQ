@@ -15,6 +15,7 @@ export interface AmoraSession {
   follow_up_time?: string;
   summary_text?: string;
   next_plan_text?: string;
+  pinned?: boolean;
 }
 
 export interface FollowUp {
@@ -189,6 +190,7 @@ class AmoraSessionService {
       status?: 'ACTIVE' | 'PAUSED' | 'COMPLETED';
       follow_up_enabled?: boolean;
       follow_up_time?: string;
+      pinned?: boolean;
     }
   ): Promise<AmoraSession> {
     try {
@@ -251,6 +253,26 @@ class AmoraSessionService {
       }
     } catch (error) {
       console.error('Error submitting feedback:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Delete a session
+   */
+  async deleteSession(sessionId: string): Promise<void> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/coach/sessions/${sessionId}`, {
+        method: 'DELETE',
+        headers: await this.getAuthHeaders(),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Failed to delete session: ${errorText}`);
+      }
+    } catch (error) {
+      console.error('Error deleting session:', error);
       throw error;
     }
   }

@@ -419,6 +419,15 @@ export function AICoachScreenWithSessions({ onBack }: AICoachScreenProps) {
                 setShowCreateModal(true);
               }}
               currentSessionId={currentSession?.id}
+              onSessionUpdated={() => {
+                // Reload sessions when updated/deleted
+                loadSessions();
+                // If current session was deleted, clear it
+                if (currentSession && !sessions.find(s => s.id === currentSession.id)) {
+                  setCurrentSession(null);
+                  setMessages([]);
+                }
+              }}
             />
           </div>
         </div>

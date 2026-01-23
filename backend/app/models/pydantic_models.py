@@ -187,6 +187,7 @@ class UpdateSessionRequest(BaseModel):
     status: Optional[SessionStatus] = None
     follow_up_enabled: Optional[bool] = None
     follow_up_time: Optional[str] = None  # HH:MM format
+    pinned: Optional[bool] = None  # Pin session to top of list
 
 
 class SessionResponse(BaseModel):
@@ -201,6 +202,7 @@ class SessionResponse(BaseModel):
     follow_up_time: Optional[str] = None
     summary_text: Optional[str] = None
     next_plan_text: Optional[str] = None
+    pinned: Optional[bool] = False  # Whether session is pinned
 
 
 class FollowUpResponse(BaseModel):
