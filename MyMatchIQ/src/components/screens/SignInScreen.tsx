@@ -6,9 +6,10 @@ interface SignInScreenProps {
   onSignIn: (email: string, password: string) => Promise<boolean>;
   onSignUp: () => void;
   onBack: () => void;
+  onForgotPassword: () => void;
 }
 
-export function SignInScreen({ onSignIn, onSignUp, onBack }: SignInScreenProps) {
+export function SignInScreen({ onSignIn, onSignUp, onBack, onForgotPassword }: SignInScreenProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -121,10 +122,7 @@ export function SignInScreen({ onSignIn, onSignUp, onBack }: SignInScreenProps) 
               <button
                 type="button"
                 className="text-sm text-rose-600 hover:text-rose-700"
-                onClick={() => {
-                  // TODO: Implement forgot password
-                  alert('Forgot password feature coming soon!');
-                }}
+                onClick={onForgotPassword}
               >
                 Forgot Password?
               </button>
