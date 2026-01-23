@@ -262,17 +262,40 @@ class AmoraSessionService {
    */
   async deleteSession(sessionId: string): Promise<void> {
     try {
+      const headers = await this.getAuthHeaders();
+      console.log('[AmoraSessionService] deleteSession - Headers:', headers);
+      console.log('[AmoraSessionService] deleteSession - SessionId:', sessionId);
+      
       const response = await fetch(`${API_BASE_URL}/coach/sessions/${sessionId}`, {
         method: 'DELETE',
-        headers: await this.getAuthHeaders(),
+        headers,
       });
 
+      console.log('[AmoraSessionService] deleteSession - Response status:', response.status);
+
       if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Failed to delete session: ${errorText}`);
+        let errorMessage = 'Failed to delete session';
+        try {
+          const errorData = await response.json();
+          errorMessage = errorData.detail || errorData.message || errorMessage;
+        } catch {
+          const errorText = await response.text();
+          errorMessage = errorText || errorMessage;
+        }
+        console.error('[AmoraSessionService] deleteSession - Error:', errorMessage);
+        throw new Error(errorMessage);
+      }
+
+      // Parse response if available
+      try {
+        const data = await response.json();
+        console.log('[AmoraSessionService] deleteSession - Success:', data);
+      } catch {
+        // No response body is fine for DELETE
+        console.log('[AmoraSessionService] deleteSession - Success (no response body)');
       }
     } catch (error) {
-      console.error('Error deleting session:', error);
+      console.error('[AmoraSessionService] deleteSession - Error:', error);
       throw error;
     }
   }

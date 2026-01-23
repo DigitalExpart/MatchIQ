@@ -320,30 +320,53 @@ async def delete_session(
             raise HTTPException(status_code=404, detail="Session not found")
         
         # Delete session messages first (cascade should handle this, but being explicit)
-        supabase.table("amora_session_messages") \
-            .delete() \
-            .eq("session_id", str(session_id)) \
-            .execute()
+        try:
+            messages_response = supabase.table("amora_session_messages") \
+                .delete() \
+                .eq("session_id", str(session_id)) \
+                .execute()
+            logger.info(f"Deleted {len(messages_response.data) if messages_response.data else 0} messages for session {session_id}")
+        except Exception as e:
+            logger.warning(f"Error deleting messages (may be empty): {e}")
         
         # Delete session feedback
-        supabase.table("amora_session_feedback") \
-            .delete() \
-            .eq("session_id", str(session_id)) \
-            .execute()
+        try:
+            feedback_response = supabase.table("amora_session_feedback") \
+                .delete() \
+                .eq("session_id", str(session_id)) \
+                .execute()
+            logger.info(f"Deleted {len(feedback_response.data) if feedback_response.data else 0} feedback entries for session {session_id}")
+        except Exception as e:
+            logger.warning(f"Error deleting feedback (may be empty): {e}")
         
         # Delete the session
-        supabase.table("amora_sessions") \
+        delete_response = supabase.table("amora_sessions") \
             .delete() \
             .eq("id", str(session_id)) \
             .eq("user_id", str(user_id)) \
             .execute()
         
+        # Verify deletion was successful by checking if session still exists
+        verify_response = supabase.table("amora_sessions") \
+            .select("id") \
+            .eq("id", str(session_id)) \
+            .execute()
+        
+        if verify_response.data and len(verify_response.data) > 0:
+            logger.error(f"Session {session_id} still exists after delete attempt")
+            raise HTTPException(status_code=500, detail="Failed to delete session. Session still exists.")
+        
+        logger.info(f"Successfully deleted session {session_id} for user {user_id}")
         return {"success": True, "message": "Session deleted successfully"}
     except HTTPException:
         raise
     except Exception as e:
-        logger.error(f"Error deleting session: {e}", exc_info=True)
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error deleting session {session_id}: {e}", exc_info=True)
+        error_detail = str(e)
+        # Provide more helpful error messages
+        if "permission" in error_detail.lower() or "policy" in error_detail.lower():
+            raise HTTPException(status_code=403, detail="Permission denied. Check database RLS policies.")
+        raise HTTPException(status_code=500, detail=f"Failed to delete session: {error_detail}")
 
 
 @router.post("/feedback")
