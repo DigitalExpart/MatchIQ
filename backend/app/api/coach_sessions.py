@@ -17,7 +17,7 @@ from app.models.pydantic_models import (
     SessionMessageResponse
 )
 from app.models.db_models import AmoraSession
-from app.database import get_supabase_client
+from app.database import get_supabase_client, get_supabase_admin_client
 from app.api.coach_enhanced import get_user_id_from_auth
 
 router = APIRouter(prefix="/coach/sessions", tags=["coach-sessions"])
@@ -308,6 +308,16 @@ async def delete_session(
     try:
         supabase = get_supabase_client()
         
+        # Try to use admin client if available (bypasses RLS)
+        # Otherwise use regular client (subject to RLS policies)
+        try:
+            admin_supabase = get_supabase_admin_client()
+            delete_client = admin_supabase
+            logger.info(f"Using admin client for delete operation (bypasses RLS)")
+        except (ValueError, Exception) as e:
+            logger.warning(f"Admin client not available, using regular client: {e}")
+            delete_client = supabase
+        
         # First verify the session belongs to the user
         check_response = supabase.table("amora_sessions") \
             .select("id") \
@@ -321,30 +331,32 @@ async def delete_session(
         
         # Delete session messages first (cascade should handle this, but being explicit)
         try:
-            messages_response = supabase.table("amora_session_messages") \
+            messages_response = delete_client.table("amora_session_messages") \
                 .delete() \
                 .eq("session_id", str(session_id)) \
                 .execute()
-            logger.info(f"Deleted {len(messages_response.data) if messages_response.data else 0} messages for session {session_id}")
+            logger.info(f"Deleted messages for session {session_id}")
         except Exception as e:
-            logger.warning(f"Error deleting messages (may be empty): {e}")
+            logger.warning(f"Error deleting messages (may be empty or cascade handled it): {e}")
         
         # Delete session feedback
         try:
-            feedback_response = supabase.table("amora_session_feedback") \
+            feedback_response = delete_client.table("amora_session_feedback") \
                 .delete() \
                 .eq("session_id", str(session_id)) \
                 .execute()
-            logger.info(f"Deleted {len(feedback_response.data) if feedback_response.data else 0} feedback entries for session {session_id}")
+            logger.info(f"Deleted feedback entries for session {session_id}")
         except Exception as e:
-            logger.warning(f"Error deleting feedback (may be empty): {e}")
+            logger.warning(f"Error deleting feedback (may be empty or cascade handled it): {e}")
         
         # Delete the session
-        delete_response = supabase.table("amora_sessions") \
+        delete_response = delete_client.table("amora_sessions") \
             .delete() \
             .eq("id", str(session_id)) \
             .eq("user_id", str(user_id)) \
             .execute()
+        
+        logger.info(f"Delete response for session {session_id}: {delete_response}")
         
         # Verify deletion was successful by checking if session still exists
         verify_response = supabase.table("amora_sessions") \
@@ -353,8 +365,8 @@ async def delete_session(
             .execute()
         
         if verify_response.data and len(verify_response.data) > 0:
-            logger.error(f"Session {session_id} still exists after delete attempt")
-            raise HTTPException(status_code=500, detail="Failed to delete session. Session still exists.")
+            logger.error(f"Session {session_id} still exists after delete attempt. Response: {verify_response.data}")
+            raise HTTPException(status_code=500, detail="Failed to delete session. Session still exists. This may be due to RLS policies.")
         
         logger.info(f"Successfully deleted session {session_id} for user {user_id}")
         return {"success": True, "message": "Session deleted successfully"}
