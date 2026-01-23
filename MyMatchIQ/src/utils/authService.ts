@@ -191,6 +191,59 @@ class AuthService {
       return null;
     }
   }
+
+  async forgotPassword(email: string): Promise<{ success: boolean; message: string; token?: string }> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/forgot-password`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        return { success: false, message: data.detail || 'Failed to send reset link' };
+      }
+
+      return {
+        success: true,
+        message: data.message,
+        token: data.token, // Only in development
+      };
+    } catch (error) {
+      console.error('Forgot password error:', error);
+      return { success: false, message: 'Failed to connect to server' };
+    }
+  }
+
+  async resetPassword(token: string, newPassword: string): Promise<{ success: boolean; message: string }> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/reset-password`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          token,
+          new_password: newPassword,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        return { success: false, message: data.detail || 'Failed to reset password' };
+      }
+
+      return { success: true, message: data.message };
+    } catch (error) {
+      console.error('Reset password error:', error);
+      return { success: false, message: 'Failed to connect to server' };
+    }
+  }
 }
 
 export const authService = new AuthService();

@@ -10,6 +10,8 @@ import { OnboardingScreen } from './components/screens/OnboardingScreen';
 import { SignUpScreen } from './components/screens/SignUpScreen';
 import { DashboardScreen } from './components/screens/DashboardScreen';
 import { SignInScreen } from './components/screens/SignInScreen';
+import { ForgotPasswordScreen } from './components/screens/ForgotPasswordScreen';
+import { ResetPasswordScreen } from './components/screens/ResetPasswordScreen';
 import { authService } from './utils/authService';
 import { ScanTypeSelectionScreen } from './components/screens/ScanTypeSelectionScreen';
 import { MatchScanFlowScreen } from './components/screens/MatchScanFlowScreen';
@@ -60,6 +62,8 @@ export type Screen =
   | 'landing'
   | 'signIn'
   | 'signUp'
+  | 'forgotPassword'
+  | 'resetPassword'
   | 'onboarding'
   | 'dashboard'
   | 'scanTypeSelection'
@@ -169,6 +173,7 @@ function AppContent() {
   const [navigationHistory, setNavigationHistory] = useState<Screen[]>([]);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [onboardingDatingGoal, setOnboardingDatingGoal] = useState<UserProfile['datingGoal'] | null>(null);
+  const [resetToken, setResetToken] = useState<string | null>(null);
   const [scans, setScans] = useState<MatchScan[]>([]);
   const [currentScan, setCurrentScan] = useState<MatchScan | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -757,6 +762,31 @@ function AppContent() {
             onSignIn={handleSignIn}
             onSignUp={() => setCurrentScreen('signUp')}
             onBack={() => setCurrentScreen('welcome')}
+            onForgotPassword={() => setCurrentScreen('forgotPassword')}
+          />
+        );
+      case 'forgotPassword':
+        return (
+          <ForgotPasswordScreen
+            onBack={() => setCurrentScreen('signIn')}
+            onResetPassword={(token) => {
+              setResetToken(token);
+              setCurrentScreen('resetPassword');
+            }}
+          />
+        );
+      case 'resetPassword':
+        return (
+          <ResetPasswordScreen
+            token={resetToken || ''}
+            onBack={() => {
+              setResetToken(null);
+              setCurrentScreen('signIn');
+            }}
+            onSuccess={() => {
+              setResetToken(null);
+              setCurrentScreen('signIn');
+            }}
           />
         );
       case 'onboarding':

@@ -217,6 +217,7 @@ class AmoraSession:
     last_follow_up_at: Optional[datetime] = None
     summary_text: Optional[str] = None
     next_plan_text: Optional[str] = None
+    pinned: bool = False
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> "AmoraSession":
@@ -233,6 +234,7 @@ class AmoraSession:
             follow_up_enabled=data.get("follow_up_enabled", False),
             follow_up_time=data.get("follow_up_time"),
             last_follow_up_at=data.get("last_follow_up_at"),
+            pinned=data.get("pinned", False),
             summary_text=data.get("summary_text"),
             next_plan_text=data.get("next_plan_text"),
         )

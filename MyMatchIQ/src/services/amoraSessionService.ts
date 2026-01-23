@@ -15,6 +15,7 @@ export interface AmoraSession {
   follow_up_time?: string;
   summary_text?: string;
   next_plan_text?: string;
+  pinned?: boolean;
 }
 
 export interface FollowUp {
@@ -22,6 +23,15 @@ export interface FollowUp {
   title: string;
   primary_topic?: string;
   prompt: string;
+}
+
+export interface AmoraSessionMessage {
+  id: string;
+  session_id: string;
+  sender: 'user' | 'amora';
+  message_text: string;
+  created_at: string;
+  metadata?: Record<string, any> | null;
 }
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://macthiq-ai-backend.onrender.com/api/v1';
@@ -149,6 +159,28 @@ class AmoraSessionService {
   }
 
   /**
+   * Get recent messages for a session (chat history)
+   */
+  async getSessionMessages(sessionId: string, limit: number = 50): Promise<AmoraSessionMessage[]> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/coach/sessions/${sessionId}/messages?limit=${limit}`, {
+        method: 'GET',
+        headers: await this.getAuthHeaders(),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Failed to fetch session messages: ${errorText}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('Error getting session messages:', error);
+      return [];
+    }
+  }
+
+  /**
    * Update a session
    */
   async updateSession(
@@ -158,6 +190,7 @@ class AmoraSessionService {
       status?: 'ACTIVE' | 'PAUSED' | 'COMPLETED';
       follow_up_enabled?: boolean;
       follow_up_time?: string;
+      pinned?: boolean;
     }
   ): Promise<AmoraSession> {
     try {
@@ -220,6 +253,49 @@ class AmoraSessionService {
       }
     } catch (error) {
       console.error('Error submitting feedback:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Delete a session
+   */
+  async deleteSession(sessionId: string): Promise<void> {
+    try {
+      const headers = await this.getAuthHeaders();
+      console.log('[AmoraSessionService] deleteSession - Headers:', headers);
+      console.log('[AmoraSessionService] deleteSession - SessionId:', sessionId);
+      
+      const response = await fetch(`${API_BASE_URL}/coach/sessions/${sessionId}`, {
+        method: 'DELETE',
+        headers,
+      });
+
+      console.log('[AmoraSessionService] deleteSession - Response status:', response.status);
+
+      if (!response.ok) {
+        let errorMessage = 'Failed to delete session';
+        try {
+          const errorData = await response.json();
+          errorMessage = errorData.detail || errorData.message || errorMessage;
+        } catch {
+          const errorText = await response.text();
+          errorMessage = errorText || errorMessage;
+        }
+        console.error('[AmoraSessionService] deleteSession - Error:', errorMessage);
+        throw new Error(errorMessage);
+      }
+
+      // Parse response if available
+      try {
+        const data = await response.json();
+        console.log('[AmoraSessionService] deleteSession - Success:', data);
+      } catch {
+        // No response body is fine for DELETE
+        console.log('[AmoraSessionService] deleteSession - Success (no response body)');
+      }
+    } catch (error) {
+      console.error('[AmoraSessionService] deleteSession - Error:', error);
       throw error;
     }
   }
