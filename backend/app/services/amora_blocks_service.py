@@ -344,6 +344,12 @@ class TopicEmotionDetector:
         'moving_on': ['move on', 'moving on', 'get over', 'let go', 'moving forward'],
         'confused': ['confused', 'dont know', 'unsure', 'uncertain', 'mixed feelings'],
         'doubt': ['doubt', 'doubting', 'second guessing', 'questioning', 'not sure if'],
+        'dating': [
+            'dating', 'going on dates', 'on a date', 'dating someone', 'dating advice',
+            'how to date', 'dating tips', 'new to dating', 'trying to date', 'dating is hard',
+            'dating struggles', 'dating problems', 'first date', 'second date', 'online dating',
+            'dating apps', 'dating scene', 'dating life', 'my dating', 'dating experience'
+        ],
         # User-side anxiety and depression (feeling states, not diagnoses)
         'user_anxiety_distress': [
             'i have so much anxiety', 'i feel so anxious', 'constantly anxious', 'always anxious',
@@ -451,6 +457,8 @@ class TopicEmotionDetector:
         - If breakup_intimacy_loss detected, remove unrelated topics like 'unlovable', 'lust_vs_love' (unless explicitly stated)
         - If breakup_grief detected, remove 'unlovable' unless user explicitly says they feel unlovable
         - If breakup context, prioritize breakup-related topics
+        - If dating detected, remove breakup/ex/marriage topics unless explicitly mentioned
+        - If talking_stage/situationship detected, remove marriage/divorce topics
         """
         filtered = detected.copy()
         
@@ -471,6 +479,38 @@ class TopicEmotionDetector:
             if 'unlovable' in filtered and not any(word in text_lower for word in ['feel unlovable', 'i am unlovable', 'im unlovable', 'unlovable']):
                 filtered.discard('unlovable')
                 logger.info("[TopicGuardrail] Removed 'unlovable' - not explicitly stated, breakup context")
+        
+        # If dating detected, remove breakup/ex/marriage topics unless explicitly mentioned
+        if 'dating' in detected:
+            # Check if user explicitly mentions breakup/ex in dating context
+            explicit_breakup_mention = any(word in text_lower for word in [
+                'after breakup', 'after my breakup', 'since breakup', 'since my breakup',
+                'after my ex', 'since my ex', 'ex and i', 'my ex and', 'ex from'
+            ])
+            
+            if not explicit_breakup_mention:
+                # Remove breakup-related topics when dating (unless explicit)
+                for topic in ['breakup', 'breakup_grief', 'breakup_intimacy_loss', 'heartbreak']:
+                    if topic in filtered:
+                        filtered.discard(topic)
+                        logger.info(f"[TopicGuardrail] Removed '{topic}' - dating context without explicit breakup mention")
+            
+            # Remove marriage topics when dating (unless explicit)
+            explicit_marriage_mention = any(word in text_lower for word in [
+                'married', 'marriage', 'husband', 'wife', 'spouse', 'divorce', 'divorced'
+            ])
+            if not explicit_marriage_mention:
+                for topic in ['marriage', 'marriage_strain', 'divorce', 'separation']:
+                    if topic in filtered:
+                        filtered.discard(topic)
+                        logger.info(f"[TopicGuardrail] Removed '{topic}' - dating context without explicit marriage mention")
+        
+        # If talking_stage/situationship detected, remove marriage/divorce topics
+        if 'talking_stage' in detected or 'situationship' in detected:
+            for topic in ['marriage', 'marriage_strain', 'divorce', 'separation']:
+                if topic in filtered:
+                    filtered.discard(topic)
+                    logger.info(f"[TopicGuardrail] Removed '{topic}' - talking_stage/situationship context")
         
         return filtered
     
@@ -514,6 +554,7 @@ class BlockSelector:
         emotions: List[str],
         stage: int,
         recent_block_ids: List[str],
+        normalized_text: str = "",
         min_similarity: float = 0.3
     ) -> Optional[ResponseBlock]:
         """
@@ -593,9 +634,12 @@ class BlockSelector:
                 logger.warning(f"No blocks with embeddings for type={block_type}")
                 return None
             
+            # Filter blocks with inappropriate topics for context
+            filtered_candidates = self._filter_blocks_by_context(candidates, topics, normalized_text)
+            
             # Score each candidate
             scored_blocks = []
-            for block in candidates:
+            for block in filtered_candidates:
                 score = self._score_block(
                     block,
                     question_embedding,
@@ -625,6 +669,89 @@ class BlockSelector:
         except Exception as e:
             logger.error(f"Error selecting block: {e}", exc_info=True)
             return None
+    
+    def _filter_blocks_by_context(
+        self,
+        candidates: List[ResponseBlock],
+        detected_topics: List[str],
+        normalized_text: str
+    ) -> List[ResponseBlock]:
+        """
+        Filter blocks that have inappropriate topics for the current context.
+        
+        Prevents out-of-context responses by filtering blocks that mention:
+        - Breakup/ex when dating is detected (unless explicit)
+        - Marriage when dating/talking_stage/situationship is detected (unless explicit)
+        - Dating when breakup is detected (unless explicit)
+        """
+        if not normalized_text:
+            return candidates
+        
+        text_lower = normalized_text.lower()
+        filtered = []
+        
+        for block in candidates:
+            block_topics = set(block.topics)
+            block_text_lower = block.text.lower()
+            
+            # Check if block should be filtered
+            should_filter = False
+            
+            # If dating is detected, filter blocks that mention breakup/ex/marriage
+            if 'dating' in detected_topics:
+                # Check if user explicitly mentions breakup/ex
+                explicit_breakup = any(word in text_lower for word in [
+                    'after breakup', 'after my breakup', 'since breakup', 'since my breakup',
+                    'after my ex', 'since my ex', 'ex and i', 'my ex and', 'ex from'
+                ])
+                
+                if not explicit_breakup:
+                    # Filter blocks with breakup topics or mentioning ex/breakup in text
+                    if any(topic in block_topics for topic in ['breakup', 'breakup_grief', 'breakup_intimacy_loss', 'heartbreak']):
+                        should_filter = True
+                        logger.info(f"[BlockFilter] Filtered block (dating context, breakup topic): {block.id[:8]}")
+                    elif any(word in block_text_lower for word in ['ex', 'breakup', 'broke up', 'ended']):
+                        should_filter = True
+                        logger.info(f"[BlockFilter] Filtered block (dating context, breakup mention): {block.id[:8]}")
+                
+                # Check if user explicitly mentions marriage
+                explicit_marriage = any(word in text_lower for word in [
+                    'married', 'marriage', 'husband', 'wife', 'spouse', 'divorce', 'divorced'
+                ])
+                
+                if not explicit_marriage:
+                    # Filter blocks with marriage topics or mentioning marriage in text
+                    if any(topic in block_topics for topic in ['marriage', 'marriage_strain', 'divorce', 'separation']):
+                        should_filter = True
+                        logger.info(f"[BlockFilter] Filtered block (dating context, marriage topic): {block.id[:8]}")
+                    elif any(word in block_text_lower for word in ['marriage', 'married', 'husband', 'wife', 'spouse']):
+                        should_filter = True
+                        logger.info(f"[BlockFilter] Filtered block (dating context, marriage mention): {block.id[:8]}")
+            
+            # If talking_stage/situationship is detected, filter marriage/divorce blocks
+            if 'talking_stage' in detected_topics or 'situationship' in detected_topics:
+                if any(topic in block_topics for topic in ['marriage', 'marriage_strain', 'divorce', 'separation']):
+                    should_filter = True
+                    logger.info(f"[BlockFilter] Filtered block (talking_stage/situationship context, marriage topic): {block.id[:8]}")
+                elif any(word in block_text_lower for word in ['marriage', 'married', 'husband', 'wife', 'spouse', 'divorce']):
+                    should_filter = True
+                    logger.info(f"[BlockFilter] Filtered block (talking_stage/situationship context, marriage mention): {block.id[:8]}")
+            
+            # If breakup is detected (without dating), filter dating blocks
+            if any(topic in detected_topics for topic in ['breakup', 'breakup_grief', 'breakup_intimacy_loss', 'heartbreak']):
+                if 'dating' not in detected_topics and 'dating' in block_topics:
+                    should_filter = True
+                    logger.info(f"[BlockFilter] Filtered block (breakup context, dating topic): {block.id[:8]}")
+            
+            if not should_filter:
+                filtered.append(block)
+        
+        # If all blocks were filtered, return original candidates (safety fallback)
+        if not filtered:
+            logger.warning(f"[BlockFilter] All blocks filtered, using original candidates")
+            return candidates
+        
+        return filtered
     
     def _weighted_random_choice(
         self,
@@ -978,7 +1105,8 @@ class AmoraBlocksService:
                     topics=topics,
                     emotions=emotions,
                     stage=stage,
-                    recent_block_ids=state.recent_block_ids
+                    recent_block_ids=state.recent_block_ids,
+                    normalized_text=normalized_question
                 )
             
             # Select normalization blocks
@@ -989,7 +1117,8 @@ class AmoraBlocksService:
                     topics=topics,
                     emotions=emotions,
                     stage=stage,
-                    recent_block_ids=state.recent_block_ids
+                    recent_block_ids=state.recent_block_ids,
+                    normalized_text=normalized_question
                 )
             
             # Select exploration blocks
@@ -1000,7 +1129,8 @@ class AmoraBlocksService:
                     topics=topics,
                     emotions=emotions,
                     stage=stage,
-                    recent_block_ids=state.recent_block_ids
+                    recent_block_ids=state.recent_block_ids,
+                    normalized_text=normalized_question
                 )
             
             # Select insight blocks for DEEPENING and GUIDANCE_SESSION
@@ -1014,7 +1144,8 @@ class AmoraBlocksService:
                     topics=topics,
                     emotions=emotions,
                     stage=stage,
-                    recent_block_ids=state.recent_block_ids
+                    recent_block_ids=state.recent_block_ids,
+                    normalized_text=normalized_question
                 )
             
             # Log selected blocks
