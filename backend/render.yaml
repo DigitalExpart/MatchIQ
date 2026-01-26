@@ -3,7 +3,7 @@ services:
     name: matchiq-ai-backend
     env: python
     plan: free
-    buildCommand: pip install -r requirements.txt
+    buildCommand: python fix_pydantic_encoding.py && pip install -r requirements.txt && python fix_all_encoding.py
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
