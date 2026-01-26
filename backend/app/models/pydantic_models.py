@@ -1,1 +1,226 @@
-牦浯瀠摹湡楴⁣浩潰瑲䈠獡䵥摯汥‬楆汥੤牦浯琠灹湩⁧浩潰瑲䰠獩ⱴ传瑰潩慮ⱬ䐠捩ⱴ䄠祮昊潲⁭畵摩椠灭牯⁴啕䑉昊潲⁭慤整楴敭椠灭牯⁴慤整楴敭昊潲⁭湥浵椠灭牯⁴湅浵ਊ⌊䔠畮獭挊慬獳删瑡湩⡧瑳Ⱳ䔠畮⥭਺††呓佒䝎䵟呁䡃㴠∠瑳潲杮洭瑡档ਢ††佇䑏㴠∠潧摯ਢ††䕎呕䅒⁌‽渢略牴污ਢ††䕙䱌坏䙟䅌⁇‽礢汥潬⵷汦条ਢ††䕒彄䱆䝁㴠∠敲ⵤ汦条ਢਊ汣獡⁳捓湡祔数猨牴‬湅浵㨩 †匠义䱇⁅‽猢湩汧≥ †䐠䅕⁌‽搢慵≬ †䜠䥕䕄⁄‽朢極敤≤ਊ挊慬獳䌠慯档潍敤猨牴‬湅浵㨩 †䔠偘䅌义㴠∠塅䱐䥁≎ †删䙅䕌呃㴠∠䕒䱆䍅≔ †䰠䅅乒㴠∠䕌剁≎ †匠䙁呅⁙‽匢䙁呅≙ਊ挊慬獳䌠瑡来牯⡹瑳Ⱳ䔠畮⥭਺††䅖啌卅㴠∠慶畬獥ਢ††佃䵍乕䍉呁佉⁎‽挢浯畭楮慣楴湯ਢ††䵅呏佉䅎⁌‽攢潭楴湯污ਢ††䥌䕆呓䱙⁅‽氢晩獥祴敬ਢ††商啔䕒㴠∠畦畴敲ਢਊ汣獡⁳浉潰瑲湡散猨牴‬湅浵㨩 †䰠坏㴠∠潬≷ †䴠䑅啉⁍‽洢摥畩≭ †䠠䝉⁈‽栢杩≨ਊ⌊删煥敵瑳䴠摯汥ੳ汣獡⁳捓湡湁睳牥湉異⡴慂敳潍敤⥬਺††畱獥楴湯楟㩤猠牴 †挠瑡来牯㩹猠牴 †爠瑡湩㩧删瑡湩੧††畱獥楴湯瑟硥㩴传瑰潩慮孬瑳嵲㴠丠湯੥ਊ汣獡⁳求敵牰湩䅴獮敷䥲灮瑵䈨獡䵥摯汥㨩 †焠敵瑳潩彮摩›瑳ੲ††慣整潧祲›慃整潧祲 †爠獥潰獮㩥猠牴 †椠灭牯慴据㩥䤠灭牯慴据੥††獩摟慥彬牢慥敫㩲戠潯⁬‽慆獬੥ਊ汣獡⁳牃慥整捓湡敒畱獥⡴慂敳潍敤⥬਺††捳湡瑟灹㩥匠慣呮灹੥††数獲湯湟浡㩥传瑰潩慮孬瑳嵲㴠丠湯੥††湩整慲瑣潩彮祴数›灏楴湯污獛牴⁝‽潎敮 †愠獮敷獲›楌瑳卛慣䅮獮敷䥲灮瑵⁝‽嵛 †爠晥敬瑣潩彮潮整㩳传瑰潩慮孬楄瑣獛牴‬湁嵹⁝‽潎敮ਊ挊慬獳䌠敲瑡䉥畬灥楲瑮敒畱獥⡴慂敳潍敤⥬਺††湡睳牥㩳䰠獩孴求敵牰湩䅴獮敷䥲灮瑵⁝‽嵛ਊ挊慬獳唠摰瑡䉥畬灥楲瑮敒畱獥⡴慂敳潍敤⥬਺††湡睳牥㩳䰠獩孴求敵牰湩䅴獮敷䥲灮瑵⁝‽嵛ਊ挊慬獳䌠慯档敒畱獥⡴慂敳潍敤⥬਺††潭敤›潃捡䵨摯੥††捳湡牟獥汵彴摩›灏楴湯污啛䥕嵄㴠丠湯੥††捳湡楟㩤传瑰潩慮孬啕䑉⁝‽潎敮 †戠畬灥楲瑮楟㩤传瑰潩慮孬啕䑉⁝‽潎敮 †猠数楣楦彣畱獥楴湯›灏楴湯污獛牴⁝‽潎敮 †挠瑡来牯㩹传瑰潩慮孬瑳嵲㴠丠湯੥††潣瑮硥㩴传瑰潩慮孬楄瑣獛牴‬湁嵹⁝‽潎敮 †猠獥楳湯楟㩤传瑰潩慮孬瑳嵲㴠丠湯੥††潣捡彨敳獳潩彮摩›灏楴湯污啛䥕嵄㴠丠湯੥ਊ‣敒灳湯敳䴠摯汥ੳ汣獡⁳慃整潧祲捓牯⡥慂敳潍敤⥬਺††慣整潧祲›瑳ੲ††捳牯㩥椠瑮 †洠硡獟潣敲›湩⁴‽〱ਰਊ汣獡⁳敒䙤慬剧獥潰獮⡥慂敳潍敤⥬਺††敳敶楲祴›瑳ੲ††慣整潧祲›瑳ੲ††楳湧污›瑳ੲ††癥摩湥散›楌瑳獛牴੝ਊ汣獡⁳䥁湁污獹獩敒灳湯敳䈨獡䵥摯汥㨩 †猠牴湥瑧獨›楌瑳獛牴੝††睡牡湥獥彳牡慥㩳䰠獩孴瑳嵲 †挠湯楦敤据彥捳牯㩥映潬瑡 †攠灸慬慮楴湯›瑳ੲ††敲潣浭湥敤彤捡楴湯›瑳ੲ††捡楴湯江扡汥›瑳ੲ††捡楴湯束極慤据㩥猠牴ਊ挊慬獳匠慣剮獥汵剴獥潰獮⡥慂敳潍敤⥬਺††摩›啕䑉 †猠慣彮摩›啕䑉 †漠敶慲汬獟潣敲›湩ੴ††慣整潧祲›瑳ੲ††慣整潧祲獟潣敲㩳䐠捩孴瑳Ⱳ椠瑮੝††楡慟慮祬楳㩳䄠䅉慮祬楳剳獥潰獮੥††敲彤汦条㩳䰠獩孴敒䙤慬剧獥潰獮嵥 †椠据湯楳瑳湥楣獥›楌瑳䑛捩孴瑳Ⱳ䄠祮嵝 †瀠潲楦敬浟獩慭捴敨㩳䰠獩孴楄瑣獛牴‬湁嵹੝††牣慥整彤瑡›慤整楴敭 †愠彩敶獲潩㩮猠牴ਊ挊慬獳䈠畬灥楲瑮敒灳湯敳䈨獡䵥摯汥㨩 †椠㩤唠䥕੄††獵牥楟㩤唠䥕੄††湡睳牥㩳䰠獩孴楄瑣獛牴‬湁嵹੝††牰景汩彥畳浭牡㩹传瑰潩慮孬楄瑣獛牴‬湁嵹੝††潣灭敬楴湯灟牥散瑮条㩥椠瑮 †挠敲瑡摥慟㩴搠瑡瑥浩੥††灵慤整彤瑡›慤整楴敭ਊ挊慬獳匠慣剮獥潰獮⡥慂敳潍敤⥬਺††摩›啕䑉 †甠敳彲摩›啕䑉 †猠慣彮祴数›瑳ੲ††数獲湯湟浡㩥传瑰潩慮孬瑳嵲 †猠慴畴㩳猠牴 †愠獮敷獲›楌瑳䑛捩孴瑳Ⱳ䄠祮嵝 †挠敲瑡摥慟㩴搠瑡瑥浩੥††灵慤整彤瑡›慤整楴敭ਊ挊慬獳䌠慯档敒灳湯敳䈨獡䵥摯汥㨩 †洠獥慳敧›瑳ੲ††潭敤›潃捡䵨摯੥††潣普摩湥散›汦慯ੴ††敲敦敲据摥摟瑡㩡䐠捩孴瑳Ⱳ䄠祮੝††湥楧敮›灏楴湯污獛牴⁝‽產歮潮湷ਢ††敲灳湯敳獟祴敬›灏楴湯污獛牴⁝‽潎敮 †挠慯档獟獥楳湯楟㩤传瑰潩慮孬啕䑉⁝‽潎敮 †洠獥慳敧楟㩤传瑰潩慮孬啕䑉⁝‽潎敮 †椠彳牣獩獩›灏楴湯污扛潯嵬㴠䘠污敳 †挠楲楳彳湩整瑮›灏楴湯污獛牴⁝‽潎敮ਊ挊慬獳䠠慥瑬剨獥潰獮⡥慂敳潍敤⥬਺††瑳瑡獵›瑳ੲ††敶獲潩㩮猠牴 †搠瑡扡獡㩥猠牴㴠∠潣湮捥整≤ਊ挊慬獳䔠牲牯敒灳湯敳䈨獡䵥摯汥㨩 †攠牲牯›瑳ੲ††敤慴汩›灏楴湯污獛牴⁝‽潎敮ਊ⌊匠獥楳湯䴠湡条浥湥⁴潍敤獬挊慬獳匠獥楳湯瑓瑡獵猨牴‬湅浵㨩 †䄠呃噉⁅‽䄢呃噉≅ †倠啁䕓⁄‽倢啁䕓≄ †䌠䵏䱐呅䑅㴠∠佃偍䕌䕔≄ਊ挊慬獳䌠敲瑡卥獥楳湯敒畱獥⡴慂敳潍敤⥬਺††楴汴㩥猠牴 †瀠楲慭祲瑟灯捩›灏楴湯污獛牴⁝‽潎敮 †映汯潬彷灵敟慮汢摥›潢汯㴠䘠污敳 †映汯潬彷灵瑟浩㩥传瑰潩慮孬瑳嵲㴠丠湯੥ਊ汣獡⁳灕慤整敓獳潩剮煥敵瑳䈨獡䵥摯汥㨩 †琠瑩敬›灏楴湯污獛牴⁝‽潎敮 †猠慴畴㩳传瑰潩慮孬敓獳潩卮慴畴嵳㴠丠湯੥††潦汬睯畟彰湥扡敬㩤传瑰潩慮孬潢汯⁝‽潎敮 †映汯潬彷灵瑟浩㩥传瑰潩慮孬瑳嵲㴠丠湯੥††楰湮摥›灏楴湯污扛潯嵬㴠丠湯੥ਊ汣獡⁳敓獳潩剮獥潰獮⡥慂敳潍敤⥬਺††摩›啕䑉 †琠瑩敬›瑳ੲ††牰浩牡役潴楰㩣传瑰潩慮孬瑳嵲㴠丠湯੥††瑳瑡獵›敓獳潩卮慴畴ੳ††牣慥整彤瑡›慤整楴敭 †甠摰瑡摥慟㩴搠瑡瑥浩੥††慬瑳浟獥慳敧慟㩴传瑰潩慮孬慤整楴敭⁝‽潎敮 †映汯潬彷灵敟慮汢摥›潢汯 †映汯潬彷灵瑟浩㩥传瑰潩慮孬瑳嵲㴠丠湯੥††畳浭牡役整瑸›灏楴湯污獛牴⁝‽潎敮 †渠硥彴汰湡瑟硥㩴传瑰潩慮孬瑳嵲㴠丠湯੥††楰湮摥›灏楴湯污扛潯嵬㴠䘠污敳ਊ挊慬獳䘠汯潬啷剰獥潰獮⡥慂敳潍敤⥬਺††潣捡彨敳獳潩彮摩›啕䑉 †琠瑩敬›瑳ੲ††牰浩牡役潴楰㩣传瑰潩慮孬瑳嵲㴠丠湯੥††牰浯瑰›瑳ੲਊ汣獡⁳敆摥慢正敒畱獥⡴慂敳潍敤⥬਺††敭獳条彥摩›啕䑉 †映敥扤捡彫祴数›瑳ੲਊ汣獡⁳敓獳潩䵮獥慳敧敒灳湯敳䈨獡䵥摯汥㨩 †椠㩤唠䥕੄††敳獳潩彮摩›啕䑉 †猠湥敤㩲猠牴 †洠獥慳敧瑟硥㩴猠牴 †挠敲瑡摥慟㩴搠瑡瑥浩੥††敭慴慤慴›灏楴湯污䑛捩孴瑳Ⱳ䄠祮嵝㴠丠湯੥
+from pydantic import BaseModel, Field
+from typing import List, Optional, Dict, Any
+from uuid import UUID
+from datetime import datetime
+from enum import Enum
+
+
+# Enums
+class Rating(str, Enum):
+    STRONG_MATCH = "strong-match"
+    GOOD = "good"
+    NEUTRAL = "neutral"
+    YELLOW_FLAG = "yellow-flag"
+    RED_FLAG = "red-flag"
+
+
+class ScanType(str, Enum):
+    SINGLE = "single"
+    DUAL = "dual"
+    GUIDED = "guided"
+
+
+class CoachMode(str, Enum):
+    EXPLAIN = "EXPLAIN"
+    REFLECT = "REFLECT"
+    LEARN = "LEARN"
+    SAFETY = "SAFETY"
+
+
+class Category(str, Enum):
+    VALUES = "values"
+    COMMUNICATION = "communication"
+    EMOTIONAL = "emotional"
+    LIFESTYLE = "lifestyle"
+    FUTURE = "future"
+
+
+class Importance(str, Enum):
+    LOW = "low"
+    MEDIUM = "medium"
+    HIGH = "high"
+
+
+# Request Models
+class ScanAnswerInput(BaseModel):
+    question_id: str
+    category: str
+    rating: Rating
+    question_text: Optional[str] = None
+
+
+class BlueprintAnswerInput(BaseModel):
+    question_id: str
+    category: Category
+    response: str
+    importance: Importance
+    is_deal_breaker: bool = False
+
+
+class CreateScanRequest(BaseModel):
+    scan_type: ScanType
+    person_name: Optional[str] = None
+    interaction_type: Optional[str] = None
+    answers: List[ScanAnswerInput] = []
+    reflection_notes: Optional[Dict[str, Any]] = None
+
+
+class CreateBlueprintRequest(BaseModel):
+    answers: List[BlueprintAnswerInput] = []
+
+
+class UpdateBlueprintRequest(BaseModel):
+    answers: List[BlueprintAnswerInput] = []
+
+
+class CoachRequest(BaseModel):
+    mode: CoachMode
+    scan_result_id: Optional[UUID] = None
+    scan_id: Optional[UUID] = None
+    blueprint_id: Optional[UUID] = None
+    specific_question: Optional[str] = None
+    category: Optional[str] = None
+    context: Optional[Dict[str, Any]] = None
+    session_id: Optional[str] = None
+    coach_session_id: Optional[UUID] = None
+
+
+# Response Models
+class CategoryScore(BaseModel):
+    category: str
+    score: int
+    max_score: int = 100
+
+
+class RedFlagResponse(BaseModel):
+    severity: str
+    category: str
+    signal: str
+    evidence: List[str]
+
+
+class AIAnalysisResponse(BaseModel):
+    strengths: List[str]
+    awareness_areas: List[str]
+    confidence_score: float
+    explanation: str
+    recommended_action: str
+    action_label: str
+    action_guidance: str
+
+
+class ScanResultResponse(BaseModel):
+    id: UUID
+    scan_id: UUID
+    overall_score: int
+    category: str
+    category_scores: Dict[str, int]
+    ai_analysis: AIAnalysisResponse
+    red_flags: List[RedFlagResponse]
+    inconsistencies: List[Dict[str, Any]]
+    profile_mismatches: List[Dict[str, Any]]
+    created_at: datetime
+    ai_version: str
+
+
+class BlueprintResponse(BaseModel):
+    id: UUID
+    user_id: UUID
+    answers: List[Dict[str, Any]]
+    profile_summary: Optional[Dict[str, Any]]
+    completion_percentage: int
+    created_at: datetime
+    updated_at: datetime
+
+
+class ScanResponse(BaseModel):
+    id: UUID
+    user_id: UUID
+    scan_type: str
+    person_name: Optional[str]
+    status: str
+    answers: List[Dict[str, Any]]
+    created_at: datetime
+    updated_at: datetime
+
+
+class CoachResponse(BaseModel):
+    message: str
+    mode: CoachMode
+    confidence: float
+    referenced_data: Dict[str, Any]
+    engine: Optional[str] = "unknown"
+    response_style: Optional[str] = None
+    coach_session_id: Optional[UUID] = None
+    message_id: Optional[UUID] = None
+    is_crisis: Optional[bool] = False
+    crisis_intent: Optional[str] = None
+
+
+class HealthResponse(BaseModel):
+    status: str
+    version: str
+    database: str = "connected"
+
+
+class ErrorResponse(BaseModel):
+    error: str
+    detail: Optional[str] = None
+
+
+# Session Management Models
+class SessionStatus(str, Enum):
+    ACTIVE = "ACTIVE"
+    PAUSED = "PAUSED"
+    COMPLETED = "COMPLETED"
+
+
+class CreateSessionRequest(BaseModel):
+    title: str
+    primary_topic: Optional[str] = None
+    follow_up_enabled: bool = False
+    follow_up_time: Optional[str] = None
+
+
+class UpdateSessionRequest(BaseModel):
+    title: Optional[str] = None
+    status: Optional[SessionStatus] = None
+    follow_up_enabled: Optional[bool] = None
+    follow_up_time: Optional[str] = None
+    pinned: Optional[bool] = None
+
+
+class SessionResponse(BaseModel):
+    id: UUID
+    title: str
+    primary_topic: Optional[str] = None
+    status: SessionStatus
+    created_at: datetime
+    updated_at: datetime
+    last_message_at: Optional[datetime] = None
+    follow_up_enabled: bool
+    follow_up_time: Optional[str] = None
+    summary_text: Optional[str] = None
+    next_plan_text: Optional[str] = None
+    pinned: Optional[bool] = False
+
+
+class FollowUpResponse(BaseModel):
+    coach_session_id: UUID
+    title: str
+    primary_topic: Optional[str] = None
+    prompt: str
+
+
+class FeedbackRequest(BaseModel):
+    message_id: UUID
+    feedback_type: str
+
+
+class SessionMessageResponse(BaseModel):
+    id: UUID
+    session_id: UUID
+    sender: str
+    message_text: str
+    created_at: datetime
+    metadata: Optional[Dict[str, Any]] = None
