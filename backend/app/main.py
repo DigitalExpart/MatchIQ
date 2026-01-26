@@ -38,12 +38,12 @@ async def lifespan(app: FastAPI):
         blocks_count = blocks_service.get_blocks_count()
         
         if blocks_count > 0:
-            logger.info(f"✅ Amora Blocks Service: Loaded {blocks_count} blocks with embeddings")
+            logger.info(f"Amora Blocks Service: Loaded {blocks_count} blocks with embeddings")
         else:
-            logger.warning(f"⚠️  Amora Blocks Service: NO BLOCKS FOUND! Will fall back to legacy templates.")
+            logger.warning(f"Amora Blocks Service: NO BLOCKS FOUND! Will fall back to legacy templates.")
             logger.warning("    Run: python backend/scripts/compute_block_embeddings.py")
     except Exception as e:
-        logger.error(f"❌ Amora Blocks Service initialization failed: {e}")
+        logger.error(f"Amora Blocks Service initialization failed: {e}")
         logger.error("    Falling back to legacy template system")
     
     yield
@@ -55,7 +55,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="MyMatchIQ AI Backend",
     description="Decision intelligence engine for relationship compatibility",
-    version="2.0.0-blocks",  # Updated to reflect blocks architecture
+    version="2.0.0-blocks",
     lifespan=lifespan
 )
 
@@ -66,7 +66,7 @@ cors_origins = [origin.strip() for origin in settings.CORS_ORIGINS if origin.str
 app.add_middleware(
     CORSMiddleware,
     allow_origins=cors_origins,
-    allow_origin_regex=r"https://.*\.vercel\.app",  # Allow all Vercel preview deployments
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     allow_headers=["*"],
@@ -126,4 +126,3 @@ if __name__ == "__main__":
         port=8000,
         reload=settings.DEBUG
     )
-
