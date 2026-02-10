@@ -17,7 +17,7 @@ from app.models.pydantic_models import (
     SessionMessageResponse
 )
 from app.models.db_models import AmoraSession
-from app.database import get_supabase_client, get_supabase_admin_client
+from app.database import get_supabase_client
 from app.api.coach_enhanced import get_user_id_from_auth
 
 router = APIRouter(prefix="/coach/sessions", tags=["coach-sessions"])
@@ -308,16 +308,6 @@ async def delete_session(
     try:
         supabase = get_supabase_client()
         
-        # Try to use admin client if available (bypasses RLS)
-        # Otherwise use regular client (subject to RLS policies)
-        try:
-            admin_supabase = get_supabase_admin_client()
-            delete_client = admin_supabase
-            logger.info(f"Using admin client for delete operation (bypasses RLS)")
-        except (ValueError, Exception) as e:
-            logger.warning(f"Admin client not available, using regular client: {e}")
-            delete_client = supabase
-        
         # First verify the session belongs to the user
         check_response = supabase.table("amora_sessions") \
             .select("id") \
@@ -330,55 +320,30 @@ async def delete_session(
             raise HTTPException(status_code=404, detail="Session not found")
         
         # Delete session messages first (cascade should handle this, but being explicit)
-        try:
-            messages_response = delete_client.table("amora_session_messages") \
-                .delete() \
-                .eq("session_id", str(session_id)) \
-                .execute()
-            logger.info(f"Deleted messages for session {session_id}")
-        except Exception as e:
-            logger.warning(f"Error deleting messages (may be empty or cascade handled it): {e}")
+        supabase.table("amora_session_messages") \
+            .delete() \
+            .eq("session_id", str(session_id)) \
+            .execute()
         
         # Delete session feedback
-        try:
-            feedback_response = delete_client.table("amora_session_feedback") \
-                .delete() \
-                .eq("session_id", str(session_id)) \
-                .execute()
-            logger.info(f"Deleted feedback entries for session {session_id}")
-        except Exception as e:
-            logger.warning(f"Error deleting feedback (may be empty or cascade handled it): {e}")
+        supabase.table("amora_session_feedback") \
+            .delete() \
+            .eq("session_id", str(session_id)) \
+            .execute()
         
         # Delete the session
-        delete_response = delete_client.table("amora_sessions") \
+        supabase.table("amora_sessions") \
             .delete() \
             .eq("id", str(session_id)) \
             .eq("user_id", str(user_id)) \
             .execute()
         
-        logger.info(f"Delete response for session {session_id}: {delete_response}")
-        
-        # Verify deletion was successful by checking if session still exists
-        verify_response = supabase.table("amora_sessions") \
-            .select("id") \
-            .eq("id", str(session_id)) \
-            .execute()
-        
-        if verify_response.data and len(verify_response.data) > 0:
-            logger.error(f"Session {session_id} still exists after delete attempt. Response: {verify_response.data}")
-            raise HTTPException(status_code=500, detail="Failed to delete session. Session still exists. This may be due to RLS policies.")
-        
-        logger.info(f"Successfully deleted session {session_id} for user {user_id}")
         return {"success": True, "message": "Session deleted successfully"}
     except HTTPException:
         raise
     except Exception as e:
-        logger.error(f"Error deleting session {session_id}: {e}", exc_info=True)
-        error_detail = str(e)
-        # Provide more helpful error messages
-        if "permission" in error_detail.lower() or "policy" in error_detail.lower():
-            raise HTTPException(status_code=403, detail="Permission denied. Check database RLS policies.")
-        raise HTTPException(status_code=500, detail=f"Failed to delete session: {error_detail}")
+        logger.error(f"Error deleting session: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @router.post("/feedback")
