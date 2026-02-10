@@ -51,8 +51,12 @@ async def list_sessions(
                 follow_up_enabled=session.follow_up_enabled,
                 follow_up_time=session.follow_up_time,
                 summary_text=session.summary_text,
-                next_plan_text=session.next_plan_text
+                next_plan_text=session.next_plan_text,
+                pinned=row.get("pinned", False)
             ))
+        
+        # Sort: pinned sessions first, then by updated_at
+        sessions.sort(key=lambda s: (not s.pinned, s.updated_at), reverse=True)
         
         return sessions
     except Exception as e:
@@ -100,7 +104,8 @@ async def create_session(
             follow_up_enabled=session.follow_up_enabled,
             follow_up_time=session.follow_up_time,
             summary_text=session.summary_text,
-            next_plan_text=session.next_plan_text
+            next_plan_text=session.next_plan_text,
+            pinned=session.pinned
         )
     except HTTPException:
         raise
@@ -139,7 +144,8 @@ async def get_session(
             follow_up_enabled=session.follow_up_enabled,
             follow_up_time=session.follow_up_time,
             summary_text=session.summary_text,
-            next_plan_text=session.next_plan_text
+            next_plan_text=session.next_plan_text,
+            pinned=session.pinned
         )
     except HTTPException:
         raise
@@ -179,6 +185,8 @@ async def update_session(
             update_data["follow_up_enabled"] = request.follow_up_enabled
         if request.follow_up_time is not None:
             update_data["follow_up_time"] = request.follow_up_time
+        if request.pinned is not None:
+            update_data["pinned"] = request.pinned
         
         response = supabase.table("amora_sessions") \
             .update(update_data) \
@@ -201,7 +209,8 @@ async def update_session(
             follow_up_enabled=session.follow_up_enabled,
             follow_up_time=session.follow_up_time,
             summary_text=session.summary_text,
-            next_plan_text=session.next_plan_text
+            next_plan_text=session.next_plan_text,
+            pinned=session.pinned
         )
     except HTTPException:
         raise
@@ -287,6 +296,53 @@ async def get_due_followups(
         return followups
     except Exception as e:
         logger.error(f"Error getting due followups: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.delete("/{session_id}")
+async def delete_session(
+    session_id: UUID,
+    user_id: UUID = Depends(get_user_id_from_auth)
+):
+    """Delete a coaching session and all its messages."""
+    try:
+        supabase = get_supabase_client()
+        
+        # First verify the session belongs to the user
+        check_response = supabase.table("amora_sessions") \
+            .select("id") \
+            .eq("id", str(session_id)) \
+            .eq("user_id", str(user_id)) \
+            .single() \
+            .execute()
+        
+        if not check_response.data:
+            raise HTTPException(status_code=404, detail="Session not found")
+        
+        # Delete session messages first (cascade should handle this, but being explicit)
+        supabase.table("amora_session_messages") \
+            .delete() \
+            .eq("session_id", str(session_id)) \
+            .execute()
+        
+        # Delete session feedback
+        supabase.table("amora_session_feedback") \
+            .delete() \
+            .eq("session_id", str(session_id)) \
+            .execute()
+        
+        # Delete the session
+        supabase.table("amora_sessions") \
+            .delete() \
+            .eq("id", str(session_id)) \
+            .eq("user_id", str(user_id)) \
+            .execute()
+        
+        return {"success": True, "message": "Session deleted successfully"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error deleting session: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 

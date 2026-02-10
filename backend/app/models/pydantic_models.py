@@ -80,9 +80,9 @@ class CoachRequest(BaseModel):
     blueprint_id: Optional[UUID] = None
     specific_question: Optional[str] = None
     category: Optional[str] = None
-    context: Optional[Dict[str, Any]] = None
-    session_id: Optional[str] = None
-    coach_session_id: Optional[UUID] = None
+    context: Optional[Dict[str, Any]] = None  # Additional context from frontend
+    session_id: Optional[str] = None  # Chat session ID (legacy)
+    coach_session_id: Optional[UUID] = None  # New: coaching session ID from amora_sessions
 
 
 # Response Models
@@ -149,12 +149,12 @@ class CoachResponse(BaseModel):
     mode: CoachMode
     confidence: float
     referenced_data: Dict[str, Any]
-    engine: Optional[str] = "unknown"
-    response_style: Optional[str] = None
-    coach_session_id: Optional[UUID] = None
-    message_id: Optional[UUID] = None
-    is_crisis: Optional[bool] = False
-    crisis_intent: Optional[str] = None
+    engine: Optional[str] = "unknown"  # Debug field: "blocks", "legacy_templates", "pattern_matching", "crisis_response"
+    response_style: Optional[str] = None  # Dynamic style: "GROUNDING", "DEEPENING", "GUIDANCE_SESSION"
+    coach_session_id: Optional[UUID] = None  # Echo back the session ID
+    message_id: Optional[UUID] = None  # ID of the saved message for feedback
+    is_crisis: Optional[bool] = False  # True if this is a crisis response
+    crisis_intent: Optional[str] = None  # "CRISIS_SELF_HARM" if crisis detected
 
 
 class HealthResponse(BaseModel):
@@ -179,15 +179,15 @@ class CreateSessionRequest(BaseModel):
     title: str
     primary_topic: Optional[str] = None
     follow_up_enabled: bool = False
-    follow_up_time: Optional[str] = None
+    follow_up_time: Optional[str] = None  # HH:MM format
 
 
 class UpdateSessionRequest(BaseModel):
     title: Optional[str] = None
     status: Optional[SessionStatus] = None
     follow_up_enabled: Optional[bool] = None
-    follow_up_time: Optional[str] = None
-    pinned: Optional[bool] = None
+    follow_up_time: Optional[str] = None  # HH:MM format
+    pinned: Optional[bool] = None  # Pin session to top of list
 
 
 class SessionResponse(BaseModel):
@@ -202,25 +202,26 @@ class SessionResponse(BaseModel):
     follow_up_time: Optional[str] = None
     summary_text: Optional[str] = None
     next_plan_text: Optional[str] = None
-    pinned: Optional[bool] = False
+    pinned: Optional[bool] = False  # Whether session is pinned
 
 
 class FollowUpResponse(BaseModel):
     coach_session_id: UUID
     title: str
     primary_topic: Optional[str] = None
-    prompt: str
+    prompt: str  # Suggested check-in prompt
 
 
 class FeedbackRequest(BaseModel):
     message_id: UUID
-    feedback_type: str
+    feedback_type: str  # "like", "dislike", "regenerate"
 
 
 class SessionMessageResponse(BaseModel):
+    """Response model for session messages."""
     id: UUID
     session_id: UUID
-    sender: str
+    sender: str  # "user" or "amora"
     message_text: str
     created_at: datetime
     metadata: Optional[Dict[str, Any]] = None
