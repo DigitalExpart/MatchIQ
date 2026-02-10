@@ -1,1 +1,389 @@
-∢ഢ䄊⁉潃捡⁨敓癲捩⁥‭敇敮慲整⁳硥汰湡瑡潩獮愠摮椠獮杩瑨⹳਍敔灭慬整戭獡摥‬畲敬搭楲敶⁮敲灳湯敳⁳渨⁯䱌⥍മ∊∢਍牦浯琠灹湩⁧浩潰瑲䐠捩ⱴ䄠祮‬灏楴湯污਍牦浯甠極⁤浩潰瑲唠䥕ൄ椊灭牯⁴潬杧湩൧椊灭牯⁴敲਍਍牦浯愠灰洮摯汥⹳祰慤瑮捩浟摯汥⁳浩潰瑲䌠慯档潍敤‬潃捡剨煥敵瑳‬潃捡剨獥潰獮൥昊潲⁭灡⹰慤慴慢敳椠灭牯⁴敧彴畳慰慢敳损楬湥൴昊潲⁭灡⹰潭敤獬搮形潭敤獬椠灭牯⁴捓湡敒畳瑬‬捓湡‬求敵牰湩൴ഊ氊杯敧⁲‽潬杧湩⹧敧䱴杯敧⡲彟慮敭彟ഩഊഊ挊慬獳䌠慯档敓癲捩㩥਍††∢䄢⁉潃捡⁨敳癲捩⁥潦⁲敧敮慲楴杮攠灸慬慮楴湯⹳∢ഢ †ഠ †搠晥朠瑥牟獥潰獮⡥਍††††敳晬ബ †††爠煥敵瑳›潃捡剨煥敵瑳ബ †††甠敳彲摩›啕䑉਍†† 㸭䌠慯档敒灳湯敳ഺ †††∠∢敇⁴潣捡⁨敲灳湯敳戠獡摥漠⁮潭敤∮∢਍††††畳慰慢敳㴠朠瑥獟灵扡獡彥汣敩瑮⤨਍††††਍††††晩爠煥敵瑳洮摯⁥㴽䌠慯档潍敤䔮偘䅌义ഺ †††††爠瑥牵⁮敳晬弮硥汰楡彮潭敤爨煥敵瑳‬畳慰慢敳‬獵牥楟⥤਍††††汥晩爠煥敵瑳洮摯⁥㴽䌠慯档潍敤刮䙅䕌呃ഺ †††††爠瑥牵⁮敳晬弮敲汦捥彴潭敤爨煥敵瑳‬畳慰慢敳‬獵牥楟⥤਍††††汥晩爠煥敵瑳洮摯⁥㴽䌠慯档潍敤䰮䅅乒ഺ †††††爠瑥牵⁮敳晬弮敬牡彮潭敤爨煥敵瑳‬畳慰慢敳‬獵牥楟⥤਍††††汥晩爠煥敵瑳洮摯⁥㴽䌠慯档潍敤匮䙁呅㩙਍††††††敲畴湲猠汥⹦獟晡瑥役潭敤爨煥敵瑳‬畳慰慢敳‬獵牥楟⥤਍††††汥敳ഺ †††††爠楡敳嘠污敵牅潲⡲≦湕湫睯⁮潭敤›牻煥敵瑳洮摯絥⤢਍††਍††敤⁦敟灸慬湩浟摯⡥਍††††敳晬ബ †††爠煥敵瑳›潃捡剨煥敵瑳ബ †††猠灵扡獡ⱥ਍††††獵牥楟㩤唠䥕ൄ †⤠ⴠ‾潃捡剨獥潰獮㩥਍††††∢䔢灸慬湩猠慣⁮敲畳瑬⹳∢ഢ †††椠⁦潮⁴敲畱獥⹴捳湡牟獥汵彴摩ഺ †††††爠楡敳嘠污敵牅潲⡲猢慣彮敲畳瑬楟⁤敲畱物摥映牯䔠偘䅌义洠摯≥ഩ †††ഠ †††⌠䰠慯⁤捳湡爠獥汵൴ †††爠獥汵⁴‽畳慰慢敳琮扡敬∨捳湡牟獥汵獴⤢献汥捥⡴⨢⤢攮⡱਍††††††椢≤‬瑳⡲敲畱獥⹴捳湡牟獥汵彴摩ഩ †††⤠攮數畣整⤨਍††††਍††††晩渠瑯爠獥汵⹴慤慴ഺ †††††爠楡敳嘠污敵牅潲⡲匢慣⁮敲畳瑬渠瑯映畯摮⤢਍††††਍††††捳湡牟獥汵⁴‽捓湡敒畳瑬昮潲彭楤瑣爨獥汵⹴慤慴せ⥝਍††††਍††††‣敇敮慲整攠灸慬慮楴湯਍††††硥汰湡瑡潩⁮‽敳晬弮敧敮慲整敟灸慬慮楴湯猨慣彮敲畳瑬‬敲畱獥⹴慣整潧祲ഩ †††ഠ †††爠瑥牵⁮潃捡剨獥潰獮⡥਍††††††敭獳条㵥硥汰湡瑡潩Ɱ਍††††††潭敤䌽慯档潍敤䔮偘䅌义ബ †††††挠湯楦敤据㵥捳湡牟獥汵⹴楡慟慮祬楳⹳敧⡴挢湯楦敤据彥捳牯≥‬⸰⤸ബ †††††爠晥牥湥散彤慤慴笽਍††††††††漢敶慲汬獟潣敲㨢猠慣彮敲畳瑬漮敶慲汬獟潣敲ബ †††††††∠慣整潧祲㨢猠慣彮敲畳瑬挮瑡来牯ⱹ਍††††††††挢瑡来牯役捳牯獥㨢猠慣彮敲畳瑬挮瑡来牯役捳牯獥਍††††††ൽ †††⤠਍††਍††敤⁦牟晥敬瑣浟摯⡥਍††††敳晬ബ †††爠煥敵瑳›潃捡剨煥敵瑳ബ †††猠灵扡獡ⱥ਍††††獵牥楟㩤唠䥕ൄ †⤠ⴠ‾潃捡剨獥潰獮㩥਍††††∢䜢湥牥瑡⁥敲汦捥楴湯椠獮杩瑨⹳∢ഢ †††洠獥慳敧㴠∠敒汦捥楴湯洠摯⁥敨灬⁳潹⁵湵敤獲慴摮瀠瑡整湲⁳湩礠畯⁲敲慬楴湯桳灩⹳∠਍††††敭獳条⁥㴫∠潃獮摩牥眠慨⁴慰瑴牥獮礠畯渠瑯捩⁥捡潲獳礠畯⁲獡敳獳敭瑮⹳ഢ †††ഠ †††爠瑥牵⁮潃捡剨獥潰獮⡥਍††††††敭獳条㵥敭獳条ⱥ਍††††††潭敤䌽慯档潍敤刮䙅䕌呃ബ †††††挠湯楦敤据㵥⸰ⰷ਍††††††敲敦敲据摥摟瑡㵡絻਍††††ഩ †ഠ †搠晥张敬牡彮潭敤ന †††猠汥ⱦ਍††††敲畱獥㩴䌠慯档敒畱獥ⱴ਍††††畳慰慢敳ബ †††甠敳彲摩›啕䑉਍†† 㸭䌠慯档敒灳湯敳ഺ †††∠∢湁睳牥氠慥湲湩⁧畱獥楴湯⹳∢ഢ †††椠⁦潮⁴敲畱獥⹴灳捥晩捩煟敵瑳潩㩮਍††††††敭獳条⁥‽䤢洧栠牥⁥潴栠汥⁰潹⁵硥汰牯⁥慶楲畯⁳敲慬楴湯桳灩琠灯捩⹳䤠挠畯摬瀠潲楶敤椠獮杩瑨⁳湯挠浯慰楴楢楬祴‬潣浭湵捩瑡潩Ɱ琠畲瑳‬潢湵慤楲獥‬牯愠祮瀠瑡整湲⁳潹❵敲挠牵潩獵愠潢瑵‮桗瑡洠杩瑨礠畯氠歩⁥潴氠慥湲洠牯⁥扡畯㽴ഢ †††攠獬㩥਍††††††敭獳条⁥‽敳晬弮湡睳牥煟敵瑳潩⡮敲畱獥⹴灳捥晩捩煟敵瑳潩Ɱ爠煥敵瑳挮湯整瑸ഩ †††ഠ †††爠瑥牵⁮潃捡剨獥潰獮⡥਍††††††敭獳条㵥敭獳条ⱥ਍††††††潭敤䌽慯档潍敤䰮䅅乒ബ †††††挠湯楦敤据㵥⸰ⰸ਍††††††敲敦敲据摥摟瑡㵡ൻ †††††††∠畱獥楴湯㨢爠煥敵瑳献数楣楦彣畱獥楴湯ബ †††††††∠潣瑮硥≴›敲畱獥⹴潣瑮硥⁴牯笠ൽ †††††素਍††††ഩ †ഠ †搠晥张慳敦祴浟摯⡥਍††††敳晬ബ †††爠煥敵瑳›潃捡剨煥敵瑳ബ †††猠灵扡獡ⱥ਍††††獵牥楟㩤唠䥕ൄ †⤠ⴠ‾潃捡剨獥潰獮㩥਍††††∢倢潲楶敤猠晡瑥⁹畧摩湡散∮∢਍††††晩爠煥敵瑳献慣彮敲畳瑬楟㩤਍††††††敲畳瑬㴠猠灵扡獡⹥慴汢⡥猢慣彮敲畳瑬≳⸩敳敬瑣∨∪⸩煥ന †††††††∠摩Ⱒ猠牴爨煥敵瑳献慣彮敲畳瑬楟⥤਍††††††⸩硥捥瑵⡥ഩ †††††ഠ †††††椠⁦敲畳瑬搮瑡㩡਍††††††††捳湡牟獥汵⁴‽捓湡敒畳瑬昮潲彭楤瑣爨獥汵⹴慤慴せ⥝਍††††††††敲彤汦条⁳‽捳湡牟獥汵⹴敲彤汦条൳ †††††††ഠ †††††††椠⁦敲彤汦条㩳਍††††††††††牣瑩捩污晟慬獧㴠嬠⁦潦⁲⁦湩爠摥晟慬獧椠⁦⹦敧⡴猢癥牥瑩≹ 㴽∠牣瑩捩污崢਍††††††††††晩挠楲楴慣彬汦条㩳਍††††††††††††敭獳条⁥‽ꂚ룯₏牃瑩捩污猠晡瑥⁹潣据牥獮搠瑥捥整⹤倠敬獡⁥牰潩楲楴敺礠畯⁲慳敦祴愠摮挠湯楳敤⁲敳步湩⁧畳灰牯⹴ഢ †††††††††攠獬㩥਍††††††††††††敭獳条⁥‽匢浯⁥潣据牥獮眠牥⁥摩湥楴楦摥‮慔敫琠浩⁥潴爠晥敬瑣愠摮挠湯楳敤⁲潹牵戠畯摮牡敩⹳ഢ †††††††攠獬㩥਍††††††††††敭獳条⁥‽丢⁯慭潪⁲慳敦祴挠湯散湲⁳敤整瑣摥椠⁮桴獩愠獳獥浳湥⹴ഢ †††††攠獬㩥਍††††††††敭獳条⁥‽匢晡瑥⁹档捥㩫吠畲瑳礠畯⁲湩瑳湩瑣⹳䤠⁦潳敭桴湩⁧敦汥⁳景ⱦ椠❴⁳浩潰瑲湡⁴潴氠獩整⁮潴琠慨⁴敦汥湩⹧ഢ †††攠獬㩥਍††††††敭獳条⁥‽匢晡瑥⁹档捥㩫吠畲瑳礠畯⁲湩瑳湩瑣⹳䤠⁦潳敭桴湩⁧敦汥⁳景ⱦ椠❴⁳浩潰瑲湡⁴潴氠獩整⁮潴琠慨⁴敦汥湩⹧ഢ †††ഠ †††爠瑥牵⁮潃捡剨獥潰獮⡥਍††††††敭獳条㵥敭獳条ⱥ਍††††††潭敤䌽慯档潍敤匮䙁呅ⱙ਍††††††潣普摩湥散〽㤮ബ †††††爠晥牥湥散彤慤慴笽ൽ †††⤠਍††਍††敤⁦束湥牥瑡彥硥汰湡瑡潩⡮਍††††敳晬ബ †††猠慣彮敲畳瑬›捓湡敒畳瑬ബ †††挠瑡来牯㩹传瑰潩慮孬瑳嵲਍†† 㸭猠牴ഺ †††∠∢敇敮慲整攠灸慬慮楴湯映牯猠慣⁮敲畳瑬⹳∢ഢ †††椠⁦慣整潧祲ഺ †††††⌠䔠灸慬湩猠数楣楦⁣慣整潧祲਍††††††捳牯⁥‽捳湡牟獥汵⹴慣整潧祲獟潣敲⹳敧⡴慣整潧祲‬⤰਍††††††敭獳条⁥‽≦桔⁥捻瑡来牯絹挠瑡来牯⁹捳牯摥笠捳牯絥ㄯ〰‮ഢ †††††ഠ †††††椠⁦捳牯⁥㴾㜠㨰਍††††††††敭獳条⁥㴫∠桔獩椠摮捩瑡獥猠牴湯⁧污杩浮湥⁴湩琠楨⁳牡慥∮਍††††††汥晩猠潣敲㸠‽〵ഺ †††††††洠獥慳敧⬠‽吢楨⁳牡慥猠潨獷洠摯牥瑡⁥潣灭瑡扩汩瑩⁹楷桴爠潯⁭潦⁲牧睯桴∮਍††††††汥敳ഺ †††††††洠獥慳敧⬠‽吢楨⁳牡慥洠祡渠敥⁤瑡整瑮潩⁮湡⁤灯湥挠浯畭楮慣楴湯∮਍††††汥敳ഺ †††††⌠䔠灸慬湩漠敶慲汬爠獥汵獴਍††††††敭獳条⁥‽≦潙牵挠浯慰楴楢楬祴猠潣敲椠⁳獻慣彮敲畳瑬漮敶慲汬獟潣敲⽽〱ⰰ∠਍††††††敭獳条⁥㴫映眢楨档瀠慬散⁳桴獩爠汥瑡潩獮楨⁰湩琠敨✠獻慣彮敲畳瑬挮瑡来牯絹‧慣整潧祲‮ഢ †††††ഠ †††††猠牴湥瑧獨㴠猠慣彮敲畳瑬愮彩湡污獹獩朮瑥∨瑳敲杮桴≳‬嵛ഩ †††††椠⁦瑳敲杮桴㩳਍††††††††敭獳条⁥㴫映匢牴湯⁧牡慥⁳湩汣摵㩥笠Ⱗ✠樮楯⡮瑳敲杮桴⥳⹽∠਍††††††਍††††††睡牡湥獥⁳‽捳湡牟獥汵⹴楡慟慮祬楳⹳敧⡴愢慷敲敮獳慟敲獡Ⱒ嬠⥝਍††††††晩愠慷敲敮獳ഺ †††††††洠獥慳敧⬠‽≦牁慥⁳潴戠⁥睡牡⁥景›❻‬⸧潪湩愨慷敲敮獳紩∮਍††††਍††††敲畴湲洠獥慳敧਍††਍††敤⁦湟牯慭楬敺煟敵瑳潩⡮敳晬‬畱獥楴湯›瑳⥲ⴠ‾瑳㩲਍††††∢丢牯慭楬敺焠敵瑳潩⁮潦⁲敢瑴牥瀠瑡整湲洠瑡档湩⹧∢ഢ †††⌠䰠睯牥慣敳਍††††潮浲污穩摥㴠焠敵瑳潩⹮潬敷⡲ഩ †††⌠删灥慬散挠牵祬愠潰瑳潲桰獥眠瑩⁨瑳慲杩瑨漠敮൳ †††渠牯慭楬敺⁤‽潮浲污穩摥爮灥慬散✨✧‬✢⤢爮灥慬散✨✧‬✢⤢਍††††‣潎浲污穩⁥潣瑮慲瑣潩獮›椢洧•㸭∠浩Ⱒ∠潤❮≴ⴠ‾搢湯≴‬瑥⹣਍††††潮浲污穩摥㴠爠⹥畳⡢≲❩洿扜Ⱒ∠浩Ⱒ渠牯慭楬敺⥤਍††††潮浲污穩摥㴠爠⹥畳⡢≲潤❮琿扜Ⱒ∠潤瑮Ⱒ渠牯慭楬敺⥤਍††††潮浲污穩摥㴠爠⹥畳⡢≲潷❮琿扜Ⱒ∠潷瑮Ⱒ渠牯慭楬敺⥤਍††††潮浲污穩摥㴠爠⹥畳⡢≲慣❮琿扜Ⱒ∠慣瑮Ⱒ渠牯慭楬敺⥤਍††††潮浲污穩摥㴠爠⹥畳⡢≲獩❮琿扜Ⱒ∠獩瑮Ⱒ渠牯慭楬敺⥤਍††††潮浲污穩摥㴠爠⹥畳⡢≲牡湥㼧屴≢‬愢敲瑮Ⱒ渠牯慭楬敺⥤਍††††潮浲污穩摥㴠爠⹥畳⡢≲慷湳㼧屴≢‬眢獡瑮Ⱒ渠牯慭楬敺⥤਍††††潮浲污穩摥㴠爠⹥畳⡢≲敷敲❮琿扜Ⱒ∠敷敲瑮Ⱒ渠牯慭楬敺⥤਍††††潮浲污穩摥㴠爠⹥畳⡢≲慨湳㼧屴≢‬栢獡瑮Ⱒ渠牯慭楬敺⥤਍††††潮浲污穩摥㴠爠⹥畳⡢≲慨敶❮琿扜Ⱒ∠慨敶瑮Ⱒ渠牯慭楬敺⥤਍††††潮浲污穩摥㴠爠⹥畳⡢≲潷汵湤㼧屴≢‬眢畯摬瑮Ⱒ渠牯慭楬敺⥤਍††††潮浲污穩摥㴠爠⹥畳⡢≲桳畯摬❮琿扜Ⱒ∠桳畯摬瑮Ⱒ渠牯慭楬敺⥤਍††††潮浲污穩摥㴠爠⹥畳⡢≲潣汵湤㼧屴≢‬挢畯摬瑮Ⱒ渠牯慭楬敺⥤਍††††‣敒潭敶瀠湵瑣慵楴湯⠠敫灥猠慰散⥳਍††††潮浲污穩摥㴠爠⹥畳⡢❲幛睜獜❝‬‧Ⱗ渠牯慭楬敺⥤਍††††‣潃汬灡敳洠汵楴汰⁥灳捡獥਍††††潮浲污穩摥㴠爠⹥畳⡢❲獜✫‬‧Ⱗ渠牯慭楬敺⥤਍††††‣瑓楲൰ †††渠牯慭楬敺⁤‽潮浲污穩摥献牴灩⤨਍††††敲畴湲渠牯慭楬敺൤ †ഠ †搠晥张湡睳牥煟敵瑳潩⡮敳晬‬畱獥楴湯›瑳Ⱳ挠湯整瑸›灏楴湯污䑛捩孴瑳Ⱳ䄠祮嵝㴠丠湯⥥ⴠ‾瑳㩲਍††††∢䄢獮敷⁲⁡敬牡楮杮焠敵瑳潩⁮琨浥汰瑡ⵥ慢敳⥤∮∢਍††††‣潎浲污穩⁥桴⁥畱獥楴湯਍††††畱獥楴湯湟牯慭楬敺⁤‽敳晬弮潮浲污穩彥畱獥楴湯焨敵瑳潩⥮਍††††潬杧牥椮普⡯≦流牯⁡畱獥楴湯›牯杩湩污✽煻敵瑳潩絮‧潮浲污穩摥✽煻敵瑳潩彮潮浲污穩摥❽⤢਍††††਍††††畱獥楴湯江睯牥㴠焠敵瑳潩彮潮浲污穩摥਍††††਍††††‣潌敶愠摮攠潭楴湯污挠湯畦楳湯焠敵瑳潩獮⠠牰潩楲楴敺琠敨敳ഩ †††⌠䌠敨正映牯氠癯ⵥ敲慬整⁤桰慲敳⁳渨牯慭楬敺⥤਍††††潬敶灟牨獡獥㴠嬠椢⁮潬敶Ⱒ∠潬敶琠敨≭‬氢癯⁥楨≭‬氢癯⁥敨≲‬昢污楬杮椠⁮潬敶Ⱒ∠湫睯椠⁦⁩潬敶Ⱒ∠晩椠⁭湩氠癯≥‬椢⁦⁩⁭湩氠癯≥൝ †††挠湯畦楳湯睟牯獤㴠嬠挢湯畦敳≤‬搢湯⁴湫睯Ⱒ∠潤瑮欠潮≷‬產獮牵≥‬渢瑯猠牵≥⁝⌠丠瑯㩥渠牯慭楬敺Ɽ猠⁯搢湯琧•㸭∠潤瑮ഢ †††ഠ †††椠⁦湡⡹桰慲敳椠⁮畱獥楴湯江睯牥映牯瀠牨獡⁥湩氠癯彥桰慲敳⥳ഺ †††††氠杯敧⹲湩潦∨慍捴敨⁤佌䕖瀠瑡整湲⤢਍††††††晩愠祮眨牯⁤湩焠敵瑳潩彮潬敷⁲潦⁲潷摲椠⁮潣普獵潩彮潷摲⥳ഺ †††††††氠杯敧⹲湩潦∨慍捴敨⁤佌䕖⬠䌠乏商䥓乏瀠瑡整湲⤢਍††††††††敲畴湲∠瑉猠畯摮⁳楬敫礠畯爧⁥敦汥湩⁧潣普獵摥愠潢瑵礠畯⁲敦汥湩獧‬桷捩⁨獩挠浯汰瑥汥⁹湵敤獲慴摮扡敬‮潌敶挠湡戠⁥潣灭敬⁸湡⁤潤獥❮⁴污慷獹愠牲癩⁥楷桴愠挠敬牡氠扡汥‮潙⁵業桧⁴潣獮摩牥›潄礠畯琠楨歮愠潢瑵琠敨⁭桷湥琠敨❹敲渠瑯愠潲湵㽤䐠⁯潹⁵敦汥栠灡祰愠摮攠敮杲穩摥眠敨⁮潹❵敲琠杯瑥敨㽲䄠敲礠畯朠湥極敮祬椠瑮牥獥整⁤湩琠敨物眠汥⵬敢湩Ⱨ攠敶⁮桷湥椠⁴潤獥❮⁴楤敲瑣祬戠湥晥瑩礠畯‿潃普獵潩⁮景整⁮潣敭⁳桷湥映敥楬杮⁳牡⁥敤敶潬楰杮胢枔癩⁥潹牵敳晬琠浩⁥湡⁤灳捡⁥潴渠瑯捩⁥桷瑡礠畯⁲畧⁴整汬⁳潹⁵桷湥礠畯爧⁥楷桴琠敨⁭敶獲獵眠敨⁮潹❵敲愠慰瑲∮਍††††††汥敳ഺ †††††††氠杯敧⹲湩潦∨慍捴敨⁤佌䕖瀠瑡整湲⠠潮挠湯畦楳湯∩ഩ †††††††爠瑥牵⁮唢摮牥瑳湡楤杮礠畯⁲敦汥湩獧愠潢瑵猠浯潥敮挠湡戠⁥潣灭敬⹸䰠癯⁥業桧⁴敦汥搠晩敦敲瑮映牯攠敶祲湯ⱥ戠瑵猠浯⁥楳湧⁳潣汵⁤湩汣摵㩥琠楨歮湩⁧扡畯⁴桴浥映敲畱湥汴ⱹ映敥楬杮朠湥極敮祬栠灡祰眠敨⁮潹❵敲琠杯瑥敨Ⱳ挠牡湩⁧扡畯⁴桴楥⁲敷汬戭楥杮‬慷瑮湩⁧潴猠慨敲攠灸牥敩据獥眠瑩⁨桴浥‬湡⁤敦汥湩⁧潣晭牯慴汢⁥敢湩⁧潹牵敳晬愠潲湵⁤桴浥‮慔敫琠浩⁥潴爠晥敬瑣漠⁮潨⁷潹⁵敦汥眠敨⁮潹❵敲眠瑩⁨桴浥瘠牥畳⁳灡牡ⱴ愠摮琠畲瑳眠慨⁴潹牵栠慥瑲愠摮椠瑮極楴湯愠敲琠汥楬杮礠畯∮਍††††਍††††‣潃普獵潩⁮湡⁤湵散瑲楡瑮⁹畱獥楴湯⁳挨敨正愠瑦牥氠癯⁥潴愠潶摩搠畯汢ⵥ慭捴⥨਍††††晩愠祮眨牯⁤湩焠敵瑳潩彮潬敷⁲潦⁲潷摲椠⁮潣普獵潩彮潷摲⥳ഺ †††††氠杯敧⹲湩潦∨慍捴敨⁤佃䙎单佉⁎慰瑴牥≮ഩ †††††爠瑥牵⁮䘢敥楬杮挠湯畦敳⁤牯甠据牥慴湩椠⁮⁡敲慬楴湯桳灩椠⁳潮浲污愠摮漠瑦湥椠摮捩瑡獥礠畯爧⁥慴楫杮琠楨杮⁳敳楲畯汳⹹䤠⁴業桧⁴敨灬琠⁯獡⁫潹牵敳晬›桗瑡猠数楣楦慣汬⁹敦汥⁳潣普獵湩㽧䄠敲琠敨敲瀠瑡整湲⁳牦浯瀠獡⁴敲慬楴湯桳灩⁳晡敦瑣湩⁧潨⁷潹⁵敳⁥桴湩獧渠睯‿潓敭楴敭⁳潣普獵潩⁮潣敭⁳牦浯琠祲湩⁧潴映瑩映敥楬杮⁳湩潴氠扡汥⁳潴⁯畱捩汫⹹䜠癩⁥潹牵敳晬瀠牥業獳潩⁮潴攠灸潬敲礠畯⁲浥瑯潩獮眠瑩潨瑵爠獵楨杮琠⁯敤楦敮琠敨⹭倠祡湩⁧瑡整瑮潩⁮潴礠畯⁲桰獹捩污爠獥潰獮獥‬潹牵琠潨杵瑨⁳桷湥礠畯爧⁥污湯ⱥ愠摮栠睯礠畯映敥⁬晡整⁲灳湥楤杮琠浩⁥潴敧桴牥挠畯摬瀠潲楶敤挠慬楲祴漠敶⁲楴敭∮਍††††਍††††‣桃捥⁫潦⁲敲慬楴湯桳灩爠慥楤敮獳焠敵瑳潩獮⠠潮浲污穩摥瀠牨獡獥ഩ †††爠慥楤敮獳灟牨獡獥㴠嬠爢慥祤映牯Ⱒ∠牰灥牡摥映牯Ⱒ∠敲摡⁹潴挠浯業≴‬猢潨汵⁤⁩潣浭瑩崢਍††††晩愠祮瀨牨獡⁥湩焠敵瑳潩彮潬敷⁲潦⁲桰慲敳椠⁮敲摡湩獥彳桰慲敳⥳ഺ †††††氠杯敧⹲湩潦∨慍捴敨⁤䕒䑁义卅⁓慰瑴牥≮ഩ †††††爠瑥牵⁮刢慥楤敮獳映牯愠挠浯業瑴摥爠汥瑡潩獮楨⁰景整⁮湩潶癬獥映敥楬杮猠捥牵⁥湩礠畯獲汥ⱦ栠癡湩⁧汣慥⁲潣浭湵捩瑡潩⁮歳汩獬‬湡⁤敢湩⁧灯湥琠⁯當湬牥扡汩瑩⹹䤠⁴業桧⁴敨灬琠⁯潣獮摩牥›牁⁥潹⁵扡敬琠⁯硥牰獥⁳潹牵渠敥獤‿慃⁮潹⁵慨摮敬挠湯汦捩⁴潣獮牴捵楴敶祬‿潄礠畯映敥⁬敲摡⁹潴椠癮獥⁴楴敭愠摮攠敮杲⁹湩潴戠極摬湩⁧潳敭桴湩⁧敭湡湩晧汵‿桔牥❥⁳潮瀠牥敦瑣琠浩ⱥ戠瑵映敥楬杮攠潭楴湯污祬愠慶汩扡敬愠摮栠癡湩⁧敲污獩楴⁣硥数瑣瑡潩獮挠畯摬戠⁥浩潰瑲湡⁴湩楤慣潴獲∮਍††††਍††††‣慍牲慩敧愠摮挠浯業浴湥⁴敤楣楳湯൳ †††洠牡楲条彥桰慲敳⁳‽≛桳畯摬椠洠牡祲Ⱒ∠慭牲⁹祭Ⱒ∠慭牲⁹敨≲‬洢牡祲栠浩Ⱒ∠敧⁴慭牲敩≤‬瀢潲潰敳Ⱒ∠牰灯獯污Ⱒ∠湥慧敧敭瑮崢਍††††晩愠祮瀨牨獡⁥湩焠敵瑳潩彮潬敷⁲潦⁲桰慲敳椠⁮慭牲慩敧灟牨獡獥㨩਍††††††潬杧牥椮普⡯䴢瑡档摥䴠剁䥒䝁⁅慰瑴牥≮ഩ †††††爠瑥牵⁮䐢捥摩湩⁧桷瑥敨⁲潴洠牡祲猠浯潥敮椠⁳⁡楳湧晩捩湡⁴楬敦挠潨捩⁥桴瑡搠獥牥敶⁳桴畯桧晴汵挠湯楳敤慲楴湯‮瑉洠杩瑨栠汥⁰潴爠晥敬瑣漠㩮䐠⁯潹⁵桳牡⁥潣敲瘠污敵⁳湡⁤楬敦朠慯獬‿慃⁮潹⁵潣浭湵捩瑡⁥晥敦瑣癩汥⁹湡⁤敲潳癬⁥潣普楬瑣⁳潴敧桴牥‿潄礠畯映敥⁬慳敦‬敲灳捥整Ɽ愠摮朠湥極敮祬栠灡祰椠⁮桴⁥敲慬楴湯桳灩‿慈敶礠畯搠獩畣獳摥椠灭牯慴瑮琠灯捩⁳楬敫映湩湡散ⱳ映浡汩⁹汰湡楮杮‬湡⁤潬杮琭牥⁭潧污㽳吠敨敲猧渠⁯湵癩牥慳⁬楴敭楬敮胢瞔慨⁴慭瑴牥⁳獩映敥楬杮挠湯楦敤瑮椠⁮潹牵搠捥獩潩⁮湡⁤污杩敮⁤楷桴礠畯⁲慰瑲敮⁲扡畯⁴潹牵映瑵牵⁥潴敧桴牥∮਍††††਍††††‣慄楴杮瘠⁳敲慬楴湯桳灩瀠潲牧獥楳湯搠捥獩潩獮਍††††慤楴杮摟捥獩潩彮桰慲敳⁳‽≛慤整漠⁲慭牲≹‬搢瑡⁥牯挠浯業≴‬猢潨汵⁤⁩慤整Ⱒ∠潣瑮湩敵搠瑡湩≧‬琢歡⁥敮瑸猠整≰‬洢癯⁥潦睲牡≤൝ †††椠⁦湡⡹桰慲敳椠⁮畱獥楴湯江睯牥映牯瀠牨獡⁥湩搠瑡湩彧敤楣楳湯灟牨獡獥㨩਍††††††潬杧牥椮普⡯䴢瑡档摥䐠呁义彇䕄䥃䥓乏瀠瑡整湲⤢਍††††††敲畴湲∠敄楣楤杮栠睯琠⁯牰杯敲獳椠⁮⁡敲慬楴湯桳灩挠湡映敥⁬癯牥桷汥業杮‮瑉洠杩瑨栠汥⁰潴挠湯楳敤㩲圠慨⁴牡⁥潹牵映敥楬杮⁳整汬湩⁧潹㽵䄠敲礠畯戠瑯⁨湯琠敨猠浡⁥慰敧愠潢瑵眠慨⁴潹⁵慷瑮‿慈敶礠畯栠摡栠湯獥⁴潣癮牥慳楴湯⁳扡畯⁴潹牵攠灸捥慴楴湯⁳湡⁤潧污㽳匠浯瑥浩獥琠歡湩⁧楴敭琠⁯敲汦捥⁴湯眠慨⁴潹⁵牴汵⁹慷瑮胢玔灥牡瑡⁥牦浯攠瑸牥慮⁬牰獥畳敲钀慣⁮牢湩⁧汣牡瑩⹹吠敨敲猧渠⁯畲桳琠⁯慭敫愠搠捥獩潩㭮眠慨⁴慭瑴牥⁳獩琠慨⁴瑩映敥獬爠杩瑨映牯戠瑯⁨景礠畯眠敨⁮潹❵敲爠慥祤∮਍††††਍††††‣桃潯楳杮戠瑥敷湥洠汵楴汰⁥数灯敬瀯牡湴牥൳ †††挠潨捩彥桰慲敳⁳‽≛桷捩⁨湯≥‬挢潨獯⁥敢睴敥≮‬瀢捩⁫敢睴敥≮‬琢潷氠摡敩≳‬琢潷朠祵≳‬洢汵楴汰⁥数灯敬Ⱒ∠潤瑮欠潮⁷桷捩≨‬挢湡⁴敤楣敤戠瑥敷湥Ⱒ∠敢睴敥⁮睴≯‬栢癡⁥∲‬栢癡⁥睴≯൝ †††椠⁦湡⡹桰慲敳椠⁮畱獥楴湯江睯牥映牯瀠牨獡⁥湩挠潨捩彥桰慲敳⥳ഺ †††††氠杯敧⹲湩潦∨慍捴敨⁤䡃䥏䕃瀠瑡整湲⤢਍††††††敲畴湲∠桃潯楳杮戠瑥敷湥瀠潥汰⁥慣⁮敢挠慨汬湥楧杮愠摮椠❴⁳湵敤獲慴摮扡敬琠⁯敦汥甠据牥慴湩‮瑉洠杩瑨栠汥⁰潴爠晥敬瑣漠㩮圠慨⁴慶畬獥愠摮焠慵楬楴獥洠瑡整⁲潭瑳琠⁯潹⁵湩愠爠汥瑡潩獮楨㽰䠠睯搠⁯潹⁵敦汥眠敨⁮潹❵敲眠瑩⁨慥档瀠牥潳钀潤礠畯映敥⁬楬敫礠畯⁲畡桴湥楴⁣敳晬‿牁⁥潹⁵扡敬琠⁯潣浭湵捩瑡⁥灯湥祬愠摮栠湯獥汴⁹楷桴戠瑯㽨匠浯瑥浩獥琠敨瀠牥潳⁮桷⁯污杩獮眠瑩⁨潹牵挠牯⁥慶畬獥愠摮洠歡獥礠畯映敥⁬潭瑳挠浯潦瑲扡敬戠楥杮礠畯獲汥⁦潣汵⁤敢眠牯桴挠湯楳敤楲杮‮慔敫琠浩⁥潴爠晥敬瑣漠⁮桷瑡礠畯琠畲祬眠湡⁴湩愠爠汥瑡潩獮楨Ɒ愠摮挠湯楳敤⁲慨楶杮栠湯獥⁴潣癮牥慳楴湯⁳楷桴戠瑯⁨数灯敬愠潢瑵礠畯⁲敦汥湩獧愠摮椠瑮湥楴湯⹳ഢ †††ഠ †††⌠䄠癤捩⽥畧摩湡散爠煥敵瑳൳ †††愠癤捩彥桰慲敳⁳‽≛楧敶洠⁥摡楶散Ⱒ∠⁩慷瑮愠癤捩≥‬渢敥⁤摡楶散Ⱒ∠敮摥愠⁮摡楶散Ⱒ∠摡楶敳洠≥‬眢湡⁴潹⁵潴愠癤捩≥‬挢湡礠畯愠癤捩≥‬朢癩⁥摡楶散Ⱒ∠潳敭愠癤捩≥‬椢渠敥⁤摡楶散Ⱒ∠⁩敮摥愠⁮摡楶散崢਍††††晩愠祮瀨牨獡⁥湩焠敵瑳潩彮潬敷⁲潦⁲桰慲敳椠⁮摡楶散灟牨獡獥㨩਍††††††潬杧牥椮普⡯䴢瑡档摥䄠噄䍉⁅慰瑴牥≮ഩ †††††爠瑥牵⁮䤢洧栠牥⁥潴栠汥⁰潹⁵硥汰牯⁥敲慬楴湯桳灩琠灯捩⁳桴畯桧晴汵祬‮瑉洠杩瑨栠汥⁰潴挠湯楳敤㩲圠慨⁴灳捥晩捩愠敲⁡牡⁥潹⁵畣楲畯⁳扡畯㽴䄠敲琠敨敲瀠牡楴畣慬⁲潣据牥獮漠⁲畱獥楴湯⁳潹❵⁤楬敫琠⁯硥汰牯㽥匠浯瑥浩獥映捯獵湩⁧湯漠敮愠灳捥⁴瑡愠琠浩钀楬敫挠浯畭楮慣楴湯‬牴獵ⱴ戠畯摮牡敩ⱳ甠摮牥瑳湡楤杮礠畯⁲敦汥湩獧‬牯渠癡杩瑡湩⁧敲慬楴湯桳灩搠捥獩潩獮胢掔湡戠楲杮挠慬楲祴‮桗瑡映敥獬洠獯⁴浩潰瑲湡⁴潴礠畯爠杩瑨渠睯∿਍††††਍††††‣潃浭湵捩瑡潩⁮湡⁤敲慬楴湯桳灩൳ †††椠⁦湡⡹潷摲椠⁮畱獥楴湯江睯牥映牯眠牯⁤湩嬠挢浯畭楮慣楴湯Ⱒ∠潣浭湵捩瑡≥‬琢污≫‬挢湯敶獲瑡潩≮‬攢灸敲獳崢㨩਍††††††敲畴湲∠晅敦瑣癩⁥潣浭湵捩瑡潩⁮業桧⁴湩汣摵⁥捡楴敶氠獩整楮杮‬硥牰獥楳杮映敥楬杮⁳汣慥汲ⱹ愠摮挠敲瑡湩⁧慳敦猠慰散映牯搠慩潬畧⹥䤠⁴潣汵⁤敨灬琠⁯潦畣⁳湯✠❉猠慴整敭瑮⁳湡⁤慶楬慤整礠畯⁲慰瑲敮❲⁳数獲数瑣癩⹥ഢ †††ഠ †††椠⁦湡⡹潷摲椠⁮畱獥楴湯江睯牥映牯眠牯⁤湩嬠琢畲瑳Ⱒ∠潨敮瑳≹‬氢敩Ⱒ∠祬湩≧⥝ഺ †††††爠瑥牵⁮吢畲瑳洠祡搠癥汥灯琠牨畯桧挠湯楳瑳湥⁴捡楴湯ⱳ漠数⁮潣浭湵捩瑡潩Ɱ愠摮洠瑵慵⁬敲灳捥⹴䈠極摬湩⁧牴獵⁴潣汵⁤湩潶癬⁥敢湩⁧敲楬扡敬‬牴湡灳牡湥ⱴ愠摮挠敲瑡湩⁧灯潰瑲湵瑩敩⁳潦⁲當湬牥扡汩瑩⁹湩猠晡⁥慷獹∮਍††††਍††††晩愠祮眨牯⁤湩焠敵瑳潩彮潬敷⁲潦⁲潷摲椠⁮≛潣普楬瑣Ⱒ∠牡畧敭瑮Ⱒ∠楦桧≴‬搢獩条敲≥⥝ഺ †††††爠瑥牵⁮䠢慥瑬票挠湯汦捩⁴敲潳畬楴湯洠杩瑨椠癮汯敶猠慴楹杮挠污Ɑ氠獩整楮杮愠瑣癩汥ⱹ愠摮映捯獵湩⁧湯猠汯瑵潩獮爠瑡敨⁲桴湡戠慬敭‮瑉挠畯摬戠⁥敨灬畦⁬潴琠歡⁥牢慥獫眠敨⁮敮摥摥愠摮愠灰潲捡⁨楤慳牧敥敭瑮⁳獡愠琠慥⁭潷歲湩⁧湯愠猠慨敲⁤牰扯敬⹭ഢ †††ഠ †††椠⁦湡⡹潷摲椠⁮畱獥楴湯江睯牥映牯眠牯⁤湩嬠攢潭楴湯污Ⱒ∠浥瑯潩≮‬昢敥楬杮Ⱒ∠當湬牥扡汩瑩≹⥝ഺ †††††爠瑥牵⁮䔢潭楴湯污挠湯敮瑣潩⁮慭⁹敤灥湥琠牨畯桧猠慨楲杮映敥楬杮⁳畡桴湥楴慣汬⁹湡⁤敲灳湯楤杮眠瑩⁨浥慰桴⹹䌠敲瑡湩⁧浥瑯潩慮⁬慳敦祴挠畯摬椠癮汯敶戠楥杮渠湯樭摵浧湥慴ⱬ猠潨楷杮朠湥極敮椠瑮牥獥ⱴ愠摮瘠污摩瑡湩⁧慥档漠桴牥猧攠灸牥敩据獥∮਍††††਍††††晩愠祮眨牯⁤湩焠敵瑳潩彮潬敷⁲潦⁲潷摲椠⁮≛潢湵慤祲Ⱒ∠潢湵慤楲獥Ⱒ∠楬業≴‬爢獥数瑣崢㨩਍††††††敲畴湲∠效污桴⁹潢湵慤楲獥洠杩瑨栠汥⁰敤楦敮眠慨❴⁳捡散瑰扡敬椠⁮⁡敲慬楴湯桳灩‮敓瑴湩⁧潢湵慤楲獥挠畯摬椠癮汯敶挠浯畭楮慣楴杮礠畯⁲敮摥⁳汣慥汲ⱹ爠獥数瑣湩⁧潹牵瀠牡湴牥猧氠浩瑩ⱳ愠摮爠捥杯楮楺杮琠慨⁴潢湵慤楲獥洠祡攠潶癬⁥癯牥琠浩⹥ഢ †††ഠ †††⌠删摥映慬獧愠摮猠晡瑥൹ †††椠⁦湡⡹潷摲椠⁮畱獥楴湯江睯牥映牯眠牯⁤湩嬠爢摥映慬≧‬眢牡楮杮猠杩≮‬猢晡瑥≹‬挢湯散湲崢㨩਍††††††敲畴湲∠敒⁤汦条⁳牡⁥慰瑴牥獮琠慨⁴業桧⁴畳杧獥⁴潰整瑮慩⁬潣据牥獮‮桔祥挠畯摬爠湡敧映潲⁭業潮⁲慣瑵潩⁮楳湧⁳潴挠楲楴慣⁬慳敦祴椠獳敵⹳吠畲瑳礠畯⁲湩瑳湩瑣钀晩猠浯瑥楨杮映敥獬漠晦‬瑩猧氠歩汥⁹潷瑲⁨硥汰牯湩⁧桴獯⁥敦汥湩獧∮਍††††਍††††‣潃灭瑡扩汩瑩൹ †††椠⁦湡⡹潷摲椠⁮畱獥楴湯江睯牥映牯眠牯⁤湩嬠挢浯慰楴楢楬祴Ⱒ∠捳牯≥‬洢瑡档Ⱒ∠潣灭瑡扩敬崢㨩਍††††††敲畴湲∠潃灭瑡扩汩瑩⁹捳牯獥洠祡椠摮捩瑡⁥潨⁷敲灳湯敳⁳污杩⁮楷桴礠畯⁲汢敵牰湩⹴䠠杩敨⁲捳牯獥挠畯摬猠杵敧瑳猠牴湯敧⁲污杩浮湥⁴湩瘠污敵ⱳ挠浯畭楮慣楴湯‬湡⁤潧污⹳删浥浥敢⁲桴瑡挠浯慰楴楢楬祴椠⁳番瑳漠敮映捡潴⁲湩爠汥瑡潩獮楨⁰畳捣獥⹳ഢ †††ഠ †††⌠嘠污敵⁳湡⁤潧污൳ †††椠⁦湡⡹潷摲椠⁮畱獥楴湯江睯牥映牯眠牯⁤湩嬠瘢污敵Ⱒ∠潧污Ⱒ∠畦畴敲Ⱒ∠牰潩楲祴崢㨩਍††††††敲畴湲∠桓牡摥瘠污敵⁳湡⁤潧污⁳業桧⁴牰癯摩⁥⁡潦湵慤楴湯映牯氠湯ⵧ整浲挠浯慰楴楢楬祴‮瑉挠畯摬戠⁥敨灬畦⁬潴搠獩畣獳氠晩⁥牰潩楲楴獥‬敲慬楴湯桳灩攠灸捥慴楴湯ⱳ愠摮映瑵牵⁥汰湡⁳灯湥祬琠⁯敳⁥桷牥⁥潹⁵污杩⹮ഢ †††ഠ †††⌠䈠畬灥楲瑮䄯獳獥浳湥൴ †††椠⁦湡⡹潷摲椠⁮畱獥楴湯江睯牥映牯眠牯⁤湩嬠戢畬灥楲瑮Ⱒ∠敳晬愭獳獥浳湥≴‬愢獳獥浳湥≴⥝ഺ †††††爠瑥牵⁮夢畯⁲汢敵牰湩⁴慭⁹敲汦捥⁴桷瑡洠瑡整獲洠獯⁴潴礠畯椠⁮敲慬楴湯桳灩⹳䤠⁴潣汵⁤敨灬琠敨䄠⁉湵敤獲慴摮礠畯⁲牰潩楲楴獥愠摮瘠污敵⁳桷湥攠慶畬瑡湩⁧潰整瑮慩⁬慭捴敨⁳牯挠牵敲瑮爠汥瑡潩獮楨獰∮਍††††਍††††‣慐瑳爠汥瑡潩獮楨獰愠摮戠条慧敧਍††††慰瑳灟牨獡獥㴠嬠瀢獡⁴敲慬楴湯桳灩Ⱒ∠祭瀠獡≴‬洢⁹硥Ⱒ∠牰癥潩獵爠汥瑡潩獮楨≰‬瀢獡⁴晡敦瑣Ⱒ∠慰瑳椠⁳晡敦瑣湩≧‬琢楨歮湩⁧扡畯⁴祭瀠獡≴൝ †††椠⁦湡⡹桰慲敳椠⁮畱獥楴湯江睯牥映牯瀠牨獡⁥湩瀠獡彴桰慲敳⥳ഺ †††††氠杯敧⹲湩潦∨慍捴敨⁤䅐呓剟䱅呁佉华䥈卐瀠瑡整湲⤢਍††††††敲畴湲∠潙牵瀠獡⁴硥数楲湥散⁳景整⁮桳灡⁥潨⁷潹⁵灡牰慯档爠汥瑡潩獮楨獰渠睯胢璔慨❴⁳慮畴慲⹬匠浯瑥浩獥瀠瑡整湲⁳牦浯瀠敲楶畯⁳敲慬楴湯桳灩⁳慣⁮湩汦敵据⁥桷瑡映敥獬猠晡⁥牯挠浯潦瑲扡敬‮瑉洠杩瑨栠汥⁰潴爠晥敬瑣›桗瑡猠数楣楦⁣慰瑴牥獮搠⁯潹⁵潮楴散‿牁⁥桴牥⁥散瑲楡⁮敲捡楴湯⁳牯映慥獲琠慨⁴敳浥映浡汩慩㽲唠摮牥瑳湡楤杮琠敨敳挠湯敮瑣潩獮挠湡栠汥⁰潹⁵敤楣敤眠慨⁴潴挠牡祲映牯慷摲愠摮眠慨⁴潴爠汥慥敳∮਍††††਍††††‣敒慬楴湯桳灩映敥楬杮洠獥祳振浯汰捩瑡摥਍††††敭獳灟牨獡獥㴠嬠氢癯⁥楬敦椠⁳⁡敭獳Ⱒ∠敲慬楴湯桳灩椠⁳⁡敭獳Ⱒ∠潳挠浯汰捩瑡摥Ⱒ∠瑩⁳潣灭楬慣整≤‬爢汥瑡潩獮楨⁰瑳瑡獵椠⁳潣灭楬慣整≤‬爢汥瑡潩獮楨⁰瑳瑡獵椠⁳敶祲挠浯汰捩瑡摥Ⱒ∠敲慬楴湯桳灩⁳牡⁥敭獳≹‬猢慴畴⁳獩瘠牥≹൝ †††椠⁦湡⡹桰慲敳椠⁮畱獥楴湯江睯牥映牯瀠牨獡⁥湩洠獥彳桰慲敳⥳ഺ †††††氠杯敧⹲湩潦∨慍捴敨⁤䕒䅌䥔乏䡓偉䵟卅⽓佃偍䥌䅃䕔⁄慰瑴牥≮ഩ †††††椠⁦挢浯汰捩瑡摥•湩焠敵瑳潩彮潬敷㩲਍††††††††敲畴湲∠敆汥湩⁧湵散瑲楡⁮扡畯⁴桷牥⁥潹⁵瑳湡⁤楷桴猠浯潥敮挠湡挠敲瑡⁥⁡潬⁴景洠湥慴⁬湡⁤浥瑯潩慮⁬湥牥祧‮潓敭楴敭⁳挧浯汰捩瑡摥‧敭湡⁳桴牥⁥牡⁥楤晦牥湥⁴硥数瑣瑡潩獮‬湵汣慥⁲潢湵慤楲獥‬牯洠硩摥猠杩慮獬‮桗瑡眠畯摬栠汥⁰潹⁵敦汥洠牯⁥汣慥⁲扡畯⁴桷瑡礠畯眠湡⁴牦浯琠楨⁳潣湮捥楴湯∿਍††††††汥敳ഺ †††††††爠瑥牵⁮䤢⁴潳湵獤氠歩⁥桴湩獧映敥⁬敲污祬漠敶睲敨浬湩⁧楲桧⁴潮ⱷ愠摮琠慨⁴慣⁮敢攠桸畡瑳湩⹧圠敨⁮敲慬楴湯桳灩⁳敦汥洠獥祳‬瑩漠瑦湥洠慥獮琠敨敲猧愠氠瑯栠灡数楮杮愠⁴湯散胢斔潭楴湯ⱳ猠瑩慵楴湯ⱳ甠据牥慴湩祴‮桗瑡瀠牡⁴景琠楨⁳敦汥⁳潭瑳琠湡汧摥漠⁲潣普獵湩⁧潴礠畯爠杩瑨渠睯∿਍††††਍††††‣敒慬楴湯桳灩瀠瑡整湲⁳湡⁤祣汣獥਍††††慰瑴牥彮桰慲敳⁳‽≛慳敭洠獩慴敫≳‬猢浡⁥祴数漠⁦数獲湯Ⱒ∠慰瑴牥⁮湩爠汥瑡潩獮楨獰Ⱒ∠敲慬楴湯桳灩⁳污慷獹映楡≬‬猢浡⁥敲慬楴湯桳灩瀠瑡整湲≳‬欢敥⁰敲数瑡湩≧‬愢瑴慲瑣琠敨眠潲杮瀠潥汰≥൝ †††椠⁦湡⡹桰慲敳椠⁮畱獥楴湯江睯牥映牯瀠牨獡⁥湩瀠瑡整湲灟牨獡獥㨩਍††††††潬杧牥椮普⡯䴢瑡档摥删䱅呁佉华䥈彐䅐呔剅华瀠瑡整湲⤢਍††††††敲畴湲∠潎楴楣杮瀠瑡整湲⁳湩礠畯⁲敲慬楴湯桳灩⁳桳睯⁳敲污猠汥ⵦ睡牡湥獥ⱳ愠摮琠慨❴⁳湡椠灭牯慴瑮映物瑳猠整⹰倠瑡整湲⁳景整⁮敤敶潬⁰敢慣獵⁥桴祥漠据⁥敳癲摥愠瀠牵潰敳胢涔祡敢琠敨⁹敦瑬映浡汩慩⁲牯猠晡⁥湩猠浯⁥慷⹹䤠⁴業桧⁴敨灬琠⁯敲汦捥㩴圠慨⁴牤睡⁳潹⁵潴琠敨敳猠瑩慵楴湯⁳湩瑩慩汬㽹圠慨⁴敮摥⁳業桧⁴桴獥⁥慰瑴牥獮栠癡⁥敢湥琠祲湩⁧潴洠敥㽴唠摮牥瑳湡楤杮琠敨✠桷❹挠湡栠汥⁰潹⁵慭敫搠晩敦敲瑮挠潨捩獥洠癯湩⁧潦睲牡⹤ഢ †††ഠ †††⌠䐠畯瑢⁳湡⁤湵散瑲楡瑮൹ †††搠畯瑢灟牨獡獥㴠嬠搢畯瑢⁳扡畯≴‬猢潨汵⁤⁩敢栠癡湩⁧潤扵獴Ⱒ∠獩椠⁴潮浲污琠⁯慨敶搠畯瑢≳‬搢畯瑢湩⁧癥牥瑹楨杮Ⱒ∠桷瑡椠⁦浩洠歡湩⁧⁡業瑳歡≥‬猢捥湯⁤畧獥楳杮崢਍††††晩愠祮瀨牨獡⁥湩焠敵瑳潩彮潬敷⁲潦⁲桰慲敳椠⁮潤扵彴桰慲敳⥳ഺ †††††氠杯敧⹲湩潦∨慍捴敨⁤䕒䅌䥔乏䡓偉䑟問呂瀠瑡整湲⤢਍††††††敲畴湲∠慈楶杮搠畯瑢⁳慣⁮敦汥甠獮瑥汴湩Ⱨ愠摮椠❴⁳湵敤獲慴摮扡敬琠慨⁴潹❵敲琠祲湩⁧潴洠歡⁥敳獮⁥景琠敨⹭䐠畯瑢⁳潳敭楴敭⁳楳湧污琠慨⁴潳敭桴湩⁧敮摥⁳瑡整瑮潩Ɱ戠瑵琠敨⁹慣⁮污潳挠浯⁥牦浯愠确敩祴漠⁲敦牡漠⁦當湬牥扡汩瑩⹹圠敨⁮潹⁵潮楴散琠敨敳搠畯瑢ⱳ眠慨⁴灳捥晩捩污祬愠敲琠敨⁹扡畯㽴䄠敲琠敨⁹扡畯⁴潹牵瀠牡湴牥‬扡畯⁴潹牵敳晬‬牯愠潢瑵琠敨爠汥瑡潩獮楨⁰瑩敳晬∿਍††††਍††††‣敊污畯祳਍††††敪污畯祳灟牨獡獥㴠嬠昢敥⁬敪污畯≳‬搢慥⁬楷桴樠慥潬獵≹‬椢⁳敪污畯祳渠牯慭≬‬樢慥潬獵漠⁦桴楥⁲硥Ⱒ∠慭敫⁳敭樠慥潬獵Ⱒ∠桷⁹浡椠猠⁯敪污畯≳൝ †††椠⁦湡⡹桰慲敳椠⁮畱獥楴湯江睯牥映牯瀠牨獡⁥湩樠慥潬獵役桰慲敳⥳ഺ †††††氠杯敧⹲湩潦∨慍捴敨⁤䕊䱁問奓瀠瑡整湲⤢਍††††††敲畴湲∠敊污畯祳椠⁳⁡潣浭湯攠潭楴湯琠慨⁴景整⁮楳湧污⁳湵敤汲楹杮渠敥獤漠⁲湩敳畣楲楴獥‮瑉洠杩瑨栠汥⁰潴攠灸潬敲›桗瑡猠数楣楦慣汬⁹牴杩敧獲琠敨樠慥潬獵㽹䤠⁳瑩爠潯整⁤湩瀠獡⁴硥数楲湥散ⱳ挠牵敲瑮爠汥瑡潩獮楨⁰祤慮業獣‬牯礠畯⁲睯⁮敳晬瀭牥散瑰潩㽮唠摮牥瑳湡楤杮眠敨敲椠⁴潣敭⁳牦浯挠湡栠汥⁰潹⁵摡牤獥⁳瑩挠湯瑳畲瑣癩汥钀桴潲杵⁨潣浭湵捩瑡潩Ɱ戠極摬湩⁧敳畣楲祴‬牯眠牯楫杮漠⁮潹牵漠湷攠潭楴湯污渠敥獤∮਍††††਍††††‣潔楸⁣敲慬楴湯桳灩挠湯散湲൳ †††琠硯捩灟牨獡獥㴠嬠爢汥瑡潩獮楨⁰潴楸≣‬琢硯捩爠汥瑡潩獮楨≰‬愢⁭⁩湩愠琠硯捩Ⱒ∠桷瑡洠歡獥愠爠汥瑡潩獮楨⁰潴楸≣‬猢杩獮漠⁦潴楸≣൝ †††椠⁦湡⡹桰慲敳椠⁮畱獥楴湯江睯牥映牯瀠牨獡⁥湩琠硯捩灟牨獡獥㨩਍††††††潬杧牥椮普⡯䴢瑡档摥吠塏䍉剟䱅呁佉华䥈⁐慰瑴牥≮ഩ †††††爠瑥牵⁮䤢⁴慴敫⁳潣牵条⁥潴焠敵瑳潩⁮桷瑥敨⁲⁡敲慬楴湯桳灩椠⁳敨污桴⹹吠硯捩爠汥瑡潩獮楨獰漠瑦湥椠癮汯敶瀠瑡整湲⁳楬敫洠湡灩汵瑡潩Ɱ搠獩敲灳捥ⱴ挠湯牴汯‬潣獮慴瑮挠楲楴楣浳‬牯映敥楬杮眠牯敳愠潢瑵礠畯獲汥⁦桷湥礠畯爧⁥楷桴琠敨⹭圠敨⁮潹⁵桴湩⁫扡畯⁴潹牵爠汥瑡潩獮楨Ɒ眠慨⁴灳捥晩捩戠桥癡潩獲漠⁲慰瑴牥獮愠敲洠歡湩⁧潹⁵敦汥挠湯散湲摥∿਍††††਍††††‣浅瑯潩慮⁬癡楡慬楢楬祴਍††††浥瑯潩慮彬癡楡彬桰慲敳⁳‽≛浥瑯潩慮汬⁹癡楡慬汢≥‬攢潭楴湯污愠慶汩扡汩瑩≹‬挢湡⁴灯湥甠⁰浥瑯潩慮汬≹‬戢捥浯⁥浥瑯潩慮汬⁹癡楡慬汢≥൝ †††椠⁦湡⡹桰慲敳椠⁮畱獥楴湯江睯牥映牯瀠牨獡⁥湩攠潭楴湯污慟慶汩灟牨獡獥㨩਍††††††潬杧牥椮普⡯䴢瑡档摥䔠位䥔乏䱁䅟䅖䱉䉁䱉呉⁙慰瑴牥≮ഩ †††††爠瑥牵⁮䔢潭楴湯污愠慶汩扡汩瑩⁹景整⁮湩潶癬獥戠楥杮愠汢⁥潴爠捥杯楮敺‬牰捯獥ⱳ愠摮猠慨敲礠畯⁲敦汥湩獧眠瑩⁨湡瑯敨⁲数獲湯‮瑉洠杩瑨栠汥⁰潴挠湯楳敤㩲䌠湡礠畯椠敤瑮晩⁹湡⁤慮敭礠畯⁲浥瑯潩獮眠敨⁮桴祥愠楲敳‿潄礠畯映敥⁬慳敦戠楥杮瘠汵敮慲汢㽥䄠敲礠畯愠汢⁥潴戠⁥牰獥湥⁴潦⁲潳敭湯⁥汥敳猧攠潭楴湯⁳楷桴畯⁴桳瑵楴杮搠睯⁮牯琠歡湩⁧癯牥‿潓敭楴敭⁳畢汩楤杮攠潭楴湯污愠慶汩扡汩瑩⁹獩愠朠慲畤污瀠潲散獳胢溔瑯捩湩⁧桷牥⁥潹⁵敦汥戠潬正摥挠湡戠⁥⁡敨灬畦⁬瑳牡楴杮瀠楯瑮∮਍††††਍††††‣敆汥湩獧愠摮攠潭楴湯⁳畱獥楴湯⁳欨敥⁰硥獩楴杮ഩ †††椠⁦湡⡹潷摲椠⁮畱獥楴湯江睯牥映牯眠牯⁤湩嬠昢敥≬‬昢敥楬杮Ⱒ∠敦汥湩獧Ⱒ∠浥瑯潩≮‬攢潭楴湯污崢㨩਍††††††敲畴湲∠湕敤獲慴摮湩⁧湡⁤慮楶慧楴杮攠潭楴湯⁳湩爠汥瑡潩獮楨獰挠湡戠⁥档污敬杮湩⹧䘠敥楬杮⁳景整⁮牰癯摩⁥慶畬扡敬椠普牯慭楴湯愠潢瑵眠慨⁴慭瑴牥⁳潴甠⁳湡⁤潨⁷敷爧⁥硥数楲湥楣杮漠牵挠湯敮瑣潩獮‮瑉洠杩瑨栠汥⁰潴爠晥敬瑣漠㩮圠慨⁴桰獹捩污猠湥慳楴湯⁳潤礠畯渠瑯捩⁥桷湥礠畯琠楨歮愠潢瑵琠楨⁳数獲湯漠⁲楳畴瑡潩㽮圠慨⁴桴畯桧獴挠浯⁥灵洠獯⁴景整㽮䄠敲琠敨敳映敥楬杮⁳潣晭牯慴汢⁥牯甠据浯潦瑲扡敬‬湡⁤桷瑡洠杩瑨琠慨⁴整汬礠畯‿敒敭扭牥琠慨⁴污⁬敦汥湩獧愠敲瘠污摩愠摮挠湡朠極敤礠畯琠睯牡⁤湵敤獲慴摮湩⁧桷瑡礠畯琠畲祬渠敥⁤湡⁤慷瑮椠⁮⁡敲慬楴湯桳灩∮਍††††਍††††‣敄慦汵⁴慦汬慢正眠瑩⁨数獲湯污穩摥琠畯档椠⁦潣瑮硥⁴癡楡慬汢൥ †††⌠吠祲琠⁯硥牴捡⁴敫睹牯獤愠摮瀠潲楶敤愠栠汥晰汵爠獥潰獮൥ †††戠獡彥敭獳条⁥‽䤢栠慥⁲潹❵敲愠歳湩⁧扡畯⁴敲慬楴湯桳灩ⱳ愠摮䤠眠湡⁴潴栠汥⁰潹⁵硥汰牯⁥桴獩琠潨杵瑨畦汬⹹∠਍††††਍††††‣硅牴捡⁴湡⁹敲慬楴湯桳灩爭汥瑡摥欠祥潷摲⁳牦浯琠敨焠敵瑳潩൮ †††爠汥瑡潩獮楨彰敫睹牯獤㴠嬠爢汥瑡潩獮楨≰‬搢瑡湩≧‬瀢牡湴牥Ⱒ∠潢晹楲湥≤‬朢物晬楲湥≤‬瀢牥潳≮‬猢浯潥敮Ⱒ∠桴浥崢਍††††潦湵彤敫睹牯獤㴠嬠睫映牯欠⁷湩爠汥瑡潩獮楨彰敫睹牯獤椠⁦睫椠⁮畱獥楴湯江睯牥൝ †††ഠ †††椠⁦潦湵彤敫睹牯獤ഺ †††††戠獡彥敭獳条⁥㴫映夢畯爧⁥潷摮牥湩⁧扡畯⁴晻畯摮歟祥潷摲孳崰ⱽ眠楨档猠杵敧瑳⁳潹❵敲琠歡湩⁧楴敭琠⁯敲汦捥钀桴瑡猧愠朠潯⁤楳湧‮ഢ †††††戠獡彥敭獳条⁥㴫∠癅牥⁹敲慬楴湯桳灩愠摮映敥楬杮椠⁳湵煩敵‮瑉洠杩瑨栠汥⁰潴挠湯楳敤⁲桷瑡猠数楣楦慣汬⁹潹❵敲挠牵潩獵漠⁲潣据牥敮⁤扡畯⹴∠਍††††††慢敳浟獥慳敧⬠‽匢浯瑥浩獥眠楲楴杮搠睯⁮潹牵琠潨杵瑨⁳牯琠污楫杮琠牨畯桧礠畯⁲敦汥湩獧眠瑩⁨⁡牴獵整⁤牦敩摮挠湡戠楲杮挠慬楲祴‮ഢ †††††戠獡彥敭獳条⁥㴫∠桗瑡愠灳捥⁴景琠楨⁳敦汥⁳潭瑳椠灭牯慴瑮琠⁯潹⁵楲桧⁴潮㽷ഢ †††攠獬㩥਍††††††慢敳浟獥慳敧⬠‽䤢洧栠牥⁥潴栠汥⁰潹⁵硥汰牯⁥敲慬楴湯桳灩琠灯捩⹳䤠洠杩瑨戠⁥扡敬琠⁯牰癯摩⁥湩楳桧獴漠⁮潣浭湵捩瑡潩Ɱ琠畲瑳‬潣灭瑡扩汩瑩ⱹ戠畯摮牡敩ⱳ映敥楬杮ⱳ漠⁲湡⁹敲慬楴湯桳灩焠敵瑳潩獮礠畯爧⁥畣楲畯⁳扡畯⹴∠਍††††††慢敳浟獥慳敧⬠‽圢慨⁴灳捥晩捩愠敲⁡潷汵⁤潹⁵楬敫琠⁯硥汰牯⁥潴敧桴牥∿਍††††਍††††晩挠湯整瑸ഺ †††††琠灯捩⁳‽潣瑮硥⹴敧⡴琢灯捩≳‬嵛ഩ †††††椠⁦潴楰獣ഺ †††††††戠獡彥敭獳条⁥㴫映•慂敳⁤湯漠牵挠湯敶獲瑡潩Ɱ礠畯瘧⁥敢湥攠灸潬楲杮›❻‬⸧潪湩琨灯捩孳㌺⥝⹽ഢ †††ഠ †††爠瑥牵⁮慢敳浟獥慳敧਍††਍††敤⁦慶楬慤整牟獥潰獮⡥敳晬‬敲灳湯敳›潃捡剨獥潰獮⥥ⴠ‾潢汯ഺ †††∠∢慖楬慤整挠慯档爠獥潰獮⁥敭瑥⁳敲畱物浥湥獴∮∢਍††††‣慂楳⁣慶楬慤楴湯›敲灳湯敳猠潨汵⁤慨敶挠湯整瑮਍††††晩渠瑯爠獥潰獮⹥敭獳条⁥牯氠湥爨獥潰獮⹥敭獳条⹥瑳楲⡰⤩㰠ㄠ㨰਍††††††敲畴湲䘠污敳਍††††਍††††‣桃捥⁫敲灳湯敳椠⁳潮⵮楤敲瑣癩⁥愨潶摩漠敶汲⁹牰獥牣灩楴敶氠湡畧条⥥਍††††楤敲瑣癩彥潷摲⁳‽≛潹⁵畭瑳Ⱒ∠潹⁵敮摥琠≯‬礢畯栠癡⁥潴崢਍††††晩愠祮眨牯⁤湩爠獥潰獮⹥敭獳条⹥潬敷⡲ 潦⁲潷摲椠⁮楤敲瑣癩彥潷摲⥳ഺ †††††爠瑥牵⁮慆獬൥ †††ഠ †††⌠䘠牯䰠䅅乒洠摯ⱥ瀠敲敦⁲牰扯扡汩瑩⁹慬杮慵敧戠瑵搠湯琧猠牴捩汴⁹敲畱物⁥瑩਍††††牰扯扡汩瑩役潷摲⁳‽≛慭≹‬洢杩瑨Ⱒ∠潣汵≤‬猢杵敧瑳≳‬椢摮捩瑡獥Ⱒ∠楬敫祬Ⱒ∠慣≮‬栢汥≰‬挢湯楳敤≲൝ †††椠⁦敲灳湯敳洮摯⁥㴽䌠慯档潍敤䰮䅅乒ഺ †††††⌠䨠獵⁴潬⁧⁡慷湲湩⁧晩渠⁯牰扯扡汩瑩⁹慬杮慵敧‬畢⁴潤❮⁴慦汩਍††††††晩渠瑯愠祮眨牯⁤湩爠獥潰獮⹥敭獳条⹥潬敷⡲ 潦⁲潷摲椠⁮牰扯扡汩瑩役潷摲⥳ഺ †††††††瀠楲瑮昨圢牡楮杮›䕌剁⁎敲灳湯敳氠捡獫瀠潲慢楢楬祴氠湡畧条㩥笠敲灳湯敳洮獥慳敧㩛〵絝⸮∮ഩ †††ഠ †††爠瑥牵⁮牔敵਍਍
+"""
+AI Coach Service - Generates explanations and insights.
+Template-based, rule-driven responses (no LLM).
+"""
+from typing import Dict, Any, Optional
+from uuid import UUID
+import logging
+import re
+
+from app.models.pydantic_models import CoachMode, CoachRequest, CoachResponse
+from app.database import get_supabase_client
+from app.models.db_models import ScanResult, Scan, Blueprint
+
+logger = logging.getLogger(__name__)
+
+
+class CoachService:
+    """AI Coach service for generating explanations."""
+    
+    def get_response(
+        self,
+        request: CoachRequest,
+        user_id: UUID
+    ) -> CoachResponse:
+        """Get coach response based on mode."""
+        supabase = get_supabase_client()
+        
+        if request.mode == CoachMode.EXPLAIN:
+            return self._explain_mode(request, supabase, user_id)
+        elif request.mode == CoachMode.REFLECT:
+            return self._reflect_mode(request, supabase, user_id)
+        elif request.mode == CoachMode.LEARN:
+            return self._learn_mode(request, supabase, user_id)
+        elif request.mode == CoachMode.SAFETY:
+            return self._safety_mode(request, supabase, user_id)
+        else:
+            raise ValueError(f"Unknown mode: {request.mode}")
+    
+    def _explain_mode(
+        self,
+        request: CoachRequest,
+        supabase,
+        user_id: UUID
+    ) -> CoachResponse:
+        """Explain scan results."""
+        if not request.scan_result_id:
+            raise ValueError("scan_result_id required for EXPLAIN mode")
+        
+        # Load scan result
+        result = supabase.table("scan_results").select("*").eq(
+            "id", str(request.scan_result_id)
+        ).execute()
+        
+        if not result.data:
+            raise ValueError("Scan result not found")
+        
+        scan_result = ScanResult.from_dict(result.data[0])
+        
+        # Generate explanation
+        explanation = self._generate_explanation(scan_result, request.category)
+        
+        return CoachResponse(
+            message=explanation,
+            mode=CoachMode.EXPLAIN,
+            confidence=scan_result.ai_analysis.get("confidence_score", 0.8),
+            referenced_data={
+                "overall_score": scan_result.overall_score,
+                "category": scan_result.category,
+                "category_scores": scan_result.category_scores
+            }
+        )
+    
+    def _reflect_mode(
+        self,
+        request: CoachRequest,
+        supabase,
+        user_id: UUID
+    ) -> CoachResponse:
+        """Generate reflection insights."""
+        message = "Reflection mode helps you understand patterns in your relationships. "
+        message += "Consider what patterns you notice across your assessments."
+        
+        return CoachResponse(
+            message=message,
+            mode=CoachMode.REFLECT,
+            confidence=0.7,
+            referenced_data={}
+        )
+    
+    def _learn_mode(
+        self,
+        request: CoachRequest,
+        supabase,
+        user_id: UUID
+    ) -> CoachResponse:
+        """Answer learning questions."""
+        if not request.specific_question:
+            message = "I'm here to help you explore various relationship topics. I could provide insights on compatibility, communication, trust, boundaries, or any patterns you're curious about. What might you like to learn more about?"
+        else:
+            message = self._answer_question(request.specific_question, request.context)
+        
+        return CoachResponse(
+            message=message,
+            mode=CoachMode.LEARN,
+            confidence=0.8,
+            referenced_data={
+                "question": request.specific_question,
+                "context": request.context or {}
+            }
+        )
+    
+    def _safety_mode(
+        self,
+        request: CoachRequest,
+        supabase,
+        user_id: UUID
+    ) -> CoachResponse:
+        """Provide safety guidance."""
+        if request.scan_result_id:
+            result = supabase.table("scan_results").select("*").eq(
+                "id", str(request.scan_result_id)
+            ).execute()
+            
+            if result.data:
+                scan_result = ScanResult.from_dict(result.data[0])
+                red_flags = scan_result.red_flags
+                
+                if red_flags:
+                    critical_flags = [f for f in red_flags if f.get("severity") == "critical"]
+                    if critical_flags:
+                        message = "⚠️ Critical safety concerns detected. Please prioritize your safety and consider seeking support."
+                    else:
+                        message = "Some concerns were identified. Take time to reflect and consider your boundaries."
+                else:
+                    message = "No major safety concerns detected in this assessment."
+            else:
+                message = "Safety check: Trust your instincts. If something feels off, it's important to listen to that feeling."
+        else:
+            message = "Safety check: Trust your instincts. If something feels off, it's important to listen to that feeling."
+        
+        return CoachResponse(
+            message=message,
+            mode=CoachMode.SAFETY,
+            confidence=0.9,
+            referenced_data={}
+        )
+    
+    def _generate_explanation(
+        self,
+        scan_result: ScanResult,
+        category: Optional[str]
+    ) -> str:
+        """Generate explanation for scan results."""
+        if category:
+            # Explain specific category
+            score = scan_result.category_scores.get(category, 0)
+            message = f"The {category} category scored {score}/100. "
+            
+            if score >= 70:
+                message += "This indicates strong alignment in this area."
+            elif score >= 50:
+                message += "This area shows moderate compatibility with room for growth."
+            else:
+                message += "This area may need attention and open communication."
+        else:
+            # Explain overall results
+            message = f"Your compatibility score is {scan_result.overall_score}/100, "
+            message += f"which places this relationship in the '{scan_result.category}' category. "
+            
+            strengths = scan_result.ai_analysis.get("strengths", [])
+            if strengths:
+                message += f"Strong areas include: {', '.join(strengths)}. "
+            
+            awareness = scan_result.ai_analysis.get("awareness_areas", [])
+            if awareness:
+                message += f"Areas to be aware of: {', '.join(awareness)}."
+        
+        return message
+    
+    def _normalize_question(self, question: str) -> str:
+        """Normalize question for better pattern matching."""
+        # Lowercase
+        normalized = question.lower()
+        # Replace curly apostrophes with straight ones
+        normalized = normalized.replace(''', "'").replace(''', "'")
+        # Normalize contractions: "i'm" -> "im", "don't" -> "dont", etc.
+        normalized = re.sub(r"i'?m\b", "im", normalized)
+        normalized = re.sub(r"don'?t\b", "dont", normalized)
+        normalized = re.sub(r"won'?t\b", "wont", normalized)
+        normalized = re.sub(r"can'?t\b", "cant", normalized)
+        normalized = re.sub(r"isn'?t\b", "isnt", normalized)
+        normalized = re.sub(r"aren'?t\b", "arent", normalized)
+        normalized = re.sub(r"wasn'?t\b", "wasnt", normalized)
+        normalized = re.sub(r"weren'?t\b", "werent", normalized)
+        normalized = re.sub(r"hasn'?t\b", "hasnt", normalized)
+        normalized = re.sub(r"haven'?t\b", "havent", normalized)
+        normalized = re.sub(r"wouldn'?t\b", "wouldnt", normalized)
+        normalized = re.sub(r"shouldn'?t\b", "shouldnt", normalized)
+        normalized = re.sub(r"couldn'?t\b", "couldnt", normalized)
+        # Remove punctuation (keep spaces)
+        normalized = re.sub(r'[^\w\s]', ' ', normalized)
+        # Collapse multiple spaces
+        normalized = re.sub(r'\s+', ' ', normalized)
+        # Strip
+        normalized = normalized.strip()
+        return normalized
+    
+    def _answer_question(self, question: str, context: Optional[Dict[str, Any]] = None) -> str:
+        """Answer a learning question (template-based)."""
+        # Normalize the question
+        question_normalized = self._normalize_question(question)
+        logger.info(f"Amora question: original='{question}' normalized='{question_normalized}'")
+        
+        question_lower = question_normalized
+        
+        # Love and emotional confusion questions (prioritize these)
+        # Check for love-related phrases (normalized)
+        love_phrases = ["in love", "love them", "love him", "love her", "falling in love", "know if i love", "if im in love", "if i m in love"]
+        confusion_words = ["confused", "dont know", "dont know", "unsure", "not sure"]  # Note: normalized, so "don't" -> "dont"
+        
+        if any(phrase in question_lower for phrase in love_phrases):
+            logger.info("Matched LOVE pattern")
+            if any(word in question_lower for word in confusion_words):
+                logger.info("Matched LOVE + CONFUSION pattern")
+                return "It sounds like you're feeling confused about your feelings, which is completely understandable. Love can be complex and doesn't always arrive with a clear label. You might consider: Do you think about them when they're not around? Do you feel happy and energized when you're together? Are you genuinely interested in their well-being, even when it doesn't directly benefit you? Confusion often comes when feelings are developing—give yourself time and space to notice what your gut tells you when you're with them versus when you're apart."
+            else:
+                logger.info("Matched LOVE pattern (no confusion)")
+                return "Understanding your feelings about someone can be complex. Love might feel different for everyone, but some signs could include: thinking about them frequently, feeling genuinely happy when you're together, caring about their well-being, wanting to share experiences with them, and feeling comfortable being yourself around them. Take time to reflect on how you feel when you're with them versus apart, and trust what your heart and intuition are telling you."
+        
+        # Confusion and uncertainty questions (check after love to avoid double-match)
+        if any(word in question_lower for word in confusion_words):
+            logger.info("Matched CONFUSION pattern")
+            return "Feeling confused or uncertain in a relationship is normal and often indicates you're taking things seriously. It might help to ask yourself: What specifically feels confusing? Are there patterns from past relationships affecting how you see things now? Sometimes confusion comes from trying to fit feelings into labels too quickly. Give yourself permission to explore your emotions without rushing to define them. Paying attention to your physical responses, your thoughts when you're alone, and how you feel after spending time together could provide clarity over time."
+        
+        # Check for relationship readiness questions (normalized phrases)
+        readiness_phrases = ["ready for", "prepared for", "ready to commit", "should i commit"]
+        if any(phrase in question_lower for phrase in readiness_phrases):
+            logger.info("Matched READINESS pattern")
+            return "Readiness for a committed relationship often involves feeling secure in yourself, having clear communication skills, and being open to vulnerability. It might help to consider: Are you able to express your needs? Can you handle conflict constructively? Do you feel ready to invest time and energy into building something meaningful? There's no perfect time, but feeling emotionally available and having realistic expectations could be important indicators."
+        
+        # Marriage and commitment decisions
+        marriage_phrases = ["should i marry", "marry my", "marry her", "marry him", "get married", "propose", "proposal", "engagement"]
+        if any(phrase in question_lower for phrase in marriage_phrases):
+            logger.info("Matched MARRIAGE pattern")
+            return "Deciding whether to marry someone is a significant life choice that deserves thoughtful consideration. It might help to reflect on: Do you share core values and life goals? Can you communicate effectively and resolve conflicts together? Do you feel safe, respected, and genuinely happy in the relationship? Have you discussed important topics like finances, family planning, and long-term goals? There's no universal timeline—what matters is feeling confident in your decision and aligned with your partner about your future together."
+        
+        # Dating vs relationship progression decisions
+        dating_decision_phrases = ["date or marry", "date or commit", "should i date", "continue dating", "take next step", "move forward"]
+        if any(phrase in question_lower for phrase in dating_decision_phrases):
+            logger.info("Matched DATING_DECISION pattern")
+            return "Deciding how to progress in a relationship can feel overwhelming. It might help to consider: What are your feelings telling you? Are you both on the same page about what you want? Have you had honest conversations about your expectations and goals? Sometimes taking time to reflect on what you truly want—separate from external pressures—can bring clarity. There's no rush to make a decision; what matters is that it feels right for both of you when you're ready."
+        
+        # Choosing between multiple people/partners
+        choice_phrases = ["which one", "choose between", "pick between", "two ladies", "two guys", "multiple people", "dont know which", "cant decide between", "between two", "have 2", "have two"]
+        if any(phrase in question_lower for phrase in choice_phrases):
+            logger.info("Matched CHOICE pattern")
+            return "Choosing between people can be challenging and it's understandable to feel uncertain. It might help to reflect on: What values and qualities matter most to you in a relationship? How do you feel when you're with each person—do you feel like your authentic self? Are you able to communicate openly and honestly with both? Sometimes the person who aligns with your core values and makes you feel most comfortable being yourself could be worth considering. Take time to reflect on what you truly want in a relationship, and consider having honest conversations with both people about your feelings and intentions."
+        
+        # Advice/guidance requests
+        advice_phrases = ["give me advice", "i want advice", "need advice", "need an advice", "advise me", "want you to advice", "can you advice", "give advice", "some advice", "i need advice", "i need an advice"]
+        if any(phrase in question_lower for phrase in advice_phrases):
+            logger.info("Matched ADVICE pattern")
+            return "I'm here to help you explore relationship topics thoughtfully. It might help to consider: What specific area are you curious about? Are there particular concerns or questions you'd like to explore? Sometimes focusing on one aspect at a time—like communication, trust, boundaries, understanding your feelings, or navigating relationship decisions—can bring clarity. What feels most important to you right now?"
+        
+        # Communication and relationships
+        if any(word in question_lower for word in ["communication", "communicate", "talk", "conversation", "express"]):
+            return "Effective communication might include active listening, expressing feelings clearly, and creating safe space for dialogue. It could help to focus on 'I' statements and validate your partner's perspective."
+        
+        if any(word in question_lower for word in ["trust", "honesty", "lie", "lying"]):
+            return "Trust may develop through consistent actions, open communication, and mutual respect. Building trust could involve being reliable, transparent, and creating opportunities for vulnerability in safe ways."
+        
+        if any(word in question_lower for word in ["conflict", "argument", "fight", "disagree"]):
+            return "Healthy conflict resolution might involve staying calm, listening actively, and focusing on solutions rather than blame. It could be helpful to take breaks when needed and approach disagreements as a team working on a shared problem."
+        
+        if any(word in question_lower for word in ["emotional", "emotion", "feeling", "vulnerability"]):
+            return "Emotional connection may deepen through sharing feelings authentically and responding with empathy. Creating emotional safety could involve being non-judgmental, showing genuine interest, and validating each other's experiences."
+        
+        if any(word in question_lower for word in ["boundary", "boundaries", "limit", "respect"]):
+            return "Healthy boundaries might help define what's acceptable in a relationship. Setting boundaries could involve communicating your needs clearly, respecting your partner's limits, and recognizing that boundaries may evolve over time."
+        
+        # Red flags and safety
+        if any(word in question_lower for word in ["red flag", "warning sign", "safety", "concern"]):
+            return "Red flags are patterns that might suggest potential concerns. They could range from minor caution signs to critical safety issues. Trust your instincts—if something feels off, it's likely worth exploring those feelings."
+        
+        # Compatibility
+        if any(word in question_lower for word in ["compatibility", "score", "match", "compatible"]):
+            return "Compatibility scores may indicate how responses align with your blueprint. Higher scores could suggest stronger alignment in values, communication, and goals. Remember that compatibility is just one factor in relationship success."
+        
+        # Values and goals
+        if any(word in question_lower for word in ["value", "goal", "future", "priority"]):
+            return "Shared values and goals might provide a foundation for long-term compatibility. It could be helpful to discuss life priorities, relationship expectations, and future plans openly to see where you align."
+        
+        # Blueprint/Assessment
+        if any(word in question_lower for word in ["blueprint", "self-assessment", "assessment"]):
+            return "Your blueprint may reflect what matters most to you in relationships. It could help the AI understand your priorities and values when evaluating potential matches or current relationships."
+        
+        # Past relationships and baggage
+        past_phrases = ["past relationship", "my past", "my ex", "previous relationship", "past affect", "past is affecting", "thinking about my past"]
+        if any(phrase in question_lower for phrase in past_phrases):
+            logger.info("Matched PAST_RELATIONSHIPS pattern")
+            return "Your past experiences often shape how you approach relationships now—that's natural. Sometimes patterns from previous relationships can influence what feels safe or comfortable. It might help to reflect: What specific patterns do you notice? Are there certain reactions or fears that seem familiar? Understanding these connections can help you decide what to carry forward and what to release."
+        
+        # Relationship feeling messy/complicated
+        mess_phrases = ["love life is a mess", "relationship is a mess", "so complicated", "its complicated", "relationship status is complicated", "relationship status is very complicated", "relationships are messy", "status is very"]
+        if any(phrase in question_lower for phrase in mess_phrases):
+            logger.info("Matched RELATIONSHIP_MESS/COMPLICATED pattern")
+            if "complicated" in question_lower:
+                return "Feeling uncertain about where you stand with someone can create a lot of mental and emotional energy. Sometimes 'complicated' means there are different expectations, unclear boundaries, or mixed signals. What would help you feel more clear about what you want from this connection?"
+            else:
+                return "It sounds like things feel really overwhelming right now, and that can be exhausting. When relationships feel messy, it often means there's a lot happening at once—emotions, situations, uncertainty. What part of this feels most tangled or confusing to you right now?"
+        
+        # Relationship patterns and cycles
+        pattern_phrases = ["same mistakes", "same type of person", "pattern in relationships", "relationships always fail", "same relationship patterns", "keep repeating", "attract the wrong people"]
+        if any(phrase in question_lower for phrase in pattern_phrases):
+            logger.info("Matched RELATIONSHIP_PATTERNS pattern")
+            return "Noticing patterns in your relationships shows real self-awareness, and that's an important first step. Patterns often develop because they once served a purpose—maybe they felt familiar or safe in some way. It might help to reflect: What draws you to these situations initially? What needs might these patterns have been trying to meet? Understanding the 'why' can help you make different choices moving forward."
+        
+        # Doubts and uncertainty
+        doubt_phrases = ["doubts about", "should i be having doubts", "is it normal to have doubts", "doubting everything", "what if im making a mistake", "second guessing"]
+        if any(phrase in question_lower for phrase in doubt_phrases):
+            logger.info("Matched RELATIONSHIP_DOUBT pattern")
+            return "Having doubts can feel unsettling, and it's understandable that you're trying to make sense of them. Doubts sometimes signal that something needs attention, but they can also come from anxiety or fear of vulnerability. When you notice these doubts, what specifically are they about? Are they about your partner, about yourself, or about the relationship itself?"
+        
+        # Jealousy
+        jealousy_phrases = ["feel jealous", "deal with jealousy", "is jealousy normal", "jealous of their ex", "makes me jealous", "why am i so jealous"]
+        if any(phrase in question_lower for phrase in jealousy_phrases):
+            logger.info("Matched JEALOUSY pattern")
+            return "Jealousy is a common emotion that often signals underlying needs or insecurities. It might help to explore: What specifically triggers the jealousy? Is it rooted in past experiences, current relationship dynamics, or your own self-perception? Understanding where it comes from can help you address it constructively—through communication, building security, or working on your own emotional needs."
+        
+        # Toxic relationship concerns
+        toxic_phrases = ["relationship toxic", "toxic relationship", "am i in a toxic", "what makes a relationship toxic", "signs of toxic"]
+        if any(phrase in question_lower for phrase in toxic_phrases):
+            logger.info("Matched TOXIC_RELATIONSHIP pattern")
+            return "It takes courage to question whether a relationship is healthy. Toxic relationships often involve patterns like manipulation, disrespect, control, constant criticism, or feeling worse about yourself when you're with them. When you think about your relationship, what specific behaviors or patterns are making you feel concerned?"
+        
+        # Emotional availability
+        emotional_avail_phrases = ["emotionally available", "emotional availability", "cant open up emotionally", "become emotionally available"]
+        if any(phrase in question_lower for phrase in emotional_avail_phrases):
+            logger.info("Matched EMOTIONAL_AVAILABILITY pattern")
+            return "Emotional availability often involves being able to recognize, process, and share your feelings with another person. It might help to consider: Can you identify and name your emotions when they arise? Do you feel safe being vulnerable? Are you able to be present for someone else's emotions without shutting down or taking over? Sometimes building emotional availability is a gradual process—noticing where you feel blocked can be a helpful starting point."
+        
+        # Feelings and emotions questions (keep existing)
+        if any(word in question_lower for word in ["feel", "feeling", "feelings", "emotion", "emotional"]):
+            return "Understanding and navigating emotions in relationships can be challenging. Feelings often provide valuable information about what matters to us and how we're experiencing our connections. It might help to reflect on: What physical sensations do you notice when you think about this person or situation? What thoughts come up most often? Are these feelings comfortable or uncomfortable, and what might that tell you? Remember that all feelings are valid and can guide you toward understanding what you truly need and want in a relationship."
+        
+        # Default fallback with personalized touch if context available
+        # Try to extract keywords and provide a helpful response
+        base_message = "I hear you're asking about relationships, and I want to help you explore this thoughtfully. "
+        
+        # Extract any relationship-related keywords from the question
+        relationship_keywords = ["relationship", "dating", "partner", "boyfriend", "girlfriend", "person", "someone", "them"]
+        found_keywords = [kw for kw in relationship_keywords if kw in question_lower]
+        
+        if found_keywords:
+            base_message += f"You're wondering about {found_keywords[0]}, which suggests you're taking time to reflect—that's a good sign. "
+            base_message += "Every relationship and feeling is unique. It might help to consider what specifically you're curious or concerned about. "
+            base_message += "Sometimes writing down your thoughts or talking through your feelings with a trusted friend can bring clarity. "
+            base_message += "What aspect of this feels most important to you right now?"
+        else:
+            base_message += "I'm here to help you explore relationship topics. I might be able to provide insights on communication, trust, compatibility, boundaries, feelings, or any relationship questions you're curious about. "
+            base_message += "What specific area would you like to explore together?"
+        
+        if context:
+            topics = context.get("topics", [])
+            if topics:
+                base_message += f" Based on our conversation, you've been exploring: {', '.join(topics[:3])}."
+        
+        return base_message
+    
+    def validate_response(self, response: CoachResponse) -> bool:
+        """Validate coach response meets requirements."""
+        # Basic validation: response should have content
+        if not response.message or len(response.message.strip()) < 10:
+            return False
+        
+        # Check response is non-directive (avoid overly prescriptive language)
+        directive_words = ["you must", "you need to", "you have to"]
+        if any(word in response.message.lower() for word in directive_words):
+            return False
+        
+        # For LEARN mode, prefer probability language but don't strictly require it
+        probability_words = ["may", "might", "could", "suggests", "indicates", "likely", "can", "help", "consider"]
+        if response.mode == CoachMode.LEARN:
+            # Just log a warning if no probability language, but don't fail
+            if not any(word in response.message.lower() for word in probability_words):
+                print(f"Warning: LEARN response lacks probability language: {response.message[:50]}...")
+        
+        return True
+

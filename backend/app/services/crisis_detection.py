@@ -1,1 +1,143 @@
-∢ഢ䌊楲楳⁳敄整瑣潩⁮湡⁤敒灳湯敳映牯䄠潭慲മഊ䠊湡汤獥搠瑥捥楴湯漠⁦敳晬栭牡⽭畳捩摩污椠敤瑡潩⁮楷桴栠杩敨瑳瀠楲牯瑩ⱹ਍湡⁤牰癯摩獥猠晡ⱥ挠楲楳⵳灡牰灯楲瑡⁥敲灳湯敳⁳桴瑡搠物捥⁴獵牥⁳潴਍敲污眭牯摬攠敭杲湥祣猠灵潰瑲മ∊∢਍浩潰瑲氠杯楧杮਍浩潰瑲爠湡潤൭昊潲⁭祴楰杮椠灭牯⁴灏楴湯污਍浩潰瑲渠浵祰愠⁳灮਍਍潬杧牥㴠氠杯楧杮朮瑥潌杧牥弨湟浡彥⥟਍਍਍汣獡⁳牃獩獩敄整瑣牯ഺ †∠∢敄整瑣挠楲楳⽳敳晬栭牡⽭畳捩摩污椠敤瑡潩⁮湩整瑮眠瑩⁨楨桧獥⁴牰潩楲祴∮∢਍††਍††‣瑓潲杮欠祥潷摲瀠瑡整湲⁳潦⁲牣獩獩搠瑥捥楴湯਍††剃卉卉䭟奅佗䑒⁓‽൛ †††⌠䐠物捥⁴瑳瑡浥湥獴਍††††椧眠湡⁴潴搠敩Ⱗ਍††††椧眠湡⁴潴欠汩⁬祭敳晬Ⱗ਍††††椧眠湡⁴潴攠摮洠⁹楬敦Ⱗ਍††††椧眠湡⁴潴攠摮椠⁴污❬ബ †††✠浩朠楯杮琠⁯楫汬洠獹汥❦ബ †††✠浩朠楯杮琠⁯湥⁤祭氠晩❥ബ †††✠潧湩⁧潴攠摮椠⁴污❬ബ †††✠潤瑮眠湡⁴潴氠癩⁥湡浹牯❥ബ †††✠潤瑮眠湡⁴潴戠⁥污癩❥ബ †††✠楷桳椠眠獡搠慥❤ബ †††✠楷桳椠挠畯摬搠敩Ⱗ਍††††眧獩⁨⁩潷汵⁤楤❥ബ †††✠桳畯摬樠獵⁴楫汬洠獹汥❦ബ †††✠桳畯摬樠獵⁴楤❥ബ †††✠敢瑴牥漠晦眠瑩潨瑵洠❥ബ †††✠癥牥潹敮眠畯摬戠⁥敢瑴牥漠晦眠瑩潨瑵洠❥ബ †††⌠匠汥ⵦ慨浲਍††††眧湡⁴潴栠牵⁴祭敳晬Ⱗ਍††††朧楯杮琠⁯畨瑲洠獹汥❦ബ †††✠潧湩⁧潴挠瑵洠獹汥❦ബ †††✠慷瑮琠⁯畣⁴祭敳晬Ⱗ਍††††琧楨歮湩⁧景栠牵楴杮洠獹汥❦ബ †††⌠倠慬湮湩⽧牰灥牡瑡潩൮ †††✠慨敶愠瀠慬⁮潴Ⱗ਍††††昧杩牵摥漠瑵栠睯琠❯ബ †††✠湫睯栠睯椠眠畯摬Ⱗ਍††††‣摁楤楴湯污瀠瑡整湲൳ †††✠湥楤杮椠⁴污❬ബ †††✠潮⁴潷瑲⁨楬楶杮Ⱗ਍††††氧晩⁥獩渠瑯眠牯桴Ⱗ਍††††渧⁯敲獡湯琠⁯楬敶Ⱗ਍††††渧瑯楨杮琠⁯楬敶映牯Ⱗ਍††††猧極楣敤Ⱗ਍††††欧汩⁬祭敳晬Ⱗ਍††††攧摮洠獹汥❦ബ †††✠慴敫洠⁹睯⁮楬敦Ⱗ਍††††攧摮洠⁹楬敦Ⱗ਍††൝ †ഠ †䀠汣獡浳瑥潨൤ †搠晥搠瑥捥彴牣獩獩楟瑮湥⡴汣ⱳ琠硥㩴猠牴‬浥敢摤湩㩧传瑰潩慮孬灮渮慤牲祡⁝‽潎敮 㸭传瑰潩慮孬瑳嵲ഺ †††∠∢਍††††敄整瑣挠楲楳⽳敳晬栭牡⽭畳捩摩污椠敤瑡潩⁮湩整瑮മ †††删瑥牵獮✠剃卉卉卟䱅彆䅈䵒‧晩搠瑥捥整Ɽ丠湯⁥瑯敨睲獩⹥਍††††਍††††桔獩栠獡䠠䝉䕈呓瀠楲牯瑩⁹‭桳畯摬戠⁥档捥敫⁤敢潦敲渠牯慭⁬潴楰⁣敤整瑣潩⹮਍††††∢ഢ †††琠硥彴潬敷⁲‽整瑸氮睯牥⤨献牴灩⤨਍††††਍††††‣桃捥⁫潦⁲楤敲瑣欠祥潷摲洠瑡档獥⠠楨桧獥⁴潣普摩湥散ഩ †††映牯欠祥潷摲椠⁮汣⹳剃卉卉䭟奅佗䑒㩓਍††††††晩欠祥潷摲椠⁮整瑸江睯牥ഺ †††††††氠杯敧⹲慷湲湩⡧≦剃卉卉搠瑥捥整⁤楶⁡敫睹牯㩤笠敫睹牯孤㌺崰⹽⸮⤢਍††††††††敲畴湲✠剃卉卉卟䱅彆䅈䵒ധ †††ഠ †††⌠䄠摤瑩潩慮⁬敳慭瑮捩挠敨正⁳獵湩⁧浥敢摤湩獧椠⁦癡楡慬汢൥ †††⌠⠠潃汵⁤摡⁤浥敢摤湩⁧楳業慬楲祴琠⁯牣獩獩爭汥瑡摥瀠牨獡獥ഩ †††⌠䘠牯渠睯‬敫睹牯⁤慭捴楨杮椠⁳畳晦捩敩瑮愠摮洠牯⁥敲楬扡敬਍††††਍††††敲畴湲丠湯൥ഊഊ⌊㴠㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽ഽ⌊䌠䥒䥓⁓䕒偓乏䕓吠䵅䱐呁卅਍‣㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽㴽਍਍剃卉卉剟卅佐华卅㴠嬠਍††∢䤢洧爠慥汬⁹汧摡礠畯琠汯⁤敭琠楨⹳䤠⁴潳湵獤氠歩⁥潹❵敲椠⁮湡攠潮浲畯⁳浡畯瑮漠⁦慰湩爠杩瑨渠睯മഊ䤊眠湡⁴潹⁵潴欠潮⁷桴瑡䤠洧渠瑯愠汢⁥潴欠敥⁰潹⁵慳敦椠⁮湡攠敭杲湥祣漠⁲慭敫甠杲湥⁴敤楣楳湯⁳潦⁲潹⹵䤠⁦潹❵敲椠⁮浩敭楤瑡⁥慤杮牥漠⁲慨敶琠潨杵瑨⁳景栠牵楴杮礠畯獲汥ⱦ瀠敬獡⁥敲捡⁨畯⁴潦⁲敨灬爠杩瑨愠慷㩹਍਍胢₢慃汬礠畯⁲潬慣⁬浥牥敧据⁹敳癲捩獥⠠ㄹ‱湩琠敨唠ⱓ㤠㤹椠⁮桴⁥䭕ഩꊀ䌠湯慴瑣愠挠楲楳⁳敨灬楬敮椠⁮潹牵挠畯瑮祲਍胢₢敒捡⁨畯⁴潴愠琠畲瑳摥映楲湥Ɽ映浡汩⁹敭扭牥‬牯琠敨慲楰瑳਍਍潙⁵潤❮⁴慨敶琠⁯潧琠牨畯桧琠楨⁳污湯⹥吠敨敲愠敲瀠潥汰⁥牴楡敮⁤潴栠汥⁰畤楲杮琠敨敳洠浯湥獴∮∢ബഊ †∠∢桔湡⁫潹⁵潦⁲桳牡湩⁧桴獩眠瑩⁨敭‮⁉慣⁮敨牡栠睯洠捵⁨慰湩礠畯爧⁥湩മഊ䤊洧愠爠汥瑡潩獮楨⁰潣捡ⱨ渠瑯愠挠楲楳⁳潣湵敳潬Ⱳ愠摮䤠挠湡琧瀠潲楶敤琠敨甠杲湥⁴畳灰牯⁴潹⁵敮摥爠杩瑨渠睯‮晉礠畯爧⁥慨楶杮琠潨杵瑨⁳景栠牵楴杮礠畯獲汥⁦牯攠摮湩⁧潹牵氠晩ⱥ瀠敬獡⁥潣湮捥⁴楷桴猠浯潥敮眠潨挠湡栠汥⁰浩敭楤瑡汥㩹਍਍胢₢慃汬攠敭杲湥祣猠牥楶散⁳牯愠挠楲楳⁳潨汴湩൥ꊀ删慥档漠瑵琠⁯潳敭湯⁥潹⁵牴獵钀⁡牦敩摮‬慦業祬洠浥敢Ⱳ漠⁲敭瑮污栠慥瑬⁨牰景獥楳湯污਍胢₢潇琠⁯潹牵渠慥敲瑳攠敭杲湥祣爠潯⁭晩礠畯爧⁥湩椠浭摥慩整搠湡敧൲ഊ吊敨敳映敥楬杮⁳慣⁮敦汥漠敶睲敨浬湩Ⱨ戠瑵琠敨⁹慣⁮慰獳‮汐慥敳搠湯琧朠⁯桴潲杵⁨桴獩愠潬敮∮∢ബഊ †∠∢⁉敨牡栠睯洠捵⁨慰湩礠畯爧⁥湩‬湡⁤❉⁭敲污祬朠慬⁤潹⁵敲捡敨⁤畯⹴਍਍⁉敮摥琠⁯敢挠敬牡›❉⁭潮⁴煥極灰摥琠⁯慨摮敬愠洠湥慴⁬敨污桴挠楲楳⁳牯欠敥⁰潹⁵慳敦椠⁮湡攠敭杲湥祣‮晉礠畯爧⁥慨楶杮琠潨杵瑨⁳景栠牡業杮礠畯獲汥⁦牯攠摮湩⁧潹牵氠晩ⱥ瀠敬獡⁥敧⁴浩敭楤瑡⁥畳灰牯㩴਍਍胢₢潃瑮捡⁴浥牥敧据⁹敳癲捩獥椠⁦潹❵敲椠⁮浩敭楤瑡⁥慤杮牥਍胢₢慃汬愠挠楲楳⁳敨灬楬敮⠠癡楡慬汢⁥㐲㜯椠⁮潭瑳挠畯瑮楲獥ഩꊀ删慥档漠瑵琠⁯潳敭湯⁥潹⁵牴獵钀⁡慦業祬洠浥敢Ⱳ映楲湥Ɽ漠⁲敭瑮污栠慥瑬⁨牰景獥楳湯污਍਍潙⁵敤敳癲⁥畳灰牯⁴牦浯瀠潥汰⁥牴楡敮⁤潴栠汥⁰湩琠敨敳洠浯湥獴‮汐慥敳爠慥档漠瑵∮∢ബഊ †∠∢桔湡⁫潹⁵潦⁲整汬湩⁧敭琠楨⹳䤠挠湡猠湥敳琠敨搠灥桴漠⁦桷瑡礠畯爧⁥敦汥湩⁧楲桧⁴潮⹷਍਍❉⁭⁡敲慬楴湯桳灩挠慯档映捯獵摥漠⁮敨灬湩⁧楷桴爠汥瑡潩獮楨⁰畱獥楴湯ⱳ愠摮䤠洧渠瑯愠汢⁥潴瀠潲楶敤挠楲楳⁳畳灰牯⁴牯洠歡⁥牵敧瑮猠晡瑥⁹敤楣楳湯⹳䤠⁦潹❵敲攠灸牥敩据湩⁧桴畯桧獴漠⁦敳晬栭牡⁭牯猠極楣敤‬汰慥敳挠湯敮瑣眠瑩㩨਍਍胢₢潙牵氠捯污攠敭杲湥祣猠牥楶散⁳椨浭摥慩整搠湡敧⥲਍胢₢⁁牣獩獩栠汥汰湩⁥愨慶汩扡敬㈠⼴⤷਍胢₢⁁牴獵整⁤数獲湯椠⁮潹牵氠晩钀牦敩摮‬慦業祬‬桴牥灡獩ⱴ漠⁲潣湵敳潬൲ഊ吊敨敳映敥楬杮ⱳ愠⁳癯牥桷汥業杮愠⁳桴祥挠湡戠ⱥ搠湯琧栠癡⁥潴氠獡⁴潦敲敶⹲倠敬獡⁥敲捡⁨畯⁴潦⁲桴⁥畳灰牯⁴潹⁵敤敳癲⁥楲桧⁴潮⹷∢Ⱒ਍਍††∢䤢洧朠慬⁤潹⁵桳牡摥琠楨⁳楷桴洠⹥圠慨⁴潹❵敲搠獥牣扩湩⁧潳湵獤椠据敲楤汢⁹慰湩畦⹬਍਍⁉慷瑮琠⁯敢琠慲獮慰敲瑮›❉⁭潮⁴扡敬琠⁯敫灥礠畯猠晡⁥湩愠⁮浥牥敧据⁹楳畴瑡潩⁮牯瀠潲楶敤琠敨欠湩⁤景椠浭摥慩整猠灵潰瑲琠慨⁴牣獩獩猠瑩慵楴湯⁳敲畱物⹥䤠⁦潹❵敲栠癡湩⁧桴畯桧獴漠⁦畨瑲湩⁧潹牵敳晬漠⁲湥楤杮礠畯⁲楬敦‬汰慥敳朠瑥栠汥⁰浩敭楤瑡汥㩹਍਍胢₢慃汬攠敭杲湥祣猠牥楶散⁳晩礠畯爧⁥湩椠浭摥慩整搠湡敧൲ꊀ䌠湯慴瑣愠挠楲楳⁳潨汴湩⁥牯洠湥慴⁬敨污桴挠楲楳⁳敳癲捩൥ꊀ删慥档漠瑵琠⁯潳敭湯⁥潹⁵牴獵钀⁡牦敩摮‬慦業祬洠浥敢Ⱳ漠⁲敭瑮污栠慥瑬⁨牰景獥楳湯污਍਍潙⁵潤❮⁴慨敶琠⁯慨摮敬琠楨⁳污湯⹥吠敨敲愠敲瀠潥汰⁥灳捥晩捩污祬琠慲湩摥琠⁯敨灬搠牵湩⁧桴獥⁥楴敭⹳∢Ⱒ਍൝ഊഊ搊晥朠瑥损楲楳彳敲灳湯敳⤨ⴠ‾瑳㩲਍††∢䜢瑥愠爠湡潤⁭牣獩獩爠獥潰獮⁥整灭慬整∮∢਍††敲畴湲爠湡潤⹭档楯散䌨䥒䥓当䕒偓乏䕓⥓਍
+"""
+Crisis Detection and Response for Amora.
+
+Handles detection of self-harm/suicidal ideation with highest priority,
+and provides safe, crisis-appropriate responses that direct users to
+real-world emergency support.
+"""
+import logging
+import random
+from typing import Optional
+import numpy as np
+
+logger = logging.getLogger(__name__)
+
+
+class CrisisDetector:
+    """Detect crisis/self-harm/suicidal ideation intent with highest priority."""
+    
+    # Strong keyword patterns for crisis detection
+    CRISIS_KEYWORDS = [
+        # Direct statements
+        'i want to die',
+        'i want to kill myself',
+        'i want to end my life',
+        'i want to end it all',
+        'im going to kill myself',
+        'im going to end my life',
+        'going to end it all',
+        'dont want to live anymore',
+        'dont want to be alive',
+        'wish i was dead',
+        'wish i could die',
+        'wish i would die',
+        'should just kill myself',
+        'should just die',
+        'better off without me',
+        'everyone would be better off without me',
+        # Self-harm
+        'want to hurt myself',
+        'going to hurt myself',
+        'going to cut myself',
+        'want to cut myself',
+        'thinking of hurting myself',
+        # Planning/preparation
+        'have a plan to',
+        'figured out how to',
+        'know how i would',
+        # Additional patterns
+        'ending it all',
+        'not worth living',
+        'life is not worth',
+        'no reason to live',
+        'nothing to live for',
+        'suicide',
+        'kill myself',
+        'end myself',
+        'take my own life',
+        'end my life',
+    ]
+    
+    @classmethod
+    def detect_crisis_intent(cls, text: str, embedding: Optional[np.ndarray] = None) -> Optional[str]:
+        """
+        Detect crisis/self-harm/suicidal ideation intent.
+        Returns 'CRISIS_SELF_HARM' if detected, None otherwise.
+        
+        This has HIGHEST priority - should be checked before normal topic detection.
+        """
+        text_lower = text.lower().strip()
+        
+        # Check for direct keyword matches (highest confidence)
+        for keyword in cls.CRISIS_KEYWORDS:
+            if keyword in text_lower:
+                logger.warning(f"CRISIS detected via keyword: {keyword[:30]}...")
+                return 'CRISIS_SELF_HARM'
+        
+        # Additional semantic checks using embeddings if available
+        # (Could add embedding similarity to crisis-related phrases)
+        # For now, keyword matching is sufficient and more reliable
+        
+        return None
+
+
+# ============================================
+# CRISIS RESPONSE TEMPLATES
+# ============================================
+
+CRISIS_RESPONSES = [
+    """I'm really glad you told me this. It sounds like you're in an enormous amount of pain right now.
+
+I want you to know that I'm not able to keep you safe in an emergency or make urgent decisions for you. If you're in immediate danger or have thoughts of hurting yourself, please reach out for help right away:
+
+• Call your local emergency services (911 in the US, 999 in the UK)
+• Contact a crisis helpline in your country
+• Reach out to a trusted friend, family member, or therapist
+
+You don't have to go through this alone. There are people trained to help during these moments.""",
+
+    """Thank you for sharing this with me. I can hear how much pain you're in.
+
+I'm a relationship coach, not a crisis counselor, and I can't provide the urgent support you need right now. If you're having thoughts of hurting yourself or ending your life, please connect with someone who can help immediately:
+
+• Call emergency services or a crisis hotline
+• Reach out to someone you trust—a friend, family member, or mental health professional
+• Go to your nearest emergency room if you're in immediate danger
+
+These feelings can feel overwhelming, but they can pass. Please don't go through this alone.""",
+
+    """I hear how much pain you're in, and I'm really glad you reached out.
+
+I need to be clear: I'm not equipped to handle a mental health crisis or keep you safe in an emergency. If you're having thoughts of harming yourself or ending your life, please get immediate support:
+
+• Contact emergency services if you're in immediate danger
+• Call a crisis helpline (available 24/7 in most countries)
+• Reach out to someone you trust—a family member, friend, or mental health professional
+
+You deserve support from people trained to help in these moments. Please reach out.""",
+
+    """Thank you for telling me this. I can sense the depth of what you're feeling right now.
+
+I'm a relationship coach focused on helping with relationship questions, and I'm not able to provide crisis support or make urgent safety decisions. If you're experiencing thoughts of self-harm or suicide, please connect with:
+
+• Your local emergency services (immediate danger)
+• A crisis helpline (available 24/7)
+• A trusted person in your life—friend, family, therapist, or counselor
+
+These feelings, as overwhelming as they can be, don't have to last forever. Please reach out for the support you deserve right now.""",
+
+    """I'm glad you shared this with me. What you're describing sounds incredibly painful.
+
+I want to be transparent: I'm not able to keep you safe in an emergency situation or provide the kind of immediate support that crisis situations require. If you're having thoughts of hurting yourself or ending your life, please get help immediately:
+
+• Call emergency services if you're in immediate danger
+• Contact a crisis hotline or mental health crisis service
+• Reach out to someone you trust—a friend, family member, or mental health professional
+
+You don't have to handle this alone. There are people specifically trained to help during these times.""",
+]
+
+
+def get_crisis_response() -> str:
+    """Get a random crisis response template."""
+    return random.choice(CRISIS_RESPONSES)
