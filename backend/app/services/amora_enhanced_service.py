@@ -195,13 +195,20 @@ class AmoraEnhancedService:
     
     def __init__(self):
         """Initialize enhanced Amora service."""
-        self.embedding_model = get_embedding_model()
+        self._embedding_model = None  # Lazy load
         self.supabase = get_supabase_client()
         self.emotional_mirror = EmotionalMirroringEngine()
         self.variability_engine = ResponseVariabilityEngine()
         
         # Session storage (in-memory for now, should be Redis in production)
         self._sessions = {}
+        
+    @property
+    def embedding_model(self):
+        """Lazy load embedding model."""
+        if self._embedding_model is None:
+            self._embedding_model = get_embedding_model()
+        return self._embedding_model
     
     def get_response(
         self,

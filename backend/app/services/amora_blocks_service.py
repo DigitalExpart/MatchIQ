@@ -1067,13 +1067,21 @@ class AmoraBlocksService:
     
     def __init__(self):
         self.supabase = get_supabase_client()
-        self.embedding_model = get_embedding_model()
-        self.block_selector = BlockSelector(self.supabase, self.embedding_model)
+        self._embedding_model = None  # Lazy load
+        # Pass self (the service instance) to BlockSelector so it can access the property
+        self.block_selector = BlockSelector(self.supabase, self)
         self.detector = TopicEmotionDetector()
         self.crisis_detector = CrisisDetector()
         
         # In-memory session storage (use Redis in production)
         self._sessions: Dict[str, ConversationState] = {}
+        
+    @property
+    def embedding_model(self):
+        """Lazy load embedding model."""
+        if self._embedding_model is None:
+            self._embedding_model = get_embedding_model()
+        return self._embedding_model
     
     def get_blocks_count(self) -> int:
         """Get count of blocks with embeddings for health check."""
