@@ -1,1 +1,296 @@
-∢ഢ䐊瑡扡獡⁥潭敤獬映牯匠灵扡獡⁥慴汢獥മ吊敨敳愠敲栠汥数⁲汣獡敳⁳潦⁲潷歲湩⁧楷桴匠灵扡獡⁥慤慴മ∊∢਍牦浯琠灹湩⁧浩潰瑲传瑰潩慮ⱬ䐠捩ⱴ䄠祮‬楌瑳਍牦浯甠極⁤浩潰瑲唠䥕ൄ昊潲⁭慤整楴敭椠灭牯⁴慤整楴敭਍牦浯搠瑡捡慬獳獥椠灭牯⁴慤慴汣獡ⱳ映敩摬਍਍਍摀瑡捡慬獳਍汣獡⁳獕牥ഺ †∠∢獕牥洠摯汥映牯匠灵扡獡⁥獵牥⁳慴汢⹥∢ഢ †椠㩤唠䥕ൄ †攠慭汩›瑳൲ †瀠潲楦敬›楄瑣獛牴‬湁嵹㴠映敩摬搨晥畡瑬晟捡潴祲搽捩⥴਍††獩慟瑣癩㩥戠潯⁬‽牔敵਍††畳獢牣灩楴湯瑟敩㩲猠牴㴠∠牦敥ഢ †挠敲瑡摥慟㩴传瑰潩慮孬慤整楴敭⁝‽潎敮਍††灵慤整彤瑡›灏楴湯污摛瑡瑥浩嵥㴠丠湯൥ഊ †䀠汣獡浳瑥潨൤ †搠晥映潲彭楤瑣挨獬‬慤慴›楄瑣獛牴‬湁嵹 㸭∠獕牥㨢਍††††∢䌢敲瑡⁥獕牥映潲⁭畓慰慢敳爠獥潰獮⹥∢ഢ †††爠瑥牵⁮汣⡳਍††††††摩唽䥕⡄慤慴≛摩崢Ⱙ਍††††††浥楡㵬慤慴≛浥楡≬ⱝ਍††††††牰景汩㵥慤慴朮瑥∨牰景汩≥‬絻Ⱙ਍††††††獩慟瑣癩㵥慤慴朮瑥∨獩慟瑣癩≥‬牔敵Ⱙ਍††††††畳獢牣灩楴湯瑟敩㵲慤慴朮瑥∨畳獢牣灩楴湯瑟敩≲‬昢敲≥Ⱙ਍††††††牣慥整彤瑡搽瑡⹡敧⡴挢敲瑡摥慟≴Ⱙ਍††††††灵慤整彤瑡搽瑡⹡敧⡴產摰瑡摥慟≴Ⱙ਍††††ഩഊ †搠晥琠彯楤瑣猨汥⥦ⴠ‾楄瑣獛牴‬湁嵹ഺ †††∠∢潃癮牥⁴潴搠捩楴湯牡⁹潦⁲畓慰慢敳椠獮牥⽴灵慤整∮∢਍††††敲畴湲笠਍††††††椢≤›瑳⡲敳晬椮⥤ബ †††††∠浥楡≬›敳晬攮慭汩ബ †††††∠牰景汩≥›敳晬瀮潲楦敬ബ †††††∠獩慟瑣癩≥›敳晬椮彳捡楴敶ബ †††††∠畳獢牣灩楴湯瑟敩≲›敳晬献扵捳楲瑰潩彮楴牥ബ †††素਍਍਍摀瑡捡慬獳਍汣獡⁳求敵牰湩㩴਍††∢䈢畬灥楲瑮洠摯汥映牯匠灵扡獡⁥汢敵牰湩獴琠扡敬∮∢਍††摩›啕䑉਍††獵牥楟㩤唠䥕ൄ †愠獮敷獲›楌瑳䑛捩孴瑳Ⱳ䄠祮嵝㴠映敩摬搨晥畡瑬晟捡潴祲氽獩⥴਍††牰景汩彥畳浭牡㩹传瑰潩慮孬楄瑣獛牴‬湁嵹⁝‽潎敮਍††潣灭敬楴湯灟牥散瑮条㩥椠瑮㴠〠਍††敶獲潩㩮椠瑮㴠ㄠ਍††獩慟瑣癩㩥戠潯⁬‽牔敵਍††牣慥整彤瑡›灏楴湯污摛瑡瑥浩嵥㴠丠湯൥ †甠摰瑡摥慟㩴传瑰潩慮孬慤整楴敭⁝‽潎敮਍਍††捀慬獳敭桴摯਍††敤⁦牦浯摟捩⡴汣ⱳ搠瑡㩡䐠捩孴瑳Ⱳ䄠祮⥝ⴠ‾䈢畬灥楲瑮㨢਍††††∢䌢敲瑡⁥求敵牰湩⁴牦浯匠灵扡獡⁥敲灳湯敳∮∢਍††††敲畴湲挠獬ന †††††椠㵤啕䑉搨瑡孡椢≤⥝ബ †††††甠敳彲摩唽䥕⡄慤慴≛獵牥楟≤⥝ബ †††††愠獮敷獲搽瑡⹡敧⡴愢獮敷獲Ⱒ嬠⥝ബ †††††瀠潲楦敬獟浵慭祲搽瑡⹡敧⡴瀢潲楦敬獟浵慭祲⤢ബ †††††挠浯汰瑥潩彮数捲湥慴敧搽瑡⹡敧⡴挢浯汰瑥潩彮数捲湥慴敧Ⱒ〠Ⱙ਍††††††敶獲潩㵮慤慴朮瑥∨敶獲潩≮‬⤱ബ †††††椠彳捡楴敶搽瑡⹡敧⡴椢彳捡楴敶Ⱒ吠畲⥥ബ †††††挠敲瑡摥慟㵴慤慴朮瑥∨牣慥整彤瑡⤢ബ †††††甠摰瑡摥慟㵴慤慴朮瑥∨灵慤整彤瑡⤢ബ †††⤠਍਍††敤⁦潴摟捩⡴敳晬 㸭䐠捩孴瑳Ⱳ䄠祮㩝਍††††∢䌢湯敶瑲琠⁯楤瑣潩慮祲映牯匠灵扡獡⁥湩敳瑲甯摰瑡⹥∢ഢ †††爠瑥牵⁮ൻ †††††∠摩㨢猠牴猨汥⹦摩Ⱙ਍††††††產敳彲摩㨢猠牴猨汥⹦獵牥楟⥤ബ †††††∠湡睳牥≳›敳晬愮獮敷獲ബ †††††∠牰景汩彥畳浭牡≹›敳晬瀮潲楦敬獟浵慭祲ബ †††††∠潣灭敬楴湯灟牥散瑮条≥›敳晬挮浯汰瑥潩彮数捲湥慴敧ബ †††††∠敶獲潩≮›敳晬瘮牥楳湯ബ †††††∠獩慟瑣癩≥›敳晬椮彳捡楴敶ബ †††素਍਍਍摀瑡捡慬獳਍汣獡⁳捓湡ഺ †∠∢捓湡洠摯汥映牯匠灵扡獡⁥捳湡⁳慴汢⹥∢ഢ †椠㩤唠䥕ൄ †甠敳彲摩›啕䑉਍††捳湡瑟灹㩥猠牴਍††数獲湯湟浡㩥传瑰潩慮孬瑳嵲㴠丠湯൥ †椠瑮牥捡楴湯瑟灹㩥传瑰潩慮孬瑳嵲㴠丠湯൥ †愠獮敷獲›楌瑳䑛捩孴瑳Ⱳ䄠祮嵝㴠映敩摬搨晥畡瑬晟捡潴祲氽獩⥴਍††敲汦捥楴湯湟瑯獥›灏楴湯污䑛捩孴瑳Ⱳ䄠祮嵝㴠丠湯൥ †挠瑡来牯敩彳潣灭敬整㩤䰠獩孴瑳嵲㴠映敩摬搨晥畡瑬晟捡潴祲氽獩⥴਍††瑳瑡獵›瑳⁲‽椢彮牰杯敲獳ഢ †搠慵彬捳湡獟獥楳湯楟㩤传瑰潩慮孬啕䑉⁝‽潎敮਍††畤污獟慣彮潲敬›灏楴湯污獛牴⁝‽潎敮਍††慰瑲敮彲捳湡楟㩤传瑰潩慮孬啕䑉⁝‽潎敮਍††獩畟楮楦摥›潢汯㴠䘠污敳਍††牣慥整彤瑡›灏楴湯污摛瑡瑥浩嵥㴠丠湯൥ †甠摰瑡摥慟㩴传瑰潩慮孬慤整楴敭⁝‽潎敮਍਍††捀慬獳敭桴摯਍††敤⁦牦浯摟捩⡴汣ⱳ搠瑡㩡䐠捩孴瑳Ⱳ䄠祮⥝ⴠ‾匢慣≮ഺ †††∠∢牃慥整匠慣⁮牦浯匠灵扡獡⁥敲灳湯敳∮∢਍††††敲畴湲挠獬ന †††††椠㵤啕䑉搨瑡孡椢≤⥝ബ †††††甠敳彲摩唽䥕⡄慤慴≛獵牥楟≤⥝ബ †††††猠慣彮祴数搽瑡孡猢慣彮祴数崢ബ †††††瀠牥潳彮慮敭搽瑡⹡敧⡴瀢牥潳彮慮敭⤢ബ †††††椠瑮牥捡楴湯瑟灹㵥慤慴朮瑥∨湩整慲瑣潩彮祴数⤢ബ †††††愠獮敷獲搽瑡⹡敧⡴愢獮敷獲Ⱒ嬠⥝ബ †††††爠晥敬瑣潩彮潮整㵳慤慴朮瑥∨敲汦捥楴湯湟瑯獥⤢ബ †††††挠瑡来牯敩彳潣灭敬整㵤慤慴朮瑥∨慣整潧楲獥损浯汰瑥摥Ⱒ嬠⥝ബ †††††猠慴畴㵳慤慴朮瑥∨瑳瑡獵Ⱒ∠湩灟潲牧獥≳Ⱙ਍††††††畤污獟慣彮敳獳潩彮摩唽䥕⡄慤慴≛畤污獟慣彮敳獳潩彮摩崢 晩搠瑡⹡敧⡴搢慵彬捳湡獟獥楳湯楟≤ 汥敳丠湯ⱥ਍††††††畤污獟慣彮潲敬搽瑡⹡敧⡴搢慵彬捳湡牟汯≥Ⱙ਍††††††慰瑲敮彲捳湡楟㵤啕䑉搨瑡孡瀢牡湴牥獟慣彮摩崢 晩搠瑡⹡敧⡴瀢牡湴牥獟慣彮摩⤢攠獬⁥潎敮ബ †††††椠彳湵晩敩㵤慤慴朮瑥∨獩畟楮楦摥Ⱒ䘠污敳Ⱙ਍††††††牣慥整彤瑡搽瑡⹡敧⡴挢敲瑡摥慟≴Ⱙ਍††††††灵慤整彤瑡搽瑡⹡敧⡴產摰瑡摥慟≴Ⱙ਍††††ഩഊ †搠晥琠彯楤瑣猨汥⥦ⴠ‾楄瑣獛牴‬湁嵹ഺ †††∠∢潃癮牥⁴潴搠捩楴湯牡⁹潦⁲畓慰慢敳椠獮牥⽴灵慤整∮∢਍††††敲畳瑬㴠笠਍††††††椢≤›瑳⡲敳晬椮⥤ബ †††††∠獵牥楟≤›瑳⡲敳晬甮敳彲摩Ⱙ਍††††††猢慣彮祴数㨢猠汥⹦捳湡瑟灹ⱥ਍††††††愢獮敷獲㨢猠汥⹦湡睳牥ⱳ਍††††††挢瑡来牯敩彳潣灭敬整≤›敳晬挮瑡来牯敩彳潣灭敬整Ɽ਍††††††猢慴畴≳›敳晬献慴畴ⱳ਍††††††椢彳湵晩敩≤›敳晬椮彳湵晩敩Ɽ਍††††ൽ †††椠⁦敳晬瀮牥潳彮慮敭ഺ †††††爠獥汵孴瀢牥潳彮慮敭崢㴠猠汥⹦数獲湯湟浡൥ †††椠⁦敳晬椮瑮牥捡楴湯瑟灹㩥਍††††††敲畳瑬≛湩整慲瑣潩彮祴数崢㴠猠汥⹦湩整慲瑣潩彮祴数਍††††晩猠汥⹦敲汦捥楴湯湟瑯獥ഺ †††††爠獥汵孴爢晥敬瑣潩彮潮整≳⁝‽敳晬爮晥敬瑣潩彮潮整൳ †††椠⁦敳晬搮慵彬捳湡獟獥楳湯楟㩤਍††††††敲畳瑬≛畤污獟慣彮敳獳潩彮摩崢㴠猠牴猨汥⹦畤污獟慣彮敳獳潩彮摩ഩ †††椠⁦敳晬搮慵彬捳湡牟汯㩥਍††††††敲畳瑬≛畤污獟慣彮潲敬崢㴠猠汥⹦畤污獟慣彮潲敬਍††††晩猠汥⹦慰瑲敮彲捳湡楟㩤਍††††††敲畳瑬≛慰瑲敮彲捳湡楟≤⁝‽瑳⡲敳晬瀮牡湴牥獟慣彮摩ഩ †††爠瑥牵⁮敲畳瑬਍਍਍摀瑡捡慬獳਍汣獡⁳捓湡敒畳瑬ഺ †∠∢捓湡敒畳瑬洠摯汥映牯匠灵扡獡⁥捳湡牟獥汵獴琠扡敬∮∢਍††摩›啕䑉਍††捳湡楟㩤唠䥕ൄ †漠敶慲汬獟潣敲›湩൴ †挠瑡来牯㩹猠牴਍††慣整潧祲獟潣敲㩳䐠捩孴瑳Ⱳ椠瑮൝ †愠彩湡污獹獩›楄瑣獛牴‬湁嵹਍††敲彤汦条㩳䰠獩孴楄瑣獛牴‬湁嵹⁝‽楦汥⡤敤慦汵彴慦瑣牯㵹楬瑳ഩ †椠据湯楳瑳湥楣獥›楌瑳䑛捩孴瑳Ⱳ䄠祮嵝㴠映敩摬搨晥畡瑬晟捡潴祲氽獩⥴਍††牰景汩彥業浳瑡档獥›楌瑳䑛捩孴瑳Ⱳ䄠祮嵝㴠映敩摬搨晥畡瑬晟捡潴祲氽獩⥴਍††硥汰湡瑡潩彮敭慴慤慴›灏楴湯污䑛捩孴瑳Ⱳ䄠祮嵝㴠丠湯൥ †愠彩敶獲潩㩮猠牴㴠∠⸱⸰∰਍††牣慥整彤瑡›灏楴湯污摛瑡瑥浩嵥㴠丠湯൥ഊ †䀠汣獡浳瑥潨൤ †搠晥映潲彭楤瑣挨獬‬慤慴›楄瑣獛牴‬湁嵹 㸭∠捓湡敒畳瑬㨢਍††††∢䌢敲瑡⁥捓湡敒畳瑬映潲⁭畓慰慢敳爠獥潰獮⹥∢ഢ †††爠瑥牵⁮汣⡳਍††††††摩唽䥕⡄慤慴≛摩崢Ⱙ਍††††††捳湡楟㵤啕䑉搨瑡孡猢慣彮摩崢Ⱙ਍††††††癯牥污彬捳牯㵥慤慴≛癯牥污彬捳牯≥ⱝ਍††††††慣整潧祲搽瑡孡挢瑡来牯≹ⱝ਍††††††慣整潧祲獟潣敲㵳慤慴朮瑥∨慣整潧祲獟潣敲≳‬絻Ⱙ਍††††††楡慟慮祬楳㵳慤慴朮瑥∨楡慟慮祬楳≳‬絻Ⱙ਍††††††敲彤汦条㵳慤慴朮瑥∨敲彤汦条≳‬嵛Ⱙ਍††††††湩潣獮獩整据敩㵳慤慴朮瑥∨湩潣獮獩整据敩≳‬嵛Ⱙ਍††††††牰景汩彥業浳瑡档獥搽瑡⹡敧⡴瀢潲楦敬浟獩慭捴敨≳‬嵛Ⱙ਍††††††硥汰湡瑡潩彮敭慴慤慴搽瑡⹡敧⡴攢灸慬慮楴湯浟瑥摡瑡≡Ⱙ਍††††††楡癟牥楳湯搽瑡⹡敧⡴愢彩敶獲潩≮‬ㄢ〮〮⤢ബ †††††挠敲瑡摥慟㵴慤慴朮瑥∨牣慥整彤瑡⤢ബ †††⤠਍਍††敤⁦潴摟捩⡴敳晬 㸭䐠捩孴瑳Ⱳ䄠祮㩝਍††††∢䌢湯敶瑲琠⁯楤瑣潩慮祲映牯匠灵扡獡⁥湩敳瑲∮∢਍††††敲畴湲笠਍††††††椢≤›瑳⡲敳晬椮⥤ബ †††††∠捳湡楟≤›瑳⡲敳晬献慣彮摩Ⱙ਍††††††漢敶慲汬獟潣敲㨢猠汥⹦癯牥污彬捳牯ⱥ਍††††††挢瑡来牯≹›敳晬挮瑡来牯ⱹ਍††††††挢瑡来牯役捳牯獥㨢猠汥⹦慣整潧祲獟潣敲ⱳ਍††††††愢彩湡污獹獩㨢猠汥⹦楡慟慮祬楳ⱳ਍††††††爢摥晟慬獧㨢猠汥⹦敲彤汦条ⱳ਍††††††椢据湯楳瑳湥楣獥㨢猠汥⹦湩潣獮獩整据敩ⱳ਍††††††瀢潲楦敬浟獩慭捴敨≳›敳晬瀮潲楦敬浟獩慭捴敨ⱳ਍††††††攢灸慬慮楴湯浟瑥摡瑡≡›敳晬攮灸慬慮楴湯浟瑥摡瑡ⱡ਍††††††愢彩敶獲潩≮›敳晬愮彩敶獲潩Ɱ਍††††ൽഊഊ䀊慤慴汣獡൳挊慬獳䄠潭慲敓獳潩㩮਍††∢䄢潭慲挠慯档湩⁧敳獳潩⁮潭敤⹬∢ഢ †椠㩤唠䥕ൄ †甠敳彲摩›啕䑉਍††楴汴㩥猠牴਍††牰浩牡役潴楰㩣传瑰潩慮孬瑳嵲㴠丠湯൥ †猠慴畴㩳猠牴㴠∠䍁䥔䕖•⌠䄠呃噉ⱅ倠啁䕓ⱄ䌠䵏䱐呅䑅਍††牣慥整彤瑡›灏楴湯污摛瑡瑥浩嵥㴠丠湯൥ †甠摰瑡摥慟㩴传瑰潩慮孬慤整楴敭⁝‽潎敮਍††慬瑳浟獥慳敧慟㩴传瑰潩慮孬慤整楴敭⁝‽潎敮਍††潦汬睯畟彰湥扡敬㩤戠潯⁬‽慆獬൥ †映汯潬彷灵瑟浩㩥传瑰潩慮孬瑳嵲㴠丠湯⁥⌠䠠㩈䵍映牯慭൴ †氠獡彴潦汬睯畟彰瑡›灏楴湯污摛瑡瑥浩嵥㴠丠湯൥ †猠浵慭祲瑟硥㩴传瑰潩慮孬瑳嵲㴠丠湯൥ †渠硥彴汰湡瑟硥㩴传瑰潩慮孬瑳嵲㴠丠湯൥ †瀠湩敮㩤戠潯⁬‽慆獬൥ഊ †䀠汣獡浳瑥潨൤ †搠晥映潲彭楤瑣挨獬‬慤慴›楄瑣獛牴‬湁嵹 㸭∠流牯卡獥楳湯㨢਍††††∢䌢敲瑡⁥流牯卡獥楳湯映潲⁭畓慰慢敳爠獥潰獮⹥∢ഢ †††爠瑥牵⁮汣⡳਍††††††摩唽䥕⡄慤慴≛摩崢Ⱙ਍††††††獵牥楟㵤啕䑉搨瑡孡產敳彲摩崢Ⱙ਍††††††楴汴㵥慤慴≛楴汴≥ⱝ਍††††††牰浩牡役潴楰㵣慤慴朮瑥∨牰浩牡役潴楰≣Ⱙ਍††††††瑳瑡獵搽瑡⹡敧⡴猢慴畴≳‬䄢呃噉≅Ⱙ਍††††††牣慥整彤瑡搽瑡⹡敧⡴挢敲瑡摥慟≴Ⱙ਍††††††灵慤整彤瑡搽瑡⹡敧⡴產摰瑡摥慟≴Ⱙ਍††††††慬瑳浟獥慳敧慟㵴慤慴朮瑥∨慬瑳浟獥慳敧慟≴Ⱙ਍††††††潦汬睯畟彰湥扡敬㵤慤慴朮瑥∨潦汬睯畟彰湥扡敬≤‬慆獬⥥ബ †††††映汯潬彷灵瑟浩㵥慤慴朮瑥∨潦汬睯畟彰楴敭⤢ബ †††††氠獡彴潦汬睯畟彰瑡搽瑡⹡敧⡴氢獡彴潦汬睯畟彰瑡⤢ബ †††††瀠湩敮㵤慤慴朮瑥∨楰湮摥Ⱒ䘠污敳Ⱙ਍††††††畳浭牡役整瑸搽瑡⹡敧⡴猢浵慭祲瑟硥≴Ⱙ਍††††††敮瑸灟慬彮整瑸搽瑡⹡敧⡴渢硥彴汰湡瑟硥≴Ⱙ਍††††ഩഊ †搠晥琠彯楤瑣猨汥⥦ⴠ‾楄瑣獛牴‬湁嵹ഺ †††∠∢潃癮牥⁴潴搠捩楴湯牡⁹潦⁲畓慰慢敳椠獮牥⽴灵慤整∮∢਍††††敲畳瑬㴠笠਍††††††椢≤›瑳⡲敳晬椮⥤ബ †††††∠獵牥楟≤›瑳⡲敳晬甮敳彲摩Ⱙ਍††††††琢瑩敬㨢猠汥⹦楴汴ⱥ਍††††††猢慴畴≳›敳晬献慴畴ⱳ਍††††††昢汯潬彷灵敟慮汢摥㨢猠汥⹦潦汬睯畟彰湥扡敬Ɽ਍††††ൽ †††椠⁦敳晬瀮楲慭祲瑟灯捩ഺ †††††爠獥汵孴瀢楲慭祲瑟灯捩崢㴠猠汥⹦牰浩牡役潴楰ൣ †††椠⁦敳晬氮獡彴敭獳条彥瑡ഺ †††††爠獥汵孴氢獡彴敭獳条彥瑡崢㴠猠汥⹦慬瑳浟獥慳敧慟⹴獩景牯慭⡴ഩ †††椠⁦敳晬昮汯潬彷灵瑟浩㩥਍††††††敲畳瑬≛潦汬睯畟彰楴敭崢㴠猠汥⹦潦汬睯畟彰楴敭਍††††晩猠汥⹦慬瑳晟汯潬彷灵慟㩴਍††††††敲畳瑬≛慬瑳晟汯潬彷灵慟≴⁝‽敳晬氮獡彴潦汬睯畟彰瑡椮潳潦浲瑡⤨਍††††晩猠汥⹦畳浭牡役整瑸ഺ †††††爠獥汵孴猢浵慭祲瑟硥≴⁝‽敳晬献浵慭祲瑟硥൴ †††椠⁦敳晬渮硥彴汰湡瑟硥㩴਍††††††敲畳瑬≛敮瑸灟慬彮整瑸崢㴠猠汥⹦敮瑸灟慬彮整瑸਍††††敲畴湲爠獥汵൴ഊഊ䀊慤慴汣獡൳挊慬獳䄠潭慲敓獳潩䵮獥慳敧ഺ †∠∢流牯⁡敳獳潩⁮敭獳条⁥潭敤⹬∢ഢ †椠㩤唠䥕ൄ †猠獥楳湯楟㩤唠䥕ൄ †猠湥敤㩲猠牴†‣產敳≲漠⁲愢潭慲ഢ †洠獥慳敧瑟硥㩴猠牴਍††牣慥整彤瑡›灏楴湯污摛瑡瑥浩嵥㴠丠湯൥ †洠瑥摡瑡㩡䐠捩孴瑳Ⱳ䄠祮⁝‽楦汥⡤敤慦汵彴慦瑣牯㵹楤瑣ഩഊ †䀠汣獡浳瑥潨൤ †搠晥映潲彭楤瑣挨獬‬慤慴›楄瑣獛牴‬湁嵹 㸭∠流牯卡獥楳湯敍獳条≥ഺ †††∠∢牃慥整䄠潭慲敓獳潩䵮獥慳敧映潲⁭畓慰慢敳爠獥潰獮⹥∢ഢ †††爠瑥牵⁮汣⡳਍††††††摩唽䥕⡄慤慴≛摩崢Ⱙ਍††††††敳獳潩彮摩唽䥕⡄慤慴≛敳獳潩彮摩崢Ⱙ਍††††††敳摮牥搽瑡孡猢湥敤≲ⱝ਍††††††敭獳条彥整瑸搽瑡孡洢獥慳敧瑟硥≴ⱝ਍††††††牣慥整彤瑡搽瑡⹡敧⡴挢敲瑡摥慟≴Ⱙ਍††††††敭慴慤慴搽瑡⹡敧⡴洢瑥摡瑡≡‬絻Ⱙ਍††††ഩഊ †搠晥琠彯楤瑣猨汥⥦ⴠ‾楄瑣獛牴‬湁嵹ഺ †††∠∢潃癮牥⁴潴搠捩楴湯牡⁹潦⁲畓慰慢敳椠獮牥⹴∢ഢ †††爠瑥牵⁮ൻ †††††∠摩㨢猠牴猨汥⹦摩Ⱙ਍††††††猢獥楳湯楟≤›瑳⡲敳晬献獥楳湯楟⥤ബ †††††∠敳摮牥㨢猠汥⹦敳摮牥ബ †††††∠敭獳条彥整瑸㨢猠汥⹦敭獳条彥整瑸ബ †††††∠敭慴慤慴㨢猠汥⹦敭慴慤慴ബ †††素਍
+"""
+Database models for Supabase tables.
+These are helper classes for working with Supabase data.
+"""
+from typing import Optional, Dict, Any, List
+from uuid import UUID
+from datetime import datetime
+from dataclasses import dataclass, field
+
+
+@dataclass
+class User:
+    """User model for Supabase users table."""
+    id: UUID
+    email: str
+    profile: Dict[str, Any] = field(default_factory=dict)
+    is_active: bool = True
+    subscription_tier: str = "free"
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "User":
+        """Create User from Supabase response."""
+        return cls(
+            id=UUID(data["id"]),
+            email=data["email"],
+            profile=data.get("profile", {}),
+            is_active=data.get("is_active", True),
+            subscription_tier=data.get("subscription_tier", "free"),
+            created_at=data.get("created_at"),
+            updated_at=data.get("updated_at"),
+        )
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for Supabase insert/update."""
+        return {
+            "id": str(self.id),
+            "email": self.email,
+            "profile": self.profile,
+            "is_active": self.is_active,
+            "subscription_tier": self.subscription_tier,
+        }
+
+
+@dataclass
+class Blueprint:
+    """Blueprint model for Supabase blueprints table."""
+    id: UUID
+    user_id: UUID
+    answers: List[Dict[str, Any]] = field(default_factory=list)
+    profile_summary: Optional[Dict[str, Any]] = None
+    completion_percentage: int = 0
+    version: int = 1
+    is_active: bool = True
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "Blueprint":
+        """Create Blueprint from Supabase response."""
+        return cls(
+            id=UUID(data["id"]),
+            user_id=UUID(data["user_id"]),
+            answers=data.get("answers", []),
+            profile_summary=data.get("profile_summary"),
+            completion_percentage=data.get("completion_percentage", 0),
+            version=data.get("version", 1),
+            is_active=data.get("is_active", True),
+            created_at=data.get("created_at"),
+            updated_at=data.get("updated_at"),
+        )
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for Supabase insert/update."""
+        return {
+            "id": str(self.id),
+            "user_id": str(self.user_id),
+            "answers": self.answers,
+            "profile_summary": self.profile_summary,
+            "completion_percentage": self.completion_percentage,
+            "version": self.version,
+            "is_active": self.is_active,
+        }
+
+
+@dataclass
+class Scan:
+    """Scan model for Supabase scans table."""
+    id: UUID
+    user_id: UUID
+    scan_type: str
+    person_name: Optional[str] = None
+    interaction_type: Optional[str] = None
+    answers: List[Dict[str, Any]] = field(default_factory=list)
+    reflection_notes: Optional[Dict[str, Any]] = None
+    categories_completed: List[str] = field(default_factory=list)
+    status: str = "in_progress"
+    dual_scan_session_id: Optional[UUID] = None
+    dual_scan_role: Optional[str] = None
+    partner_scan_id: Optional[UUID] = None
+    is_unified: bool = False
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "Scan":
+        """Create Scan from Supabase response."""
+        return cls(
+            id=UUID(data["id"]),
+            user_id=UUID(data["user_id"]),
+            scan_type=data["scan_type"],
+            person_name=data.get("person_name"),
+            interaction_type=data.get("interaction_type"),
+            answers=data.get("answers", []),
+            reflection_notes=data.get("reflection_notes"),
+            categories_completed=data.get("categories_completed", []),
+            status=data.get("status", "in_progress"),
+            dual_scan_session_id=UUID(data["dual_scan_session_id"]) if data.get("dual_scan_session_id") else None,
+            dual_scan_role=data.get("dual_scan_role"),
+            partner_scan_id=UUID(data["partner_scan_id"]) if data.get("partner_scan_id") else None,
+            is_unified=data.get("is_unified", False),
+            created_at=data.get("created_at"),
+            updated_at=data.get("updated_at"),
+        )
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for Supabase insert/update."""
+        result = {
+            "id": str(self.id),
+            "user_id": str(self.user_id),
+            "scan_type": self.scan_type,
+            "answers": self.answers,
+            "categories_completed": self.categories_completed,
+            "status": self.status,
+            "is_unified": self.is_unified,
+        }
+        if self.person_name:
+            result["person_name"] = self.person_name
+        if self.interaction_type:
+            result["interaction_type"] = self.interaction_type
+        if self.reflection_notes:
+            result["reflection_notes"] = self.reflection_notes
+        if self.dual_scan_session_id:
+            result["dual_scan_session_id"] = str(self.dual_scan_session_id)
+        if self.dual_scan_role:
+            result["dual_scan_role"] = self.dual_scan_role
+        if self.partner_scan_id:
+            result["partner_scan_id"] = str(self.partner_scan_id)
+        return result
+
+
+@dataclass
+class ScanResult:
+    """ScanResult model for Supabase scan_results table."""
+    id: UUID
+    scan_id: UUID
+    overall_score: int
+    category: str
+    category_scores: Dict[str, int]
+    ai_analysis: Dict[str, Any]
+    red_flags: List[Dict[str, Any]] = field(default_factory=list)
+    inconsistencies: List[Dict[str, Any]] = field(default_factory=list)
+    profile_mismatches: List[Dict[str, Any]] = field(default_factory=list)
+    explanation_metadata: Optional[Dict[str, Any]] = None
+    ai_version: str = "1.0.0"
+    created_at: Optional[datetime] = None
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "ScanResult":
+        """Create ScanResult from Supabase response."""
+        return cls(
+            id=UUID(data["id"]),
+            scan_id=UUID(data["scan_id"]),
+            overall_score=data["overall_score"],
+            category=data["category"],
+            category_scores=data.get("category_scores", {}),
+            ai_analysis=data.get("ai_analysis", {}),
+            red_flags=data.get("red_flags", []),
+            inconsistencies=data.get("inconsistencies", []),
+            profile_mismatches=data.get("profile_mismatches", []),
+            explanation_metadata=data.get("explanation_metadata"),
+            ai_version=data.get("ai_version", "1.0.0"),
+            created_at=data.get("created_at"),
+        )
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for Supabase insert."""
+        return {
+            "id": str(self.id),
+            "scan_id": str(self.scan_id),
+            "overall_score": self.overall_score,
+            "category": self.category,
+            "category_scores": self.category_scores,
+            "ai_analysis": self.ai_analysis,
+            "red_flags": self.red_flags,
+            "inconsistencies": self.inconsistencies,
+            "profile_mismatches": self.profile_mismatches,
+            "explanation_metadata": self.explanation_metadata,
+            "ai_version": self.ai_version,
+        }
+
+
+@dataclass
+class AmoraSession:
+    """Amora coaching session model."""
+    id: UUID
+    user_id: UUID
+    title: str
+    primary_topic: Optional[str] = None
+    status: str = "ACTIVE"  # ACTIVE, PAUSED, COMPLETED
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
+    last_message_at: Optional[datetime] = None
+    follow_up_enabled: bool = False
+    follow_up_time: Optional[str] = None  # HH:MM format
+    last_follow_up_at: Optional[datetime] = None
+    summary_text: Optional[str] = None
+    next_plan_text: Optional[str] = None
+    pinned: bool = False
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "AmoraSession":
+        """Create AmoraSession from Supabase response."""
+        return cls(
+            id=UUID(data["id"]),
+            user_id=UUID(data["user_id"]),
+            title=data["title"],
+            primary_topic=data.get("primary_topic"),
+            status=data.get("status", "ACTIVE"),
+            created_at=data.get("created_at"),
+            updated_at=data.get("updated_at"),
+            last_message_at=data.get("last_message_at"),
+            follow_up_enabled=data.get("follow_up_enabled", False),
+            follow_up_time=data.get("follow_up_time"),
+            last_follow_up_at=data.get("last_follow_up_at"),
+            pinned=data.get("pinned", False),
+            summary_text=data.get("summary_text"),
+            next_plan_text=data.get("next_plan_text"),
+        )
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for Supabase insert/update."""
+        result = {
+            "id": str(self.id),
+            "user_id": str(self.user_id),
+            "title": self.title,
+            "status": self.status,
+            "follow_up_enabled": self.follow_up_enabled,
+        }
+        if self.primary_topic:
+            result["primary_topic"] = self.primary_topic
+        if self.last_message_at:
+            result["last_message_at"] = self.last_message_at.isoformat()
+        if self.follow_up_time:
+            result["follow_up_time"] = self.follow_up_time
+        if self.last_follow_up_at:
+            result["last_follow_up_at"] = self.last_follow_up_at.isoformat()
+        if self.summary_text:
+            result["summary_text"] = self.summary_text
+        if self.next_plan_text:
+            result["next_plan_text"] = self.next_plan_text
+        return result
+
+
+@dataclass
+class AmoraSessionMessage:
+    """Amora session message model."""
+    id: UUID
+    session_id: UUID
+    sender: str  # "user" or "amora"
+    message_text: str
+    created_at: Optional[datetime] = None
+    metadata: Dict[str, Any] = field(default_factory=dict)
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "AmoraSessionMessage":
+        """Create AmoraSessionMessage from Supabase response."""
+        return cls(
+            id=UUID(data["id"]),
+            session_id=UUID(data["session_id"]),
+            sender=data["sender"],
+            message_text=data["message_text"],
+            created_at=data.get("created_at"),
+            metadata=data.get("metadata", {}),
+        )
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for Supabase insert."""
+        return {
+            "id": str(self.id),
+            "session_id": str(self.session_id),
+            "sender": self.sender,
+            "message_text": self.message_text,
+            "metadata": self.metadata,
+        }
