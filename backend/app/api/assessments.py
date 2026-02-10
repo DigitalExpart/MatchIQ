@@ -8,7 +8,8 @@ from app.database import get_supabase_client
 from app.models.pydantic_models import (
     CreateScanRequest,
     ScanResponse,
-    ScanResultResponse
+    ScanResultResponse,
+    RedFlagResponse
 )
 from app.models.db_models import Scan
 from app.services.scoring_engine import ScoringEngine
