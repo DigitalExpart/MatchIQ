@@ -225,3 +225,82 @@ class SessionMessageResponse(BaseModel):
     message_text: str
     created_at: datetime
     metadata: Optional[Dict[str, Any]] = None
+
+
+# =====================
+# Dual Scan Models
+# =====================
+
+class DualScanStatus(str, Enum):
+    PENDING = "pending"
+    USER_A_COMPLETED = "user_a_completed"
+    USER_B_COMPLETED = "user_b_completed"
+    BOTH_COMPLETED = "both_completed"
+    REVEALED = "revealed"
+
+
+class DualScanAnswerInput(BaseModel):
+    question: str
+    category: str
+    rating: Rating
+    notes: Optional[str] = None
+
+
+class CreateDualScanRequest(BaseModel):
+    partner_name: str
+    selected_categories: List[str] = []
+    interaction_type: Optional[str] = None
+
+
+class JoinDualScanRequest(BaseModel):
+    user_name: str
+
+
+class SubmitDualScanAnswersRequest(BaseModel):
+    role: str  # "A" or "B"
+    answers: List[DualScanAnswerInput]
+    score: Optional[int] = None
+
+
+class DualScanSessionResponse(BaseModel):
+    id: str
+    user_a_name: str
+    user_b_name: str
+    status: str
+    user_a_completed: bool
+    user_b_completed: bool
+    user_a_score: Optional[int] = None
+    user_b_score: Optional[int] = None
+    mutual_score: Optional[int] = None
+    interaction_type: Optional[str] = None
+    selected_categories: List[str] = []
+    revealed: bool
+    invite_link: Optional[str] = None
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
+
+
+class DualScanMutualDealBreaker(BaseModel):
+    category: str
+    severity: str
+    description: str
+
+
+class DualScanComplementaryArea(BaseModel):
+    category: str
+    description: str
+
+
+class DualScanResultResponse(BaseModel):
+    session_id: str
+    mutual_score: int
+    user_a_score: Optional[int] = None
+    user_b_score: Optional[int] = None
+    category_alignment: Dict[str, float] = {}
+    mutual_deal_breakers: List[DualScanMutualDealBreaker] = []
+    complementary_areas: List[str] = []
+    asymmetry_detected: bool = False
+    asymmetry_difference: Optional[float] = None
+    user_a_name: str = ""
+    user_b_name: str = ""
+

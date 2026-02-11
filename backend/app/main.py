@@ -6,7 +6,7 @@ import logging
 
 from app.config import settings
 from app.database import init_db
-from app.api import auth, assessments, blueprints, results, coach, coach_enhanced, coach_sessions, admin
+from app.api import auth, assessments, blueprints, results, coach, coach_enhanced, coach_sessions, admin, dual_scan
 from app.models.pydantic_models import HealthResponse
 
 # Configure logging
@@ -87,6 +87,7 @@ app.include_router(coach_sessions.router, prefix="/api/v1", tags=["coach-session
 
 # Admin endpoints for maintenance (compute embeddings, etc.)
 app.include_router(admin.router, prefix="/api/v1", tags=["admin"])
+app.include_router(dual_scan.router, prefix="/api/v1", tags=["dual-scan"])
 
 
 @app.get("/health", response_model=HealthResponse)

@@ -17,6 +17,7 @@ class Settings(BaseSettings):
     SUPABASE_PROJECT_ID: str
     SUPABASE_URL: str
     SUPABASE_ANON_KEY: str
+    SUPABASE_SERVICE_ROLE_KEY: str = ""
     
     # JWT
     SECRET_KEY: str = "your-secret-key-here-please-change-in-production-min-32-chars"

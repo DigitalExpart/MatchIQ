@@ -294,3 +294,71 @@ class AmoraSessionMessage:
             "message_text": self.message_text,
             "metadata": self.metadata,
         }
+
+
+@dataclass
+class DualScanSession:
+    """Dual Scan session model for Supabase dual_scan_sessions table."""
+    id: str  # Session ID (e.g. "ds_1234_abc")
+    user_a_id: Optional[str] = None
+    user_a_name: str = ""
+    user_b_name: str = ""
+    status: str = "pending"  # pending | user_a_completed | user_b_completed | both_completed | revealed
+    user_a_completed: bool = False
+    user_b_completed: bool = False
+    user_a_answers: List[Dict[str, Any]] = field(default_factory=list)
+    user_b_answers: List[Dict[str, Any]] = field(default_factory=list)
+    user_a_score: Optional[int] = None
+    user_b_score: Optional[int] = None
+    mutual_score: Optional[int] = None
+    interaction_type: Optional[str] = None
+    selected_categories: List[str] = field(default_factory=list)
+    revealed: bool = False
+    invite_link: Optional[str] = None
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "DualScanSession":
+        """Create DualScanSession from Supabase response."""
+        return cls(
+            id=data.get("id", ""),
+            user_a_id=data.get("user_a_id"),
+            user_a_name=data.get("user_a_name", ""),
+            user_b_name=data.get("user_b_name", ""),
+            status=data.get("status", "pending"),
+            user_a_completed=data.get("user_a_completed", False),
+            user_b_completed=data.get("user_b_completed", False),
+            user_a_answers=data.get("user_a_answers") or [],
+            user_b_answers=data.get("user_b_answers") or [],
+            user_a_score=data.get("user_a_score"),
+            user_b_score=data.get("user_b_score"),
+            mutual_score=data.get("mutual_score"),
+            interaction_type=data.get("interaction_type"),
+            selected_categories=data.get("selected_categories") or [],
+            revealed=data.get("revealed", False),
+            invite_link=data.get("invite_link"),
+            created_at=data.get("created_at"),
+            updated_at=data.get("updated_at"),
+        )
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for Supabase insert/update."""
+        return {
+            "id": self.id,
+            "user_a_id": self.user_a_id,
+            "user_a_name": self.user_a_name,
+            "user_b_name": self.user_b_name,
+            "status": self.status,
+            "user_a_completed": self.user_a_completed,
+            "user_b_completed": self.user_b_completed,
+            "user_a_answers": self.user_a_answers,
+            "user_b_answers": self.user_b_answers,
+            "user_a_score": self.user_a_score,
+            "user_b_score": self.user_b_score,
+            "mutual_score": self.mutual_score,
+            "interaction_type": self.interaction_type,
+            "selected_categories": self.selected_categories,
+            "revealed": self.revealed,
+            "invite_link": self.invite_link,
+        }
